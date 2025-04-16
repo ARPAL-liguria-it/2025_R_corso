@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "Corso di R: dalle basi alla prima analisi dei dati"
+  author: "Andrea Bisignano, Andrea Bazzano"
+  reader-mode: true
+  favicon: favicon.png
+  site-url: missing
+  repo-url: missing
+  repo-branch: main
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - basics.qmd
+format:
+  html:
+    theme: cosmo
+    lightbox: true
+    fig-dpi: 72
+
+    author-meta: "Andrea Bisignano, Andrea Bazzano"
+    callout-appearance: simple
+lang: it
+
