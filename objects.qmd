@@ -1,0 +1,82 @@
+#  Oggetti di R {#sec-objects}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## Tipologie di elementi {#sec-typeof}
+
+Prima di vedere le classi di oggetti di R, che possiamo pensare come diverse tipologie di contenitori, è bene dare una rapida occhiata alla tipologia di elementi che possiamo mettere in tali contenitori.
+
+Quando saremo in dubbio sulla tipologia di un dato elemento possiamo usare la funzione `typeof()`.
+
+### Numeri
+
+R ha la possibilità di gestire diverse tipologie di numeri, tuttavia noi useremo principalmente la tipologia `double` che abbrevia il nome *double-precision floating-point format*: che definisce come in informatica vengono archiviati e manipolati gli elementi esprimibili con una parte decimale. Ogni misura - con l'esclusione dei conteggi puri - anche una che dovesse avere valore 5, ricade in questa tipologia. Utilizzare questa tipologia di elementi è semplice:
+
+```{r}
+a <- c(2, 2.1, 2.5)
+```
+
+Più raramente dovremo definire degli interi. Essi afferiscono alla tipologia `integer` e si scrivono facendo seguire una L maiuscola al numero:
+
+```{r}
+b <- c(1L, 5L)
+```
+
+Altre tipologie di numeri più esotiche comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non li useremo.
+
+Numeri particolari che possiamo ottenere a seguito di operazioni matematiche sono `NaN`: *not a number*, `Inf` e `-Inf`: il primo è ottenibile, ad esempio, dividendo zero per zero mentre gli ultimi rispettivamente dividendo un numero positivo o negativo per zero. Si può testare se un numero sia `NaN` o `Inf` rispettivamente con le funzioni `is.nan()` e `is.infinite()`.
+
+### Testo
+
+R mette a disposizione una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte `character` e si scrivono racchiudendo i diversi elementi tra singole o doppie virgolette alte (nel corso utilizzeremo sempre le doppie virgolette):
+
+```{r}
+c <- "roba"
+```
+
+Talvolta i numeri possono anche essere archiviati come testo, ad esempio `r d <- c("1", "2")`, tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: vedremo e rimedieremo a casi di questo tipo nei prossimi capitoli.
+
+### Logici
+
+Gli elementi logici sono quelli che possono assumere esclusivamente valore `TRUE` o `FALSE`: difficilmente vengono assegnati a mano in una variabile ma compaiono spesso a seguito di un'operazione logica:
+
+```{r}
+d <- 3 < 5
+d
+typeof(d)
+
+e <- 3 == 3L
+```
+
+### Elementi mancanti ed elementi nulli
+
+R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
+Si può verificare se un elemento è di tipo `NA` con la funzione `is.na()`.
+
+Talvolta, applicando una funzione ##### TODO ##### Manca NULL
+
+## Vettori
+
+I vettori sono un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.
+
+Posso accedere ai diversi elementi di un vettore attraverso la notazione `vettore[indici]` dove `indici` è a sua volta un vettore da includere o escludere:
+
+```{r}
+f <- c("a", "b", "c", NA, "e")
+f[1] # seleziono solo il primo elemento
+f[-1] # seleziono tutti gli elementi tranne il primo
+f[2:4] # seleziono gli elementi dal secondo al quarto, estremi compresi
+f[-(2:4)] # seleziono tutti gli elementi tranne quelli dal secondo al quarto
+f[c(2,4)] # seleziono il secondo e quarto elemento
+f[-c(2,4)] # seleziono tutti gli elementi tranne il secondo e il quarto
+g <- c(3,5)
+f[g] # seleziono il terzo e quinto elemento
+f[-g] # seleziono tutti gli elementi tranne il terzo e il quinto
+f[is.na(f)] # seleziono solo gli elementi NA
+f[!is.na(f)] # seleziono solo gli elementi non NA
+```
+
+Per verificare se ho a che fare con un vettore posso usare la funzione `is.vector()`, mentre per determinare quanti elementi contenga uso la funzione `length()`.

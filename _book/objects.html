@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bisignano, Andrea Bazzano">
 
-<title>Le basi – Corso di R: dalle basi alla prima analisi dei dati</title>
+<title>3&nbsp; Oggetti di R – Corso di R: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./start.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./start.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./objects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -130,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./basics.html" class="sidebar-item-text sidebar-link active">
+            <a href="./basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Le basi</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -143,6 +176,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -150,15 +189,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#sec-typeof" id="toc-sec-typeof" class="nav-link active" data-scroll-target="#sec-typeof"><span class="header-section-number">3.1</span> Tipologie di elementi</a>
+  <ul class="collapse">
+  <li><a href="#numeri" id="toc-numeri" class="nav-link" data-scroll-target="#numeri"><span class="header-section-number">3.1.1</span> Numeri</a></li>
+  <li><a href="#testo" id="toc-testo" class="nav-link" data-scroll-target="#testo"><span class="header-section-number">3.1.2</span> Testo</a></li>
+  <li><a href="#logici" id="toc-logici" class="nav-link" data-scroll-target="#logici"><span class="header-section-number">3.1.3</span> Logici</a></li>
+  <li><a href="#elementi-mancanti-ed-elementi-nulli" id="toc-elementi-mancanti-ed-elementi-nulli" class="nav-link" data-scroll-target="#elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</a></li>
+  </ul></li>
+  <li><a href="#vettori" id="toc-vettori" class="nav-link" data-scroll-target="#vettori"><span class="header-section-number">3.2</span> Vettori</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./objects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-basics-intro" class="quarto-section-identifier">Le basi</span></h1>
+<h1 class="title"><span id="sec-objects" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></h1>
 </div>
 
 
@@ -175,15 +227,82 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In questa prima parte inizieremo a prendere dimestichezza con le basi di R:</p>
-<ul>
-<li>nel primo capitolo partiremo dall’interazione con la console fino a scrivere ed eseguire il nostro primo script;</li>
-<li>nel secondo capitolo ci concentreremo sull’uso delle diverse tipologie di oggetti di R;</li>
-<li>nel terzo capitolo importeremo dati da file esterni;</li>
-<li>nel quarto capitolo inizieremo a fare i primi esperimenti di trasformazione dei dati con la libreria <code>data.table</code>.</li>
-</ul>
+<section id="sec-typeof" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-typeof"><span class="header-section-number">3.1</span> Tipologie di elementi</h2>
+<p>Prima di vedere le classi di oggetti di R, che possiamo pensare come diverse tipologie di contenitori, è bene dare una rapida occhiata alla tipologia di elementi che possiamo mettere in tali contenitori.</p>
+<p>Quando saremo in dubbio sulla tipologia di un dato elemento possiamo usare la funzione <code>typeof()</code>.</p>
+<section id="numeri" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="numeri"><span class="header-section-number">3.1.1</span> Numeri</h3>
+<p>R ha la possibilità di gestire diverse tipologie di numeri, tuttavia noi useremo principalmente la tipologia <code>double</code> che abbrevia il nome <em>double-precision floating-point format</em>: che definisce come in informatica vengono archiviati e manipolati gli elementi esprimibili con una parte decimale. Ogni misura - con l’esclusione dei conteggi puri - anche una che dovesse avere valore 5, ricade in questa tipologia. Utilizzare questa tipologia di elementi è semplice:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.5</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Più raramente dovremo definire degli interi. Essi afferiscono alla tipologia <code>integer</code> e si scrivono facendo seguire una L maiuscola al numero:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">5</span>L)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Altre tipologie di numeri più esotiche comprendono i tipi <code>complex</code> e <code>raw</code>, rispettivamente per numeri complessi e bytes: non li useremo.</p>
+<p>Numeri particolari che possiamo ottenere a seguito di operazioni matematiche sono <code>NaN</code>: <em>not a number</em>, <code>Inf</code> e <code>-Inf</code>: il primo è ottenibile, ad esempio, dividendo zero per zero mentre gli ultimi rispettivamente dividendo un numero positivo o negativo per zero. Si può testare se un numero sia <code>NaN</code> o <code>Inf</code> rispettivamente con le funzioni <code>is.nan()</code> e <code>is.infinite()</code>.</p>
+</section>
+<section id="testo" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="testo"><span class="header-section-number">3.1.2</span> Testo</h3>
+<p>R mette a disposizione una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte <code>character</code> e si scrivono racchiudendo i diversi elementi tra singole o doppie virgolette alte (nel corso utilizzeremo sempre le doppie virgolette):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">"roba"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Talvolta i numeri possono anche essere archiviati come testo, ad esempio , tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: vedremo e rimedieremo a casi di questo tipo nei prossimi capitoli.</p>
+</section>
+<section id="logici" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="logici"><span class="header-section-number">3.1.3</span> Logici</h3>
+<p>Gli elementi logici sono quelli che possono assumere esclusivamente valore <code>TRUE</code> o <code>FALSE</code>: difficilmente vengono assegnati a mano in una variabile ma compaiono spesso a seguito di un’operazione logica:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(d)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "logical"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span>L</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="elementi-mancanti-ed-elementi-nulli" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</h3>
+<p>R identifica gli elementi mancanti con <code>NA</code>: <em>not available</em>. <code>NA</code> rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono <code>NA</code>, danno risultato <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
+<p>Talvolta, applicando una funzione</p>
+</section>
+</section>
+<section id="vettori" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="vettori"><span class="header-section-number">3.2</span> Vettori</h2>
+<p>I vettori sono un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.</p>
+<p>Posso accedere ai diversi elementi di un vettore attraverso la notazione <code>vettore[indici]</code> dove <code>indici</code> è a sua volta un vettore da includere o escludere:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">NA</span>, <span class="st">"e"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">1</span>] <span class="co"># seleziono solo il primo elemento</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># seleziono tutti gli elementi tranne il primo</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA  "e"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># seleziono gli elementi dal secondo al quarto, estremi compresi</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)] <span class="co"># seleziono tutti gli elementi tranne quelli dal secondo al quarto</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "e"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziono il secondo e quarto elemento</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" NA</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziono tutti gli elementi tranne il secondo e il quarto</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "c" "e"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>f[g] <span class="co"># seleziono il terzo e quinto elemento</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c" "e"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>g] <span class="co"># seleziono tutti gli elementi tranne il terzo e il quinto</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" NA</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">is.na</span>(f)] <span class="co"># seleziono solo gli elementi NA</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">!</span><span class="fu">is.na</span>(f)] <span class="co"># seleziono solo gli elementi non NA</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" "c" "e"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Per verificare se ho a che fare con un vettore posso usare la funzione <code>is.vector()</code>, mentre per determinare quanti elementi contenga uso la funzione <code>length()</code>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -605,14 +724,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduzione">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span>
+      <a href="./start.html" class="pagination-link" aria-label="Il primo assaggio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./start.html" class="pagination-link" aria-label="Il primo assaggio">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -620,4 +736,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="missing/edit/main/basics.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>

@@ -2,7 +2,6 @@
 
 ```{r}
 #| echo: false
-
 source("_common.R")
 ```
 
@@ -80,6 +79,7 @@ Durante il corso utilizzeremo alcuni pacchetti di largo utilizzo:
 
 - `data.table`: permette il caricamento e la manipolazione in modo efficiente di insiemi di dati di grandi dimensioni e presenta una sintassi particolare ma di rapido e intuitivo utilizzo;
 - `ggplot2`: è il pacchetto d'elezione per la produzione di grafici;
+- `readxl`: è uno dei pacchetti utilizzabili per importare dati da fogli di calcolo Excel;
 - `glue`: semplifica il concatenamento di stringhe, lo useremo in modo diretto raramente;
 - `gt`: viene utilizzato per la produzione di tabelle di qualità. Ogni tabella che vedrete nel corso sarà fatta utilizzando questo pacchetto ma raramente lo utilizzeremo in modo diretto.
 
@@ -88,7 +88,7 @@ Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con i
 ```{r}
 #| output: false
 
-install.packages(c("data.table", "ggplot2", "glue", "gt"))
+install.packages(c("data.table", "readxl", "ggplot2", "glue", "gt"))
 ```
 
 Quando ne avremo bisogno saremo pronti a caricare e usare i nostri pacchetti.

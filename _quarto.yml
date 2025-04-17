@@ -13,7 +13,11 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - basics.qmd
+    
+    - part: basics.qmd
+      chapters: 
+        - start.qmd
+        - objects.qmd
 format:
   html:
     theme: cosmo

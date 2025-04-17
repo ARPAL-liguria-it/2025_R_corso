@@ -165,12 +165,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Le basi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Le basi</span></span></a>
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -276,12 +287,13 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <ul>
 <li><code>data.table</code>: permette il caricamento e la manipolazione in modo efficiente di insiemi di dati di grandi dimensioni e presenta una sintassi particolare ma di rapido e intuitivo utilizzo;</li>
 <li><code>ggplot2</code>: è il pacchetto d’elezione per la produzione di grafici;</li>
+<li><code>readxl</code>: è uno dei pacchetti utilizzabili per importare dati da fogli di calcolo Excel;</li>
 <li><code>glue</code>: semplifica il concatenamento di stringhe, lo useremo in modo diretto raramente;</li>
 <li><code>gt</code>: viene utilizzato per la produzione di tabelle di qualità. Ogni tabella che vedrete nel corso sarà fatta utilizzando questo pacchetto ma raramente lo utilizzeremo in modo diretto.</li>
 </ul>
 <p>Installiamo i pacchetti richiesti racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"ggplot2"</span>, <span class="st">"glue"</span>, <span class="st">"gt"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"glue"</span>, <span class="st">"gt"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Quando ne avremo bisogno saremo pronti a caricare e usare i nostri pacchetti.</p>
 </section>
@@ -724,7 +736,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./basics.html" class="pagination-link" aria-label="Le basi">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Le basi</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Le basi</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
