@@ -56,7 +56,18 @@ e <- 3 == 3L
 R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
 Si può verificare se un elemento è di tipo `NA` con la funzione `is.na()`.
 
-Talvolta, applicando una funzione ##### TODO ##### Manca NULL
+
+
+ ########### NON MI PIACE ############ cambiare esempio
+Talvolta, R può restituire un elemento di tipo `NULL` estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore `NULL` a un elemento per eliminarlo:
+
+```{r}
+c()
+
+a
+a <- NULL
+a
+```
 
 ## Vettori
 
@@ -80,3 +91,21 @@ f[!is.na(f)] # seleziono solo gli elementi non NA
 ```
 
 Per verificare se ho a che fare con un vettore posso usare la funzione `is.vector()`, mentre per determinare quanti elementi contenga uso la funzione `length()`.
+
+Con vettori possiamo iniziare a fare qualche conto con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
+
+Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono `sample()` e `rnorm`()`: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:
+
+```{r}
+sorprendimi <- sample(1:1000, 30, replace = TRUE) # estraggo 30 valori tra loro indipendenti dagli interi da 1 a 1000.
+max(sorprendimi) # trovo il valore massimo
+which.max(sorprendimi) # trovo la posizione in cui si trova il valore massimo
+m <- which.max(sorprendimi)
+sorprendimi[m]
+max(sorprendimi) == sorprendimi[m] # funziona!
+
+rnorm(1000, mean = 10, sd = 3) |> # uso la pipe per concatenare le funzioni
+  hist()
+```
+
+
