@@ -56,10 +56,7 @@ e <- 3 == 3L
 R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
 Si può verificare se un elemento è di tipo `NA` con la funzione `is.na()`.
 
-
-
- ########### NON MI PIACE ############ cambiare esempio
-Talvolta, R può restituire un elemento di tipo `NULL` estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore `NULL` a un elemento per eliminarlo:
+Talvolta, R può restituire un elemento di tipo `NULL` estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore `NULL` a un oggetto per eliminarne il contenuto:
 
 ```{r}
 c()
@@ -71,9 +68,9 @@ a
 
 ## Vettori
 
-I vettori sono un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.
+Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.
 
-Posso accedere ai diversi elementi di un vettore attraverso la notazione `vettore[indici]` dove `indici` è a sua volta un vettore da includere o escludere:
+Posso accedere ai diversi elementi di un vettore attraverso la notazione `vettore[indici]` dove `indici` è a sua volta un vettore di elementi da includere o escludere:
 
 ```{r}
 f <- c("a", "b", "c", NA, "e")
@@ -92,7 +89,7 @@ f[!is.na(f)] # seleziono solo gli elementi non NA
 
 Per verificare se ho a che fare con un vettore posso usare la funzione `is.vector()`, mentre per determinare quanti elementi contenga uso la funzione `length()`.
 
-Con vettori possiamo iniziare a fare qualche conto con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
+Con i vettori possiamo iniziare a fare qualche conto con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
 
 Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono `sample()` e `rnorm`()`: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:
 
@@ -108,4 +105,26 @@ rnorm(1000, mean = 10, sd = 3) |> # uso la pipe per concatenare le funzioni
   hist()
 ```
 
+Gli elementi di un vettore possono essere associati a un nome agendo sull'attributo `names()` di tale vettore.
 
+```{r}
+g
+names(g) <- c("tre", "cinque")
+g
+names(g) <- NULL
+g
+```
+
+## Matrici ed array
+
+La naturale estensione dei vettori sono le matrici e gli array multidimensionali.
+Si creano essenzialmente partendo da vettori e organizzandoli su righe e colonne.
+
+L'estrazione di elementi dalla matrice avviene con la notazione `matrice[righe, colonne]`, come mostrato nell'esempio riportato di seguito:
+
+```{r}
+matrice <- matrix(1:100, nrow = 20)
+matrice[5:7, 3:5]
+```
+
+Su vettori e matrici è possibile eseguire tutte le operazioni dell'algebra lineare, come il prodotto righe per colonne, utilizzando l'operatore `%*%`.
