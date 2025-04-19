@@ -207,7 +207,17 @@ Alternativi e complementari all'uso di strumenti di intelligenza artificiale, so
 
 L'ultimo punto ha lo scopo di rendere il vostro codice riproducibile e facilmente leggibile da chi vi dovrà aiutare: inserite nel codice tutte le librerie e variabili usate e togliete tutto quanto non è indispensabile per riprodurre il problema su cui state chiedendo aiuto.
 
+:::: {.panel-tabset}
+
 ## Esercizio
 
 - Documentarsi sull'utilizzo della funzione `aggregate`;
 - calcolare la media di tutte le quattro tipologie di misure delle tre specie nel dataset `iris`.
+
+## Soluzione
+
+```{r}
+?aggregate()    # 1.
+aggregate(. ~ Species, data = iris, FUN = mean)    # 2.
+```
+::::

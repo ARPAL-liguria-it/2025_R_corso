@@ -51,6 +51,8 @@ typeof(d)
 e <- 3 == 3L
 ```
 
+Internamente, R li tratta come interi pari 1 o 0 e a cui assegna rispettivamente le etichette `TRUE` e `FALSE`.
+
 ### Elementi mancanti ed elementi nulli
 
 R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
@@ -66,9 +68,11 @@ a <- NULL
 a
 ```
 
+### Classi di oggetti {#sec-classes}
+
 ## Vettori
 
-Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.
+Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione. Tecnicamente, i vettori non sono catalogati da R all'interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.
 
 Posso accedere ai diversi elementi di un vettore attraverso la notazione `vettore[indici]` dove `indici` è a sua volta un vettore di elementi da includere o escludere:
 
@@ -127,4 +131,16 @@ matrice <- matrix(1:100, nrow = 20)
 matrice[5:7, 3:5]
 ```
 
-Su vettori e matrici è possibile eseguire tutte le operazioni dell'algebra lineare, come il prodotto righe per colonne, utilizzando l'operatore `%*%`.
+Possiamo determinare e modificare la dimensione di una matrice con il comando `dim()`:
+
+```{r}
+dim(matrice)
+dim(matrice) <- c(5, 20)
+```
+
+Su vettori e matrici di tipo numerico è possibile eseguire tutte le operazioni dell'algebra lineare, come il prodotto righe per colonne, utilizzando l'operatore `%*%`, o il calcolo dell'inversa con il comando `inv()` del pacchetto `MASS`: difficilmente ci troveremo a dover eseguire tali operazioni manualmente, in quanto numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.
+
+## Fattori
+
+Un testo che può assumere solo valori finiti e noti è un fattore: il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio, per esempio acque di mare, acque potabili, acque sotterranee e molte altre ma non infinite altre.
+Internamente R tratta i fattori come interi a cui assegna un'etichetta di testo.
