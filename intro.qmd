@@ -5,47 +5,47 @@
 source("_common.R")
 ```
 
-Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati mediante R.
+Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.
 
-Il corso si conclude con una piccola analisi guidata svolta dai partecipanti e strutturata in un documento a se stante.
+Il corso si conclude con una piccola analisi guidata svolta dai partecipanti e strutturata in un documento a sé stante.
 
 Durante il proseguo del corso impareremo a:
 
 -   chiedere aiuto;
 -   strutturare un documento alternando testo e codice per rendere le analisi riproducibili;
--   importare i dati contenuti in file esterni all'interno di R;
+-   importare dati da file esterni all'interno di R;
 -   immagazzinare, consultare e modificare i dati all'interno delle diverse tipologie di oggetti di R;
--   cambiare la forma dei nostri dati e combinarli con altre informazioni con alcune caratteristiche comuni;
+-   trasformare e combinare i dati;
 -   utilizzare i nostri dati per ottenere informazioni statistiche di base;
--   ottenere grafici di base.
+-   creare semplici grafici.
 
 ## Quanta fatica
 
-L'utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprendere le basi del linguaggio, le funzioni principali e il loro campo di applicabilità. Tuttavia, le energie spese sono ripagate dalla possibilità di poter riutilizzare, adattare il codice e poter ripetere l'analisi con relativamente poco sforzo, rendendo l'intero processo riproducibile e documentabile.
+L'utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.
 
-In aggiunta, l'apprendimento di un linguaggio di programmazione permette di aprire numerose porte, talvolta semplificando il lavoro quotidiano in molti campi. Infatti, volendo solo citare una parte delle cose che si possono fare con R, non è difficile ottenere:
+Inoltre, imparare un linguaggio di programmazione apre numerose porte e può semplificare il lavoro quotidiano in molti ambiti. Per esempio, con R è possibile realizzare:
 
 -   documenti dinamici parametrizzati;
--   applicazioni interattive accessibili attraverso un browser;
--   interfacce di programmazione di applicazioni (API) per l'esecuzione di funzioni da remoto.
+-   applicazioni interattive accessibili via browser;
+-   interfacce di programmazione (API) per l'esecuzione di funzioni da remoto.
 
 ## Prerequisiti
 
-Il corso può essere seguito da qualunque persona con una certa dimestichezza con i computer e con la logica di base. Il candidato ideale dovrebbe aver già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è richiesta ma sicuramente aiuta.
+Il corso è aperto a chiunque abbia una certa dimestichezza con il computer e una conoscenza di base della logica. Il candidato ideale ha già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è necessaria, ma sicuramente rappresenta un vantaggio.
 
-L'esecuzione del codice presentato all'interno del corso richiede l'installazione di R, RStudio e dei pacchetti `data.table`, `ggplot2`, `glue` e `gt`.
+Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti `data.table`, `readxl`, `ggplot2`, `glue` e `gt`.
 
 ### R
 
-Il download di R può essere eseguito dal *comprensive R archive network* ([CRAN](https://cloud.r-project.org/)), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione e circa tre nuove versioni minori: se si intende usare R con regolarità è consigliato mantenere l'applicativo aggiornato.
+R può essere scaricato dal *Comprensive R Archive Network* ([CRAN](https://cloud.r-project.org/)), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: se si intende usare R regolarmente, è consigliabile mantenere il software aggiornato.
 
-Si tratta di un software libero, rilasciato con un mix di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.
+R è un software libero, distribuito sotto una combinazione di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.
 
 ### RStudio
 
-RStudio è l'ambiente integrato di sviluppo (IDE) attualmente maggiormente utilizzato con R: permette la gestione completa di un progetto, la connessione a sorgenti di dati esterni, quali database, e l'integrazione con sistemi di gestione delle versioni come `git`. L'applicazione può essere scaricata dal sito dello sviluppatore [Posit](https://posit.co/download/rstudio-desktop/).
+RStudio è l'ambiente di sviluppo integrato (IDE) più diffuso per R: permette la gestione completa di un progetto, la connessione a sorgenti dati esterne come database e l'integrazione con sistemi di gestione delle versioni come `git`. Può essere scaricato dal sito ufficiale di [Posit](https://posit.co/download/rstudio-desktop/).
 
-Si tratta di un software libero rilasciato con licenza GNU Affero General Public License v3.
+Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.
 
 ```{r}
 #| label: fig-rstudio-console
@@ -61,13 +61,13 @@ knitr::include_graphics("images/rstudio.png", dpi = 72)
 ```
 
 
-L'utilizzo di RStudio o di un IDE non è strettamente necessario per l'utilizzo di R, tuttavia semplifica di molto il suo utilizzo. Altri IDE comunemente utilizzati con R sono VScode, Vim ed Emacs.
+L'uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare R, ma ne semplifica notevolmente l'impiego. Altri IDE comunemente utilizzati con R sono Visual Studio Code, Vim ed Emacs.
 
 ### I pacchetti di R
 
-Le funzionalità offerte da R possono essere espanse ricorrendo a pacchetti. La lista completa, estremamente lunga e variegata, è presente sul sito del [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html). Alcuni di questi pacchetti sono sviluppati a livello amatoriale, altri da statistici e ingegneri del software di primissimo piano a livello mondiale. Tutte le funzioni e i dati presenti in un pacchetto sono documentati, il codice sorgente è totalmente consultabile e spesso si può collaborare direttamente al suo sviluppo su piattaforme quali GitHub. Molti di questi pacchetti sono collegati a libri di testo o articoli scientifici.
+Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html). Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.
 
-I pacchetti possono essere installati all'interno di R mediante il comando:
+I pacchetti si installano in R con il comando:
 
 ```{r}
 #| eval: false
@@ -75,13 +75,13 @@ I pacchetti possono essere installati all'interno di R mediante il comando:
 install.packages("pacchetto")
 ```
 
-Durante il corso utilizzeremo alcuni pacchetti di largo utilizzo:
+Durante il corso utilizzeremo alcuni pacchetti molto diffusi:
 
-- `data.table`: permette il caricamento e la manipolazione in modo efficiente di insiemi di dati di grandi dimensioni e presenta una sintassi particolare ma di rapido e intuitivo utilizzo;
-- `ggplot2`: è il pacchetto d'elezione per la produzione di grafici;
-- `readxl`: è uno dei pacchetti utilizzabili per importare dati da fogli di calcolo Excel;
-- `glue`: semplifica il concatenamento di stringhe, lo useremo in modo diretto raramente;
-- `gt`: viene utilizzato per la produzione di tabelle di qualità. Ogni tabella che vedrete nel corso sarà fatta utilizzando questo pacchetto ma raramente lo utilizzeremo in modo diretto.
+- `data.table`: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;
+- `ggplot2`: il pacchetto di riferimento per la creazione di grafici;
+- `readxl`: utile per importare dati da fogli Excel;
+- `glue`: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;
+- `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente.
 
 Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con il comando `c()` e scrivendo il seguente comando all'interno della console di R, dopo il simbolo `>`:
 
@@ -91,11 +91,11 @@ Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con i
 install.packages(c("data.table", "readxl", "ggplot2", "glue", "gt"))
 ```
 
-Quando ne avremo bisogno saremo pronti a caricare e usare i nostri pacchetti.
+Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.
 
 ## Per approfondire
 
-Nel caso il materiale presentato nel corso non sia sufficiente o sia inadatto per le vostre esigenze, in rete è possibile reperire numerosissimi testi gratuiti. Tra questi si segnalano:
+Se il materiale presentato nel corso non fosse sufficiente o non rispondesse pienamente alle vostre esigenze, in rete è possibile trovare numerosi testi gratuiti di alta qualità. Tra questi si segnalano:
 
 - [Hands-On Rrogramming with R](https://rstudio-education.github.io/hopr/) scritto da Garrett Grolemund;
 - [R for Data Science](https://r4ds.hadley.nz/) scritto da Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund;

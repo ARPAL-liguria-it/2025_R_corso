@@ -7,7 +7,7 @@ source("_common.R")
 
 ## Una bella calcolatrice
 
-Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice e scriviamo
+Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo
 
 ```{r}
 #| eval: true
@@ -21,9 +21,9 @@ R, in tutta la sua potenza, dovrebbe produrre
 [1] 5
 ```
 
-significa che il risultato è un vettore formato da un elemento e tale elemento è pari a 5.
+Questo significa che il risultato è un vettore composto da un solo elemento, e tale elemento è pari a 5.
 
-Possiamo anche fare calcoli multipli: definiamo un vettore di 100 elementi che riporti tutti gli interi da 1 a 100 e a ognuno dei suoi elementi aggiungiamo 2.
+Possiamo anche eseguire calcoli su vettori: definiamo un vettore di 100 elementi che contiene gli interi da 1 a 100, e aggiungiamo 2 a ciascuno di essi.
 
 ```{r}
 #| eval: true
@@ -31,7 +31,7 @@ Possiamo anche fare calcoli multipli: definiamo un vettore di 100 elementi che r
 1:100 + 2
 ```
 
-Se volessimo ripetere il calcolo ma aggiungendo 3 invece di due, possiamo cliccare sulla console, schiacciare il tasto 🔼, visualizzando l'ultimo comando eseguito, cambiare il 2 in 3 e dare invio. Tuttavia è meglio assegnare il vettore contenente i 100 elementi a una variabile che chiameremo `a`, così da richiamarla in seguito e fare altri calcoli.
+Se volessimo ripetere il calcolo ma aggiungendo 3 invece di 2, possiamo cliccare sulla console, schiacciare il tasto 🔼 per richiamare l'ultimo comando eseguito, modificare il 2 in 3 e premere Invio. Tuttavia, è preferibile assegnare il vettore contenente i 100 elementi a una variabile che chiameremo
 
 ```{r}
 #| eval: true
@@ -39,7 +39,7 @@ Se volessimo ripetere il calcolo ma aggiungendo 3 invece di due, possiamo clicca
 a <- 1:100
 ```
 
-a questo punto
+a questo punto possiamo fare
 
 ```{r}
 #| eval: true
@@ -47,7 +47,7 @@ a questo punto
 a + 3
 ```
 
-Posso usare la variabile definita poco sopra per fare altri calcoli. Per esempio, posso elevare alla seconda tutti gli elementi associati alla variabile `a`:
+Possiamo usare la variabile `a` per altri calcoli. Per esempio, eleviamo al quadrato tutti gli elementi associati alla variabile `a`:
 
 ```{r}
 #| eval: true
@@ -65,18 +65,18 @@ a <- "Bella zio: sto usando R!"
 
 Nella creazione di variabili è bene fare caso ad alcune regole:
 
-- R è *case sensitive* e quindi `f` ed `F` saranno due diverse variabili;
+- R è *case sensitive*, quindi `f` ed `F` sono due variabili diverse;
 - non sono ammesse variabili che iniziano con numeri (come `1variabile`);
 - non sono ammessi caratteri diversi da lettere, numeri e *underscore*, compresi gli spazi;
-- sono ammessi caratteri accentati ma complicano molto la vita.
+- sono ammessi caratteri accentati, ma il loro uso può complicare molto la vita.
 
-Durante il corso utilizzeremo nomi di variabili e funzioni scritte in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
+Durante il corso utilizzeremo nomi di variabili e funzioni scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
 
 ## Funzioni
 
-Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*: si tratta di una definizione generica perché sono elementi estremamente generici e incontreremo funzioni pressoché ovunque. Durante il corso non adotteremo la distinzione tra funzioni e metodi, dove le prime danno *output* e le seconde no: per noi qualunque contenitore di operazioni che vengano applicate a un *input* sarà una funzione.
+Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili e le incontreremo ovunque. Durante il corso non distingueremo tra funzioni e metodi (dove le prime danno *output* e le seconde no): per noi, qualunque contenitore di operazioni applicate a un *input* sarà una funzione.
 
-R permette già di utilizzare diverse funzioni. Possiamo assegnare alcuni numeri a una variabile e applicare a essi la funzione somma:
+R offre già molte funzioni pronte all'uso. Per esempio, possiamo assegnare alcuni numeri a una variabile e calcolarne la somma:
 
 ```{r}
 #| eval: true
@@ -85,17 +85,17 @@ b <- c(2, 3, 5)
 sum(b)
 ```
 
-Gli input delle funzioni vengono specificati all'interno delle parentesi tonde, ci sono funzioni che richiedono pochi *input* e altre che ne richiedono di più, nella prossima sezione vedremo come acquisire informazioni sull'utilizzo di una funzione.
+Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alcune funzioni richiedono pochi *input*, altre che ne richiedono di più. Nella @sec-help vedremo come acquisire informazioni sull'utilizzo di una funzione.
 
-Oltre alle funzioni già disponibili, possiamo scrivere delle funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, però la sintassi di base è:
+Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
 
 ```{r}
 #| eval: true
 #| error: true
 
-# la funzione fammi_il_caffe prende come argomenti due stringa di caratteri
-# la prima definisce il tipo e può essere caffè o orzo
-# la seconda definisce la modalità e può essere corto, lungo e macchiato
+# la funzione fammi_il_caffe prende come argomenti due stringa di caratteri:
+# la prima definisce il tipo e può essere "caffè" o "orzo"
+# la seconda definisce la modalità e può essere "corto", "lungo" o "macchiato"
 # l'output è una stringa di testo
 fammi_il_caffe <- function(tipo = "caffè",
                            modo = "corto"){
@@ -115,20 +115,24 @@ fammi_il_caffe <- function(tipo = "caffè",
   paste(prodotto_txt, prezzo_txt, sep = ". ")
 }
 
-# utilizzo la funzione
+# utilizzo della funzione
 fammi_il_caffe()
 fammi_il_caffe("orzo", "lungo")
 fammi_il_caffe("orzo", "corretto")
 ```
 
-Gli argomenti o *input* della funzione sono racchiusi tra parentesi tonde, con il loro eventuale valore predefinito dichiarato dopo l'uguale. Il corpo della funzione è racchiuso tra parentesi graffe e tipicamente contiene una parte di validazione degli argomenti, il cui scopo è assicurarsi che la funzione non venga utilizzata al di fuori del suo ambito di utilizzo, una parte in cui vengono sviluppati i conti e una parte finale contenente il risultato.
+Gli argomenti (o *input*) della funzione sono racchiusi tra parentesi tonde, con eventuali valori predefiniti dichiarati dopo l'uguale. Il corpo della funzione è racchiuso tra parentesi graffe e tipicamente contiene:
+
+- una parte di validazione degli argomenti, per assicurarsi che la funzione non venga utilizzata correttamente;
+- una parte in cui vengono eseguiti i calcoli;
+- una parte finale che restituisce il risultato.
 
 ## Il primo script
 
-Nella sezione precedente abbiamo visto codice che spazia su più righe: inserirlo riga per riga nella console inizia ad essere scomodo e si rischia di dimenticare cosa si è fatto poche righe prima.
+Nella sezione precedente abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.
 
-Possiamo creare un file.R in cui elencare in ordine di esecuzione i comandi che vogliamo eseguire.
-Per farlo è sufficiente cliccare l'icona ![](images/newfile.png){height=25} in alto a sinistra in RStudio, selezionare Rscript e quindi salvare il file. All'interno di tale file possiamo scrivere le seguenti istruzioni:
+Per questo motivo, possiamo creare un `file.R` in cui elencare in ordine i comandi da eseguire.
+Per farlo, in RStudio basta cliccare sull'icona ![](images/newfile.png){height=25} in alto a sinistra, selezionare "R Script" e salvare il file. All'interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:
 
 ```{r}
 #| echo: false
@@ -167,13 +171,13 @@ aggregate(. ~ Species, data = iris, FUN = quartili)
 ```
 
 
-Con gli script è possibile tenere traccia di cosa è stato fatto, commentando il codice per renderlo maggiormente comprensibile a se stessi e ai colleghi: d'ora in poi gli script saranno il nostro principale strumento di lavoro. Vedremo poi nei prossimi capitoli un modo per includere gli script in un documento finito, migliorando ulteriormente la riproducibilità di un'analisi.
+Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno il nostro principale strumento di lavoro. Nei prossimi capitoli vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
 
-## Chiedere aiuto
+## Chiedere aiuto {#sec-help}
 
-Questa è la sezione più importante dell'intero corso in quanto permette di capire come muoversi sulle proprie gambe, cadendo senza farsi troppo male e tentando di rialzarsi.
+Questa è la sezione più importante dell'intero corso, poiché insegna come muoversi sulle proprie gambe, cadendo senza farsi troppo male e cercando di rialzarsi.
 
-R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è documentata, contiene quindi tutte le informazioni necessarie a definirne gli ambiti e modi di utilizzo. Per accedere a queste informazioni è sufficiente anteporre un `?` all'elemento del quale si desidera sapere di più:
+R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è documentato, contenendo tutte le informazioni necessarie per comprenderne gli ambiti e le modalità di utilizzo. Per accedere a queste informazioni, è sufficiente anteporre un punto interrogativo `?` all'elemento del quale si desidera sapere di più:
 
 ```{r}
 #| output: false
@@ -181,31 +185,31 @@ R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è document
 ?iris
 ```
 
-Se l'elemento di cui si vuole sapere di più è presente in un pacchetto noto ma non attualmente caricato, sarà necessario specificare il pacchetto a cui appartiene l'elemento:
+Se l'elemento di cui si vuole sapere di più è presente in un pacchetto noto, ma non attualmente caricato, sarà necessario specificare il pacchetto di appartenenza anteponendolo con `::`:
 
 ```{r}
 #| output: false
 ?ggplot2::geom_point()
 ```
 
-Se l'elemento di cui si vuole sapere di più è presente in un pacchetto ignoto, installato ma non attualmente caricato, si può lanciare una ricerca tra i pacchetti installati nel sistema anteponendo `??` all'elemento stesso e poi selezionando la voce di interesse:
+Se l'elemento è presente in un pacchetto installato ma non attualmente caricato e non si conosce esattamente a quale pacchetto appartenga, si può effettuare una ricerca tra i pacchetti installati anteponendo due punti interrogativi `??` all'elemento stesso e selezionando la voce di interesse:
 
 ```{r}
 #| output: false
 ??geom_point()
 ```
 
-All'interno della sezione *help* è presente una descrizione iniziale dell'elemento e, se si tratta di una funzione, dei diversi *input* richiesti, seguono poi sezioni in cui viene spesso spiegato il funzionamento delle funzione, per finire con utili esempi d'uso.
+All'interno della sezione di *help* si trova una descrizione iniziale dell'elemento e, se si tratta di una funzione, i diversi *input* richiesti; seguono poi sezioni che spesso spiegato il funzionamento della funziona, per concludere con utili esempi d'uso.
 
-A volte, potrebbe non essere sufficiente ricorrere all'aiuto in linea, in tal caso si consiglia di rivolgersi a Google o qualche large language model (LLM) come DeepSeek, ChatGPT o Perplexity. Quest'ultimi strumenti di intelligenza artificiale permettono, a fronte di richieste dettagliate e ben strutturate di farsi scrivere e spiegare interi programmi, anche complessi, richiedendo poche rifiniture manuali.
+A volte l'aiuto in linea potrebbe non essere sufficiente; in tal caso si consiglia di rivolgersi a Google o qualche large language model (LLM) come DeepSeek, ChatGPT o Perplexity. Questi strumenti di intelligenza artificiale permettono, a fronte di richieste dettagliate e ben strutturate di farsi scrivere e spiegare interi programmi, anche complessi, richiedendo poche rifiniture manuali.
 
-Alternativi e complementari all'uso di strumenti di intelligenza artificiale, sono presenti forum dedicati alla programmazione e con una folta comunità di preparatissimi (e spesso burberi) utilizzatori di R. Tra questi forum [StackOverflow](https://stackoverflow.com/questions) risulta particolarmente ricco di spunti e risorse. Per utilizzarlo al meglio:
+In alternativa o in completamento all'uso di strumenti di intelligenza artificiale, esistono forum dedicati alla programmazione e con una folta comunità di preparatissimi (e spesso burberi) utilizzatori di R. Tra questi [StackOverflow](https://stackoverflow.com/questions) risulta particolarmente ricco di spunti e risorse. Per utilizzarlo al meglio:
 
 -   cercate con cura se la vostra domanda sia già stata posta in passato;
 -   prendete spunto da domande simili per strutturare con cura la vostra richiesta;
 -   create un esempio minimo riproducibile (*reprex*).
 
-L'ultimo punto ha lo scopo di rendere il vostro codice riproducibile e facilmente leggibile da chi vi dovrà aiutare: inserite nel codice tutte le librerie e variabili usate e togliete tutto quanto non è indispensabile per riprodurre il problema su cui state chiedendo aiuto.
+Quest'ultimo punto ha lo scopo di rendere il vostro codice riproducibile e facilmente leggibile da chi vi dovrà aiutare: inserite nel codice tutte le librerie e variabili utilizzate, e togliete tutto ciò che non è indispensabile per riprodurre il problema su cui state chiedendo aiuto.
 
 :::: {.panel-tabset}
 
