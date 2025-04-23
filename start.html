@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Andrea Bisignano, Andrea Bazzano">
+
+<title>2&nbsp; Il primo assaggio – Corso di R: dalle basi alla prima analisi dei dati</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./objects.html" rel="next">
+<link href="./basics.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-273e46d7b3848a679358d7b360117b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./start.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Corso di R: dalle basi alla prima analisi dei dati</a> 
+        <div class="sidebar-tools-main">
+    <a href="./missing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-git"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Attiva/disattiva la modalità lettore">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Le basi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./start.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#una-bella-calcolatrice" id="toc-una-bella-calcolatrice" class="nav-link active" data-scroll-target="#una-bella-calcolatrice"><span class="header-section-number">2.1</span> Una bella calcolatrice</a></li>
+  <li><a href="#funzioni" id="toc-funzioni" class="nav-link" data-scroll-target="#funzioni"><span class="header-section-number">2.2</span> Funzioni</a></li>
+  <li><a href="#il-primo-script" id="toc-il-primo-script" class="nav-link" data-scroll-target="#il-primo-script"><span class="header-section-number">2.3</span> Il primo script</a></li>
+  <li><a href="#chiedere-aiuto" id="toc-chiedere-aiuto" class="nav-link" data-scroll-target="#chiedere-aiuto"><span class="header-section-number">2.4</span> Chiedere aiuto</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="missing/edit/main/start.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./start.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="una-bella-calcolatrice" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="una-bella-calcolatrice"><span class="header-section-number">2.1</span> Una bella calcolatrice</h2>
+<p>Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice e scriviamo</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>R, in tutta la sua potenza, dovrebbe produrre</p>
+<pre><code>[1] 5</code></pre>
+<p>significa che il risultato è un vettore formato da un elemento e tale elemento è pari a 5.</p>
+<p>Possiamo anche fare calcoli multipli: definiamo un vettore di 100 elementi che riporti tutti gli interi da 1 a 100 e a ognuno dei suoi elementi aggiungiamo 2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19]  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37]  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  93  94  95  96  97  98  99 100 101 102</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se volessimo ripetere il calcolo ma aggiungendo 3 invece di due, possiamo cliccare sulla console, schiacciare il tasto 🔼, visualizzando l’ultimo comando eseguito, cambiare il 2 in 3 e dare invio. Tuttavia è meglio assegnare il vettore contenente i 100 elementi a una variabile che chiameremo <code>a</code>, così da richiamarla in seguito e fare altri calcoli.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a questo punto</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [19]  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [55]  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  94  95  96  97  98  99 100 101 102 103</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Posso usare la variabile definita poco sopra per fare altri calcoli. Per esempio, posso elevare alla seconda tutti gli elementi associati alla variabile <code>a</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]     1     4     9    16    25    36    49    64    81   100   121   144</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [13]   169   196   225   256   289   324   361   400   441   484   529   576</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [25]   625   676   729   784   841   900   961  1024  1089  1156  1225  1296</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [37]  1369  1444  1521  1600  1681  1764  1849  1936  2025  2116  2209  2304</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [49]  2401  2500  2601  2704  2809  2916  3025  3136  3249  3364  3481  3600</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61]  3721  3844  3969  4096  4225  4356  4489  4624  4761  4900  5041  5184</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  5329  5476  5625  5776  5929  6084  6241  6400  6561  6724  6889  7056</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85]  7225  7396  7569  7744  7921  8100  8281  8464  8649  8836  9025  9216</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [97]  9409  9604  9801 10000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Il valore di una variabile può essere sovrascritto con una nuova assegnazione, come nel caso riportato di seguito:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">"Bella zio: sto usando R!"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nella creazione di variabili è bene fare caso ad alcune regole:</p>
+<ul>
+<li>R è <em>case sensitive</em> e quindi <code>f</code> ed <code>F</code> saranno due diverse variabili;</li>
+<li>non sono ammesse variabili che iniziano con numeri (come <code>1variabile</code>);</li>
+<li>non sono ammessi caratteri diversi da lettere, numeri e <em>underscore</em>, compresi gli spazi;</li>
+<li>sono ammessi caratteri accentati ma complicano molto la vita.</li>
+</ul>
+<p>Durante il corso utilizzeremo nomi di variabili e funzioni scritte in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
+</section>
+<section id="funzioni" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="funzioni"><span class="header-section-number">2.2</span> Funzioni</h2>
+<p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>: si tratta di una definizione generica perché sono elementi estremamente generici e incontreremo funzioni pressoché ovunque. Durante il corso non adotteremo la distinzione tra funzioni e metodi, dove le prime danno <em>output</em> e le seconde no: per noi qualunque contenitore di operazioni che vengano applicate a un <em>input</em> sarà una funzione.</p>
+<p>R permette già di utilizzare diverse funzioni. Possiamo assegnare alcuni numeri a una variabile e applicare a essi la funzione somma:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(b)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gli input delle funzioni vengono specificati all’interno delle parentesi tonde, ci sono funzioni che richiedono pochi <em>input</em> e altre che ne richiedono di più, nella prossima sezione vedremo come acquisire informazioni sull’utilizzo di una funzione.</p>
+<p>Oltre alle funzioni già disponibili, possiamo scrivere delle funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, però la sintassi di base è:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># la funzione fammi_il_caffe prende come argomenti due stringa di caratteri</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># la prima definisce il tipo e può essere caffè o orzo</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># la seconda definisce la modalità e può essere corto, lungo e macchiato</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># l'output è una stringa di testo</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fammi_il_caffe <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">tipo =</span> <span class="st">"caffè"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">modo =</span> <span class="st">"corto"</span>){</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># controllo che l'input abbia le caratteristiche desiderate</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(tipo))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(modo))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(tipo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"caffè"</span>, <span class="st">"orzo"</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(modo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"corto"</span>, <span class="st">"lungo"</span>, <span class="st">"macchiato"</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># determino il prezzo scegliendo un numero casuale tra 1 e 2 con intervallo 0.1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  prezzo <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="fl">0.1</span>), <span class="dv">1</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># formatto il caffé e il prezzo</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  prodotto_txt <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Ecco a lei il suo"</span>, tipo, modo, <span class="at">sep =</span> <span class="st">" "</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  prezzo_txt <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Sono"</span>, prezzo, <span class="st">"€."</span>, <span class="at">sep =</span> <span class="st">" "</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># il risultato è l'ultimo comando della funzione</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(prodotto_txt, prezzo_txt, <span class="at">sep =</span> <span class="st">". "</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># utilizzo la funzione</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">fammi_il_caffe</span>()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Ecco a lei il suo caffè corto. Sono 1.6 €."</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">fammi_il_caffe</span>(<span class="st">"orzo"</span>, <span class="st">"lungo"</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Ecco a lei il suo orzo lungo. Sono 1.4 €."</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">fammi_il_caffe</span>(<span class="st">"orzo"</span>, <span class="st">"corretto"</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in fammi_il_caffe("orzo", "corretto"): modo %in% c("corto", "lungo", "macchiato") non è TRUE</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gli argomenti o <em>input</em> della funzione sono racchiusi tra parentesi tonde, con il loro eventuale valore predefinito dichiarato dopo l’uguale. Il corpo della funzione è racchiuso tra parentesi graffe e tipicamente contiene una parte di validazione degli argomenti, il cui scopo è assicurarsi che la funzione non venga utilizzata al di fuori del suo ambito di utilizzo, una parte in cui vengono sviluppati i conti e una parte finale contenente il risultato.</p>
+</section>
+<section id="il-primo-script" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="il-primo-script"><span class="header-section-number">2.3</span> Il primo script</h2>
+<p>Nella sezione precedente abbiamo visto codice che spazia su più righe: inserirlo riga per riga nella console inizia ad essere scomodo e si rischia di dimenticare cosa si è fatto poche righe prima.</p>
+<p>Possiamo creare un file.R in cui elencare in ordine di esecuzione i comandi che vogliamo eseguire. Per farlo è sufficiente cliccare l’icona <img src="images/newfile.png" height="25"> in alto a sinistra in RStudio, selezionare Rscript e quindi salvare il file. All’interno di tale file possiamo scrivere le seguenti istruzioni:</p>
+<div class="cell">
+<pre><code>#&gt;     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+#&gt; 1            5.1         3.5          1.4         0.2     setosa
+#&gt; 2            4.9         3.0          1.4         0.2     setosa
+#&gt; 3            4.7         3.2          1.3         0.2     setosa
+#&gt; 4            4.6         3.1          1.5         0.2     setosa
+#&gt; 5            5.0         3.6          1.4         0.2     setosa
+#&gt; 6            5.4         3.9          1.7         0.4     setosa
+#&gt; 7            4.6         3.4          1.4         0.3     setosa
+#&gt; 8            5.0         3.4          1.5         0.2     setosa
+#&gt; 9            4.4         2.9          1.4         0.2     setosa
+#&gt; 10           4.9         3.1          1.5         0.1     setosa
+#&gt; 11           5.4         3.7          1.5         0.2     setosa
+#&gt; 12           4.8         3.4          1.6         0.2     setosa
+#&gt; 13           4.8         3.0          1.4         0.1     setosa
+#&gt; 14           4.3         3.0          1.1         0.1     setosa
+#&gt; 15           5.8         4.0          1.2         0.2     setosa
+#&gt; 16           5.7         4.4          1.5         0.4     setosa
+#&gt; 17           5.4         3.9          1.3         0.4     setosa
+#&gt; 18           5.1         3.5          1.4         0.3     setosa
+#&gt; 19           5.7         3.8          1.7         0.3     setosa
+#&gt; 20           5.1         3.8          1.5         0.3     setosa
+#&gt; 21           5.4         3.4          1.7         0.2     setosa
+#&gt; 22           5.1         3.7          1.5         0.4     setosa
+#&gt; 23           4.6         3.6          1.0         0.2     setosa
+#&gt; 24           5.1         3.3          1.7         0.5     setosa
+#&gt; 25           4.8         3.4          1.9         0.2     setosa
+#&gt; 26           5.0         3.0          1.6         0.2     setosa
+#&gt; 27           5.0         3.4          1.6         0.4     setosa
+#&gt; 28           5.2         3.5          1.5         0.2     setosa
+#&gt; 29           5.2         3.4          1.4         0.2     setosa
+#&gt; 30           4.7         3.2          1.6         0.2     setosa
+#&gt; 31           4.8         3.1          1.6         0.2     setosa
+#&gt; 32           5.4         3.4          1.5         0.4     setosa
+#&gt; 33           5.2         4.1          1.5         0.1     setosa
+#&gt; 34           5.5         4.2          1.4         0.2     setosa
+#&gt; 35           4.9         3.1          1.5         0.2     setosa
+#&gt; 36           5.0         3.2          1.2         0.2     setosa
+#&gt; 37           5.5         3.5          1.3         0.2     setosa
+#&gt; 38           4.9         3.6          1.4         0.1     setosa
+#&gt; 39           4.4         3.0          1.3         0.2     setosa
+#&gt; 40           5.1         3.4          1.5         0.2     setosa
+#&gt; 41           5.0         3.5          1.3         0.3     setosa
+#&gt; 42           4.5         2.3          1.3         0.3     setosa
+#&gt; 43           4.4         3.2          1.3         0.2     setosa
+#&gt; 44           5.0         3.5          1.6         0.6     setosa
+#&gt; 45           5.1         3.8          1.9         0.4     setosa
+#&gt; 46           4.8         3.0          1.4         0.3     setosa
+#&gt; 47           5.1         3.8          1.6         0.2     setosa
+#&gt; 48           4.6         3.2          1.4         0.2     setosa
+#&gt; 49           5.3         3.7          1.5         0.2     setosa
+#&gt; 50           5.0         3.3          1.4         0.2     setosa
+#&gt; 51           7.0         3.2          4.7         1.4 versicolor
+#&gt; 52           6.4         3.2          4.5         1.5 versicolor
+#&gt; 53           6.9         3.1          4.9         1.5 versicolor
+#&gt; 54           5.5         2.3          4.0         1.3 versicolor
+#&gt; 55           6.5         2.8          4.6         1.5 versicolor
+#&gt; 56           5.7         2.8          4.5         1.3 versicolor
+#&gt; 57           6.3         3.3          4.7         1.6 versicolor
+#&gt; 58           4.9         2.4          3.3         1.0 versicolor
+#&gt; 59           6.6         2.9          4.6         1.3 versicolor
+#&gt; 60           5.2         2.7          3.9         1.4 versicolor
+#&gt; 61           5.0         2.0          3.5         1.0 versicolor
+#&gt; 62           5.9         3.0          4.2         1.5 versicolor
+#&gt; 63           6.0         2.2          4.0         1.0 versicolor
+#&gt; 64           6.1         2.9          4.7         1.4 versicolor
+#&gt; 65           5.6         2.9          3.6         1.3 versicolor
+#&gt; 66           6.7         3.1          4.4         1.4 versicolor
+#&gt; 67           5.6         3.0          4.5         1.5 versicolor
+#&gt; 68           5.8         2.7          4.1         1.0 versicolor
+#&gt; 69           6.2         2.2          4.5         1.5 versicolor
+#&gt; 70           5.6         2.5          3.9         1.1 versicolor
+#&gt; 71           5.9         3.2          4.8         1.8 versicolor
+#&gt; 72           6.1         2.8          4.0         1.3 versicolor
+#&gt; 73           6.3         2.5          4.9         1.5 versicolor
+#&gt; 74           6.1         2.8          4.7         1.2 versicolor
+#&gt; 75           6.4         2.9          4.3         1.3 versicolor
+#&gt; 76           6.6         3.0          4.4         1.4 versicolor
+#&gt; 77           6.8         2.8          4.8         1.4 versicolor
+#&gt; 78           6.7         3.0          5.0         1.7 versicolor
+#&gt; 79           6.0         2.9          4.5         1.5 versicolor
+#&gt; 80           5.7         2.6          3.5         1.0 versicolor
+#&gt; 81           5.5         2.4          3.8         1.1 versicolor
+#&gt; 82           5.5         2.4          3.7         1.0 versicolor
+#&gt; 83           5.8         2.7          3.9         1.2 versicolor
+#&gt; 84           6.0         2.7          5.1         1.6 versicolor
+#&gt; 85           5.4         3.0          4.5         1.5 versicolor
+#&gt; 86           6.0         3.4          4.5         1.6 versicolor
+#&gt; 87           6.7         3.1          4.7         1.5 versicolor
+#&gt; 88           6.3         2.3          4.4         1.3 versicolor
+#&gt; 89           5.6         3.0          4.1         1.3 versicolor
+#&gt; 90           5.5         2.5          4.0         1.3 versicolor
+#&gt; 91           5.5         2.6          4.4         1.2 versicolor
+#&gt; 92           6.1         3.0          4.6         1.4 versicolor
+#&gt; 93           5.8         2.6          4.0         1.2 versicolor
+#&gt; 94           5.0         2.3          3.3         1.0 versicolor
+#&gt; 95           5.6         2.7          4.2         1.3 versicolor
+#&gt; 96           5.7         3.0          4.2         1.2 versicolor
+#&gt; 97           5.7         2.9          4.2         1.3 versicolor
+#&gt; 98           6.2         2.9          4.3         1.3 versicolor
+#&gt; 99           5.1         2.5          3.0         1.1 versicolor
+#&gt; 100          5.7         2.8          4.1         1.3 versicolor
+#&gt; 101          6.3         3.3          6.0         2.5  virginica
+#&gt; 102          5.8         2.7          5.1         1.9  virginica
+#&gt; 103          7.1         3.0          5.9         2.1  virginica
+#&gt; 104          6.3         2.9          5.6         1.8  virginica
+#&gt; 105          6.5         3.0          5.8         2.2  virginica
+#&gt; 106          7.6         3.0          6.6         2.1  virginica
+#&gt; 107          4.9         2.5          4.5         1.7  virginica
+#&gt; 108          7.3         2.9          6.3         1.8  virginica
+#&gt; 109          6.7         2.5          5.8         1.8  virginica
+#&gt; 110          7.2         3.6          6.1         2.5  virginica
+#&gt; 111          6.5         3.2          5.1         2.0  virginica
+#&gt; 112          6.4         2.7          5.3         1.9  virginica
+#&gt; 113          6.8         3.0          5.5         2.1  virginica
+#&gt; 114          5.7         2.5          5.0         2.0  virginica
+#&gt; 115          5.8         2.8          5.1         2.4  virginica
+#&gt; 116          6.4         3.2          5.3         2.3  virginica
+#&gt; 117          6.5         3.0          5.5         1.8  virginica
+#&gt; 118          7.7         3.8          6.7         2.2  virginica
+#&gt; 119          7.7         2.6          6.9         2.3  virginica
+#&gt; 120          6.0         2.2          5.0         1.5  virginica
+#&gt; 121          6.9         3.2          5.7         2.3  virginica
+#&gt; 122          5.6         2.8          4.9         2.0  virginica
+#&gt; 123          7.7         2.8          6.7         2.0  virginica
+#&gt; 124          6.3         2.7          4.9         1.8  virginica
+#&gt; 125          6.7         3.3          5.7         2.1  virginica
+#&gt; 126          7.2         3.2          6.0         1.8  virginica
+#&gt; 127          6.2         2.8          4.8         1.8  virginica
+#&gt; 128          6.1         3.0          4.9         1.8  virginica
+#&gt; 129          6.4         2.8          5.6         2.1  virginica
+#&gt; 130          7.2         3.0          5.8         1.6  virginica
+#&gt; 131          7.4         2.8          6.1         1.9  virginica
+#&gt; 132          7.9         3.8          6.4         2.0  virginica
+#&gt; 133          6.4         2.8          5.6         2.2  virginica
+#&gt; 134          6.3         2.8          5.1         1.5  virginica
+#&gt; 135          6.1         2.6          5.6         1.4  virginica
+#&gt; 136          7.7         3.0          6.1         2.3  virginica
+#&gt; 137          6.3         3.4          5.6         2.4  virginica
+#&gt; 138          6.4         3.1          5.5         1.8  virginica
+#&gt; 139          6.0         3.0          4.8         1.8  virginica
+#&gt; 140          6.9         3.1          5.4         2.1  virginica
+#&gt; 141          6.7         3.1          5.6         2.4  virginica
+#&gt; 142          6.9         3.1          5.1         2.3  virginica
+#&gt; 143          5.8         2.7          5.1         1.9  virginica
+#&gt; 144          6.8         3.2          5.9         2.3  virginica
+#&gt; 145          6.7         3.3          5.7         2.5  virginica
+#&gt; 146          6.7         3.0          5.2         2.3  virginica
+#&gt; 147          6.3         2.5          5.0         1.9  virginica
+#&gt; 148          6.5         3.0          5.2         2.0  virginica
+#&gt; 149          6.2         3.4          5.4         2.3  virginica
+#&gt; 150          5.9         3.0          5.1         1.8  virginica
+#&gt;      Species Sepal.Length.25% Sepal.Length.50% Sepal.Length.75% Sepal.Width.25%
+#&gt; 1     setosa            4.800            5.000            5.200           3.200
+#&gt; 2 versicolor            5.600            5.900            6.300           2.525
+#&gt; 3  virginica            6.225            6.500            6.900           2.800
+#&gt;   Sepal.Width.50% Sepal.Width.75% Petal.Length.25% Petal.Length.50%
+#&gt; 1           3.400           3.675            1.400            1.500
+#&gt; 2           2.800           3.000            4.000            4.350
+#&gt; 3           3.000           3.175            5.100            5.550
+#&gt;   Petal.Length.75% Petal.Width.25% Petal.Width.50% Petal.Width.75%
+#&gt; 1            1.575             0.2             0.2             0.3
+#&gt; 2            4.600             1.2             1.3             1.5
+#&gt; 3            5.875             1.8             2.0             2.3</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="start_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="start_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="432"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con gli script è possibile tenere traccia di cosa è stato fatto, commentando il codice per renderlo maggiormente comprensibile a se stessi e ai colleghi: d’ora in poi gli script saranno il nostro principale strumento di lavoro. Vedremo poi nei prossimi capitoli un modo per includere gli script in un documento finito, migliorando ulteriormente la riproducibilità di un’analisi.</p>
+</section>
+<section id="chiedere-aiuto" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="chiedere-aiuto"><span class="header-section-number">2.4</span> Chiedere aiuto</h2>
+<p>Questa è la sezione più importante dell’intero corso in quanto permette di capire come muoversi sulle proprie gambe, cadendo senza farsi troppo male e tentando di rialzarsi.</p>
+<p>R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è documentata, contiene quindi tutte le informazioni necessarie a definirne gli ambiti e modi di utilizzo. Per accedere a queste informazioni è sufficiente anteporre un <code>?</code> all’elemento del quale si desidera sapere di più:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">sum</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>?iris</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se l’elemento di cui si vuole sapere di più è presente in un pacchetto noto ma non attualmente caricato, sarà necessario specificare il pacchetto a cui appartiene l’elemento:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>?ggplot2<span class="sc">::</span><span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se l’elemento di cui si vuole sapere di più è presente in un pacchetto ignoto, installato ma non attualmente caricato, si può lanciare una ricerca tra i pacchetti installati nel sistema anteponendo <code>??</code> all’elemento stesso e poi selezionando la voce di interesse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>??<span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All’interno della sezione <em>help</em> è presente una descrizione iniziale dell’elemento e, se si tratta di una funzione, dei diversi <em>input</em> richiesti, seguono poi sezioni in cui viene spesso spiegato il funzionamento delle funzione, per finire con utili esempi d’uso.</p>
+<p>A volte, potrebbe non essere sufficiente ricorrere all’aiuto in linea, in tal caso si consiglia di rivolgersi a Google o qualche large language model (LLM) come DeepSeek, ChatGPT o Perplexity. Quest’ultimi strumenti di intelligenza artificiale permettono, a fronte di richieste dettagliate e ben strutturate di farsi scrivere e spiegare interi programmi, anche complessi, richiedendo poche rifiniture manuali.</p>
+<p>Alternativi e complementari all’uso di strumenti di intelligenza artificiale, sono presenti forum dedicati alla programmazione e con una folta comunità di preparatissimi (e spesso burberi) utilizzatori di R. Tra questi forum <a href="https://stackoverflow.com/questions">StackOverflow</a> risulta particolarmente ricco di spunti e risorse. Per utilizzarlo al meglio:</p>
+<ul>
+<li>cercate con cura se la vostra domanda sia già stata posta in passato;</li>
+<li>prendete spunto da domande simili per strutturare con cura la vostra richiesta;</li>
+<li>create un esempio minimo riproducibile (<em>reprex</em>).</li>
+</ul>
+<p>L’ultimo punto ha lo scopo di rendere il vostro codice riproducibile e facilmente leggibile da chi vi dovrà aiutare: inserite nel codice tutte le librerie e variabili usate e togliete tutto quanto non è indispensabile per riprodurre il problema su cui state chiedendo aiuto.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ul>
+<li>Documentarsi sull’utilizzo della funzione <code>aggregate</code>;</li>
+<li>calcolare la media di tutte le quattro tipologie di misure delle tre specie nel dataset <code>iris</code>.</li>
+</ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>?<span class="fu">aggregate</span>()    <span class="co"># 1.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(. <span class="sc">~</span> Species, <span class="at">data =</span> iris, <span class="at">FUN =</span> mean)    <span class="co"># 2.</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     setosa        5.006       3.428        1.462       0.246</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor        5.936       2.770        4.260       1.326</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  virginica        6.588       2.974        5.552       2.026</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiato!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiato!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("missing");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./basics.html" class="pagination-link" aria-label="Le basi">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Le basi</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./objects.html" class="pagination-link" aria-label="Oggetti di R">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/start.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
