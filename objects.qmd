@@ -37,7 +37,7 @@ R mette a disposizione una singola tipologia per le stringhe di testo: indipende
 c <- "roba"
 ```
 
-Talvolta i numeri possono anche essere archiviati come testo, ad esempio `r d <- c("1", "2")`, tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: vedremo e rimedieremo a casi di questo tipo nei prossimi capitoli.
+Talvolta i numeri possono anche essere archiviati come testo, ad esempio `r d <- c("1", "2")`, tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: per farli tornare numeri possiamo usare la funzione `as.numeric()`.
 
 ### Logici
 
@@ -55,7 +55,7 @@ Internamente, R li tratta come interi pari 1 o 0 e a cui assegna rispettivamente
 
 ### Elementi mancanti ed elementi nulli
 
-R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
+R identifica gli elementi mancanti con `NA`: *not available*. `NA` rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguite su gruppi di elementi dove uno o più di essi sono `NA`, danno risultato `NA`.
 Si può verificare se un elemento è di tipo `NA` con la funzione `is.na()`.
 
 Talvolta, R può restituire un elemento di tipo `NULL` estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore `NULL` a un oggetto per eliminarne il contenuto:
@@ -68,11 +68,11 @@ a <- NULL
 a
 ```
 
-### Classi di oggetti {#sec-classes}
+## Tipologie di contenitori {#sec-classes}
 
-## Vettori
+### Vettori
 
-Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione. Tecnicamente, i vettori non sono catalogati da R all'interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.
+Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella @sec-typeof sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione. Tecnicamente, i vettori non sono catalogati da R all'interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.
 
 Posso accedere ai diversi elementi di un vettore attraverso la notazione `vettore[indici]` dove `indici` è a sua volta un vettore di elementi da includere o escludere:
 
@@ -95,7 +95,7 @@ Per verificare se ho a che fare con un vettore posso usare la funzione `is.vecto
 
 Con i vettori possiamo iniziare a fare qualche conto con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
 
-Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono `sample()` e `rnorm`()`: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:
+Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono `sample()` e `rnorm()`: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:
 
 ```{r}
 sorprendimi <- sample(1:1000, 30, replace = TRUE) # estraggo 30 valori tra loro indipendenti dagli interi da 1 a 1000.
@@ -119,7 +119,7 @@ names(g) <- NULL
 g
 ```
 
-## Matrici ed array
+### Matrici ed array
 
 La naturale estensione dei vettori sono le matrici e gli array multidimensionali.
 Si creano essenzialmente partendo da vettori e organizzandoli su righe e colonne.
@@ -129,6 +129,7 @@ L'estrazione di elementi dalla matrice avviene con la notazione `matrice[righe, 
 ```{r}
 matrice <- matrix(1:100, nrow = 20)
 matrice[5:7, 3:5]
+matrice[, 3]
 ```
 
 Possiamo determinare e modificare la dimensione di una matrice con il comando `dim()`:
@@ -140,7 +141,131 @@ dim(matrice) <- c(5, 20)
 
 Su vettori e matrici di tipo numerico è possibile eseguire tutte le operazioni dell'algebra lineare, come il prodotto righe per colonne, utilizzando l'operatore `%*%`, o il calcolo dell'inversa con il comando `inv()` del pacchetto `MASS`: difficilmente ci troveremo a dover eseguire tali operazioni manualmente, in quanto numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.
 
-## Fattori
+### Fattori
 
-Un testo che può assumere solo valori finiti e noti è un fattore: il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio, per esempio acque di mare, acque potabili, acque sotterranee e molte altre ma non infinite altre.
-Internamente R tratta i fattori come interi a cui assegna un'etichetta di testo.
+Un testo che può assumere solo valori finiti e noti è un fattore: il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio, per esempio acque di mare, acque potabili, acque sotterranee e molte altre ma non infinite altre. I valori distinti che può assumere un fattore vengono chiamati livelli.
+
+Gli esempi di fattori proposti poco sopra non sono ordinati, ma alcuni possono esserlo, come i giudizi di un esame: insufficiente, sufficiente, buono, distinto e ottimo.
+
+Internamente R tratta i fattori come interi a cui assegna un'etichetta di testo. Per i fattori ordinati gli interi sono dati seguendo l'ordine specificato al momento dell'identificazione dei livelli, per i fattori non ordinati gli interi sono assegnati in ordine alfabetico o di apparizione.
+
+```{r}
+terza_c <- c("ottimo", "ottimo", "buono", "insufficiente", "buono", "buono")
+
+# non specifico i livelli
+factor(terza_c)
+
+# i livelli non sono ordinati
+factor(terza_c,
+       levels = c("insufficiente", "sufficiente", "buono", "distinto", "ottimo"))
+
+# i livelli sono ordinati
+factor(terza_c,
+       ordered = TRUE,
+       levels = c("insufficiente", "sufficiente", "buono", "distinto", "ottimo"))
+
+```
+
+### Liste
+
+I contenitori visti fin'ora sono ottimi per raggruppare una singola tipologia di elementi. Le liste permettono di raggruppare tipologie di elementi diversi tra loro mantenendoli comunque ordinati:
+
+```{r}
+lista <- list(numeri = 1:20,
+              testo = c("pippo", "ciccio", "riccio"),
+              giudizi = terza_c,
+              matrice = matrice)
+str(lista)
+```
+
+Posso accedere alla struttura di una lista con il comando `str()`. Tale comando lo rivedremo anche in seguito e in generale è utile con tutti i tipi di contenitori di R.
+I singoli gruppi vengono estratti con la sintassi `lista[[gruppo]]` o `lista$gruppo` e all'interno del gruppo posso accedere i diversi elementi come visto nelle sezioni precedenti:
+
+```{r}
+lista[[2]]
+lista$testo
+lista$testo[2]
+lista[[4]][2,]
+lista[[4]][2,3]
+lista[[3]] <- NULL
+```
+
+### Data frames
+
+I *data frame* sono tabelle di dati che possono accogliere nelle loro colonne diverse tipologie di elementi. Rispetto alle liste, si guadagna una maggiore facilità di consultazione ma si perde la possibilità di immagazzinare gruppi di diversa lunghezza: sono comunque la tipologia di dati che incontreremo più frequentemente.
+
+Internamente R tratta le singole colonne di un *data frame* come gruppi di una lista.
+
+```{r}
+str(iris)
+
+df <- data.frame(lettere = c("a", "b", "c", "d", "e", "f"),
+                 interi = 1:6,
+                 numeri = rnorm(6))
+df$numeri
+df$lettere[3]
+df$lettere[3] <- "g"
+df$sopra3 <- df$interi > 3
+df$interi <- NULL
+```
+
+Posso estrarre o modificare i nomi delle colonne con la funzione `colnames()`:
+
+```{r}
+colnames(df)
+colnames(df)[3] <- "random"
+```
+
+I *data frame* hanno anche la possibilità di specificare nomi per ogni riga: meglio starne alla larga.
+
+La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Nel tempo sono quindi nati diversi pacchetti per gestire in modo efficiente queste operazioni. Tra questi si segnalano:
+
+- `dplyr` permette di manipolare i dati tramite la concatenazione di una serie di funzioni i cui nomi in inglese richiamano le operazioni che si intendono eseguire (ad esempio `filter()`, `mutate()`, `group_by()` e molte altre);
+- `data.table` nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi che estende quella proposta nella versione base di R: lo vedremo nel prossimo capitolo.
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Piero ha preparato 10 prove indipendenti di un campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l, una delle prove non è andata a buon fine e non ha ottenuto alcun risultato.
+
+- salvare i risultati in un contenitore di R appropriato;
+- calcolare la media, la deviazione standard e l'intervallo di confidenza della media ($\alpha$ = 0.95) delle misure supponendo distribuzioni dei valori di tipo normale.
+
+Pina ha preparato altre 10 prove indipendenti dello stesso campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 1.09, 0.89, 0.74, 1.07, 0.68, 0.89, 1.25, 1.10, 0.86, 0.88 mg/l.
+
+- salvare i risultati ottenuti dai due operatori nello stesso oggetto di R;
+- calcolare l'intervallo di confidenza delle misure ottenute dai due operatori;
+- valutare la presenza di una differenza tra i risultati ottenuti dai due operatori.
+
+
+## Soluzione
+
+```{r}
+# 1
+piero <- c(0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98, NA)
+mean(piero, na.rm = TRUE)
+sd(piero, na.rm = TRUE)
+n <- piero[!is.na(piero)] |> length() # immaginate un altro modo
+
+ci <- function(data, alfa = 0.975){
+  stopifnot(is.numeric(data))
+  stopifnot(is.numeric(alfa))
+  stopifnot(alfa > 0 &  alfa <= 1)
+  
+  n <- sum(!is.na(data))
+  
+  mean(data, na.rm = TRUE) +
+    c(-1, 1) * qt(alfa, n - 1) * sd(data, na.rm = TRUE) / sqrt(n)
+}
+
+ci(piero)
+
+# 2
+risultati <- data.frame(piero = piero,
+                        pina = c(1.09, 0.89, 0.74, 1.07, 0.68,
+                                 0.89, 1.25, 1.10, 0.86, 0.88))
+lapply(risultati, ci)
+t.test(risultati$piero, risultati$pina)
+```
+::::

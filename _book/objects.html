@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-273e46d7b3848a679358d7b360117b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -107,6 +107,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -204,8 +233,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#logici" id="toc-logici" class="nav-link" data-scroll-target="#logici"><span class="header-section-number">3.1.3</span> Logici</a></li>
   <li><a href="#elementi-mancanti-ed-elementi-nulli" id="toc-elementi-mancanti-ed-elementi-nulli" class="nav-link" data-scroll-target="#elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</a></li>
   </ul></li>
-  <li><a href="#vettori" id="toc-vettori" class="nav-link" data-scroll-target="#vettori"><span class="header-section-number">3.2</span> Vettori</a></li>
-  <li><a href="#matrici-ed-array" id="toc-matrici-ed-array" class="nav-link" data-scroll-target="#matrici-ed-array"><span class="header-section-number">3.3</span> Matrici ed array</a></li>
+  <li><a href="#sec-classes" id="toc-sec-classes" class="nav-link" data-scroll-target="#sec-classes"><span class="header-section-number">3.2</span> Tipologie di contenitori</a>
+  <ul class="collapse">
+  <li><a href="#vettori" id="toc-vettori" class="nav-link" data-scroll-target="#vettori"><span class="header-section-number">3.2.1</span> Vettori</a></li>
+  <li><a href="#matrici-ed-array" id="toc-matrici-ed-array" class="nav-link" data-scroll-target="#matrici-ed-array"><span class="header-section-number">3.2.2</span> Matrici ed array</a></li>
+  <li><a href="#fattori" id="toc-fattori" class="nav-link" data-scroll-target="#fattori"><span class="header-section-number">3.2.3</span> Fattori</a></li>
+  <li><a href="#liste" id="toc-liste" class="nav-link" data-scroll-target="#liste"><span class="header-section-number">3.2.4</span> Liste</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">3.2.5</span> Data frames</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
@@ -254,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">"roba"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Talvolta i numeri possono anche essere archiviati come testo, ad esempio , tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: vedremo e rimedieremo a casi di questo tipo nei prossimi capitoli.</p>
+<p>Talvolta i numeri possono anche essere archiviati come testo, ad esempio , tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: per farli tornare numeri possiamo usare la funzione <code>as.numeric()</code>.</p>
 </section>
 <section id="logici" class="level3" data-number="3.1.3">
 <h3 data-number="3.1.3" class="anchored" data-anchor-id="logici"><span class="header-section-number">3.1.3</span> Logici</h3>
@@ -272,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="elementi-mancanti-ed-elementi-nulli" class="level3" data-number="3.1.4">
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</h3>
-<p>R identifica gli elementi mancanti con <code>NA</code>: <em>not available</em>. <code>NA</code> rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguiti su gruppi di elementi dove uno o più di essi sono <code>NA</code>, danno risultato <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
+<p>R identifica gli elementi mancanti con <code>NA</code>: <em>not available</em>. <code>NA</code> rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguite su gruppi di elementi dove uno o più di essi sono <code>NA</code>, danno risultato <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
 <p>Talvolta, R può restituire un elemento di tipo <code>NULL</code> estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore <code>NULL</code> a un oggetto per eliminarne il contenuto:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>()</span>
@@ -286,9 +321,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="vettori" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="vettori"><span class="header-section-number">3.2</span> Vettori</h2>
-<p>Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella sezione <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione.</p>
+<section id="sec-classes" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-classes"><span class="header-section-number">3.2</span> Tipologie di contenitori</h2>
+<section id="vettori" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="vettori"><span class="header-section-number">3.2.1</span> Vettori</h3>
+<p>Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione. Tecnicamente, i vettori non sono catalogati da R all’interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.</p>
 <p>Posso accedere ai diversi elementi di un vettore attraverso la notazione <code>vettore[indici]</code> dove <code>indici</code> è a sua volta un vettore di elementi da includere o escludere:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">NA</span>, <span class="st">"e"</span>)</span>
@@ -316,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Per verificare se ho a che fare con un vettore posso usare la funzione <code>is.vector()</code>, mentre per determinare quanti elementi contenga uso la funzione <code>length()</code>.</p>
 <p>Con i vettori possiamo iniziare a fare qualche conto con funzioni quali <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>quantile()</code>, <code>which.min()</code> e <code>which.max()</code> e molte altre.</p>
-<p>Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono <code>sample()</code> e <code>rnorm</code>()`: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:</p>
+<p>Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono <code>sample()</code> e <code>rnorm()</code>: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># estraggo 30 valori tra loro indipendenti dagli interi da 1 a 1000.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi) <span class="co"># trovo il valore massimo</span></span>
@@ -352,8 +389,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="matrici-ed-array" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="matrici-ed-array"><span class="header-section-number">3.3</span> Matrici ed array</h2>
+<section id="matrici-ed-array" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="matrici-ed-array"><span class="header-section-number">3.2.2</span> Matrici ed array</h3>
 <p>La naturale estensione dei vettori sono le matrici e gli array multidimensionali. Si creano essenzialmente partendo da vettori e organizzandoli su righe e colonne.</p>
 <p>L’estrazione di elementi dalla matrice avviene con la notazione <code>matrice[righe, colonne]</code>, come mostrato nell’esempio riportato di seguito:</p>
 <div class="cell">
@@ -362,7 +399,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]   45   65   85</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]   46   66   86</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]   47   67   87</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]   47   67   87</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>matrice[, <span class="dv">3</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Possiamo determinare e modificare la dimensione di una matrice con il comando <code>dim()</code>:</p>
 <div class="cell">
@@ -371,8 +410,172 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(matrice) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Su vettori e matrici di tipo numerico è possibile eseguire tutte le operazioni dell’algebra lineare, come il prodotto righe per colonne, utilizzando l’operatore <code>%*%</code>, o il calcolo dell’inversa con il comando <code>inv()</code> del pacchetto <code>MASS</code>: difficilmente ci troveremo a dover eseguire tali operazioni manualmente, in quanto numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.</p>
+</section>
+<section id="fattori" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="fattori"><span class="header-section-number">3.2.3</span> Fattori</h3>
+<p>Un testo che può assumere solo valori finiti e noti è un fattore: il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio, per esempio acque di mare, acque potabili, acque sotterranee e molte altre ma non infinite altre. I valori distinti che può assumere un fattore vengono chiamati livelli.</p>
+<p>Gli esempi di fattori proposti poco sopra non sono ordinati, ma alcuni possono esserlo, come i giudizi di un esame: insufficiente, sufficiente, buono, distinto e ottimo.</p>
+<p>Internamente R tratta i fattori come interi a cui assegna un’etichetta di testo. Per i fattori ordinati gli interi sono dati seguendo l’ordine specificato al momento dell’identificazione dei livelli, per i fattori non ordinati gli interi sono assegnati in ordine alfabetico o di apparizione.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>terza_c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ottimo"</span>, <span class="st">"ottimo"</span>, <span class="st">"buono"</span>, <span class="st">"insufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"buono"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># non specifico i livelli</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] ottimo        ottimo        buono         insufficiente buono        </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] buono        </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: buono insufficiente ottimo</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># i livelli non sono ordinati</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"insufficiente"</span>, <span class="st">"sufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"distinto"</span>, <span class="st">"ottimo"</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] ottimo        ottimo        buono         insufficiente buono        </span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] buono        </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: insufficiente sufficiente buono distinto ottimo</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># i livelli sono ordinati</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"insufficiente"</span>, <span class="st">"sufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"distinto"</span>, <span class="st">"ottimo"</span>))</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] ottimo        ottimo        buono         insufficiente buono        </span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] buono        </span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: insufficiente &lt; sufficiente &lt; buono &lt; distinto &lt; ottimo</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="liste" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="liste"><span class="header-section-number">3.2.4</span> Liste</h3>
+<p>I contenitori visti fin’ora sono ottimi per raggruppare una singola tipologia di elementi. Le liste permettono di raggruppare tipologie di elementi diversi tra loro mantenendoli comunque ordinati:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">numeri =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">testo =</span> <span class="fu">c</span>(<span class="st">"pippo"</span>, <span class="st">"ciccio"</span>, <span class="st">"riccio"</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">giudizi =</span> terza_c,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">matrice =</span> matrice)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(lista)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; List of 4</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ numeri : int [1:20] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ testo  : chr [1:3] "pippo" "ciccio" "riccio"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ giudizi: chr [1:6] "ottimo" "ottimo" "buono" "insufficiente" ...</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ matrice: int [1:5, 1:20] 1 2 3 4 5 6 7 8 9 10 ...</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Posso accedere alla struttura di una lista con il comando <code>str()</code>. Tale comando lo rivedremo anche in seguito e in generale è utile con tutti i tipi di contenitori di R. I singoli gruppi vengono estratti con la sintassi <code>lista[[gruppo]]</code> o <code>lista$gruppo</code> e all’interno del gruppo posso accedere i diversi elementi come visto nelle sezioni precedenti:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">2</span>]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "pippo"  "ciccio" "riccio"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>lista<span class="sc">$</span>testo</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "pippo"  "ciccio" "riccio"</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>lista<span class="sc">$</span>testo[<span class="dv">2</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "ciccio"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">4</span>]][<span class="dv">2</span>,]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  2  7 12 17 22 27 32 37 42 47 52 57 62 67 72 77 82 87 92 97</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">4</span>]][<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-frames" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.2.5</span> Data frames</h3>
+<p>I <em>data frame</em> sono tabelle di dati che possono accogliere nelle loro colonne diverse tipologie di elementi. Rispetto alle liste, si guadagna una maggiore facilità di consultazione ma si perde la possibilità di immagazzinare gruppi di diversa lunghezza: sono comunque la tipologia di dati che incontreremo più frequentemente.</p>
+<p>Internamente R tratta le singole colonne di un <em>data frame</em> come gruppi di una lista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 'data.frame':    150 obs. of  5 variables:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lettere =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">interi =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">numeri =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>numeri</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.1829260 -1.3792578  1.2506006 -1.8762368 -0.3687876 -2.1292973</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c"</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"g"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>sopra3 <span class="ot">&lt;-</span> df<span class="sc">$</span>interi <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>interi <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Posso estrarre o modificare i nomi delle colonne con la funzione <code>colnames()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "lettere" "numeri"  "sopra3"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"random"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I <em>data frame</em> hanno anche la possibilità di specificare nomi per ogni riga: meglio starne alla larga.</p>
+<p>La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Nel tempo sono quindi nati diversi pacchetti per gestire in modo efficiente queste operazioni. Tra questi si segnalano:</p>
+<ul>
+<li><code>dplyr</code> permette di manipolare i dati tramite la concatenazione di una serie di funzioni i cui nomi in inglese richiamano le operazioni che si intendono eseguire (ad esempio <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code> e molte altre);</li>
+<li><code>data.table</code> nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi che estende quella proposta nella versione base di R: lo vedremo nel prossimo capitolo.</li>
+</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Piero ha preparato 10 prove indipendenti di un campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l, una delle prove non è andata a buon fine e non ha ottenuto alcun risultato.</p>
+<ul>
+<li>salvare i risultati in un contenitore di R appropriato;</li>
+<li>calcolare la media, la deviazione standard e l’intervallo di confidenza della media (<span class="math inline">\(\alpha\)</span> = 0.95) delle misure supponendo distribuzioni dei valori di tipo normale.</li>
+</ul>
+<p>Pina ha preparato altre 10 prove indipendenti dello stesso campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 1.09, 0.89, 0.74, 1.07, 0.68, 0.89, 1.25, 1.10, 0.86, 0.88 mg/l.</p>
+<ul>
+<li>salvare i risultati ottenuti dai due operatori nello stesso oggetto di R;</li>
+<li>calcolare l’intervallo di confidenza delle misure ottenute dai due operatori;</li>
+<li>valutare la presenza di una differenza tra i risultati ottenuti dai due operatori.</li>
+</ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>piero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.77</span>, <span class="fl">0.69</span>, <span class="fl">0.89</span>, <span class="fl">0.75</span>, <span class="fl">0.93</span>, <span class="fl">0.81</span>, <span class="fl">0.91</span>, <span class="fl">1.06</span>, <span class="fl">0.98</span>, <span class="cn">NA</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8655556</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.119385</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> piero[<span class="sc">!</span><span class="fu">is.na</span>(piero)] <span class="sc">|&gt;</span> <span class="fu">length</span>() <span class="co"># immaginate un altro modo</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">alfa =</span> <span class="fl">0.975</span>){</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(data))</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(alfa))</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(alfa <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span>  alfa <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(data))</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(alfa, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(piero)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">piero =</span> piero,</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pina =</span> <span class="fu">c</span>(<span class="fl">1.09</span>, <span class="fl">0.89</span>, <span class="fl">0.74</span>, <span class="fl">1.07</span>, <span class="fl">0.68</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">0.89</span>, <span class="fl">1.25</span>, <span class="fl">1.10</span>, <span class="fl">0.86</span>, <span class="fl">0.88</span>))</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(risultati, ci)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $piero</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pina</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8180479 1.0719521</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(risultati<span class="sc">$</span>piero, risultati<span class="sc">$</span>pina)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  risultati$piero and risultati$pina</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -1.1548, df = 15.825, p-value = 0.2653</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.22541955  0.06653066</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.8655556 0.9450000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -458,8 +661,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -570,7 +771,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -806,7 +1006,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
