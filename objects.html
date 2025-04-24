@@ -239,7 +239,7 @@ window.Quarto = {
   <li><a href="#matrici-ed-array" id="toc-matrici-ed-array" class="nav-link" data-scroll-target="#matrici-ed-array"><span class="header-section-number">3.2.2</span> Matrici ed array</a></li>
   <li><a href="#fattori" id="toc-fattori" class="nav-link" data-scroll-target="#fattori"><span class="header-section-number">3.2.3</span> Fattori</a></li>
   <li><a href="#liste" id="toc-liste" class="nav-link" data-scroll-target="#liste"><span class="header-section-number">3.2.4</span> Liste</a></li>
-  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">3.2.5</span> Data frames</a></li>
+  <li><a href="#sec-df" id="toc-sec-df" class="nav-link" data-scroll-target="#sec-df"><span class="header-section-number">3.2.5</span> Data frames</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="missing/edit/main/objects.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
@@ -482,10 +482,10 @@ window.Quarto = {
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data-frames" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.2.5</span> Data frames</h3>
-<p>I <em>data frame</em> sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.</p>
-<p>Internamente, R tratta le colonne di un <em>data frame</em> come gruppi di una lista.</p>
+<section id="sec-df" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="sec-df"><span class="header-section-number">3.2.5</span> Data frames</h3>
+<p>I <code>data.frame</code> sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.</p>
+<p>Internamente, R tratta le colonne di un <code>data.frame</code> come gruppi di una lista.</p>
 <p>Esempio con il dataset <code>iris</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span>
@@ -515,7 +515,7 @@ window.Quarto = {
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "lettere" "numeri"  "sopra3"</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"random"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I <em>data frame</em> possono anche avere nomi per ogni riga, ma è consigliabile evitarlo.</p>
+<p>I <code>data.frame</code> possono anche avere nomi per ogni riga, ma è consigliabile evitarlo.</p>
 <p>La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Per questo motivo sono nati pacchetti dedicati, tra cui:</p>
 <ul>
 <li><code>dplyr</code> permette di manipolare i dati concatenando funzioni con nomi descrittivi come <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, ecc.</li>
