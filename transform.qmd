@@ -1,0 +1,65 @@
+# Manipolare i dati con `data.table` {#sec-transform}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## Il pacchetto `data.table` {#sec-load}
+
+Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per lavorare con i dati.
+
+Creare una `data.table` è semplice e molto simile a creare un `data.frame`. Ecco un esempio:
+
+```{r}
+dt <- data.table(
+  id = rep(c("a", "b", "c", "d", "e"), each = 10),
+  a = sample(letters, 50, replace = TRUE),
+  b = rnorm(50)
+)
+```
+
+Se si ha già un `data.frame`, è possibile convertirlo in una `data.table` usando la funzione `setDT()`.
+
+La sintassi di base del pacchetto `data.table` si ispira - con buona dose di creatività - al linguaggio SQL, combinandolo con il sistema di indicizzazione di R base per selezionare e modificare i dati:
+
+`dt[i, j, by]`
+
+-   `i` serve per filtrare o ordinare le righe (simile a `WHERE` e `ORDER BY` in SQL);
+-   `j` permette di selezionare o modificare colonne (come `SELECT` e `UPDATE` in SQL);
+-   `by` consente di ripetere le operazioni per ogni gruppo di dati (equivalente a `GROUP BY` in SQL).
+
+Tutti e tre gli argomenti sono opzionali: omettendoli, vengono restituiti tutti i dati.
+
+In altre parole, l'istruzione data si legge così:
+
+> prendi la `data.table` `dt`, filtra o ordina le righe con `i`, seleziona o calcola `j` e ripeti l'operazione per ogni gruppo definito da `by`.
+
+Vediamo subito un esempio pratico:
+```{r}
+# prendi dt, ordina per id in senso decrescente, calcola la media di b per ogni id
+dt[order(-id), .(avg = mean(b)), by = id]
+```
+
+Per sfruttare appieno le potenzialità di `data.table`, il passo successivo sarà imparare a importare dati da file esterni.
+
+### Importare i dati
+
+### File .csv, .tsv e .gz {#sec-csv}
+
+
+```{r}
+pm_genova <- fread("data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
+                   skip = "Codice europeo", # salta fino a "Codice europeo"
+                   encoding = "Latin-1") # gestisce accenti e lettere greche
+```
+
+### File xlsx
+
+### Filtrare i dati
+
+### Modificare le colonne
+
+## Cambiare forma ai dati
+
+## Unire più fonti di dati

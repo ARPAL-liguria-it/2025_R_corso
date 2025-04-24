@@ -201,11 +201,11 @@ lista[[4]][2,3]
 lista[[3]] <- NULL
 ```
 
-### Data frames
+### Data frames {#sec-df}
 
-I *data frame* sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.
+I `data.frame` sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.
 
-Internamente, R tratta le colonne di un *data frame* come gruppi di una lista.
+Internamente, R tratta le colonne di un `data.frame` come gruppi di una lista.
 
 Esempio con il dataset `iris`:
 ```{r}
@@ -231,7 +231,7 @@ colnames(df)
 colnames(df)[3] <- "random"
 ```
 
-I *data frame* possono anche avere nomi per ogni riga, ma è consigliabile evitarlo.
+I `data.frame` possono anche avere nomi per ogni riga, ma è consigliabile evitarlo.
 
 La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Per questo motivo sono nati pacchetti dedicati, tra cui:
 

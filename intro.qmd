@@ -81,14 +81,15 @@ Durante il corso utilizzeremo alcuni pacchetti molto diffusi:
 - `ggplot2`: il pacchetto di riferimento per la creazione di grafici;
 - `readxl`: utile per importare dati da fogli Excel;
 - `glue`: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;
-- `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente.
+- `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;
+- `R.utils`: lo utilizzeremo solo per importare dati da file gz.
 
 Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con il comando `c()` e scrivendo il seguente comando all'interno della console di R, dopo il simbolo `>`:
 
 ```{r}
 #| output: false
 
-install.packages(c("data.table", "readxl", "ggplot2", "glue", "gt"))
+install.packages(c("data.table", "readxl", "ggplot2", "glue", "gt", "R.utils"))
 ```
 
 Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.
