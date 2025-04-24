@@ -332,31 +332,40 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">NA</span>, <span class="st">"e"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">1</span>] <span class="co"># seleziona il primo elemento</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># seleziona tutti gli elementi tranne il primo</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA  "e"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># seleziona gli elementi dal secondo al quarto, estremi compresi</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne quelli dal secondo al quarto</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "e"</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona il secondo e quarto elemento</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" NA</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne il secondo e il quarto</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "c" "e"</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>f[g] <span class="co"># seleziona il terzo e quinto elemento</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c" "e"</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>g] <span class="co"># seleziona tutti gli elementi tranne il terzo e il quinto</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" NA</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi NA</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">!</span><span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi non NA</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" "c" "e"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># seleziona tutti gli elementi tranne il primo</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA  "e"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># seleziona gli elementi dal secondo al quarto, estremi compresi</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne quelli dal secondo al quarto</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "e"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona il secondo e quarto elemento</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" NA</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne il secondo e il quarto</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "c" "e"</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>f[g] <span class="co"># seleziona il terzo e quinto elemento</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c" "e"</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>g] <span class="co"># seleziona tutti gli elementi tranne il terzo e il quinto</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" NA</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi NA</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">!</span><span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi non NA</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" "c" "e"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Per verificare se un oggetto è un vettore si può usare la funzione <code>is.vector()</code>, mentre per conoscerne il numero di elementi si usa la funzione <code>length()</code>.</p>
 <p>Con i vettori possiamo iniziare a fare qualche calcolo con funzioni quali <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>quantile()</code>, <code>which.min()</code> e <code>which.max()</code> e molte altre.</p>
 <p>Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più usate sono <code>sample()</code> e <code>rnorm()</code>. La prima estrae un numero casuale di elementi da un vettore, la seconda genera valori da una distribuzione normale con parametri noti. Esempio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># estrae 30 valori indipendenti da 1 a 1000.</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># 30 valori indipendenti da 1 a 1000.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi) <span class="co"># trova il valore massimo</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 998</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(sorprendimi) <span class="co"># trova la posizione del valore massimo</span></span>
@@ -516,17 +525,19 @@ window.Quarto = {
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Piero ha preparato 10 prove indipendenti di un campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l, una delle prove non è andata a buon fine e non ha ottenuto alcun risultato.</p>
+<p>Piero ha effettuato 10 prove indipendenti per la misura della concentrazione di nitrati su un campione di acqua, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l. Una delle prove non ha dato risultati validi.</p>
 <ul>
-<li>salvare i risultati in un contenitore di R appropriato;</li>
-<li>calcolare la media, la deviazione standard e l’intervallo di confidenza della media (<span class="math inline">\(\alpha\)</span> = 0.95) delle misure supponendo distribuzioni dei valori di tipo normale.</li>
+<li>creare uno script contenente commenti esplicativi di ogni passaggio;</li>
+<li>calcolare media, deviazione standard e intervallo di confidenza (<span class="math inline">\(\alpha\)</span> = 0.95).</li>
 </ul>
 <p>Pina ha preparato altre 10 prove indipendenti dello stesso campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 1.09, 0.89, 0.74, 1.07, 0.68, 0.89, 1.25, 1.10, 0.86, 0.88 mg/l.</p>
 <ul>
-<li>salvare i risultati ottenuti dai due operatori nello stesso oggetto di R;</li>
-<li>calcolare l’intervallo di confidenza delle misure ottenute dai due operatori;</li>
-<li>valutare la presenza di una differenza tra i risultati ottenuti dai due operatori.</li>
+<li>ampliare lo script sviluppato nell’esercizio precedente;</li>
+<li>unire i risultati ottenuti dai due operatori nello stesso oggetto di R;</li>
+<li>calcolare gli intervalli di confidenza per ciascun operatore;</li>
+<li>Valutare statisticamente la presenza di differenze significative tra i valori ottenuti dai due operatori.</li>
 </ul>
+<p>Per praticità, assumiamo che: - i dati seguano una distribuzione normale; - le varianze dei due gruppi siano omogenee.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
@@ -556,27 +567,28 @@ window.Quarto = {
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
 <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">piero =</span> piero,</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pina =</span> <span class="fu">c</span>(<span class="fl">1.09</span>, <span class="fl">0.89</span>, <span class="fl">0.74</span>, <span class="fl">1.07</span>, <span class="fl">0.68</span>,</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">0.89</span>, <span class="fl">1.25</span>, <span class="fl">1.10</span>, <span class="fl">0.86</span>, <span class="fl">0.88</span>))</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(risultati, ci)</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $piero</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pina</span></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8180479 1.0719521</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(risultati<span class="sc">$</span>piero, risultati<span class="sc">$</span>pina)</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  risultati$piero and risultati$pina</span></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -1.1548, df = 15.825, p-value = 0.2653</span></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.22541955  0.06653066</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.8655556 0.9450000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># In seguito vedremo come questo modo di organizzare i dati non sia ottimale</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">piero =</span> piero,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pina =</span> <span class="fu">c</span>(<span class="fl">1.09</span>, <span class="fl">0.89</span>, <span class="fl">0.74</span>, <span class="fl">1.07</span>, <span class="fl">0.68</span>,</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">0.89</span>, <span class="fl">1.25</span>, <span class="fl">1.10</span>, <span class="fl">0.86</span>, <span class="fl">0.88</span>))</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(risultati, ci)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $piero</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pina</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8180479 1.0719521</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(risultati<span class="sc">$</span>piero, risultati<span class="sc">$</span>pina)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  risultati$piero and risultati$pina</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -1.1548, df = 15.825, p-value = 0.2653</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.22541955  0.06653066</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.8655556 0.9450000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
