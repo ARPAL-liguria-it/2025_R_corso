@@ -242,16 +242,21 @@ La sintassi base di R rende spesso complicato filtrare o eseguire operazioni com
 
 ## Esercizio
 
-Piero ha preparato 10 prove indipendenti di un campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l, una delle prove non è andata a buon fine e non ha ottenuto alcun risultato.
+Piero ha effettuato 10 prove indipendenti per la misura della concentrazione di nitrati su un campione di acqua, ottenendo i seguenti risultati: 0.77, 0.69, 0.89, 0.75, 0.93, 0.81, 0.91, 1.06, 0.98 mg/l. Una delle prove non ha dato risultati validi.
 
-- salvare i risultati in un contenitore di R appropriato;
-- calcolare la media, la deviazione standard e l'intervallo di confidenza della media ($\alpha$ = 0.95) delle misure supponendo distribuzioni dei valori di tipo normale.
+- creare uno script contenente commenti esplicativi di ogni passaggio;
+- calcolare media, deviazione standard e intervallo di confidenza ($\alpha$ = 0.95).
 
 Pina ha preparato altre 10 prove indipendenti dello stesso campione di acqua per la misura della concentrazione di nitrati, ottenendo i seguenti risultati: 1.09, 0.89, 0.74, 1.07, 0.68, 0.89, 1.25, 1.10, 0.86, 0.88 mg/l.
 
-- salvare i risultati ottenuti dai due operatori nello stesso oggetto di R;
-- calcolare l'intervallo di confidenza delle misure ottenute dai due operatori;
-- valutare la presenza di una differenza tra i risultati ottenuti dai due operatori.
+- ampliare lo script sviluppato nell'esercizio precedente;
+- unire i risultati ottenuti dai due operatori nello stesso oggetto di R;
+- calcolare gli intervalli di confidenza per ciascun operatore;
+- Valutare statisticamente la presenza di differenze significative tra i valori ottenuti dai due operatori.
+
+Per praticità, assumiamo che:
+- i dati seguano una distribuzione normale;
+- le varianze dei due gruppi siano omogenee.
 
 
 ## Soluzione
@@ -280,6 +285,7 @@ ci <- function(data, alfa = 0.975){
 ci(piero)
 
 # 2
+# In seguito vedremo come questo modo di organizzare i dati non sia ottimale
 risultati <- data.frame(piero = piero,
                         pina = c(1.09, 0.89, 0.74, 1.07, 0.68,
                                  0.89, 1.25, 1.10, 0.86, 0.88))
