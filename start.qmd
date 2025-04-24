@@ -135,7 +135,7 @@ Per questo motivo, possiamo creare un `file.R` in cui elencare in ordine i coman
 Per farlo, in RStudio basta cliccare sull'icona ![](images/newfile.png){height=25} in alto a sinistra, selezionare "R Script" e salvare il file. All'interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:
 
 ```{r}
-#| echo: false
+#| output: false
 # richiamo un dataset di R
 iris
 

@@ -81,15 +81,24 @@ Tecnicamente, i vettori non sono catalogati da R all'interno di una classe, tutt
 ```{r}
 f <- c("a", "b", "c", NA, "e")
 f[1] # seleziona il primo elemento
+
 f[-1] # seleziona tutti gli elementi tranne il primo
+
 f[2:4] # seleziona gli elementi dal secondo al quarto, estremi compresi
+
 f[-(2:4)] # seleziona tutti gli elementi tranne quelli dal secondo al quarto
+
 f[c(2,4)] # seleziona il secondo e quarto elemento
+
 f[-c(2,4)] # seleziona tutti gli elementi tranne il secondo e il quarto
+
 g <- c(3,5)
 f[g] # seleziona il terzo e quinto elemento
+
 f[-g] # seleziona tutti gli elementi tranne il terzo e il quinto
+
 f[is.na(f)] # seleziona solo gli elementi NA
+
 f[!is.na(f)] # seleziona solo gli elementi non NA
 ```
 
@@ -100,7 +109,7 @@ Con i vettori possiamo iniziare a fare qualche calcolo con funzioni quali `max()
 Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più usate sono `sample()` e `rnorm()`. La prima estrae un numero casuale di elementi da un vettore, la seconda genera valori da una distribuzione normale con parametri noti. Esempio:
 
 ```{r}
-sorprendimi <- sample(1:1000, 30, replace = TRUE) # estrae 30 valori indipendenti da 1 a 1000.
+sorprendimi <- sample(1:1000, 30, replace = TRUE) # 30 valori indipendenti da 1 a 1000.
 max(sorprendimi) # trova il valore massimo
 which.max(sorprendimi) # trova la posizione del valore massimo
 m <- which.max(sorprendimi)
