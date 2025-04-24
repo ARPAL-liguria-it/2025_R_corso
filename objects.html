@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-273e46d7b3848a679358d7b360117b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-292c0866b2e53f8190c286d1fd533ef9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -268,32 +268,32 @@ window.Quarto = {
 
 <section id="sec-typeof" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-typeof"><span class="header-section-number">3.1</span> Tipologie di elementi</h2>
-<p>Prima di vedere le classi di oggetti di R, che possiamo pensare come diverse tipologie di contenitori, è bene dare una rapida occhiata alla tipologia di elementi che possiamo mettere in tali contenitori.</p>
+<p>Prima di vedere le classi di oggetti di R, che possiamo pensare come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che possiamo inserire in questi contenitori.</p>
 <p>Quando saremo in dubbio sulla tipologia di un dato elemento possiamo usare la funzione <code>typeof()</code>.</p>
 <section id="numeri" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="numeri"><span class="header-section-number">3.1.1</span> Numeri</h3>
-<p>R ha la possibilità di gestire diverse tipologie di numeri, tuttavia noi useremo principalmente la tipologia <code>double</code> che abbrevia il nome <em>double-precision floating-point format</em>: che definisce come in informatica vengono archiviati e manipolati gli elementi esprimibili con una parte decimale. Ogni misura - con l’esclusione dei conteggi puri - anche una che dovesse avere valore 5, ricade in questa tipologia. Utilizzare questa tipologia di elementi è semplice:</p>
+<p>R gestisce diverse tipologie di numeri, ma utilizzeremo principalmente la tipologia <code>double</code>, abbreviazione di <em>double-precision floating-point format</em>: che definisce come in informatica vengono archiviati e manipolati gli elementi esprimibili con una parte decimale. Ogni misura - ad eccezione dei conteggi puri - ricade in questa tipologia, anche se dovesse avere valore intero (es. 5). L’Utilizzo di elementi di tipo <code>double</code> è semplice:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.5</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Più raramente dovremo definire degli interi. Essi afferiscono alla tipologia <code>integer</code> e si scrivono facendo seguire una L maiuscola al numero:</p>
+<p>Più raramente, dovremo definire degli interi, che appartengono alla tipologia <code>integer</code> e si indicano facendo seguire una L maiuscola al numero:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">5</span>L)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Altre tipologie di numeri più esotiche comprendono i tipi <code>complex</code> e <code>raw</code>, rispettivamente per numeri complessi e bytes: non li useremo.</p>
-<p>Numeri particolari che possiamo ottenere a seguito di operazioni matematiche sono <code>NaN</code>: <em>not a number</em>, <code>Inf</code> e <code>-Inf</code>: il primo è ottenibile, ad esempio, dividendo zero per zero mentre gli ultimi rispettivamente dividendo un numero positivo o negativo per zero. Si può testare se un numero sia <code>NaN</code> o <code>Inf</code> rispettivamente con le funzioni <code>is.nan()</code> e <code>is.infinite()</code>.</p>
+<p>Altre tipologie di numeri più rare comprendono i tipi <code>complex</code> e <code>raw</code>, rispettivamente per numeri complessi e bytes: non le utilizzeremo.</p>
+<p>Alcune operazioni matematiche possono generare numeri particolari come <code>NaN</code> (<em>not a number</em>), <code>Inf</code> e <code>-Inf</code>. Il primo si ottiene, ad esempio, dividendo zero per zero, mentre gli ultimi dividendo un numero positivo o negativo per zero. Per verificare se un numero è <code>NaN</code> o <code>Inf</code>, si usano rispettivamente le funzioni <code>is.nan()</code> e <code>is.infinite()</code>.</p>
 </section>
 <section id="testo" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="testo"><span class="header-section-number">3.1.2</span> Testo</h3>
-<p>R mette a disposizione una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte <code>character</code> e si scrivono racchiudendo i diversi elementi tra singole o doppie virgolette alte (nel corso utilizzeremo sempre le doppie virgolette):</p>
+<p>R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte <code>character</code> e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso utilizzeremo sempre le doppie virgolette):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">"roba"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Talvolta i numeri possono anche essere archiviati come testo, ad esempio , tuttavia si tratta perlopiù di un risultato indesiderato ma abbastanza frequente quando vengono importati dati non ben ripuliti: per farli tornare numeri possiamo usare la funzione <code>as.numeric()</code>.</p>
+<p>Talvolta, i numeri possono essere erroneamente archiviati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripulit. Per riconvertirli in numeri, si usa la funzione <code>as.numeric()</code>.</p>
 </section>
 <section id="logici" class="level3" data-number="3.1.3">
 <h3 data-number="3.1.3" class="anchored" data-anchor-id="logici"><span class="header-section-number">3.1.3</span> Logici</h3>
-<p>Gli elementi logici sono quelli che possono assumere esclusivamente valore <code>TRUE</code> o <code>FALSE</code>: difficilmente vengono assegnati a mano in una variabile ma compaiono spesso a seguito di un’operazione logica:</p>
+<p>Gli elementi logici possono assumere esclusivamente valore <code>TRUE</code> o <code>FALSE</code>. Raramente vengono assegnati direttamente a una variabile, ma compaiono spesso a seguito di un’operazione logica:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>d</span>
@@ -303,12 +303,12 @@ window.Quarto = {
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span>L</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Internamente, R li tratta come interi pari 1 o 0 e a cui assegna rispettivamente le etichette <code>TRUE</code> e <code>FALSE</code>.</p>
+<p>Internamente, R li tratta come interi pari a 1 (<code>TRUE</code>) o 0 (<code>FALSE</code>).</p>
 </section>
 <section id="elementi-mancanti-ed-elementi-nulli" class="level3" data-number="3.1.4">
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</h3>
-<p>R identifica gli elementi mancanti con <code>NA</code>: <em>not available</em>. <code>NA</code> rappresenta una tipologia particolare in quanto diventa di tipo testo, numero o logico a seconda di dove si trova. Tipicamente, operazioni eseguite su gruppi di elementi dove uno o più di essi sono <code>NA</code>, danno risultato <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
-<p>Talvolta, R può restituire un elemento di tipo <code>NULL</code> estraendo un elemento che non esiste da un qualche oggetto. Più comunemente, è possibile assegnare il valore <code>NULL</code> a un oggetto per eliminarne il contenuto:</p>
+<p>R identifica gli elementi mancanti con <code>NA</code> (<em>not available</em>). <code>NA</code> rappresenta una tipologia particolare, in quanto diventa di tipo testo, numero o valore logico a seconda del contesto. In genere, le operazioni eseguite su gruppi di elementi in cui uno o più elementi sono <code>NA</code> restituiscono <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
+<p>Talvolta, R può restituire un elemento di tipo <code>NULL</code> quando si tenta di estrarre un elemento inesistente da un oggetto. Più comunemente, è possibile assegnare il valore <code>NULL</code> a un oggetto per eliminarne il contenuto:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
@@ -325,40 +325,41 @@ window.Quarto = {
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-classes"><span class="header-section-number">3.2</span> Tipologie di contenitori</h2>
 <section id="vettori" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="vettori"><span class="header-section-number">3.2.1</span> Vettori</h3>
-<p>Un vettore è un insieme di valori non ordinati, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi ascrivibili a più di una tipologia e possiedono una sola dimensione. Tecnicamente, i vettori non sono catalogati da R all’interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.</p>
-<p>Posso accedere ai diversi elementi di un vettore attraverso la notazione <code>vettore[indici]</code> dove <code>indici</code> è a sua volta un vettore di elementi da includere o escludere:</p>
+<p>Un vettore è un insieme ordinato di valori, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi di tipologie diverse e possiedono una sola dimensione.</p>
+<p>Tecnicamente, i vettori non sono catalogati da R all’interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.</p>
+<p>È possibile accedere ai diversi elementi di un vettore utilizzando la notazione: <code>vettore[indici]</code> dove <code>indici</code> è a sua volta un vettore di elementi da includere o escludere. Esempi:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">NA</span>, <span class="st">"e"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">1</span>] <span class="co"># seleziono solo il primo elemento</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">1</span>] <span class="co"># seleziona il primo elemento</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># seleziono tutti gli elementi tranne il primo</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="dv">1</span>] <span class="co"># seleziona tutti gli elementi tranne il primo</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA  "e"</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># seleziono gli elementi dal secondo al quarto, estremi compresi</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># seleziona gli elementi dal secondo al quarto, estremi compresi</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" "c" NA</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)] <span class="co"># seleziono tutti gli elementi tranne quelli dal secondo al quarto</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne quelli dal secondo al quarto</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "e"</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziono il secondo e quarto elemento</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona il secondo e quarto elemento</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "b" NA</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziono tutti gli elementi tranne il secondo e il quarto</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># seleziona tutti gli elementi tranne il secondo e il quarto</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "c" "e"</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>f[g] <span class="co"># seleziono il terzo e quinto elemento</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>f[g] <span class="co"># seleziona il terzo e quinto elemento</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c" "e"</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>g] <span class="co"># seleziono tutti gli elementi tranne il terzo e il quinto</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">-</span>g] <span class="co"># seleziona tutti gli elementi tranne il terzo e il quinto</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" NA</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">is.na</span>(f)] <span class="co"># seleziono solo gli elementi NA</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>f[<span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi NA</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">!</span><span class="fu">is.na</span>(f)] <span class="co"># seleziono solo gli elementi non NA</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>f[<span class="sc">!</span><span class="fu">is.na</span>(f)] <span class="co"># seleziona solo gli elementi non NA</span></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a" "b" "c" "e"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Per verificare se ho a che fare con un vettore posso usare la funzione <code>is.vector()</code>, mentre per determinare quanti elementi contenga uso la funzione <code>length()</code>.</p>
-<p>Con i vettori possiamo iniziare a fare qualche conto con funzioni quali <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>quantile()</code>, <code>which.min()</code> e <code>which.max()</code> e molte altre.</p>
-<p>Di sovente può essere utile generare vettori casuali e a tale scopo le funzioni forse più usate sono <code>sample()</code> e <code>rnorm()</code>: la prima può estrarre un numero casuale di elementi da un vettore, la seconda può estrarre un numero arbitrario di valori da una distribuzione normale con parametri noti. Facciamo qualche prova:</p>
+<p>Per verificare se un oggetto è un vettore si può usare la funzione <code>is.vector()</code>, mentre per conoscerne il numero di elementi si usa la funzione <code>length()</code>.</p>
+<p>Con i vettori possiamo iniziare a fare qualche calcolo con funzioni quali <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>quantile()</code>, <code>which.min()</code> e <code>which.max()</code> e molte altre.</p>
+<p>Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più usate sono <code>sample()</code> e <code>rnorm()</code>. La prima estrae un numero casuale di elementi da un vettore, la seconda genera valori da una distribuzione normale con parametri noti. Esempio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># estraggo 30 valori tra loro indipendenti dagli interi da 1 a 1000.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi) <span class="co"># trovo il valore massimo</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># estrae 30 valori indipendenti da 1 a 1000.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi) <span class="co"># trova il valore massimo</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 998</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(sorprendimi) <span class="co"># trovo la posizione in cui si trova il valore massimo</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(sorprendimi) <span class="co"># trova la posizione del valore massimo</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">which.max</span>(sorprendimi)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>sorprendimi[m]</span>
@@ -366,7 +367,7 @@ window.Quarto = {
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi) <span class="sc">==</span> sorprendimi[m] <span class="co"># funziona!</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="co"># uso la pipe per concatenare le funzioni</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="co"># si usa la pipe per concatenare le funzioni</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -376,7 +377,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Gli elementi di un vettore possono essere associati a un nome agendo sull’attributo <code>names()</code> di tale vettore.</p>
+<p>Gli elementi di un vettore possono essere associati a un nome tramite l’attributo <code>names()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>g</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 5</span></span>
@@ -391,8 +392,8 @@ window.Quarto = {
 </section>
 <section id="matrici-ed-array" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="matrici-ed-array"><span class="header-section-number">3.2.2</span> Matrici ed array</h3>
-<p>La naturale estensione dei vettori sono le matrici e gli array multidimensionali. Si creano essenzialmente partendo da vettori e organizzandoli su righe e colonne.</p>
-<p>L’estrazione di elementi dalla matrice avviene con la notazione <code>matrice[righe, colonne]</code>, come mostrato nell’esempio riportato di seguito:</p>
+<p>La naturale estensione dei vettori sono le matrici e gli array multidimensionali, creati organizzando i vettori su righe e colonne.</p>
+<p>L’estrazione di elementi da una matrice avviene con la notazione <code>matrice[righe, colonne]</code>, come mostrato nell’esempio riportato di seguito:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>matrice <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">nrow =</span> <span class="dv">20</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>matrice[<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>]</span>
@@ -403,36 +404,36 @@ window.Quarto = {
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>matrice[, <span class="dv">3</span>]</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Possiamo determinare e modificare la dimensione di una matrice con il comando <code>dim()</code>:</p>
+<p>Si può determinare e modificare la dimensione di una matrice con il comando <code>dim()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(matrice)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20  5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(matrice) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Su vettori e matrici di tipo numerico è possibile eseguire tutte le operazioni dell’algebra lineare, come il prodotto righe per colonne, utilizzando l’operatore <code>%*%</code>, o il calcolo dell’inversa con il comando <code>inv()</code> del pacchetto <code>MASS</code>: difficilmente ci troveremo a dover eseguire tali operazioni manualmente, in quanto numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.</p>
+<p>Su vettori e matrici di tipo numerico è possibile eseguire operazioni di algebra lineare, come il prodotto righe per colonne, utilizzando l’operatore <code>%*%</code>, o il calcolo dell’inversa con il comando <code>inv()</code> del pacchetto <code>MASS</code>. Tuttavia, raramente sarà necessario eseguire queste operazioni manualmente, poiché numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.</p>
 </section>
 <section id="fattori" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="fattori"><span class="header-section-number">3.2.3</span> Fattori</h3>
-<p>Un testo che può assumere solo valori finiti e noti è un fattore: il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio, per esempio acque di mare, acque potabili, acque sotterranee e molte altre ma non infinite altre. I valori distinti che può assumere un fattore vengono chiamati livelli.</p>
-<p>Gli esempi di fattori proposti poco sopra non sono ordinati, ma alcuni possono esserlo, come i giudizi di un esame: insufficiente, sufficiente, buono, distinto e ottimo.</p>
-<p>Internamente R tratta i fattori come interi a cui assegna un’etichetta di testo. Per i fattori ordinati gli interi sono dati seguendo l’ordine specificato al momento dell’identificazione dei livelli, per i fattori non ordinati gli interi sono assegnati in ordine alfabetico o di apparizione.</p>
+<p>Un fattore è un tipo di dato che può assumere solo valori finiti e noti. Ad esempio, il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio (acque di mare, potabili, sotterranee, ecc.). I valori distinti che un fattore può assumere si chiamano livelli.</p>
+<p>Gli esempi di fattori visti in precedenza non sono ordinati, ma alcuni possono esserlo, come i giudizi di un esame: insufficiente, sufficiente, buono, distinto, ottimo.</p>
+<p>Internamente, R tratta i fattori come interi a cui associa etichette di testo. Per i fattori ordinati, gli interi seguono l’ordine specificato durante la definizione dei livelli; per i fattori non ordinati, gli interi sono assegnati in ordine alfabetico o di apparizione. Esempio:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>terza_c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ottimo"</span>, <span class="st">"ottimo"</span>, <span class="st">"buono"</span>, <span class="st">"insufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"buono"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># non specifico i livelli</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fattore senza specifica dei livelli</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] ottimo        ottimo        buono         insufficiente buono        </span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] buono        </span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: buono insufficiente ottimo</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># i livelli non sono ordinati</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fattore con livelli specificato ma non ordinati</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c,</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"insufficiente"</span>, <span class="st">"sufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"distinto"</span>, <span class="st">"ottimo"</span>))</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] ottimo        ottimo        buono         insufficiente buono        </span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] buono        </span></span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: insufficiente sufficiente buono distinto ottimo</span></span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># i livelli sono ordinati</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># fattore ordinato</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(terza_c,</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">ordered =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"insufficiente"</span>, <span class="st">"sufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"distinto"</span>, <span class="st">"ottimo"</span>))</span>
@@ -443,7 +444,7 @@ window.Quarto = {
 </section>
 <section id="liste" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="liste"><span class="header-section-number">3.2.4</span> Liste</h3>
-<p>I contenitori visti fin’ora sono ottimi per raggruppare una singola tipologia di elementi. Le liste permettono di raggruppare tipologie di elementi diversi tra loro mantenendoli comunque ordinati:</p>
+<p>I contenitori visti finora sono ottimi per raggruppare elementi della stessa tipologia. Le liste, invece, permettono di raggruppare elementi di tipi diversi mantenendoli comunque ordinati:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">numeri =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">testo =</span> <span class="fu">c</span>(<span class="st">"pippo"</span>, <span class="st">"ciccio"</span>, <span class="st">"riccio"</span>),</span>
@@ -456,7 +457,8 @@ window.Quarto = {
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ giudizi: chr [1:6] "ottimo" "ottimo" "buono" "insufficiente" ...</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ matrice: int [1:5, 1:20] 1 2 3 4 5 6 7 8 9 10 ...</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Posso accedere alla struttura di una lista con il comando <code>str()</code>. Tale comando lo rivedremo anche in seguito e in generale è utile con tutti i tipi di contenitori di R. I singoli gruppi vengono estratti con la sintassi <code>lista[[gruppo]]</code> o <code>lista$gruppo</code> e all’interno del gruppo posso accedere i diversi elementi come visto nelle sezioni precedenti:</p>
+<p>Per accedere alla struttura di una lista si usa il comando <code>str()</code>, utile anche con altri tipi di contenitori.</p>
+<p>I singoli gruppi si estraggono per posizione con la sintassi <code>lista[[gruppo]]</code> o per nome con la sintassi <code>lista$gruppo</code>. All’interno del gruppo posso accedere ai singoli elementi come visto nelle sezioni precedenti:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">2</span>]]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "pippo"  "ciccio" "riccio"</span></span>
@@ -473,8 +475,9 @@ window.Quarto = {
 </section>
 <section id="data-frames" class="level3" data-number="3.2.5">
 <h3 data-number="3.2.5" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.2.5</span> Data frames</h3>
-<p>I <em>data frame</em> sono tabelle di dati che possono accogliere nelle loro colonne diverse tipologie di elementi. Rispetto alle liste, si guadagna una maggiore facilità di consultazione ma si perde la possibilità di immagazzinare gruppi di diversa lunghezza: sono comunque la tipologia di dati che incontreremo più frequentemente.</p>
-<p>Internamente R tratta le singole colonne di un <em>data frame</em> come gruppi di una lista.</p>
+<p>I <em>data frame</em> sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.</p>
+<p>Internamente, R tratta le colonne di un <em>data frame</em> come gruppi di una lista.</p>
+<p>Esempio con il dataset <code>iris</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 'data.frame':    150 obs. of  5 variables:</span></span>
@@ -482,30 +485,32 @@ window.Quarto = {
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lettere =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>),</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">interi =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">numeri =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>))</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>numeri</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.1829260 -1.3792578  1.2506006 -1.8762368 -0.3687876 -2.1292973</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>]</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c"</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"g"</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>sopra3 <span class="ot">&lt;-</span> df<span class="sc">$</span>interi <span class="sc">&gt;</span> <span class="dv">3</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>interi <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Posso estrarre o modificare i nomi delle colonne con la funzione <code>colnames()</code>:</p>
+<p>Creazione e modifica di un data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "lettere" "numeri"  "sopra3"</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"random"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lettere =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>),</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">interi =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">numeri =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>numeri</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -0.1829260 -1.3792578  1.2506006 -1.8762368 -0.3687876 -2.1292973</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "c"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>lettere[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"g"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>sopra3 <span class="ot">&lt;-</span> df<span class="sc">$</span>interi <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>interi <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I <em>data frame</em> hanno anche la possibilità di specificare nomi per ogni riga: meglio starne alla larga.</p>
-<p>La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Nel tempo sono quindi nati diversi pacchetti per gestire in modo efficiente queste operazioni. Tra questi si segnalano:</p>
+<p>I nomi delle colonne si estraggono o modificano con la funzione <code>colnames()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "lettere" "numeri"  "sopra3"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"random"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I <em>data frame</em> possono anche avere nomi per ogni riga, ma è consigliabile evitarlo.</p>
+<p>La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Per questo motivo sono nati pacchetti dedicati, tra cui:</p>
 <ul>
-<li><code>dplyr</code> permette di manipolare i dati tramite la concatenazione di una serie di funzioni i cui nomi in inglese richiamano le operazioni che si intendono eseguire (ad esempio <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code> e molte altre);</li>
-<li><code>data.table</code> nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi che estende quella proposta nella versione base di R: lo vedremo nel prossimo capitolo.</li>
+<li><code>dplyr</code> permette di manipolare i dati concatenando funzioni con nomi descrittivi come <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, ecc.</li>
+<li><code>data.table</code> nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi estesa rispetto a quella base di R: lo vedremo nel prossimo capitolo.</li>
 </ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
@@ -525,50 +530,53 @@ window.Quarto = {
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>piero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.77</span>, <span class="fl">0.69</span>, <span class="fl">0.89</span>, <span class="fl">0.75</span>, <span class="fl">0.93</span>, <span class="fl">0.81</span>, <span class="fl">0.91</span>, <span class="fl">1.06</span>, <span class="fl">0.98</span>, <span class="cn">NA</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8655556</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.119385</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> piero[<span class="sc">!</span><span class="fu">is.na</span>(piero)] <span class="sc">|&gt;</span> <span class="fu">length</span>() <span class="co"># immaginate un altro modo</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">alfa =</span> <span class="fl">0.975</span>){</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(data))</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(alfa))</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(alfa <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span>  alfa <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(data))</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(alfa, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">sd</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(piero)</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">piero =</span> piero,</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pina =</span> <span class="fu">c</span>(<span class="fl">1.09</span>, <span class="fl">0.89</span>, <span class="fl">0.74</span>, <span class="fl">1.07</span>, <span class="fl">0.68</span>,</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">0.89</span>, <span class="fl">1.25</span>, <span class="fl">1.10</span>, <span class="fl">0.86</span>, <span class="fl">0.88</span>))</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(risultati, ci)</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $piero</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pina</span></span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8180479 1.0719521</span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(risultati<span class="sc">$</span>piero, risultati<span class="sc">$</span>pina)</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  risultati$piero and risultati$pina</span></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -1.1548, df = 15.825, p-value = 0.2653</span></span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.22541955  0.06653066</span></span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.8655556 0.9450000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>piero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.77</span>, <span class="fl">0.69</span>, <span class="fl">0.89</span>, <span class="fl">0.75</span>, <span class="fl">0.93</span>, <span class="fl">0.81</span>, <span class="fl">0.91</span>, <span class="fl">1.06</span>, <span class="fl">0.98</span>, <span class="cn">NA</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8655556</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.119385</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> piero[<span class="sc">!</span><span class="fu">is.na</span>(piero)] <span class="sc">|&gt;</span> <span class="fu">length</span>() <span class="co"># immaginate un altro modo</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">alfa =</span> <span class="fl">0.975</span>){</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(data))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(alfa))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(alfa <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span>  alfa <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(data))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  dof <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  avg <span class="ot">&lt;-</span> <span class="fu">mean</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  std_error <span class="ot">&lt;-</span> <span class="fu">sd</span>(data, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  t_val <span class="ot">&lt;-</span> <span class="fu">qt</span>(alfa, dof)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  avg <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">+</span><span class="dv">1</span>) <span class="sc">*</span> t_val <span class="sc">*</span> std_error</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="fu">ci</span>(piero)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>risultati <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">piero =</span> piero,</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pina =</span> <span class="fu">c</span>(<span class="fl">1.09</span>, <span class="fl">0.89</span>, <span class="fl">0.74</span>, <span class="fl">1.07</span>, <span class="fl">0.68</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                                 <span class="fl">0.89</span>, <span class="fl">1.25</span>, <span class="fl">1.10</span>, <span class="fl">0.86</span>, <span class="fl">0.88</span>))</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(risultati, ci)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $piero</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.7737881 0.9573230</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pina</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8180479 1.0719521</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(risultati<span class="sc">$</span>piero, risultati<span class="sc">$</span>pina)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  risultati$piero and risultati$pina</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -1.1548, df = 15.825, p-value = 0.2653</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.22541955  0.06653066</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x mean of y </span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.8655556 0.9450000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

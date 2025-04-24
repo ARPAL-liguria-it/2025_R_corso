@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-273e46d7b3848a679358d7b360117b95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-292c0866b2e53f8190c286d1fd533ef9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -231,41 +231,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati mediante R.</p>
-<p>Il corso si conclude con una piccola analisi guidata svolta dai partecipanti e strutturata in un documento a se stante.</p>
+<p>Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.</p>
+<p>Il corso si conclude con una piccola analisi guidata svolta dai partecipanti e strutturata in un documento a sé stante.</p>
 <p>Durante il proseguo del corso impareremo a:</p>
 <ul>
 <li>chiedere aiuto;</li>
 <li>strutturare un documento alternando testo e codice per rendere le analisi riproducibili;</li>
-<li>importare i dati contenuti in file esterni all’interno di R;</li>
+<li>importare dati da file esterni all’interno di R;</li>
 <li>immagazzinare, consultare e modificare i dati all’interno delle diverse tipologie di oggetti di R;</li>
-<li>cambiare la forma dei nostri dati e combinarli con altre informazioni con alcune caratteristiche comuni;</li>
+<li>trasformare e combinare i dati;</li>
 <li>utilizzare i nostri dati per ottenere informazioni statistiche di base;</li>
-<li>ottenere grafici di base.</li>
+<li>creare semplici grafici.</li>
 </ul>
 <section id="quanta-fatica" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="quanta-fatica"><span class="header-section-number">1.1</span> Quanta fatica</h2>
-<p>L’utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprendere le basi del linguaggio, le funzioni principali e il loro campo di applicabilità. Tuttavia, le energie spese sono ripagate dalla possibilità di poter riutilizzare, adattare il codice e poter ripetere l’analisi con relativamente poco sforzo, rendendo l’intero processo riproducibile e documentabile.</p>
-<p>In aggiunta, l’apprendimento di un linguaggio di programmazione permette di aprire numerose porte, talvolta semplificando il lavoro quotidiano in molti campi. Infatti, volendo solo citare una parte delle cose che si possono fare con R, non è difficile ottenere:</p>
+<p>L’utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.</p>
+<p>Inoltre, imparare un linguaggio di programmazione apre numerose porte e può semplificare il lavoro quotidiano in molti ambiti. Per esempio, con R è possibile realizzare:</p>
 <ul>
 <li>documenti dinamici parametrizzati;</li>
-<li>applicazioni interattive accessibili attraverso un browser;</li>
-<li>interfacce di programmazione di applicazioni (API) per l’esecuzione di funzioni da remoto.</li>
+<li>applicazioni interattive accessibili via browser;</li>
+<li>interfacce di programmazione (API) per l’esecuzione di funzioni da remoto.</li>
 </ul>
 </section>
 <section id="prerequisiti" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="prerequisiti"><span class="header-section-number">1.2</span> Prerequisiti</h2>
-<p>Il corso può essere seguito da qualunque persona con una certa dimestichezza con i computer e con la logica di base. Il candidato ideale dovrebbe aver già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è richiesta ma sicuramente aiuta.</p>
-<p>L’esecuzione del codice presentato all’interno del corso richiede l’installazione di R, RStudio e dei pacchetti <code>data.table</code>, <code>ggplot2</code>, <code>glue</code> e <code>gt</code>.</p>
+<p>Il corso è aperto a chiunque abbia una certa dimestichezza con il computer e una conoscenza di base della logica. Il candidato ideale ha già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è necessaria, ma sicuramente rappresenta un vantaggio.</p>
+<p>Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti <code>data.table</code>, <code>readxl</code>, <code>ggplot2</code>, <code>glue</code> e <code>gt</code>.</p>
 <section id="r" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="r"><span class="header-section-number">1.2.1</span> R</h3>
-<p>Il download di R può essere eseguito dal <em>comprensive R archive network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione e circa tre nuove versioni minori: se si intende usare R con regolarità è consigliato mantenere l’applicativo aggiornato.</p>
-<p>Si tratta di un software libero, rilasciato con un mix di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.</p>
+<p>R può essere scaricato dal <em>Comprensive R Archive Network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: se si intende usare R regolarmente, è consigliabile mantenere il software aggiornato.</p>
+<p>R è un software libero, distribuito sotto una combinazione di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.</p>
 </section>
 <section id="rstudio" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">1.2.2</span> RStudio</h3>
-<p>RStudio è l’ambiente integrato di sviluppo (IDE) attualmente maggiormente utilizzato con R: permette la gestione completa di un progetto, la connessione a sorgenti di dati esterni, quali database, e l’integrazione con sistemi di gestione delle versioni come <code>git</code>. L’applicazione può essere scaricata dal sito dello sviluppatore <a href="https://posit.co/download/rstudio-desktop/">Posit</a>.</p>
-<p>Si tratta di un software libero rilasciato con licenza GNU Affero General Public License v3.</p>
+<p>RStudio è l’ambiente di sviluppo integrato (IDE) più diffuso per R: permette la gestione completa di un progetto, la connessione a sorgenti dati esterne come database e l’integrazione con sistemi di gestione delle versioni come <code>git</code>. Può essere scaricato dal sito ufficiale di <a href="https://posit.co/download/rstudio-desktop/">Posit</a>.</p>
+<p>Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schermata di Rstudio.">
@@ -280,33 +280,33 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 </div>
 </div>
 </div>
-<p>L’utilizzo di RStudio o di un IDE non è strettamente necessario per l’utilizzo di R, tuttavia semplifica di molto il suo utilizzo. Altri IDE comunemente utilizzati con R sono VScode, Vim ed Emacs.</p>
+<p>L’uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare R, ma ne semplifica notevolmente l’impiego. Altri IDE comunemente utilizzati con R sono Visual Studio Code, Vim ed Emacs.</p>
 </section>
 <section id="i-pacchetti-di-r" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.3</span> I pacchetti di R</h3>
-<p>Le funzionalità offerte da R possono essere espanse ricorrendo a pacchetti. La lista completa, estremamente lunga e variegata, è presente sul sito del <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>. Alcuni di questi pacchetti sono sviluppati a livello amatoriale, altri da statistici e ingegneri del software di primissimo piano a livello mondiale. Tutte le funzioni e i dati presenti in un pacchetto sono documentati, il codice sorgente è totalmente consultabile e spesso si può collaborare direttamente al suo sviluppo su piattaforme quali GitHub. Molti di questi pacchetti sono collegati a libri di testo o articoli scientifici.</p>
-<p>I pacchetti possono essere installati all’interno di R mediante il comando:</p>
+<p>Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>. Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.</p>
+<p>I pacchetti si installano in R con il comando:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacchetto"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Durante il corso utilizzeremo alcuni pacchetti di largo utilizzo:</p>
+<p>Durante il corso utilizzeremo alcuni pacchetti molto diffusi:</p>
 <ul>
-<li><code>data.table</code>: permette il caricamento e la manipolazione in modo efficiente di insiemi di dati di grandi dimensioni e presenta una sintassi particolare ma di rapido e intuitivo utilizzo;</li>
-<li><code>ggplot2</code>: è il pacchetto d’elezione per la produzione di grafici;</li>
-<li><code>readxl</code>: è uno dei pacchetti utilizzabili per importare dati da fogli di calcolo Excel;</li>
-<li><code>glue</code>: semplifica il concatenamento di stringhe, lo useremo in modo diretto raramente;</li>
-<li><code>gt</code>: viene utilizzato per la produzione di tabelle di qualità. Ogni tabella che vedrete nel corso sarà fatta utilizzando questo pacchetto ma raramente lo utilizzeremo in modo diretto.</li>
+<li><code>data.table</code>: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;</li>
+<li><code>ggplot2</code>: il pacchetto di riferimento per la creazione di grafici;</li>
+<li><code>readxl</code>: utile per importare dati da fogli Excel;</li>
+<li><code>glue</code>: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;</li>
+<li><code>gt</code>: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente.</li>
 </ul>
 <p>Installiamo i pacchetti richiesti racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"glue"</span>, <span class="st">"gt"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Quando ne avremo bisogno saremo pronti a caricare e usare i nostri pacchetti.</p>
+<p>Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.</p>
 </section>
 </section>
 <section id="per-approfondire" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="per-approfondire"><span class="header-section-number">1.3</span> Per approfondire</h2>
-<p>Nel caso il materiale presentato nel corso non sia sufficiente o sia inadatto per le vostre esigenze, in rete è possibile reperire numerosissimi testi gratuiti. Tra questi si segnalano:</p>
+<p>Se il materiale presentato nel corso non fosse sufficiente o non rispondesse pienamente alle vostre esigenze, in rete è possibile trovare numerosi testi gratuiti di alta qualità. Tra questi si segnalano:</p>
 <ul>
 <li><a href="https://rstudio-education.github.io/hopr/">Hands-On Rrogramming with R</a> scritto da Garrett Grolemund;</li>
 <li><a href="https://r4ds.hadley.nz/">R for Data Science</a> scritto da Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund;</li>
