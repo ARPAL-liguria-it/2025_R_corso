@@ -1,3 +1,10 @@
+::: {.callout-important}
+## Attenzione
+
+Questa è una bozza in fase di stesura: il materiale non è ancora stato pubblicato integralmente e quanto pubblicato non è ancora stato sottoposto a revisione.
+
+:::
+
 # Introduzione {#sec-intro}
 
 ```{r}

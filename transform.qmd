@@ -7,11 +7,13 @@ source("_common.R")
 
 ## Il pacchetto `data.table` {#sec-load}
 
-Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per lavorare con i dati.
+Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati.
 
 Creare una `data.table` è semplice e molto simile a creare un `data.frame`. Ecco un esempio:
 
 ```{r}
+library(data.table) # carico il pacchetto
+
 dt <- data.table(
   id = rep(c("a", "b", "c", "d", "e"), each = 10),
   a = sample(letters, 50, replace = TRUE),
@@ -21,7 +23,7 @@ dt <- data.table(
 
 Se si ha già un `data.frame`, è possibile convertirlo in una `data.table` usando la funzione `setDT()`.
 
-La sintassi di base del pacchetto `data.table` si ispira - con buona dose di creatività - al linguaggio SQL, combinandolo con il sistema di indicizzazione di R base per selezionare e modificare i dati:
+La sintassi di base del pacchetto `data.table` si ispira, con buona dose di creatività, al linguaggio SQL, integrandolo con il sistema di indicizzazione di base di R per selezionare e modificare i dati:
 
 `dt[i, j, by]`
 
@@ -29,7 +31,7 @@ La sintassi di base del pacchetto `data.table` si ispira - con buona dose di cre
 -   `j` permette di selezionare o modificare colonne (come `SELECT` e `UPDATE` in SQL);
 -   `by` consente di ripetere le operazioni per ogni gruppo di dati (equivalente a `GROUP BY` in SQL).
 
-Tutti e tre gli argomenti sono opzionali: omettendoli, vengono restituiti tutti i dati.
+Tutti e tre gli argomenti sono opzionali: se omessi, vengono restituiti tutti i dati.
 
 In altre parole, l'istruzione data si legge così:
 
@@ -37,29 +39,154 @@ In altre parole, l'istruzione data si legge così:
 
 Vediamo subito un esempio pratico:
 ```{r}
-# prendi dt, ordina per id in senso decrescente, calcola la media di b per ogni id
+# prendi dt, ordina per id in ordine decrescente e calcola la media di b per ogni id
 dt[order(-id), .(avg = mean(b)), by = id]
 ```
 
 Per sfruttare appieno le potenzialità di `data.table`, il passo successivo sarà imparare a importare dati da file esterni.
 
-### Importare i dati
+## Importare i dati
 
 ### File .csv, .tsv e .gz {#sec-csv}
 
+La funzione `fread()` del pacchetto `data.table` consente di importare facilmente dati in formato .csv, .tsv. Inoltre, supporta anche l'importazione di file compressi, come quelli con estensione .gz, grazie al supporto del pacchetto `R.utils`.
 
+`fread()` cerca di riconoscere automaticamente il tipo di dati nelle varie colonne (numeri, date, testi), ma è sempre buona pratica verificare il risultato dell’importazione.
+
+Ecco un esempio:
 ```{r}
 pm_genova <- fread("data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
-                   skip = "Codice europeo", # salta fino a "Codice europeo"
-                   encoding = "Latin-1") # gestisce accenti e lettere greche
+                   skip = "Codice europeo", # salta fino alla riga contenente "Codice europeo"
+                   encoding = "Latin-1") # gestisce accenti e caratteri speciali
+# Il dataset proviene da Ambiente in Liguria ed è stato modificato a scopo di didattico
+
+str(pm_genova)
 ```
+
+Nel dataset importato è possibile notare che sono state distinte le colonne numeriche da quelle testuali, ma ci sono ancora aspetti da migliorare:
+
+ - i nomi delle colonne contengono spazi e lettere maiuscole;
+ - l'unità di misura è riportata come $microg/m3$ e non come $\mu g/m^3$;
+ - le colonne `Data inizio` e `Data fine` sono riconosciute come testo anziché come date e ore;
+ - le colonne `Valido`, `Validato COR` e `Certificato` andrebbero codificare come valori logici;
+ - l'unica informazione sul punto di prelievo è fornita dal codice europeo.
+ 
+Nelle prossime sezioni verranno affrontati e risolti questi problemi.
 
 ### File xlsx
 
-### Filtrare i dati
+Per importare file Excel è necessario utilizzare il pacchetto `readxl`, come mostrato nell'esempio:
 
-### Modificare le colonne
+```{r}
+library(readxl)
+
+stazioni <- read_excel("data/2025-04-24_anagrafica_stazioni.xlsx",
+                       sheet = "Tabella 1") |> 
+  setDT() # converte il dataset in data.table
+# Il dataset proviene dalla sezione Dati e indicatori - Aria del sito di ISPRA
+# ed è stato modificato a scopo didattico
+
+str(stazioni)
+```
+
+Anche in questo caso, `read_excel()` cerca di identificare automaticamente i tipi di dati nelle diverse colonne: distingue senza problemi tra numeri e caratteri, ma non riconosce `tipo_zona` come fattore. A differenza di `fread()`, `read_excel()` non restituisce direttamente una `data.table`.
+
+## Filtrare i dati {#sec-filter}
+
+Applicare un filtro ai dati è uno dei modi più semplici per concentrarsi sulle informazioni di interesse. Con `data.table`, i filtri si applicano sempre sull'elemento `i` della sintassi `dt[i, j, by]`.
+
+In generale, un filtro può essere scritto come
+
+```
+dt[elemento %operatore% valore, ]
+
+```
+dove:
+- `dt` è la `data.table` da filtrare;
+- `variabile` è tipicamente il nome di una colonna di `dt`;
+- `%operatore%` indica il tipo di confronto o filtro da applicare;
+- `valore` è il valore con cui confrontare le variabile.
+
+La condizione `variabile %operatore% valore` definisce quali righe saranno selezionate.
+
+Ad esempio, per filtrare le stazioni della Liguria nella `data.table` `stazioni`, si scrive:
+
+```{r}
+stazioni[regione == "Liguria", ]
+```
+
+Gli operatori più comuni sono:
+
+- `==`, `<`, `<=`, `>`, `>=`, `!=`: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare < o > con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.
+
+- %like%: permette di cercare corrispondenze parziali all'interno di stringhe. Per esempio, nella colonna `nome_stazione` della `data.table` `stazioni`, si vogliono estrarre le informazioni relative alle stazioni identificate come `r stazioni[nome_stazione %like% "CAIR", nome_stazione]`. Non è possibile usare `== CAIRO`, perché il valore `CAIRO` può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:
+
+```{r}
+stazioni[nome_stazione %like% "CAIR",]
+```
+
+Per selezionare invece tutte le righe che non contengono "CAIR", si usa:
+```{r}
+stazioni[!(nome_stazione %like% "CAIR"),]
+```
+
+- %in% e %notin%: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:
+
+```{r}
+stazioni[comune %in% c("Vado Ligure", "Quiliano"),]
+```
+
+È possibile combinare più condizioni usando gli operatori logici `&` (e) e `|` (o):
+
+- `&` seleziona righe che soddisfano tutte le condizioni;
+- `|` seleziona righe che soddisfano almeno una.
+
+Ad esempio, per filtrare le stazioni nella provincia di Savona o nel comune di Sanremo:
+
+```{r}
+stazioni[provincia == "Savona" | comune == "Sanremo",]
+```
+
+## Selezionare le colonne
+
+I filtri visti nella @sec-filter agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l'elemento `j` della sintassi `dt[i, j, by]`.
+
+Ad esempio, per estrarre i codici europei delle stazioni liguri:
+```{r}
+stazioni[regione == "Liguria", station_eu_code]
+```
+
+Questo restituisce un vettore. Se invece si vuole mantenere la struttura di una `data.table` (utile per ulteriori elaborazioni), è necessario racchiudere la colonna in `.()`:
+```{r}
+stazioni[regione == "Liguria", .(station_eu_code)]
+```
+
+All'interno di `.()` è possibile elencare più colonne, rinominarle o applicare operazioni. Il risultato verrà mostrato a video, ma non salvato a meno che non venga assegnato a una variabile.
+
+Ecco alcuni esempi:
+
+```{r}
+# seleziona due colonne
+stazioni[regione == "Liguria", .(station_eu_code, id_comune)]
+
+# rinomina le colonne
+stazioni[regione == "Liguria", .(eu_id = station_eu_code, 
+                                 municipality_id = id_comune)]
+
+# conta il numero di stazioni liguri
+stazioni[regione == "Liguria", length(station_eu_code)]
+stazioni[regione == "Liguria", .N] # alternativa più veloce
+
+# salva il risultato in una variabile
+liguria_eu_id <- stazioni[regione == "Liguria", station_eu_code]
+```
+
+## Modificare le colonne
 
 ## Cambiare forma ai dati
 
 ## Unire più fonti di dati
+
+## Fare calcoli su gruppi di dati
+
+
