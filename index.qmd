@@ -1,11 +1,17 @@
 ![](cover.png){fig-alt="R in ARPAL"}
-
 # Prefazione {.unnumbered}
 
 ```{r}
 #| echo: false
 source("_common.R")
 ```
+
+::: {.callout-important}
+## Attenzione
+
+Questa è una bozza in fase di stesura: il materiale non è ancora stato pubblicato integralmente e quanto pubblicato non è ancora stato sottoposto a revisione.
+
+:::
 
 Questo documento raccoglie il materiale presentato durante l'omonimo corso tenuto in ARPAL nel 2025.
 
