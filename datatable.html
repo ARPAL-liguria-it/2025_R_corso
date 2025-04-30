@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./transform.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transform.html" class="sidebar-item-text sidebar-link active">
+  <a href="./datatable.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
@@ -243,12 +243,12 @@ window.Quarto = {
   <li><a href="#sec-by" id="toc-sec-by" class="nav-link" data-scroll-target="#sec-by"><span class="header-section-number">4.6</span> Fare calcoli su gruppi di dati</a></li>
   <li><a href="#concatenare-operazioni" id="toc-concatenare-operazioni" class="nav-link" data-scroll-target="#concatenare-operazioni"><span class="header-section-number">4.7</span> Concatenare operazioni</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="missing/edit/main/transform.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="missing/edit/main/datatable.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./transform.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-transform" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></h1>
 </div>
@@ -317,7 +317,7 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pm_genova <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/2025-04-24_pm1025_ambiente_liguria.csv.gz"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="st">"Codice europeo"</span>, <span class="co"># salta fino alla riga contenente "Codice europeo"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">encoding =</span> <span class="st">"Latin-1"</span>) <span class="co"># gestisce accenti e caratteri speciali</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">encoding =</span> <span class="st">"Latin-1"</span>)    <span class="co"># gestisce accenti e caratteri speciali</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Il dataset proviene da Ambiente in Liguria ed è stato modificato a scopo di didattico</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pm_genova)</span>
@@ -344,15 +344,10 @@ window.Quarto = {
 </ul>
 <p>È possibile sistemare i nomi delle colonne così:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i nomi delle colonne dopo essere estratti da colnames()</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sono convertiti a testo minuscolo con tolower()</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sono sostituiti gli spazi con uderscore con gsub()</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># gli accenti sono rimossi con iconv()</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># il risultato è riassegnato ai nomi delle colonne</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tolower</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tolower</span>() <span class="sc">|&gt;</span>                  <span class="co"># trasforma in minuscolo</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span>      <span class="co"># sostituisce gli spazi con uderscore</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>) <span class="co"># rimuove accenti e caratteri speciali  </span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -780,7 +775,7 @@ Pipe e segnalibri
 <span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a><span class="co"># conta il numero di stazioni liguri</span></span>
 <span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, <span class="fu">length</span>(station_eu_code)]</span>
 <span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .N] <span class="co"># alternativa più veloce</span></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .N]        <span class="co"># alternativa più veloce</span></span>
 <span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
 <span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(<span class="at">n =</span> .N)] <span class="co"># data.table con intestazione</span></span>
 <span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        n</span></span>
@@ -1410,4 +1405,4 @@ Per i più affamati
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/transform.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/datatable.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>

@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transform.html" class="sidebar-item-text sidebar-link">
+  <a href="./datatable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
@@ -252,11 +252,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  93  94  95  96  97  98  99 100 101 102</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se volessimo ripetere il calcolo ma aggiungendo 3 invece di 2, possiamo cliccare sulla console, schiacciare il tasto 🔼 per richiamare l’ultimo comando eseguito, modificare il 2 in 3 e premere Invio. Tuttavia, è preferibile assegnare il vettore contenente i 100 elementi a una variabile che chiameremo</p>
+<p>Se volessimo ripetere il calcolo aggiungendo 3 invece di 2, possiamo premere il tasto freccia su (🔼) nella console per richiamare l’ultimo comando, modificarlo e premere Invio. Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>a questo punto possiamo fare</p>
+<p>a questo punto possiamo fare semplicemente:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">3</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21</span></span>
@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris, <span class="at">col =</span> iris<span class="sc">$</span>Species)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># noto che le misurazioni relative a una specie sono ben distinte dalle altre due,</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># quest'ultime mostrano un certo grado di sovrapposizione. Vediamo se il calcolo</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># queste ultime mostrano un certo grado di sovrapposizione. Vediamo se il calcolo</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># dei quartili eseguita sulle singole variabili per i diversi gruppi mi aiuta a</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># identificare i gruppi che mostrano sovrapposizione parziale nelle misure.</span></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(. <span class="sc">~</span> Species, <span class="at">data =</span> iris, <span class="at">FUN =</span> quartili)</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># la specie setosa risulta ben disinguibile dalle specie versicolor e virginica,</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># quest'ultime mostrano dimensioni simili.</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># queste ultime mostrano dimensioni simili.</span></span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Le variabili che permettono di distinguere meglio le tre specie sono </span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># la lunghezza e la larghezza dei petali.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
