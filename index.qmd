@@ -1,17 +1,11 @@
 ![](cover.png){fig-alt="R in ARPAL"}
+
 # Prefazione {.unnumbered}
 
 ```{r}
 #| echo: false
 source("_common.R")
 ```
-
-::: {.callout-important}
-## Attenzione
-
-Questa è una bozza in fase di stesura: il materiale non è ancora stato pubblicato integralmente e quanto pubblicato non è ancora stato sottoposto a revisione.
-
-:::
 
 Questo documento raccoglie il materiale presentato durante l'omonimo corso tenuto in ARPAL nel 2025.
 
@@ -20,3 +14,10 @@ Il corso e l'annesso documento nascono dalla volontà degli autori di condivider
 Il linguaggio di programmazione scelto è R, in quanto permette sin da subito di eseguire semplici analisi di dati, richiedendo l'apprendimento di una sintassi intuitiva e di alcune funzioni, in gran parte già pronte o disponibili in librerie specializzate. Inoltre, con R è facile creare grafici efficaci e ricchi di contenuto.
 
 Questo documento è rilasciato gratuitamente con licenza [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
+
+::: {.callout-important}
+## Attenzione {.unnumbered}
+
+Questa è una bozza in fase di stesura: il materiale non è ancora stato pubblicato integralmente e quanto pubblicato non è ancora stato sottoposto a revisione.
+
+:::

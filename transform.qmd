@@ -51,7 +51,7 @@ Per sfruttare appieno le potenzialità di `data.table`, il passo successivo sar�
 
 La funzione `fread()` del pacchetto `data.table` consente di importare facilmente dati in formato .csv, .tsv. Inoltre, supporta anche l'importazione di file compressi, come quelli con estensione .gz, grazie al supporto del pacchetto `R.utils`.
 
-`fread()` cerca di riconoscere automaticamente il tipo di dati nelle varie colonne (numeri, date, testi), ma è sempre buona pratica verificare il risultato dell’importazione.
+`fread()` cerca di riconoscere automaticamente il tipo di dati nelle varie colonne (numeri, date, testi), ma è sempre buona pratica verificare il risultato dell'importazione.
 
 Ecco un esempio:
 ```{r}
@@ -71,7 +71,32 @@ Nel dataset importato è possibile notare che sono state distinte le colonne num
  - le colonne `Valido`, `Validato COR` e `Certificato` andrebbero codificare come valori logici;
  - l'unica informazione sul punto di prelievo è fornita dal codice europeo.
  
-Nelle prossime sezioni verranno affrontati e risolti questi problemi.
+ È possibile sistemare i nomi delle colonne così:
+ 
+```{r}
+# i nomi delle colonne dopo essere estratti da colnames()
+# sono convertiti a testo minuscolo con tolower()
+# sono sostituiti gli spazi con uderscore con gsub()
+# gli accenti sono rimossi con iconv()
+# il risultato è riassegnato ai nomi delle colonne
+colnames(pm_genova) <- colnames(pm_genova) |> 
+  tolower() |> 
+  gsub(" ", "_", x = _) |>
+  iconv(to = "ASCII//TRANSLIT")
+```
+
+::: {.callout-tip}
+
+## Pipe e segnalibri
+
+Usando la pipe `|>` l'output della funzione precedente è passato 
+come primo argomento della funzione successiva.
+È possibile specificare in quale argomento posizionare l'output
+ricorrendo al segnalibro `_`.
+
+:::
+ 
+Nella @sec-update verranno affrontati e risolti gli altri problemi del dataset.
 
 ### File xlsx
 
@@ -117,9 +142,9 @@ stazioni[regione == "Liguria", ]
 
 Gli operatori più comuni sono:
 
-- `==`, `<`, `<=`, `>`, `>=`, `!=`: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare < o > con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.
+- `==`, `<`, `<=`, `>`, `>=`, `!=`: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare `<` o `>` con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.
 
-- %like%: permette di cercare corrispondenze parziali all'interno di stringhe. Per esempio, nella colonna `nome_stazione` della `data.table` `stazioni`, si vogliono estrarre le informazioni relative alle stazioni identificate come `r stazioni[nome_stazione %like% "CAIR", nome_stazione]`. Non è possibile usare `== CAIRO`, perché il valore `CAIRO` può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:
+- `%like%`: permette di cercare corrispondenze parziali all'interno di stringhe. Per esempio, nella colonna `nome_stazione` della `data.table` `stazioni`, si vogliono estrarre le informazioni relative alle stazioni identificate come `r stazioni[nome_stazione %like% "CAIR", nome_stazione]`. Non è possibile usare `== CAIRO`, perché il valore `CAIRO` può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:
 
 ```{r}
 stazioni[nome_stazione %like% "CAIR",]
@@ -130,7 +155,7 @@ Per selezionare invece tutte le righe che non contengono "CAIR", si usa:
 stazioni[!(nome_stazione %like% "CAIR"),]
 ```
 
-- %in% e %notin%: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:
+- `%in%` e `%notin%`: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:
 
 ```{r}
 stazioni[comune %in% c("Vado Ligure", "Quiliano"),]
@@ -147,7 +172,7 @@ Ad esempio, per filtrare le stazioni nella provincia di Savona o nel comune di S
 stazioni[provincia == "Savona" | comune == "Sanremo",]
 ```
 
-## Selezionare le colonne
+## Selezionare le colonne {#sec-select}
 
 I filtri visti nella @sec-filter agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l'elemento `j` della sintassi `dt[i, j, by]`.
 
@@ -176,17 +201,136 @@ stazioni[regione == "Liguria", .(eu_id = station_eu_code,
 # conta il numero di stazioni liguri
 stazioni[regione == "Liguria", length(station_eu_code)]
 stazioni[regione == "Liguria", .N] # alternativa più veloce
+stazioni[regione == "Liguria", .(n = .N)] # data.table con intestazione
+
+# conta il numero di stazioni liguri e il numero dei comuni monitorati
+stazioni[regione == "Liguria", .(n_stazioni = .N,
+                                 n_comuni = unique(id_comune) |> 
+                                   length())]
 
 # salva il risultato in una variabile
 liguria_eu_id <- stazioni[regione == "Liguria", station_eu_code]
 ```
 
-## Modificare le colonne
+## Modificare le colonne {#sec-update}
 
-## Cambiare forma ai dati
+L'importazione dei dati descritta nella @sec-csv ha prodotto una `data.table` in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l'elemento `j` della sintassi `dt[i, j, by]`, ma utilizzando l'operatore `:=` al posto di `=`, come nell'esempio:
 
-## Unire più fonti di dati
+```{r}
+# converte i valori di `valido` da testo a valori logici
+pm_genova[, valido := fcase(valido == "SI", TRUE,
+                            valido == "NO", FALSE,
+                            default = NA)]
+```
 
-## Fare calcoli su gruppi di dati
+Per modifiche multiple su più colonne, è possibile usare una sintassi più compatta:
 
+```{r}
+# l'operatore := è spostato fuori dalla parentesi nell'elemento j
+# mentre all'interno della parentesi si usa il segno =
+pm_genova[, `:=` (
+  # standardizza le unità
+  udm = gsub("microg/m3", "µg/m³", unita_di_misura),
+  # converte validato cor e certificato in valori logici
+  validato_cor = fcase(validato_cor == "SI", TRUE,
+                       validato_cor == "NO", FALSE,
+                       default = NA),
+  certificato = fcase(certificato == "SI", TRUE,
+                      certificato == "NO", FALSE,
+                      default = NA),
+  # converte le date specificando il formato di input
+  inizio = as.POSIXct(data_inizio, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  fine = as.POSIXct(data_fine, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  # elimina le vecchie colonne non più utili
+  unita_di_misura = NULL,
+  data_inizio = NULL,
+  data_fine = NULL
+)]
+
+```
+
+::: {.callout-tip}
+
+## Buone maniere
+
+La ripetizione di spezzoni di codice, come nel caso di `fcase()` non è considerata una buona prassi:
+sarebbe stato meglio scrivere una funzione!
+
+:::
+
+## Fare calcoli su gruppi di dati {#sec-by}
+
+L'elemento `by` della sintassi `dt[i, j, by]` permette di ripetere un'operazione su diversi gruppi.
+Ad esempio, nel caso in cui si voglia calcolare il numero di giorni sottoposti a campionamento, il numero di valori misurati e il numero di valori mancanti per ogni stazione e inquinante, è possibile usare la seguente istruzione:
+
+```{r}
+pm_genova[ , .(
+  giorni_campionati = difftime(fine, inizio, units = "days") |> sum(na.rm = TRUE),
+  n_tot = .N,
+  n_na = is.na(valore) |> sum()
+  ),
+  by = .(codice_europeo, inquinante)]
+```
+
+Risulta evidente come, a fronte di un tempo di campionamento totale circa uguale, alcune stazioni abbiano fatto molte più misure: sono quelle dotate di un sistema di misura in continuo (contatore ottico o a raggi $\beta$).
+
+All'interno dell'espressione `by` è possibile inserire anche espressioni, come nel caso seguente per il calcolo della concentrazione media giornaliera:
+```{r}
+pm_genova[, .(media_giornaliera = mean(valore, na.rm = TRUE)), 
+          by = .(codice_europeo, inquinante, data = as.IDate(inizio))]
+```
+
+## Concatenare operazioni
+
+Nel caso di operazioni complesse, composte di più passaggi, normalmente si usa la pipe (`|>`) o si salva ogni risultato intermedio in una variabile. Il pacchetto `data.table` offre una possibilità in più.
+
+Riprendendo l'esempio della @sec-by e volendo calcolare per ogni stazione il numero di giornate il cui la concentrazione media giornaliera di PM10 è superiore del limite di $50\, \mu g/m^3$, è possibile usare l'espressione:
+
+```{r}
+# prima espressione
+pm_genova[, .(media_giornaliera = mean(valore, na.rm = TRUE)), 
+          by = .(codice_europeo, inquinante, data = as.IDate(inizio))][
+# seconda espressione
+            inquinante == "PM10", 
+            .(sopra50 = (media_giornaliera > 50) |> sum()),
+          by = .(codice_europeo, anno = year(data))]
+```
+
+::: {.callout-tip}
+
+## Per i più affamati
+
+Con il comando `vignette("datatable-intro")` è possible avere informazioni aggiuntive sull'utilizzo di base del pacchetto `data.table`.
+
+:::
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Utilizzando il dataset `pm_genova` importato e modificato nelle sezioni precedenti,
+calcolare il minimo, la mediana, la media e il massimo delle concentrazioni giornaliere di PM~10~ e PM~2,5~ misurate nel 2024 per ogni stazione.
+
+Identificare le stazioni con valori medi annuali di PM~2,5~ superiori a $10\, \mu g/m^3$.
+
+
+## Soluzione
+
+```{r}
+# 1
+pm_genova[, .(
+  minimo = min(valore, na.rm = TRUE),
+  mediana = median(valore, na.rm = TRUE),
+  media = mean(valore, na.rm = TRUE),
+  max = max(valore, na.rm = TRUE)
+  ),
+  by = .(codice_europeo, inquinante, data = as.IDate(inizio))]
+
+# 2
+pm_genova[inquinante == "PM2,5",
+          .(media_annuale = mean(valore, na.rm = TRUE)), 
+          by = .(codice_europeo)][
+            media_annuale > 10]
+```
+::::
 
