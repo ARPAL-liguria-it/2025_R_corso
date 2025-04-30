@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Attenzione</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -238,11 +238,10 @@ window.Quarto = {
   <li><a href="#file-xlsx" id="toc-file-xlsx" class="nav-link" data-scroll-target="#file-xlsx"><span class="header-section-number">4.2.2</span> File xlsx</a></li>
   </ul></li>
   <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter"><span class="header-section-number">4.3</span> Filtrare i dati</a></li>
-  <li><a href="#selezionare-le-colonne" id="toc-selezionare-le-colonne" class="nav-link" data-scroll-target="#selezionare-le-colonne"><span class="header-section-number">4.4</span> Selezionare le colonne</a></li>
-  <li><a href="#modificare-le-colonne" id="toc-modificare-le-colonne" class="nav-link" data-scroll-target="#modificare-le-colonne"><span class="header-section-number">4.5</span> Modificare le colonne</a></li>
-  <li><a href="#cambiare-forma-ai-dati" id="toc-cambiare-forma-ai-dati" class="nav-link" data-scroll-target="#cambiare-forma-ai-dati"><span class="header-section-number">4.6</span> Cambiare forma ai dati</a></li>
-  <li><a href="#unire-più-fonti-di-dati" id="toc-unire-più-fonti-di-dati" class="nav-link" data-scroll-target="#unire-più-fonti-di-dati"><span class="header-section-number">4.7</span> Unire più fonti di dati</a></li>
-  <li><a href="#fare-calcoli-su-gruppi-di-dati" id="toc-fare-calcoli-su-gruppi-di-dati" class="nav-link" data-scroll-target="#fare-calcoli-su-gruppi-di-dati"><span class="header-section-number">4.8</span> Fare calcoli su gruppi di dati</a></li>
+  <li><a href="#sec-select" id="toc-sec-select" class="nav-link" data-scroll-target="#sec-select"><span class="header-section-number">4.4</span> Selezionare le colonne</a></li>
+  <li><a href="#sec-update" id="toc-sec-update" class="nav-link" data-scroll-target="#sec-update"><span class="header-section-number">4.5</span> Modificare le colonne</a></li>
+  <li><a href="#sec-by" id="toc-sec-by" class="nav-link" data-scroll-target="#sec-by"><span class="header-section-number">4.6</span> Fare calcoli su gruppi di dati</a></li>
+  <li><a href="#concatenare-operazioni" id="toc-concatenare-operazioni" class="nav-link" data-scroll-target="#concatenare-operazioni"><span class="header-section-number">4.7</span> Concatenare operazioni</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="missing/edit/main/transform.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
@@ -343,34 +342,59 @@ window.Quarto = {
 <li>le colonne <code>Valido</code>, <code>Validato COR</code> e <code>Certificato</code> andrebbero codificare come valori logici;</li>
 <li>l’unica informazione sul punto di prelievo è fornita dal codice europeo.</li>
 </ul>
-<p>Nelle prossime sezioni verranno affrontati e risolti questi problemi.</p>
+<p>È possibile sistemare i nomi delle colonne così:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># i nomi delle colonne dopo essere estratti da colnames()</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sono convertiti a testo minuscolo con tolower()</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sono sostituiti gli spazi con uderscore con gsub()</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># gli accenti sono rimossi con iconv()</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># il risultato è riassegnato ai nomi delle colonne</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tolower</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pipe e segnalibri
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Usando la pipe <code>|&gt;</code> l’output della funzione precedente è passato come primo argomento della funzione successiva. È possibile specificare in quale argomento posizionare l’output ricorrendo al segnalibro <code>_</code>.</p>
+</div>
+</div>
+<p>Nella <a href="#sec-update" class="quarto-xref"><span>Sezione 4.5</span></a> verranno affrontati e risolti gli altri problemi del dataset.</p>
 </section>
 <section id="file-xlsx" class="level3" data-number="4.2.2">
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="file-xlsx"><span class="header-section-number">4.2.2</span> File xlsx</h3>
 <p>Per importare file Excel è necessario utilizzare il pacchetto <code>readxl</code>, come mostrato nell’esempio:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>stazioni <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/2025-04-24_anagrafica_stazioni.xlsx"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"Tabella 1"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setDT</span>() <span class="co"># converte il dataset in data.table</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Il dataset proviene dalla sezione Dati e indicatori - Aria del sito di ISPRA</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ed è stato modificato a scopo didattico</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(stazioni)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   596 obs. of  11 variables:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_regione     : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_provincia   : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_comune      : num  1e+06 1e+06 1e+06 1e+06 1e+06 ...</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ station_eu_code: chr  "IT1128A" "IT1963A" "IT2101A" "IT1121A" ...</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ station_code   : num  1e+05 1e+05 1e+05 1e+05 1e+05 ...</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ regione        : chr  "Piemonte" "Piemonte" "Piemonte" "Piemonte" ...</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ provincia      : chr  "Torino" "Torino" "Torino" "Torino" ...</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ comune         : chr  "Borgaro Torinese" "Ceresole Reale" "Chieri" "Druento" ...</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ nome_stazione  : chr  "Borgaro T. - Caduti" "Ceresole Reale - Diga" "Chieri - Bersezio" "Druento - La Mandria" ...</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_zona      : chr  "S" "R" "S" "R" ...</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_stazione  : chr  "F" "F" "F" "F" ...</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>stazioni <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/2025-04-24_anagrafica_stazioni.xlsx"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"Tabella 1"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setDT</span>() <span class="co"># converte il dataset in data.table</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Il dataset proviene dalla sezione Dati e indicatori - Aria del sito di ISPRA</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ed è stato modificato a scopo didattico</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(stazioni)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   596 obs. of  11 variables:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_regione     : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_provincia   : num  1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ id_comune      : num  1e+06 1e+06 1e+06 1e+06 1e+06 ...</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ station_eu_code: chr  "IT1128A" "IT1963A" "IT2101A" "IT1121A" ...</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ station_code   : num  1e+05 1e+05 1e+05 1e+05 1e+05 ...</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ regione        : chr  "Piemonte" "Piemonte" "Piemonte" "Piemonte" ...</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ provincia      : chr  "Torino" "Torino" "Torino" "Torino" ...</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ comune         : chr  "Borgaro Torinese" "Ceresole Reale" "Chieri" "Druento" ...</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ nome_stazione  : chr  "Borgaro T. - Caduti" "Ceresole Reale - Diga" "Chieri - Bersezio" "Druento - La Mandria" ...</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_zona      : chr  "S" "R" "S" "R" ...</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_stazione  : chr  "F" "F" "F" "F" ...</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Anche in questo caso, <code>read_excel()</code> cerca di identificare automaticamente i tipi di dati nelle diverse colonne: distingue senza problemi tra numeri e caratteri, ma non riconosce <code>tipo_zona</code> come fattore. A differenza di <code>fread()</code>, <code>read_excel()</code> non restituisce direttamente una <code>data.table</code>.</p>
 </section>
@@ -385,193 +409,193 @@ window.Quarto = {
 <p>La condizione <code>variabile %operatore% valore</code> definisce quali righe saranno selezionate.</p>
 <p>Ad esempio, per filtrare le stazioni della Liguria nella <code>data.table</code> <code>stazioni</code>, si scrive:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, ]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:          7            9   7009002         IT2038A       700972 Liguria</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:          7            9   7009010         IT2303A       700979 Liguria</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:          7            9   7009015         IT2107A       700973 Liguria</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:          7            9   7009015         IT2108A       700974 Liguria</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:          7            9   7009015         IT2299A       700978 Liguria</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:          7            9   7009023         IT2155A       700975 Liguria</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:          7            9   7009052         IT1144A       700909 Liguria</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:          7            9   7009056         IT1145A       700903 Liguria</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:          7            9   7009056         IT1883A       700971 Liguria</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:          7            9   7009056         IT2304A       700980 Liguria</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:          7            9   7009064         IT1143A       700910 Liguria</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:          7            9   7009064         IT2286A       700977 Liguria</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:          7           10   7010006         IT2323A       701082 Liguria</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:          7           10   7010009         IT1549A       701028 Liguria</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:          7           10   7010015         IT2302A       701081 Liguria</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:          7           10   7010025         IT0852A       701014 Liguria</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:          7           10   7010025         IT0854A       701009 Liguria</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:          7           10   7010025         IT0858A       701016 Liguria</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:          7           10   7010025         IT1698A       701068 Liguria</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:          7           10   7010025         IT1884A       701073 Liguria</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:          7           10   7010032         IT2298A       701080 Liguria</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:          7           10   7010046         IT2039A       701078 Liguria</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:          7           11   7011015         IT1456A       701105 Liguria</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:          7           11   7011015         IT1457A       701106 Liguria</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:          7           11   7011015         IT1536A       701113 Liguria</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:          7           11   7011015         IT1544A       701112 Liguria</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:          7           11   7011015         IT1886A       701175 Liguria</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:          7           11   7011026         IT1661A       701173 Liguria</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:          7           11   7011027         IT2229A       701176 Liguria</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia                 comune                          nome_stazione</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;                 &lt;char&gt;                                 &lt;char&gt;</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   Imperia                Sanremo              PIAZZA BATTISTI - SANREMO</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    Savona                Albenga              REGIONE CAVALLO - ALBENGA</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    Savona               Bergeggi                BERGEGGI SV - CAPO VADO</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    Savona       Cairo Montenotte  LOCALITA' MAZZUCCA - CAIRO MONTENOTTE</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    Savona       Cairo Montenotte    LOCALITA' BRAGNO - CAIRO MONTENOTTE</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    Savona       Cairo Montenotte        CAIRO M. SV - VILLA SANGUINETTI</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    Savona                 Cengio                 CENGIO - RIO PARASACCO</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    Savona               Quiliano            MERCATO GENERALE - QUILIANO</span></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    Savona                 Savona                   CORSO RICCI - SAVONA</span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    Savona                 Savona                       VARALDO - SAVONA</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    Savona                 Savona             SAVONA - MONTE SAN GIORGIO</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    Savona            Vado Ligure   VIA AURELIA - VIA FERRARIS - VADO L.</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:    Savona            Vado Ligure             VIA DE LITTA - VADO LIGURE</span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:    Genova                Busalla                    BUSALLA GE - SUARDI</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:    Genova            Campomorone                  CAMPORA - CAMPOMORONE</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:    Genova               Chiavari                   CHIAVARI GE - DEVOTO</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:    Genova                 Genova               MULTEDO - PEGLI - GENOVA</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:    Genova                 Genova                 CORSO FIRENZE - GENOVA</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:    Genova                 Genova                        QUARTO - GENOVA</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:    Genova                 Genova CORSO EUROPA - VIA S. MARTINO - GENOVA</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:    Genova                 Genova            CORSO BUENOS AIRES - GENOVA</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:    Genova                 Masone                              MASONE GE</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:    Genova                Rapallo        CAMPO SPORTIVO MACERA - RAPALLO</span></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24: La Spezia              La Spezia     SAN CIPRIANO - LIBERTA - LA SPEZIA</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25: La Spezia              La Spezia                   AMENDOLA - LA SPEZIA</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26: La Spezia              La Spezia                 MAGGIOLINA - LA SPEZIA</span></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27: La Spezia              La Spezia                FOSSAMASTRA - LA SPEZIA</span></span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28: La Spezia              La Spezia           PIAZZA SAINT BON - LA SPEZIA</span></span>
-<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29: La Spezia Santo Stefano di Magra                    SANTO STEFANO MAGRA</span></span>
-<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30: La Spezia                Sarzana                LARGO PERTINI - SARZANA</span></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia                 comune                          nome_stazione</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt;</span></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               U             T</span></span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:               U             T</span></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:               S             I</span></span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:               S             I</span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:               S             I</span></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:               U             F</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: RURALE-NEARCITY             F</span></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:               S             I</span></span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:               U             T</span></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               U             F</span></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:               R             I</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               U             T</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:               U             T</span></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:               S             F</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:               U             F</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:               U             T</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:               U             F</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:               U             F</span></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:               U             T</span></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:               U             T</span></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:               S             F</span></span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:               U             T</span></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:               U             T</span></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:               U             T</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:               U             F</span></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:               U             I</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:               U             T</span></span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:               S             T</span></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:               U             T</span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, ]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:          7            9   7009002         IT2038A       700972 Liguria</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:          7            9   7009010         IT2303A       700979 Liguria</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:          7            9   7009015         IT2107A       700973 Liguria</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:          7            9   7009015         IT2108A       700974 Liguria</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:          7            9   7009015         IT2299A       700978 Liguria</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:          7            9   7009023         IT2155A       700975 Liguria</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:          7            9   7009052         IT1144A       700909 Liguria</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:          7            9   7009056         IT1145A       700903 Liguria</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:          7            9   7009056         IT1883A       700971 Liguria</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:          7            9   7009056         IT2304A       700980 Liguria</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:          7            9   7009064         IT1143A       700910 Liguria</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:          7            9   7009064         IT2286A       700977 Liguria</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:          7           10   7010006         IT2323A       701082 Liguria</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:          7           10   7010009         IT1549A       701028 Liguria</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:          7           10   7010015         IT2302A       701081 Liguria</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:          7           10   7010025         IT0852A       701014 Liguria</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:          7           10   7010025         IT0854A       701009 Liguria</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:          7           10   7010025         IT0858A       701016 Liguria</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:          7           10   7010025         IT1698A       701068 Liguria</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:          7           10   7010025         IT1884A       701073 Liguria</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:          7           10   7010032         IT2298A       701080 Liguria</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:          7           10   7010046         IT2039A       701078 Liguria</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:          7           11   7011015         IT1456A       701105 Liguria</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:          7           11   7011015         IT1457A       701106 Liguria</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:          7           11   7011015         IT1536A       701113 Liguria</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:          7           11   7011015         IT1544A       701112 Liguria</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:          7           11   7011015         IT1886A       701175 Liguria</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:          7           11   7011026         IT1661A       701173 Liguria</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:          7           11   7011027         IT2229A       701176 Liguria</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia                 comune                          nome_stazione</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;                 &lt;char&gt;                                 &lt;char&gt;</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   Imperia                Sanremo              PIAZZA BATTISTI - SANREMO</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    Savona                Albenga              REGIONE CAVALLO - ALBENGA</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    Savona               Bergeggi                BERGEGGI SV - CAPO VADO</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    Savona       Cairo Montenotte  LOCALITA' MAZZUCCA - CAIRO MONTENOTTE</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    Savona       Cairo Montenotte    LOCALITA' BRAGNO - CAIRO MONTENOTTE</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    Savona       Cairo Montenotte        CAIRO M. SV - VILLA SANGUINETTI</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    Savona                 Cengio                 CENGIO - RIO PARASACCO</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    Savona               Quiliano            MERCATO GENERALE - QUILIANO</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    Savona                 Savona                   CORSO RICCI - SAVONA</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    Savona                 Savona                       VARALDO - SAVONA</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    Savona                 Savona             SAVONA - MONTE SAN GIORGIO</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    Savona            Vado Ligure   VIA AURELIA - VIA FERRARIS - VADO L.</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:    Savona            Vado Ligure             VIA DE LITTA - VADO LIGURE</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:    Genova                Busalla                    BUSALLA GE - SUARDI</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:    Genova            Campomorone                  CAMPORA - CAMPOMORONE</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:    Genova               Chiavari                   CHIAVARI GE - DEVOTO</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:    Genova                 Genova               MULTEDO - PEGLI - GENOVA</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:    Genova                 Genova                 CORSO FIRENZE - GENOVA</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:    Genova                 Genova                        QUARTO - GENOVA</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:    Genova                 Genova CORSO EUROPA - VIA S. MARTINO - GENOVA</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:    Genova                 Genova            CORSO BUENOS AIRES - GENOVA</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:    Genova                 Masone                              MASONE GE</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:    Genova                Rapallo        CAMPO SPORTIVO MACERA - RAPALLO</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24: La Spezia              La Spezia     SAN CIPRIANO - LIBERTA - LA SPEZIA</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25: La Spezia              La Spezia                   AMENDOLA - LA SPEZIA</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26: La Spezia              La Spezia                 MAGGIOLINA - LA SPEZIA</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27: La Spezia              La Spezia                FOSSAMASTRA - LA SPEZIA</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28: La Spezia              La Spezia           PIAZZA SAINT BON - LA SPEZIA</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29: La Spezia Santo Stefano di Magra                    SANTO STEFANO MAGRA</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30: La Spezia                Sarzana                LARGO PERTINI - SARZANA</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia                 comune                          nome_stazione</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt;</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               U             T</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:               U             T</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:               S             I</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:               S             I</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:               S             I</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:               U             F</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: RURALE-NEARCITY             F</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:               S             I</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:               U             T</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               U             F</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:               R             I</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               U             T</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:               U             T</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:               S             F</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:               U             F</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:               U             T</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:               U             F</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:               U             F</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:               U             T</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:               U             T</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:               S             F</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:               U             T</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:               U             T</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:               U             T</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:               U             F</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:               U             I</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:               U             T</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:               S             T</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:               U             T</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gli operatori più comuni sono:</p>
 <ul>
-<li><p><code>==</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare &lt; o &gt; con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.</p></li>
-<li><p>%like%: permette di cercare corrispondenze parziali all’interno di stringhe. Per esempio, nella colonna <code>nome_stazione</code> della <code>data.table</code> <code>stazioni</code>, si vogliono estrarre le informazioni relative alle stazioni identificate come LOCALITA’ MAZZUCCA - CAIRO MONTENOTTE, LOCALITA’ BRAGNO - CAIRO MONTENOTTE, CAIRO M. SV - VILLA SANGUINETTI. Non è possibile usare <code>== CAIRO</code>, perché il valore <code>CAIRO</code> può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:</p></li>
+<li><p><code>==</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare <code>&lt;</code> o <code>&gt;</code> con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.</p></li>
+<li><p><code>%like%</code>: permette di cercare corrispondenze parziali all’interno di stringhe. Per esempio, nella colonna <code>nome_stazione</code> della <code>data.table</code> <code>stazioni</code>, si vogliono estrarre le informazioni relative alle stazioni identificate come LOCALITA’ MAZZUCCA - CAIRO MONTENOTTE, LOCALITA’ BRAGNO - CAIRO MONTENOTTE, CAIRO M. SV - VILLA SANGUINETTI. Non è possibile usare <code>== CAIRO</code>, perché il valore <code>CAIRO</code> può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stazioni[nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>,]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009015         IT2107A       700973 Liguria</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:          7            9   7009015         IT2108A       700974 Liguria</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:          7            9   7009015         IT2299A       700978 Liguria</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    provincia           comune                         nome_stazione tipo_zona</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;           &lt;char&gt;                                &lt;char&gt;    &lt;char&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    Savona Cairo Montenotte LOCALITA' MAZZUCCA - CAIRO MONTENOTTE         S</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    Savona Cairo Montenotte   LOCALITA' BRAGNO - CAIRO MONTENOTTE         S</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    Savona Cairo Montenotte       CAIRO M. SV - VILLA SANGUINETTI         U</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    tipo_stazione</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             I</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stazioni[nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>,]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009015         IT2107A       700973 Liguria</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:          7            9   7009015         IT2108A       700974 Liguria</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:          7            9   7009015         IT2299A       700978 Liguria</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    provincia           comune                         nome_stazione tipo_zona</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;           &lt;char&gt;                                &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    Savona Cairo Montenotte LOCALITA' MAZZUCCA - CAIRO MONTENOTTE         S</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    Savona Cairo Montenotte   LOCALITA' BRAGNO - CAIRO MONTENOTTE         S</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    Savona Cairo Montenotte       CAIRO M. SV - VILLA SANGUINETTI         U</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    tipo_stazione</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             I</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Per selezionare invece tutte le righe che non contengono “CAIR”, si usa:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stazioni[<span class="sc">!</span>(nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>),]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id_regione id_provincia id_comune station_eu_code station_code  regione</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;   &lt;char&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          1            1   1001028         IT1128A       100114 Piemonte</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:          1            1   1001073         IT1963A       100168 Piemonte</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:          1            1   1001078         IT2101A       100171 Piemonte</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          1            1   1001099         IT1121A       100122 Piemonte</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          1            1   1001125         IT1788A       100165 Piemonte</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                        </span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589:         20          111  20111057         IT1273A      2009207 Sardegna</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590:         20          111  20111057         IT1575A      2009221 Sardegna</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591:         20          111  20111057         IT1576A      2009222 Sardegna</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592:         20          111  20111062         IT1994A      2010601 Sardegna</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:         20          111  20111082         IT2011A      2009239 Sardegna</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         provincia              comune         nome_stazione     tipo_zona</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;              &lt;char&gt;                &lt;char&gt;        &lt;char&gt;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:       Torino    Borgaro Torinese   Borgaro T. - Caduti             S</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:       Torino      Ceresole Reale Ceresole Reale - Diga             R</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:       Torino              Chieri     Chieri - Bersezio             S</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:       Torino             Druento  Druento - La Mandria             R</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:       Torino               Ivrea   Ivrea - Liberazione             S</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                     </span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589: Sud Sardegna          Portoscuso                CENPS4             S</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590: Sud Sardegna          Portoscuso                CENPS6             S</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591: Sud Sardegna          Portoscuso                CENPS7             S</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592: Sud Sardegna San Gavino Monreale                CENSG3             U</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593: Sud Sardegna               Seulo                CENSE0 RURALE-REMOTA</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      tipo_stazione</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt;</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:             F</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             F</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:             F</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:             F</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:             F</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---              </span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589:             F</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590:             I</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591:             F</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592:             F</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stazioni[<span class="sc">!</span>(nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>),]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id_regione id_provincia id_comune station_eu_code station_code  regione</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;   &lt;char&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          1            1   1001028         IT1128A       100114 Piemonte</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:          1            1   1001073         IT1963A       100168 Piemonte</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:          1            1   1001078         IT2101A       100171 Piemonte</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:          1            1   1001099         IT1121A       100122 Piemonte</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:          1            1   1001125         IT1788A       100165 Piemonte</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                        </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589:         20          111  20111057         IT1273A      2009207 Sardegna</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590:         20          111  20111057         IT1575A      2009221 Sardegna</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591:         20          111  20111057         IT1576A      2009222 Sardegna</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592:         20          111  20111062         IT1994A      2010601 Sardegna</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:         20          111  20111082         IT2011A      2009239 Sardegna</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         provincia              comune         nome_stazione     tipo_zona</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;              &lt;char&gt;                &lt;char&gt;        &lt;char&gt;</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:       Torino    Borgaro Torinese   Borgaro T. - Caduti             S</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:       Torino      Ceresole Reale Ceresole Reale - Diga             R</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:       Torino              Chieri     Chieri - Bersezio             S</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:       Torino             Druento  Druento - La Mandria             R</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:       Torino               Ivrea   Ivrea - Liberazione             S</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                                     </span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589: Sud Sardegna          Portoscuso                CENPS4             S</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590: Sud Sardegna          Portoscuso                CENPS6             S</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591: Sud Sardegna          Portoscuso                CENPS7             S</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592: Sud Sardegna San Gavino Monreale                CENSG3             U</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593: Sud Sardegna               Seulo                CENSE0 RURALE-REMOTA</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      tipo_stazione</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt;</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:             F</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:             F</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:             F</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:             F</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:             F</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---              </span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 589:             F</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590:             I</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591:             F</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592:             F</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>%in% e %notin%: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:</li>
+<li><code>%in%</code> e <code>%notin%</code>: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stazioni[comune <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Vado Ligure"</span>, <span class="st">"Quiliano"</span>),]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009052         IT1144A       700909 Liguria</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:          7            9   7009064         IT1143A       700910 Liguria</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:          7            9   7009064         IT2286A       700977 Liguria</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    provincia      comune                        nome_stazione tipo_zona</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;      &lt;char&gt;                               &lt;char&gt;    &lt;char&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    Savona    Quiliano          MERCATO GENERALE - QUILIANO         S</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    Savona Vado Ligure VIA AURELIA - VIA FERRARIS - VADO L.         U</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    Savona Vado Ligure           VIA DE LITTA - VADO LIGURE         S</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    tipo_stazione</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             T</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stazioni[comune <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Vado Ligure"</span>, <span class="st">"Quiliano"</span>),]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009052         IT1144A       700909 Liguria</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:          7            9   7009064         IT1143A       700910 Liguria</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:          7            9   7009064         IT2286A       700977 Liguria</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    provincia      comune                        nome_stazione tipo_zona</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;char&gt;      &lt;char&gt;                               &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    Savona    Quiliano          MERCATO GENERALE - QUILIANO         S</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    Savona Vado Ligure VIA AURELIA - VIA FERRARIS - VADO L.         U</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    Savona Vado Ligure           VIA DE LITTA - VADO LIGURE         S</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    tipo_stazione</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             T</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>È possibile combinare più condizioni usando gli operatori logici <code>&amp;</code> (e) e <code>|</code> (o):</p>
 <ul>
@@ -580,200 +604,394 @@ window.Quarto = {
 </ul>
 <p>Ad esempio, per filtrare le stazioni nella provincia di Savona o nel comune di Sanremo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stazioni[provincia <span class="sc">==</span> <span class="st">"Savona"</span> <span class="sc">|</span> comune <span class="sc">==</span> <span class="st">"Sanremo"</span>,]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:          7            9   7009002         IT2038A       700972 Liguria</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:          7            9   7009010         IT2303A       700979 Liguria</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:          7            9   7009015         IT2107A       700973 Liguria</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:          7            9   7009015         IT2108A       700974 Liguria</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:          7            9   7009015         IT2299A       700978 Liguria</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:          7            9   7009023         IT2155A       700975 Liguria</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:          7            9   7009052         IT1144A       700909 Liguria</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:          7            9   7009056         IT1145A       700903 Liguria</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:          7            9   7009056         IT1883A       700971 Liguria</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:          7            9   7009056         IT2304A       700980 Liguria</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:          7            9   7009064         IT1143A       700910 Liguria</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:          7            9   7009064         IT2286A       700977 Liguria</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia           comune                         nome_stazione</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;           &lt;char&gt;                                &lt;char&gt;</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   Imperia          Sanremo             PIAZZA BATTISTI - SANREMO</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    Savona          Albenga             REGIONE CAVALLO - ALBENGA</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    Savona         Bergeggi               BERGEGGI SV - CAPO VADO</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    Savona Cairo Montenotte LOCALITA' MAZZUCCA - CAIRO MONTENOTTE</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    Savona Cairo Montenotte   LOCALITA' BRAGNO - CAIRO MONTENOTTE</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    Savona Cairo Montenotte       CAIRO M. SV - VILLA SANGUINETTI</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    Savona           Cengio                CENGIO - RIO PARASACCO</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    Savona         Quiliano           MERCATO GENERALE - QUILIANO</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    Savona           Savona                  CORSO RICCI - SAVONA</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    Savona           Savona                      VARALDO - SAVONA</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    Savona           Savona            SAVONA - MONTE SAN GIORGIO</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    Savona      Vado Ligure  VIA AURELIA - VIA FERRARIS - VADO L.</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:    Savona      Vado Ligure            VIA DE LITTA - VADO LIGURE</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt;</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               U             T</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:               U             T</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:               S             I</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:               S             I</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:               S             I</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:               U             F</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: RURALE-NEARCITY             F</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:               S             I</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:               U             T</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               U             F</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:               R             I</span></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               U             T</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stazioni[provincia <span class="sc">==</span> <span class="st">"Savona"</span> <span class="sc">|</span> comune <span class="sc">==</span> <span class="st">"Sanremo"</span>,]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:          7            9   7009002         IT2038A       700972 Liguria</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:          7            9   7009010         IT2303A       700979 Liguria</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:          7            9   7009015         IT2107A       700973 Liguria</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:          7            9   7009015         IT2108A       700974 Liguria</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:          7            9   7009015         IT2299A       700978 Liguria</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:          7            9   7009023         IT2155A       700975 Liguria</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:          7            9   7009052         IT1144A       700909 Liguria</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:          7            9   7009056         IT1145A       700903 Liguria</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:          7            9   7009056         IT1883A       700971 Liguria</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:          7            9   7009056         IT2304A       700980 Liguria</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:          7            9   7009064         IT1143A       700910 Liguria</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:          7            9   7009064         IT2286A       700977 Liguria</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     provincia           comune                         nome_stazione</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;           &lt;char&gt;                                &lt;char&gt;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:   Imperia          Sanremo             PIAZZA BATTISTI - SANREMO</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    Savona          Albenga             REGIONE CAVALLO - ALBENGA</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    Savona         Bergeggi               BERGEGGI SV - CAPO VADO</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    Savona Cairo Montenotte LOCALITA' MAZZUCCA - CAIRO MONTENOTTE</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    Savona Cairo Montenotte   LOCALITA' BRAGNO - CAIRO MONTENOTTE</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    Savona Cairo Montenotte       CAIRO M. SV - VILLA SANGUINETTI</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    Savona           Cengio                CENGIO - RIO PARASACCO</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    Savona         Quiliano           MERCATO GENERALE - QUILIANO</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    Savona           Savona                  CORSO RICCI - SAVONA</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    Savona           Savona                      VARALDO - SAVONA</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    Savona           Savona            SAVONA - MONTE SAN GIORGIO</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    Savona      Vado Ligure  VIA AURELIA - VIA FERRARIS - VADO L.</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:    Savona      Vado Ligure            VIA DE LITTA - VADO LIGURE</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;        &lt;char&gt;</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:               U             T</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:               U             T</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:               S             I</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:               S             I</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:               S             I</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:               U             F</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: RURALE-NEARCITY             F</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:               S             I</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:               U             T</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               U             F</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:               R             I</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               U             T</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="selezionare-le-colonne" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="selezionare-le-colonne"><span class="header-section-number">4.4</span> Selezionare le colonne</h2>
+<section id="sec-select" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-select"><span class="header-section-number">4.4</span> Selezionare le colonne</h2>
 <p>I filtri visti nella <a href="#sec-filter" class="quarto-xref"><span>Sezione 4.3</span></a> agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>.</p>
 <p>Ad esempio, per estrarre i codici europei delle stazioni liguri:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "IT1882A" "IT2038A" "IT2303A" "IT2107A" "IT2108A" "IT2299A" "IT2155A"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] "IT1144A" "IT1145A" "IT1883A" "IT2304A" "IT1143A" "IT2286A" "IT2323A"</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] "IT1549A" "IT2302A" "IT0852A" "IT0854A" "IT0858A" "IT1698A" "IT1884A"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] "IT2298A" "IT2039A" "IT1456A" "IT1457A" "IT1536A" "IT1544A" "IT1886A"</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] "IT1661A" "IT2229A"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "IT1882A" "IT2038A" "IT2303A" "IT2107A" "IT2108A" "IT2299A" "IT2155A"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] "IT1144A" "IT1145A" "IT1883A" "IT2304A" "IT1143A" "IT2286A" "IT2323A"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] "IT1549A" "IT2302A" "IT0852A" "IT0854A" "IT0858A" "IT1698A" "IT1884A"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] "IT2298A" "IT2039A" "IT1456A" "IT1457A" "IT1536A" "IT1544A" "IT1886A"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] "IT1661A" "IT2229A"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Questo restituisce un vettore. Se invece si vuole mantenere la struttura di una <code>data.table</code> (utile per ulteriori elaborazioni), è necessario racchiudere la colonna in <code>.()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code)]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         IT1882A</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         IT2038A</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         IT2303A</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         IT2107A</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         IT2108A</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         IT2299A</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         IT2155A</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         IT1144A</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         IT1145A</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         IT1883A</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         IT2304A</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         IT1143A</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         IT2286A</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         IT2323A</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         IT1549A</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:         IT2302A</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:         IT0852A</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:         IT0854A</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:         IT0858A</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:         IT1698A</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:         IT1884A</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:         IT2298A</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:         IT2039A</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:         IT1456A</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:         IT1457A</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:         IT1536A</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:         IT1544A</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:         IT1886A</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:         IT1661A</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:         IT2229A</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code)]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         IT1882A</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         IT2038A</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         IT2303A</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         IT2107A</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         IT2108A</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         IT2299A</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         IT2155A</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         IT1144A</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         IT1145A</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         IT1883A</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         IT2304A</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         IT1143A</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         IT2286A</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         IT2323A</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         IT1549A</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:         IT2302A</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:         IT0852A</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:         IT0854A</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:         IT0858A</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:         IT1698A</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:         IT1884A</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:         IT2298A</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:         IT2039A</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:         IT1456A</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:         IT1457A</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:         IT1536A</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:         IT1544A</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:         IT1886A</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:         IT1661A</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:         IT2229A</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>All’interno di <code>.()</code> è possibile elencare più colonne, rinominarle o applicare operazioni. Il risultato verrà mostrato a video, ma non salvato a meno che non venga assegnato a una variabile.</p>
 <p>Ecco alcuni esempi:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seleziona due colonne</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code, id_comune)]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code id_comune</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;     &lt;num&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         IT1882A   7008055</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         IT2038A   7009002</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         IT2303A   7009010</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         IT2107A   7009015</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         IT2108A   7009015</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         IT2299A   7009015</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         IT2155A   7009023</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         IT1144A   7009052</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         IT1145A   7009056</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         IT1883A   7009056</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         IT2304A   7009056</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         IT1143A   7009064</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         IT2286A   7009064</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         IT2323A   7010006</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         IT1549A   7010009</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:         IT2302A   7010015</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:         IT0852A   7010025</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:         IT0854A   7010025</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:         IT0858A   7010025</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:         IT1698A   7010025</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:         IT1884A   7010025</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:         IT2298A   7010032</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:         IT2039A   7010046</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:         IT1456A   7011015</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:         IT1457A   7011015</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:         IT1536A   7011015</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:         IT1544A   7011015</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:         IT1886A   7011015</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:         IT1661A   7011026</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:         IT2229A   7011027</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code id_comune</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co"># rinomina le colonne</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(<span class="at">eu_id =</span> station_eu_code, </span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">municipality_id =</span> id_comune)]</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       eu_id municipality_id</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;           &lt;num&gt;</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1: IT1882A         7008055</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2: IT2038A         7009002</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: IT2303A         7009010</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: IT2107A         7009015</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: IT2108A         7009015</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: IT2299A         7009015</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: IT2155A         7009023</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: IT1144A         7009052</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: IT1145A         7009056</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: IT1883A         7009056</span></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: IT2304A         7009056</span></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: IT1143A         7009064</span></span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13: IT2286A         7009064</span></span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14: IT2323A         7010006</span></span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15: IT1549A         7010009</span></span>
-<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16: IT2302A         7010015</span></span>
-<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17: IT0852A         7010025</span></span>
-<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18: IT0854A         7010025</span></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19: IT0858A         7010025</span></span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20: IT1698A         7010025</span></span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21: IT1884A         7010025</span></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22: IT2298A         7010032</span></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23: IT2039A         7010046</span></span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24: IT1456A         7011015</span></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25: IT1457A         7011015</span></span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26: IT1536A         7011015</span></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27: IT1544A         7011015</span></span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28: IT1886A         7011015</span></span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29: IT1661A         7011026</span></span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30: IT2229A         7011027</span></span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       eu_id municipality_id</span></span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="co"># conta il numero di stazioni liguri</span></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, <span class="fu">length</span>(station_eu_code)]</span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .N] <span class="co"># alternativa più veloce</span></span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co"># salva il risultato in una variabile</span></span>
-<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>liguria_eu_id <span class="ot">&lt;-</span> stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seleziona due colonne</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code, id_comune)]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code id_comune</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;     &lt;num&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         IT1882A   7008055</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:         IT2038A   7009002</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:         IT2303A   7009010</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:         IT2107A   7009015</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:         IT2108A   7009015</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:         IT2299A   7009015</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:         IT2155A   7009023</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:         IT1144A   7009052</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:         IT1145A   7009056</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:         IT1883A   7009056</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:         IT2304A   7009056</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:         IT1143A   7009064</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:         IT2286A   7009064</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:         IT2323A   7010006</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:         IT1549A   7010009</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:         IT2302A   7010015</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:         IT0852A   7010025</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:         IT0854A   7010025</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:         IT0858A   7010025</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:         IT1698A   7010025</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:         IT1884A   7010025</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:         IT2298A   7010032</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:         IT2039A   7010046</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:         IT1456A   7011015</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25:         IT1457A   7011015</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26:         IT1536A   7011015</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27:         IT1544A   7011015</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:         IT1886A   7011015</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:         IT1661A   7011026</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:         IT2229A   7011027</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code id_comune</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co"># rinomina le colonne</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(<span class="at">eu_id =</span> station_eu_code, </span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">municipality_id =</span> id_comune)]</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       eu_id municipality_id</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;           &lt;num&gt;</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1: IT1882A         7008055</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2: IT2038A         7009002</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: IT2303A         7009010</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: IT2107A         7009015</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: IT2108A         7009015</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: IT2299A         7009015</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: IT2155A         7009023</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: IT1144A         7009052</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: IT1145A         7009056</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: IT1883A         7009056</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: IT2304A         7009056</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: IT1143A         7009064</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13: IT2286A         7009064</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14: IT2323A         7010006</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15: IT1549A         7010009</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16: IT2302A         7010015</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17: IT0852A         7010025</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18: IT0854A         7010025</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19: IT0858A         7010025</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20: IT1698A         7010025</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21: IT1884A         7010025</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22: IT2298A         7010032</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23: IT2039A         7010046</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24: IT1456A         7011015</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 25: IT1457A         7011015</span></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 26: IT1536A         7011015</span></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 27: IT1544A         7011015</span></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28: IT1886A         7011015</span></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29: IT1661A         7011026</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30: IT2229A         7011027</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       eu_id municipality_id</span></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a><span class="co"># conta il numero di stazioni liguri</span></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, <span class="fu">length</span>(station_eu_code)]</span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .N] <span class="co"># alternativa più veloce</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(<span class="at">n =</span> .N)] <span class="co"># data.table con intestazione</span></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        n</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt;</span></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    30</span></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="co"># conta il numero di stazioni liguri e il numero dei comuni monitorati</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(<span class="at">n_stazioni =</span> .N,</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">n_comuni =</span> <span class="fu">unique</span>(id_comune) <span class="sc">|&gt;</span> </span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">length</span>())]</span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    n_stazioni n_comuni</span></span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;    &lt;int&gt;</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:         30       17</span></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="co"># salva il risultato in una variabile</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>liguria_eu_id <span class="ot">&lt;-</span> stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="modificare-le-colonne" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="modificare-le-colonne"><span class="header-section-number">4.5</span> Modificare le colonne</h2>
+<section id="sec-update" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-update"><span class="header-section-number">4.5</span> Modificare le colonne</h2>
+<p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 4.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converte i valori di `valido` da testo a valori logici</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, valido <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(valido <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                            valido <span class="sc">==</span> <span class="st">"NO"</span>, <span class="cn">FALSE</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">default =</span> <span class="cn">NA</span>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Per modifiche multiple su più colonne, è possibile usare una sintassi più compatta:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'operatore := è spostato fuori dalla parentesi nell'elemento j</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mentre all'interno della parentesi si usa il segno =</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>pm_genova[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span> (</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># standardizza le unità</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">udm =</span> <span class="fu">gsub</span>(<span class="st">"microg/m3"</span>, <span class="st">"µg/m³"</span>, unita_di_misura),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># converte validato cor e certificato in valori logici</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validato_cor =</span> <span class="fu">fcase</span>(validato_cor <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                       validato_cor <span class="sc">==</span> <span class="st">"NO"</span>, <span class="cn">FALSE</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">default =</span> <span class="cn">NA</span>),</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">certificato =</span> <span class="fu">fcase</span>(certificato <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                      certificato <span class="sc">==</span> <span class="st">"NO"</span>, <span class="cn">FALSE</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">default =</span> <span class="cn">NA</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># converte le date specificando il formato di input</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">inizio =</span> <span class="fu">as.POSIXct</span>(data_inizio, <span class="at">format =</span> <span class="st">"%d/%m/%Y %H:%M"</span>, <span class="at">tz =</span> <span class="st">"GMT"</span>),</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">fine =</span> <span class="fu">as.POSIXct</span>(data_fine, <span class="at">format =</span> <span class="st">"%d/%m/%Y %H:%M"</span>, <span class="at">tz =</span> <span class="st">"GMT"</span>),</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># elimina le vecchie colonne non più utili</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">unita_di_misura =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_inizio =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_fine =</span> <span class="cn">NULL</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Buone maniere
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La ripetizione di spezzoni di codice, come nel caso di <code>fcase()</code> non è considerata una buona prassi: sarebbe stato meglio scrivere una funzione!</p>
+</div>
+</div>
 </section>
-<section id="cambiare-forma-ai-dati" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="cambiare-forma-ai-dati"><span class="header-section-number">4.6</span> Cambiare forma ai dati</h2>
+<section id="sec-by" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="sec-by"><span class="header-section-number">4.6</span> Fare calcoli su gruppi di dati</h2>
+<p>L’elemento <code>by</code> della sintassi <code>dt[i, j, by]</code> permette di ripetere un’operazione su diversi gruppi. Ad esempio, nel caso in cui si voglia calcolare il numero di giorni sottoposti a campionamento, il numero di valori misurati e il numero di valori mancanti per ogni stazione e inquinante, è possibile usare la seguente istruzione:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pm_genova[ , .(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">giorni_campionati =</span> <span class="fu">difftime</span>(fine, inizio, <span class="at">units =</span> <span class="st">"days"</span>) <span class="sc">|&gt;</span> <span class="fu">sum</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_tot =</span> .N,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_na =</span> <span class="fu">is.na</span>(valore) <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(codice_europeo, inquinante)]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     codice_europeo inquinante giorni_campionati n_tot  n_na</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt;     &lt;char&gt;        &lt;difftime&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:        IT2302A       PM10     357.2917 days  7172     0</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:        IT2302A      PM2,5     360.2500 days  7243     0</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:        IT1698A       PM10     349.2500 days  8382     0</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:        IT1698A      PM2,5     333.7917 days  8011     0</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:        IT0854A       PM10     339.3750 days  8145     0</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:        IT0854A      PM2,5     339.3333 days  8144     0</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:        IT2339A       PM10     347.2500 days  8334     0</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:        IT2339A      PM2,5     344.8333 days  8276     0</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:        IT2327A       PM10     360.1667 days  8644     0</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:        IT2327A      PM2,5     360.1667 days  8644     0</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:        IT0852A       PM10     356.8750 days  8565     0</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:        IT0858A       PM10     350.5417 days  8413     0</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:        IT0858A      PM2,5     350.5417 days  8413     0</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14:        IT2323A       PM10     361.0000 days   361     0</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15:        IT2323A      PM2,5     361.0000 days   361     0</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16:        IT2039A       PM10     357.0000 days   357     0</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17:        IT2039A      PM2,5     356.0000 days   356     0</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18:        IT1549A       PM10     360.0000 days   360     0</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19:        IT1549A      PM2,5     360.0000 days   360     0</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20:        IT1884A       PM10     351.0000 days   351     0</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 21:        IT2298A       PM10     342.0000 days   342     0</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:        IT2298A      PM2,5     342.0000 days   342     0</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:                      PM10     266.6667 days  6400     0</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:                     PM2,5     266.6667 days  6400     0</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     codice_europeo inquinante giorni_campionati n_tot  n_na</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Risulta evidente come, a fronte di un tempo di campionamento totale circa uguale, alcune stazioni abbiano fatto molte più misure: sono quelle dotate di un sistema di misura in continuo (contatore ottico o a raggi <span class="math inline">\(\beta\)</span>).</p>
+<p>All’interno dell’espressione <code>by</code> è possibile inserire anche espressioni, come nel caso seguente per il calcolo della concentrazione media giornaliera:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inquinante, <span class="at">data =</span> <span class="fu">as.IDate</span>(inizio))]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       codice_europeo inquinante       data media_giornaliera</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;     &lt;char&gt;     &lt;IDat&gt;             &lt;num&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1:        IT2302A       PM10 2024-12-31          14.51667</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2:        IT2302A      PM2,5 2024-12-31          10.26250</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:        IT1698A       PM10 2024-12-31          24.27083</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:        IT1698A      PM2,5 2024-12-31          18.05652</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5:        IT0854A       PM10 2024-12-31          11.61667</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                                       </span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8416:        IT2302A       PM10 2024-01-01          16.50000</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8417:        IT2302A      PM2,5 2024-01-01           9.40000</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8418:        IT1884A       PM10 2024-01-01          20.70000</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8419:        IT2298A       PM10 2024-01-01          14.00000</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8420:        IT2298A      PM2,5 2024-01-01           9.50000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="unire-più-fonti-di-dati" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="unire-più-fonti-di-dati"><span class="header-section-number">4.7</span> Unire più fonti di dati</h2>
-</section>
-<section id="fare-calcoli-su-gruppi-di-dati" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="fare-calcoli-su-gruppi-di-dati"><span class="header-section-number">4.8</span> Fare calcoli su gruppi di dati</h2>
+<section id="concatenare-operazioni" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="concatenare-operazioni"><span class="header-section-number">4.7</span> Concatenare operazioni</h2>
+<p>Nel caso di operazioni complesse, composte di più passaggi, normalmente si usa la pipe (<code>|&gt;</code>) o si salva ogni risultato intermedio in una variabile. Il pacchetto <code>data.table</code> offre una possibilità in più.</p>
+<p>Riprendendo l’esempio della <a href="#sec-by" class="quarto-xref"><span>Sezione 4.6</span></a> e volendo calcolare per ogni stazione il numero di giornate il cui la concentrazione media giornaliera di PM10 è superiore del limite di <span class="math inline">\(50\, \mu g/m^3\)</span>, è possibile usare l’espressione:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prima espressione</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inquinante, <span class="at">data =</span> <span class="fu">as.IDate</span>(inizio))][</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># seconda espressione</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            inquinante <span class="sc">==</span> <span class="st">"PM10"</span>, </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            .(<span class="at">sopra50 =</span> (media_giornaliera <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|&gt;</span> <span class="fu">sum</span>()),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, <span class="at">anno =</span> <span class="fu">year</span>(data))]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     codice_europeo  anno sopra50</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;char&gt; &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:        IT2302A  2024       3</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:        IT1698A  2024       3</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:        IT0854A  2024       3</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:        IT2339A  2024       3</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:        IT2327A  2024       4</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:        IT0852A  2024       4</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:        IT0858A  2024       0</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:        IT2323A  2024       8</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:        IT2039A  2024       5</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:        IT1549A  2024       1</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:        IT1884A  2024       3</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:        IT2298A  2024       4</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:                 2024       3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Per i più affamati
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con il comando <code>vignette("datatable-intro")</code> è possible avere informazioni aggiuntive sull’utilizzo di base del pacchetto <code>data.table</code>.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Utilizzando il dataset <code>pm_genova</code> importato e modificato nelle sezioni precedenti, calcolare il minimo, la mediana, la media e il massimo delle concentrazioni giornaliere di PM<sub>10</sub> e PM<sub>2,5</sub> misurate nel 2024 per ogni stazione.</p>
+<p>Identificare le stazioni con valori medi annuali di PM<sub>2,5</sub> superiori a <span class="math inline">\(10\, \mu g/m^3\)</span>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">minimo =</span> <span class="fu">min</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mediana =</span> <span class="fu">median</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">media =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">max =</span> <span class="fu">max</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(codice_europeo, inquinante, <span class="at">data =</span> <span class="fu">as.IDate</span>(inizio))]</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       codice_europeo inquinante       data minimo mediana    media   max</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;     &lt;char&gt;     &lt;IDat&gt;  &lt;num&gt;   &lt;num&gt;    &lt;num&gt; &lt;num&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1:        IT2302A       PM10 2024-12-31    0.9   13.85 14.51667  28.9</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2:        IT2302A      PM2,5 2024-12-31   -6.1   11.15 10.26250  26.7</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3:        IT1698A       PM10 2024-12-31    6.1   22.30 24.27083  50.7</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4:        IT1698A      PM2,5 2024-12-31   -6.3   17.30 18.05652  39.4</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5:        IT0854A       PM10 2024-12-31    0.2   11.15 11.61667  27.3</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                                                   </span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8416:        IT2302A       PM10 2024-01-01   16.5   16.50 16.50000  16.5</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8417:        IT2302A      PM2,5 2024-01-01    9.4    9.40  9.40000   9.4</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8418:        IT1884A       PM10 2024-01-01   20.7   20.70 20.70000  20.7</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8419:        IT2298A       PM10 2024-01-01   14.0   14.00 14.00000  14.0</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8420:        IT2298A      PM2,5 2024-01-01    9.5    9.50  9.50000   9.5</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>pm_genova[inquinante <span class="sc">==</span> <span class="st">"PM2,5"</span>,</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>          .(<span class="at">media_annuale =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo)][</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>            media_annuale <span class="sc">&gt;</span> <span class="dv">10</span>]</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codice_europeo media_annuale</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;char&gt;         &lt;num&gt;</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:        IT1698A      13.41177</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:        IT2339A      10.81406</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        IT2327A      11.33169</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:        IT2323A      14.19280</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:        IT2039A      11.18157</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:        IT2298A      10.50409</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
