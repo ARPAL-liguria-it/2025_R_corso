@@ -13,16 +13,13 @@ Quando saremo in dubbio sulla tipologia di un dato elemento possiamo usare la fu
 
 ### Numeri
 
-R gestisce diverse tipologie di numeri, ma utilizzeremo principalmente la tipologia `double`, abbreviazione di *double-precision floating-point format*: che definisce come in informatica vengono archiviati e manipolati gli elementi esprimibili con una parte decimale. Ogni misura - ad eccezione dei conteggi puri - ricade in questa tipologia, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
+R gestisce diversi tipi di numeri, ma nella maggior parte dei casi useremo il tipo `double`.
+Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi.
+Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non specifichiamo esplicitamente il tipo `integer` aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade in questa tipologia, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
 
 ```{r}
-a <- c(2, 2.1, 2.5)
-```
-
-Più raramente, dovremo definire degli interi, che appartengono alla tipologia `integer` e si indicano facendo seguire una L maiuscola al numero:
-
-```{r}
-b <- c(1L, 5L)
+a <- c(2, 2.1, 2.5) # double
+b <- c(1L, 5L)      # integer
 ```
 
 Altre tipologie di numeri più rare comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non le utilizzeremo.
@@ -62,7 +59,6 @@ Talvolta, R può restituire un elemento di tipo `NULL` quando si tenta di estrar
 
 ```{r}
 c()
-
 a
 a <- NULL
 a
@@ -80,26 +76,18 @@ Tecnicamente, i vettori non sono catalogati da R all'interno di una classe, tutt
 
 ```{r}
 f <- c("a", "b", "c", NA, "e")
-f[1] # seleziona il primo elemento
-
-f[-1] # seleziona tutti gli elementi tranne il primo
-
-f[2:4] # seleziona gli elementi dal secondo al quarto, estremi compresi
-
-f[-(2:4)] # seleziona tutti gli elementi tranne quelli dal secondo al quarto
-
-f[c(2,4)] # seleziona il secondo e quarto elemento
-
-f[-c(2,4)] # seleziona tutti gli elementi tranne il secondo e il quarto
+f[1]          # seleziona il primo elemento
+f[-1]         # seleziona tutti gli elementi tranne il primo
+f[2:4]        # seleziona gli elementi dal secondo al quarto, estremi compresi
+f[-(2:4)]     # seleziona tutti gli elementi tranne quelli dal secondo al quarto
+f[c(2,4)]     # seleziona il secondo e quarto elemento
+f[-c(2,4)]    # seleziona tutti gli elementi tranne il secondo e il quarto
 
 g <- c(3,5)
-f[g] # seleziona il terzo e quinto elemento
-
-f[-g] # seleziona tutti gli elementi tranne il terzo e il quinto
-
-f[is.na(f)] # seleziona solo gli elementi NA
-
-f[!is.na(f)] # seleziona solo gli elementi non NA
+f[g]          # seleziona il terzo e quinto elemento
+f[-g]         # seleziona tutti gli elementi tranne il terzo e il quinto
+f[is.na(f)]   # seleziona solo gli elementi NA
+f[!is.na(f)]  # seleziona solo gli elementi non NA
 ```
 
 Per verificare se un oggetto è un vettore si può usare la funzione `is.vector()`, mentre per conoscerne il numero di elementi si usa la funzione `length()`.
@@ -110,13 +98,13 @@ Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più u
 
 ```{r}
 sorprendimi <- sample(1:1000, 30, replace = TRUE) # 30 valori indipendenti da 1 a 1000.
-max(sorprendimi) # trova il valore massimo
-which.max(sorprendimi) # trova la posizione del valore massimo
+max(sorprendimi)                                  # trova il valore massimo
+which.max(sorprendimi)                            # trova la posizione del valore massimo
 m <- which.max(sorprendimi)
 sorprendimi[m]
-max(sorprendimi) == sorprendimi[m] # funziona!
+max(sorprendimi) == sorprendimi[m]                # funziona!
 
-rnorm(1000, mean = 10, sd = 3) |> # si usa la pipe per concatenare le funzioni
+rnorm(1000, mean = 10, sd = 3) |>                 # la pipe per concatena le funzioni
   hist()
 ```
 

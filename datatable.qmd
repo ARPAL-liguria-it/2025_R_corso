@@ -57,7 +57,7 @@ Ecco un esempio:
 ```{r}
 pm_genova <- fread("data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
                    skip = "Codice europeo", # salta fino alla riga contenente "Codice europeo"
-                   encoding = "Latin-1") # gestisce accenti e caratteri speciali
+                   encoding = "Latin-1")    # gestisce accenti e caratteri speciali
 # Il dataset proviene da Ambiente in Liguria ed è stato modificato a scopo di didattico
 
 str(pm_genova)
@@ -74,15 +74,10 @@ Nel dataset importato è possibile notare che sono state distinte le colonne num
  È possibile sistemare i nomi delle colonne così:
  
 ```{r}
-# i nomi delle colonne dopo essere estratti da colnames()
-# sono convertiti a testo minuscolo con tolower()
-# sono sostituiti gli spazi con uderscore con gsub()
-# gli accenti sono rimossi con iconv()
-# il risultato è riassegnato ai nomi delle colonne
 colnames(pm_genova) <- colnames(pm_genova) |> 
-  tolower() |> 
-  gsub(" ", "_", x = _) |>
-  iconv(to = "ASCII//TRANSLIT")
+  tolower() |>                  # trasforma in minuscolo
+  gsub(" ", "_", x = _) |>      # sostituisce gli spazi con uderscore
+  iconv(to = "ASCII//TRANSLIT") # rimuove accenti e caratteri speciali  
 ```
 
 ::: {.callout-tip}
@@ -200,7 +195,7 @@ stazioni[regione == "Liguria", .(eu_id = station_eu_code,
 
 # conta il numero di stazioni liguri
 stazioni[regione == "Liguria", length(station_eu_code)]
-stazioni[regione == "Liguria", .N] # alternativa più veloce
+stazioni[regione == "Liguria", .N]        # alternativa più veloce
 stazioni[regione == "Liguria", .(n = .N)] # data.table con intestazione
 
 # conta il numero di stazioni liguri e il numero dei comuni monitorati

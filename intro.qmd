@@ -7,9 +7,9 @@ source("_common.R")
 
 Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.
 
-Il corso si conclude con una piccola analisi guidata svolta dai partecipanti e strutturata in un documento a sé stante.
+Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.
 
-Durante il proseguo del corso impareremo a:
+Durante il proseguo del corso imparerai a:
 
 -   chiedere aiuto;
 -   strutturare un documento alternando testo e codice per rendere le analisi riproducibili;
@@ -21,7 +21,7 @@ Durante il proseguo del corso impareremo a:
 
 ## Quanta fatica
 
-L'utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.
+L'utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l'impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l'intero processo riproducibile e documentabile.
 
 Inoltre, imparare un linguaggio di programmazione apre numerose porte e può semplificare il lavoro quotidiano in molti ambiti. Per esempio, con R è possibile realizzare:
 
@@ -98,6 +98,6 @@ Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.
 
 Se il materiale presentato nel corso non fosse sufficiente o non rispondesse pienamente alle vostre esigenze, in rete è possibile trovare numerosi testi gratuiti di alta qualità. Tra questi si segnalano:
 
-- [Hands-On Rrogramming with R](https://rstudio-education.github.io/hopr/) scritto da Garrett Grolemund;
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) scritto da Garrett Grolemund;
 - [R for Data Science](https://r4ds.hadley.nz/) scritto da Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund;
 - [Advanced R](https://adv-r.hadley.nz/) scritto da Hadley Wickham.

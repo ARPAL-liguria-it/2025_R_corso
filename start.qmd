@@ -10,8 +10,6 @@ source("_common.R")
 Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo
 
 ```{r}
-#| eval: true
-
 2 + 3
 ```
 
@@ -26,40 +24,31 @@ Questo significa che il risultato è un vettore composto da un solo elemento, e 
 Possiamo anche eseguire calcoli su vettori: definiamo un vettore di 100 elementi che contiene gli interi da 1 a 100, e aggiungiamo 2 a ciascuno di essi.
 
 ```{r}
-#| eval: true
-
 1:100 + 2
 ```
 
-Se volessimo ripetere il calcolo ma aggiungendo 3 invece di 2, possiamo cliccare sulla console, schiacciare il tasto 🔼 per richiamare l'ultimo comando eseguito, modificare il 2 in 3 e premere Invio. Tuttavia, è preferibile assegnare il vettore contenente i 100 elementi a una variabile che chiameremo
+Se volessimo ripetere il calcolo aggiungendo 3 invece di 2, possiamo premere il tasto freccia su (🔼) nella console per richiamare l'ultimo comando, modificarlo e premere Invio.
+Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio
 
 ```{r}
-#| eval: true
-
 a <- 1:100
 ```
 
-a questo punto possiamo fare
+a questo punto possiamo fare semplicemente:
 
 ```{r}
-#| eval: true
-
 a + 3
 ```
 
 Possiamo usare la variabile `a` per altri calcoli. Per esempio, eleviamo al quadrato tutti gli elementi associati alla variabile `a`:
 
 ```{r}
-#| eval: true
-
 a^2
 ```
 
 Il valore di una variabile può essere sovrascritto con una nuova assegnazione, come nel caso riportato di seguito:
 
 ```{r}
-#| eval: true
-
 a <- "Bella zio: sto usando R!"
 ```
 
@@ -79,8 +68,6 @@ Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie 
 R offre già molte funzioni pronte all'uso. Per esempio, possiamo assegnare alcuni numeri a una variabile e calcolarne la somma:
 
 ```{r}
-#| eval: true
-
 b <- c(2, 3, 5)
 sum(b)
 ```
@@ -147,7 +134,7 @@ iris
 plot(iris, col = iris$Species)
 
 # noto che le misurazioni relative a una specie sono ben distinte dalle altre due,
-# quest'ultime mostrano un certo grado di sovrapposizione. Vediamo se il calcolo
+# queste ultime mostrano un certo grado di sovrapposizione. Vediamo se il calcolo
 # dei quartili eseguita sulle singole variabili per i diversi gruppi mi aiuta a
 # identificare i gruppi che mostrano sovrapposizione parziale nelle misure.
 
@@ -165,7 +152,7 @@ quartili <- function(valori){
 aggregate(. ~ Species, data = iris, FUN = quartili)
 
 # la specie setosa risulta ben disinguibile dalle specie versicolor e virginica,
-# quest'ultime mostrano dimensioni simili.
+# queste ultime mostrano dimensioni simili.
 # Le variabili che permettono di distinguere meglio le tre specie sono 
 # la lunghezza e la larghezza dei petali.
 ```

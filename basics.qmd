@@ -5,9 +5,9 @@
 source("_common.R")
 ```
 
-In questa prima parte inizieremo a prendere dimestichezza con le basi di R:
+In questa prima parte inizierai a prendere dimestichezza con le basi di R:
 
-- nel primo capitolo partiremo dall'interazione con la console fino a scrivere ed eseguire il nostro primo script;
-- nel secondo capitolo ci concentreremo sull'uso delle diverse tipologie di oggetti di R;
-- nel terzo capitolo importeremo dati da file esterni;
-- nel quarto capitolo inizieremo a fare i primi esperimenti di trasformazione dei dati con la libreria `data.table`.
+- nel primo capitolo partirai dall'interazione con la console fino a scrivere ed eseguire il nostro primo script;
+- nel secondo capitolo apprenderai l'uso delle diverse tipologie di oggetti di R;
+- nel terzo capitolo importerai dati da file esterni;
+- nel quarto capitolo inizierai a fare i primi esperimenti di trasformazione dei dati con la libreria `data.table`.

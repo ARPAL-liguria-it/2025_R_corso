@@ -24,7 +24,17 @@ book:
       chapters: 
         - start.qmd
         - objects.qmd
-        - transform.qmd
+    # - part: transform.qmd    
+    #   chapters: 
+        - datatable.qmd
+        # - join.qmd
+    # - part: plots.qmd
+    #   chapters: 
+    #     - ggplot2.qmd
+    # - part: report.qmd
+    #   chapters: 
+    #     - quarto.qmd
+    #     - dynamic.qmd
 format:
   html:
     theme: cosmo
