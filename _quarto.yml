@@ -3,7 +3,14 @@ project:
 
 book:
   title: "Corso di R: dalle basi alla prima analisi dei dati"
-  author: "Andrea Bisignano, Andrea Bazzano"
+  author: 
+    # - name: Andrea Bisignano
+    #   affiliation: [arpal]
+    - name: Andrea Bazzano
+      orcid: 0000-0002-9353-3919
+      affiliation: 
+      - id: arpal
+        name: Agenzia regionale per la protezione dell'ambiente ligure (ARPAL)
   reader-mode: true
   favicon: favicon.png
   site-url: missing
@@ -13,7 +20,6 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    
     - part: basics.qmd
       chapters: 
         - start.qmd
