@@ -11,3 +11,9 @@ knitr::opts_chunk$set(
 )
 
 ggplot2::theme_set(ggplot2::theme_gray(12))
+
+library("data.table")
+library("ggplot2")
+library("gt")
+library("glue")
+library("readxl")
