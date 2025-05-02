@@ -27,6 +27,7 @@ book:
     # - part: transform.qmd    
     #   chapters: 
         - datatable.qmd
+        - reshape.qmd
         # - join.qmd
     # - part: plots.qmd
     #   chapters: 

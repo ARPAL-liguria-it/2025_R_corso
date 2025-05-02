@@ -1,4 +1,4 @@
-# Manipolare i dati con `data.table` {#sec-transform}
+# Manipolare i dati con `data.table` {#sec-datatable}
 
 ```{r}
 #| echo: false
@@ -293,7 +293,7 @@ pm_genova[, .(media_giornaliera = mean(valore, na.rm = TRUE)),
 
 ::: {.callout-tip}
 
-## Per i più affamati
+## Per i più golosi
 
 Con il comando `vignette("datatable-intro")` è possible avere informazioni aggiuntive sull'utilizzo di base del pacchetto `data.table`.
 
@@ -328,4 +328,11 @@ pm_genova[inquinante == "PM2,5",
             media_annuale > 10]
 ```
 ::::
+
+```{r}
+#| echo: false
+#| output: false
+fwrite(pm_genova, file = "data/pm_genova_int1.csv.gz", compress = "gzip")
+```
+
 

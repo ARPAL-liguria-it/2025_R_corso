@@ -1,0 +1,180 @@
+# Cambiare la forma ai dati {#sec-reshape}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## La forma dei dati {#sec-shapes}
+
+I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.
+
+Questa tipologia di dati possono essere organizzati in due differenti formati:
+
+-   *wide*: con il termine largo si intende dati organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
+
+    ```{r}
+    campioni_wide <- data.table(
+    codice_campione = c("22201/24", "22248/24", "22311/24"),
+    data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10")),
+    cadmio = c(0.05, 0.06, 0.04),
+    piombo = c(0.1, 0.15, 0.12)
+    )
+    campioni_wide
+    ```
+
+    Questo formato risulta comodo per la visualizzazione dei dati ma spesso non è adatto per l'archiviazione efficiente, la creazione dei grafici o l'applicazione di alcune metodologie statistiche.
+
+-   *long*: con il termine lungo si intende dati organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
+
+    ```{r}
+    campioni_long <- data.table(
+      codice_campione = c("22201/24", "22248/24", "22311/24") |> 
+        rep(each = 2),
+      data_campionamento = c("2024-01-15", "2024-02-20", "2024-03-10") |> 
+        rep(each = 2) |> 
+        as.IDate(),
+      tipo_misura = c("cadmio", "piombo") |> 
+        rep(times = 3),
+      valore_misura = c(0.05, 0.10, 0.06, 0.15, 0.04, 0.12)
+    )
+    campioni_long
+    ```
+
+    È un formato comodo per l'archiviazione dei dati, la creazione di grafici e l'applicazione di alcune metodologie statistiche, tuttavia può risultare scomodo per visualizzare i dati.
+
+Passare dal formato *wide* a *long* richiede l'uso della funzione `melt()`, viceversa il passaggio dal formato *long* a *wide* necessità della funzione `dcast()`.
+
+## La funzione `melt()`: da wide a long
+
+La funzione `melt()` scioglie i dati in formato *wide* portandoli in formato *long* e utilizza la seguente sintassi:
+
+```{r}
+#| eval: false
+#| output: false
+melt(data, id.vars, measure.vars, variable.name = "variable", value.name = "value")
+```
+
+-   `data`: una `data.table`;
+-   `id.vars`: le colonne da mantenere fisse e che svolgono il ruolo di identificatori dell'entità osservata;
+-   `measure.vars`: le colonne da "sciogliere" e che contengono le misure;
+-   `variable.name`: il nome della colonna che conterrà le variabili "sciolte" e quindi la tipologia di misura. Il valore di *default* è `variable`;
+-   `value.name`: il nome della colonna che conterrà i valori della misura. Il valore di *default* è `value`.
+
+Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare `id.vars` e `measure.vars`. In caso contrario la funzione `melt()` imposterà tutte le colonne non numeriche o di tipo logico come `id.vars` e le restanti colonne come `measure.vars`. 
+
+Proviamo a trasformare `campioni_wide` in formato *long*:
+
+```{r}
+campioni_wide |> 
+  melt(id.vars = c("codice_campione", "data_campionamento"),
+       measure.vars = c("cadmio", "piombo"),
+       variable.name = "tipo_misura",
+       value.name = "valore_misura") |> 
+  _[order(codice_campione)] # ordina per codice campione
+```
+
+La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: la prima relativa alla tipologia di misura, identificata con il nome specificato in `variable.name` e una seconda relativa al valore della misura, identificata con il nome specificato in `value.name`. Le informazioni contenute in `id.vars` sono ripetute per il numero totale di misure effettuate per ogni entità osservata.
+
+## La funzione `dcast()`: da long a wide
+
+### Significato e sintassi di base {#sec-dcast-base}
+
+La funzione `dcast()` proietta i dati in formato *long* distribuendone il contenuto su un più colonne, per ottenere un formato *wide*. In generale, si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`: l'antitesi di `dcast()`.
+
+La complessità e potenza dell'operazione di proiezione è testimoniata dalla sintassi della funzione `dcast()`:
+
+```{r}
+#| eval: false
+#| output: false
+dcast(data, formula, fun.aggregate = NULL, value.var = NULL, fill = NULL)
+```
+
+- `data`: una `data.table`;
+- `formula`: la formula che indica come distribuire le righe e colonne, es. `id ~ variable` significa che la colonna `id` identificherà le righe, e quindi le entità osservate, mentre i valori univoci di `variable` diventeranno altrettante colonne;
+- `fun.aggregate`: definisce come aggregare i valori nel caso di più misure effettuate per la stessa tipologia di misura, sulla medesima entità osservata; 
+- `value.var`: il nome della colonna con i valori da distribuire;
+- `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
+
+Proviamo a trasformare `campioni_long` in formato *wide*:
+
+```{r}
+campioni_long |> 
+  dcast(codice_campione + data_campionamento ~ tipo_misura,
+        value.var = "valore_misura") |>
+  _[order(codice_campione)] # ordina per codice campione
+```
+
+### Misure multiple e misure mancanti
+
+Immaginiamo che a `campioni_long` si debbano aggiungere i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, ma sono state effettuate tre misure indipendenti della misurazione di zinco.
+
+```{r}
+nuovi_dati <- data.table(
+  codice_campione = rep("22345/24", 4),
+  data_campionamento = rep("2024-04-01", 4) |> as.IDate(),
+  tipo_misura = c("cadmio", rep("zinco", 3)),
+  valore_misura = c(0.07, 0.28, 0.32, 0.30)
+  )
+campioni_long <- rbind(campioni_long,
+                       nuovi_dati)
+```
+
+Se riprovassimo a proiettare i dati come fatto nella @sec-dcast-base, otterremo:
+```{r}
+#| echo: false
+campioni_long |> 
+  dcast(codice_campione + data_campionamento ~ tipo_misura,
+        value.var = "valore_misura") |>
+  _[order(codice_campione)] # ordina per codice campione
+```
+
+la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, si limita a contare il numero di misure per ogni unità e ogni tipologia di misura.
+
+Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, possiamo scrivere:
+```{r}
+campioni_long |> 
+  dcast(codice_campione + data_campionamento ~ tipo_misura,
+        value.var = "valore_misura",
+        fun.aggregate = mean,
+        fill = "NA") |>
+  _[order(codice_campione)] # ordina per codice campione
+```
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Utilizzando il dataset `pm_genova`:
+
+- identificare se il dataset è in formato *wide* o *long*;
+- identificare l'enità osservata;
+- identificare la o le colonne con la tipologia di misura e il relativo valore;
+- convertire il dataset in formato *wide* o *long* a seconda di come è stato fornito;
+- valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio.
+
+
+## Soluzione
+
+- Ogni riga del dataset si riferisce a una misura, quindi è in formato *long*;
+- l'entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;
+- la tipologia di misura è identificata dalla colonna `inquinante` e i relativi valori sono salvati nelle colonna `valore`, `valido`, `validato_cor` e `certificato`;
+- la presenza di valori duplicati è attestata dall'utilizzo della funzione `dcast()` senza specificare l'argomento di `fun.aggregate` nel codice riportato nel punto successivo;
+- la conversione in formato `wide`, mediando i risultati delle misure ripetute, può essere ottenuta con:
+
+```{r}
+#| echo: false
+pm_genova <- fread("data/pm_genova_int1.csv.gz")
+```
+
+
+```{r}
+dcast(
+  pm_genova,
+  codice_europeo + inizio + fine + metodo + udm ~ 
+  inquinante,
+  fun.aggregate = mean,
+  value.var = c("valore", "valido", "validato_cor", "certificato")
+  )
+```
+::::
