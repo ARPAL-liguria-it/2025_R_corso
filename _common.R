@@ -20,6 +20,7 @@ library(readxl)
 
 # function to reproduce the dataset obtained at the end of datatable.qmd
 pm_genova_int1 <- function(data = "data/2025-04-24_pm1025_ambiente_liguria.csv.gz"){
+  stopifnot(file.exists(data))
   library(data.table)
   
   data_load <- fread(data,
@@ -54,4 +55,16 @@ pm_genova_int1 <- function(data = "data/2025-04-24_pm1025_ambiente_liguria.csv.g
   )]
   
   data_load
+}
+
+# function to reproduce the dataset obtained at the end of datatable.qmd
+stazioni_int1 <- function(data = "data/2025-04-24_anagrafica_stazioni.xlsx",
+                          tab = "Tabella 1") {
+  stopifnot(file.exists(data))
+  library(readxl)
+  library(data.table)
+  
+  read_excel("data/2025-04-24_anagrafica_stazioni.xlsx",
+             sheet = "Tabella 1") |> 
+    setDT()
 }
