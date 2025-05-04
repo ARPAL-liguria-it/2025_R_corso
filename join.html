@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bisignano, Andrea Bazzano">
 
-<title>1&nbsp; Introduzione – Corso di R: dalle basi alla prima analisi dei dati</title>
+<title>6&nbsp; Unire diverse fonti di dati – Corso di R: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./basics.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./reshape.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -110,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -122,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -163,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span></a>
   </div>
 </li>
@@ -202,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./join.html" class="sidebar-item-text sidebar-link">
+  <a href="./join.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
@@ -218,23 +246,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#quanta-fatica" id="toc-quanta-fatica" class="nav-link active" data-scroll-target="#quanta-fatica"><span class="header-section-number">1.1</span> Quanta fatica</a></li>
-  <li><a href="#prerequisiti" id="toc-prerequisiti" class="nav-link" data-scroll-target="#prerequisiti"><span class="header-section-number">1.2</span> Prerequisiti</a>
+  <li><a href="#tipologie-di-unioni" id="toc-tipologie-di-unioni" class="nav-link active" data-scroll-target="#tipologie-di-unioni"><span class="header-section-number">6.1</span> Tipologie di unioni</a>
   <ul class="collapse">
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">1.2.1</span> R</a></li>
-  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">1.2.2</span> RStudio</a></li>
-  <li><a href="#i-pacchetti-di-r" id="toc-i-pacchetti-di-r" class="nav-link" data-scroll-target="#i-pacchetti-di-r"><span class="header-section-number">1.2.3</span> I pacchetti di R</a></li>
+  <li><a href="#sec-inner" id="toc-sec-inner" class="nav-link" data-scroll-target="#sec-inner"><span class="header-section-number">6.1.1</span> Inner join</a></li>
+  <li><a href="#sec-left" id="toc-sec-left" class="nav-link" data-scroll-target="#sec-left"><span class="header-section-number">6.1.2</span> Right e left join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">6.1.3</span> Full join</a></li>
   </ul></li>
-  <li><a href="#per-approfondire" id="toc-per-approfondire" class="nav-link" data-scroll-target="#per-approfondire"><span class="header-section-number">1.3</span> Per approfondire</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="missing/edit/main/intro.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="missing/edit/main/join.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span></h1>
+<h1 class="title"><span id="sec-join" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></h1>
 </div>
 
 
@@ -251,90 +277,178 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.</p>
-<p>Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.</p>
-<p>Durante il proseguo del corso imparerai a:</p>
-<ul>
-<li>chiedere aiuto;</li>
-<li>strutturare un documento alternando testo e codice per rendere le analisi riproducibili;</li>
-<li>importare dati da file esterni all’interno di R;</li>
-<li>immagazzinare, consultare e modificare i dati all’interno delle diverse tipologie di oggetti di R;</li>
-<li>trasformare e combinare i dati;</li>
-<li>utilizzare i nostri dati per ottenere informazioni statistiche di base;</li>
-<li>creare semplici grafici.</li>
-</ul>
-<section id="quanta-fatica" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="quanta-fatica"><span class="header-section-number">1.1</span> Quanta fatica</h2>
-<p>L’utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.</p>
-<p>Inoltre, imparare un linguaggio di programmazione apre numerose porte e può semplificare il lavoro quotidiano in molti ambiti. Per esempio, con R è possibile realizzare:</p>
-<ul>
-<li>documenti dinamici parametrizzati;</li>
-<li>applicazioni interattive accessibili via browser;</li>
-<li>interfacce di programmazione (API) per l’esecuzione di funzioni da remoto.</li>
-</ul>
-</section>
-<section id="prerequisiti" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisiti"><span class="header-section-number">1.2</span> Prerequisiti</h2>
-<p>Il corso è aperto a chiunque abbia una certa dimestichezza con il computer e una conoscenza di base della logica. Il candidato ideale ha già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è necessaria, ma sicuramente rappresenta un vantaggio.</p>
-<p>Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti <code>data.table</code>, <code>readxl</code>, <code>ggplot2</code>, <code>glue</code> e <code>gt</code>.</p>
-<section id="r" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="r"><span class="header-section-number">1.2.1</span> R</h3>
-<p>R può essere scaricato dal <em>Comprensive R Archive Network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: se si intende usare R regolarmente, è consigliabile mantenere il software aggiornato.</p>
-<p>R è un software libero, distribuito sotto una combinazione di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.</p>
-</section>
-<section id="rstudio" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">1.2.2</span> RStudio</h3>
-<p>RStudio è l’ambiente di sviluppo integrato (IDE) più diffuso per R: permette la gestione completa di un progetto, la connessione a sorgenti dati esterne come database e l’integrazione con sistemi di gestione delle versioni come <code>git</code>. Può essere scaricato dal sito ufficiale di <a href="https://posit.co/download/rstudio-desktop/">Posit</a>.</p>
-<p>Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.</p>
+<section id="tipologie-di-unioni" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">6.1</span> Tipologie di unioni</h2>
+<p>Quando lavoriamo con dati, spesso ci troviamo nella situazione di dover unire due insiemi di dati in base a una o più colonne chiave. Questo processo si chiama <em>join</em> o <em>merge</em> ed è fondamentale per combinare informazioni provenienti da fonti diverse.</p>
+<p>Per esempio, possiamo avere due <code>data.table</code>: - la prima si chiama <code>misure</code> e contiene le misure analitiche svolte su una serie di campioni; - la seconda si chiama <code>indirizzi</code> e contiene le informazioni relative al punto di prelievo. Per mettere in relazione le due tabelle serve una colonna in comune, nell’esempio mostrato sarà quella relativa al codice del campione:</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schermata di Rstudio.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rstudio-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova il pannello dedicato al codice sorgente, al suo fianco il pannello dedicato agli ambienti e allo storico. In basso, da sinistra a destra, si trova la console e il pannello dedicato agli output."><img src="images/rstudio.png" class="img-fluid figure-img" alt="Schermata di Rstudio."></a>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>, <span class="st">"22312/24"</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">as.IDate</span>(<span class="fu">c</span>(<span class="st">"2024-01-15"</span>, <span class="st">"2024-02-20"</span>, <span class="st">"2024-03-10"</span>, <span class="st">"2024-03-10"</span>)),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadmio =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">piombo =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.12</span>, <span class="fl">0.11</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">arsenico =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="cn">NA</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>indirizzi <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22311/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22412/24"</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">comune =</span> <span class="fu">c</span>(<span class="st">"Paperopoli"</span>, <span class="st">"Topolinia"</span>, <span class="st">"Topolinia"</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">provincia =</span> <span class="fu">c</span>(<span class="st">"SV"</span>, <span class="st">"IM"</span>, <span class="st">"IM"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">via =</span> <span class="fu">c</span>(<span class="st">"corso Papero"</span>, <span class="st">"via de Topis"</span>, <span class="st">"via Ratti"</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">civico =</span> <span class="fu">c</span>(<span class="st">"12"</span>, <span class="st">"11/10"</span>, <span class="st">"8R"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova il pannello dedicato al codice sorgente, al suo fianco il pannello dedicato agli ambienti e allo storico. In basso, da sinistra a destra, si trova la console e il pannello dedicato agli output.
+<p>Non tutti i codici dei campioni presenti nella tabella <code>misure</code> compaiono anche nella tabella <code>indirizzi</code>. Viceversa, non tutti i codici dei campioni per cui è noto l’indirizzo risultano associati a delle misure. Per poter procedere con l’operazione di <em>join</em> è necessario capire cosa fare con i dati per cui non c’è corrispondenza tra le due tabelle: questa scelta definisce le diverse tipologie di <em>join</em>.</p>
+<section id="sec-inner" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">6.1.1</span> Inner join</h3>
+<p>Se siamo interessati solo ai campioni per cui siano disponibili delle misure e sia noto l’indirizzo del punto di prelievo, effettueremo un <em>inner join</em>. In termini insiemistici equivale all’intersezione di due insiemi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> (<span class="math inline">\(A \cap B\)</span>), come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
+<div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/inner_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;6.1: Inner join (A \cap B): vengono restituite solo le righe di A che compaiono anche in B."><img src="images/inner_join.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): vengono restituite solo le righe di A che compaiono anche in B.
 </figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>L’uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare R, ma ne semplifica notevolmente l’impiego. Altri IDE comunemente utilizzati con R sono Visual Studio Code, Vim ed Emacs.</p>
-</section>
-<section id="i-pacchetti-di-r" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.3</span> I pacchetti di R</h3>
-<p>Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>. Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.</p>
-<p>I pacchetti si installano in R con il comando:</p>
+<p>Con <code>data.table</code> la sintassi è piuttosto semplice:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacchetto"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NULL</span>] <span class="co"># assegno NULL ai record senza corrispondenza</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      codice data_campionamento cadmio piombo arsenico     comune provincia</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;IDat&gt;  &lt;num&gt;  &lt;num&gt;    &lt;num&gt;     &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 22311/24         2024-03-10   0.04   0.12     0.05 Paperopoli        SV</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 22248/24         2024-02-20   0.06   0.15     0.09  Topolinia        IM</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             via civico</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: corso Papero     12</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: via de Topis  11/10</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Durante il corso utilizzeremo alcuni pacchetti molto diffusi:</p>
-<ul>
-<li><code>data.table</code>: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;</li>
-<li><code>ggplot2</code>: il pacchetto di riferimento per la creazione di grafici;</li>
-<li><code>readxl</code>: utile per importare dati da fogli Excel;</li>
-<li><code>glue</code>: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;</li>
-<li><code>gt</code>: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;</li>
-<li><code>R.utils</code>: lo utilizzeremo solo per importare dati da file gz.</li>
-</ul>
-<p>Installiamo i pacchetti richiesti racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
+<p>Nel caso in cui la colonna chiave abbia nomi diversi nelle due tabelle da unire, è possibile passare all’argomento <code>on</code> un vettore con i nomi delle colonne nelle due tabelle.</p>
+</section>
+<section id="sec-left" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">6.1.2</span> Right e left join</h3>
+<p>Se siamo interessati a tutti i campioni che dispongono di un indirizzo e a questi aggiungere, se disponibile, l’informazione sulle misure, opereremo un <em>right join</em>. Da un punto di vista insiemistico, immaginando che l’insieme <span class="math inline">\(B\)</span> sia quello contenente gli indirizzi e il <span class="math inline">\(A\)</span> quello dedicato alle misure, equivale a scrivere l’unione di <span class="math inline">\(B\)</span> con l’intersezione di <span class="math inline">\(A\)</span> con <span class="math inline">\(B\)</span> (<span class="math inline">\(B\cup(A\cap B)\)</span>), come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<div id="fig-right" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/right_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;6.2: Right join (B \cup (A \cap B)): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili."><img src="images/right_join.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</span>): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili.
+</figcaption>
+</figure>
+</div>
+<p>Ecco come si fa:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"glue"</span>, <span class="st">"gt"</span>, <span class="st">"R.utils"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NA</span>] <span class="co"># assegno NA ai record senza corrispondenza</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      codice data_campionamento cadmio piombo arsenico     comune provincia</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;IDat&gt;  &lt;num&gt;  &lt;num&gt;    &lt;num&gt;     &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 22311/24         2024-03-10   0.04   0.12     0.05 Paperopoli        SV</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 22248/24         2024-02-20   0.06   0.15     0.09  Topolinia        IM</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 22412/24               &lt;NA&gt;     NA     NA       NA  Topolinia        IM</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             via civico</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: corso Papero     12</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: via de Topis  11/10</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    via Ratti     8R</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.</p>
+<p>È importante ricordare che le informazioni contenute nella tabella tra le parentesi quadre sono conservate integralmente, mentre le informazioni contenute nella tabella fuori dalle parentesi sono recuperate solo in caso di corrispondenza, altrimenti saranno riempite con <code>NA</code>.</p>
+<p>Nel caso si voglia effettuare un <em>left join</em>, cioè mostrare tutte le misure effettuate, indicando l’indirizzo del punto di prelievo laddove disponibile, è sufficiente invertire le due tabelle all’interno dell’espressione:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>indirizzi[misure, <span class="co"># le tabelle</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NA</span>] <span class="co"># assegno NA ai record senza corrispondenza</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      codice     comune provincia          via civico data_campionamento cadmio</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;     &lt;char&gt;    &lt;char&gt;       &lt;char&gt; &lt;char&gt;             &lt;IDat&gt;  &lt;num&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 22201/24       &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;         2024-01-15   0.05</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 22248/24  Topolinia        IM via de Topis  11/10         2024-02-20   0.06</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 22311/24 Paperopoli        SV corso Papero     12         2024-03-10   0.04</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 22312/24       &lt;NA&gt;      &lt;NA&gt;         &lt;NA&gt;   &lt;NA&gt;         2024-03-10   0.06</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    piombo arsenico</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;num&gt;    &lt;num&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:   0.10     0.08</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:   0.15     0.09</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:   0.12     0.05</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:   0.11       NA</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Per i più frettolosi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il valore predefinito dell’argomento <code>nomatch</code> è <code>NA</code>: possiamo quindi ometterlo quando facciamo <em>right</em> e <em>left join</em>.</p>
+</div>
+</div>
 </section>
-</section>
-<section id="per-approfondire" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="per-approfondire"><span class="header-section-number">1.3</span> Per approfondire</h2>
-<p>Se il materiale presentato nel corso non fosse sufficiente o non rispondesse pienamente alle vostre esigenze, in rete è possibile trovare numerosi testi gratuiti di alta qualità. Tra questi si segnalano:</p>
-<ul>
-<li><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> scritto da Garrett Grolemund;</li>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science</a> scritto da Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund;</li>
-<li><a href="https://adv-r.hadley.nz/">Advanced R</a> scritto da Hadley Wickham.</li>
-</ul>
+<section id="full-join" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">6.1.3</span> Full join</h3>
+<p>Se siamo interessati a tutti i valori presenti nelle due tabelle, messi in relazione quando possibile o sostituiti da <code>NA</code> in caso di assenza di corrispondenza, possiamo ricorrere a un <em>full join</em>. In termini insiemistici equivale all’unione di due insiemi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> (<span class="math inline">\(A \cup B\)</span>), come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
+<div id="fig-full" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/full_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;6.3: Full join (A \cup B): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano NA."><img src="images/full_join.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.3: Full join (<span class="math inline">\(A \cup B\)</span>): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano <code>NA</code>.
+</figcaption>
+</figure>
+</div>
+<p>La sintassi usata per questo caso è differente dalle precedenti e viene utilizzata la funzione <code>merge()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(misure, indirizzi, <span class="at">by =</span> <span class="st">"codice"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;codice&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      codice data_campionamento cadmio piombo arsenico     comune provincia</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt;             &lt;IDat&gt;  &lt;num&gt;  &lt;num&gt;    &lt;num&gt;     &lt;char&gt;    &lt;char&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: 22201/24         2024-01-15   0.05   0.10     0.08       &lt;NA&gt;      &lt;NA&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: 22248/24         2024-02-20   0.06   0.15     0.09  Topolinia        IM</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: 22311/24         2024-03-10   0.04   0.12     0.05 Paperopoli        SV</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: 22312/24         2024-03-10   0.06   0.11       NA       &lt;NA&gt;      &lt;NA&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: 22412/24               &lt;NA&gt;     NA     NA       NA  Topolinia        IM</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             via civico</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:         &lt;NA&gt;   &lt;NA&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: via de Topis  11/10</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: corso Papero     12</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:         &lt;NA&gt;   &lt;NA&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:    via Ratti     8R</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Per i più golosi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con il comando <code>vignette("datatable-joins")</code> è possible avere informazioni aggiuntive sull’unione di serie di dati con il pacchetto <code>data.table</code>.</p>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -739,18 +853,15 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Prefazione">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefazione</span>
+      <a href="./reshape.html" class="pagination-link" aria-label="Cambiare la forma dei dati">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./basics.html" class="pagination-link" aria-label="Le basi">
-        <span class="nav-page-text">Le basi</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/intro.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/join.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
