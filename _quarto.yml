@@ -28,7 +28,7 @@ book:
     #   chapters: 
         - datatable.qmd
         - reshape.qmd
-        # - join.qmd
+        - join.qmd
     # - part: plots.qmd
     #   chapters: 
     #     - ggplot2.qmd
