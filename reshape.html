@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bisignano, Andrea Bazzano">
 
-<title>5&nbsp; Cambiare la forma ai dati – Corso di R: dalle basi alla prima analisi dei dati</title>
+<title>5&nbsp; Cambiare la forma dei dati – Corso di R: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma ai dati</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma ai dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,9 +221,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma ai dati</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-reshape" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma ai dati</span></span></h1>
+<h1 class="title"><span id="sec-reshape" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></h1>
 </div>
 
 
@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #&gt; 3:        22311/24         2024-03-10      1      1     0
 #&gt; 4:        22345/24         2024-04-01      1      0     3</code></pre>
 </div>
-<p>la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, si limita a contare il numero di misure per ogni unità e ogni tipologia di misura.</p>
+<p>la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.</p>
 <p>Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato <code>NA</code> per le misure mancanti, possiamo scrivere:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="sc">|&gt;</span> </span>
@@ -403,6 +403,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        22311/24         2024-03-10   0.04   0.12    NA</span></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:        22345/24         2024-04-01   0.07     NA   0.3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Per i più golosi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con il comando <code>vignette("datatable-reshape")</code> è possible avere informazioni aggiuntive sulla modifica della forma dei dati con il pacchetto <code>data.table</code>.</p>
+</div>
+</div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
 <div class="tab-content">
@@ -413,17 +426,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>identificare l’enità osservata;</li>
 <li>identificare la o le colonne con la tipologia di misura e il relativo valore;</li>
 <li>convertire il dataset in formato <em>wide</em> o <em>long</em> a seconda di come è stato fornito;</li>
-<li>valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio.</li>
+<li>valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio;</li>
+<li>convertire il dataset in formato <em>wide</em> o <em>long</em>, a seconda di come è stato fornito, evitando operazioni di aggregazione sui valori.</li>
 </ul>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ul>
-<li>Ogni riga del dataset si riferisce a una misura, quindi è in formato <em>long</em>;</li>
-<li>l’entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;</li>
-<li>la tipologia di misura è identificata dalla colonna <code>inquinante</code> e i relativi valori sono salvati nelle colonna <code>valore</code>, <code>valido</code>, <code>validato_cor</code> e <code>certificato</code>;</li>
-<li>la presenza di valori duplicati è attestata dall’utilizzo della funzione <code>dcast()</code> senza specificare l’argomento di <code>fun.aggregate</code> nel codice riportato nel punto successivo;</li>
-<li>la conversione in formato <code>wide</code>, mediando i risultati delle misure ripetute, può essere ottenuta con:</li>
-</ul>
+<li><p>Ogni riga del dataset si riferisce a una misura, quindi è in formato <em>long</em>;</p></li>
+<li><p>l’entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;</p></li>
+<li><p>la tipologia di misura è identificata dalla colonna <code>inquinante</code> e i relativi valori sono salvati nelle colonna <code>valore</code>, <code>valido</code>, <code>validato_cor</code> e <code>certificato</code>;</p></li>
+<li><p>la presenza di valori duplicati è attestata dall’utilizzo della funzione <code>dcast()</code> senza specificare l’argomento di <code>fun.aggregate</code> nel codice riportato nel punto successivo;</p></li>
+<li><p>la conversione in formato <em>wide</em>, mediando i risultati delle misure ripetute, può essere ottenuta con:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  pm_genova,</span>
@@ -486,6 +499,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                  1               NA                NA</span></span>
 <span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                  1               NA                NA</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>sarà necessario riconvertire i valori nelle colonne <code>valido</code>, <code>validato_cor</code> e <code>certificato</code> in valori logici.</p>
+<p>Un’alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diventa_logico <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  lunghezza <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(lunghezza <span class="sc">==</span> <span class="dv">1</span>, x, <span class="cn">NA</span>)}</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>utilizzo la funzione all’interno di una lista di <code>fun.aggregate</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    pm_genova,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    codice_europeo <span class="sc">+</span> inizio <span class="sc">+</span> fine <span class="sc">+</span> metodo <span class="sc">+</span> udm <span class="sc">~</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        inquinante,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun.aggregate =</span> <span class="fu">list</span>(mean, diventa_logico, diventa_logico, diventa_logico),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="fu">list</span>(<span class="st">"valore"</span>, <span class="st">"valido"</span>, <span class="st">"validato_cor"</span>, <span class="st">"certificato"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;codice_europeo, inizio, fine, metodo, udm&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        codice_europeo              inizio                fine</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;              &lt;POSc&gt;              &lt;POSc&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:                2024-01-01 00:00:00 2024-01-01 01:00:00</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:                2024-01-01 01:00:00 2024-01-01 02:00:00</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:                2024-01-01 02:00:00 2024-01-01 03:00:00</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:                2024-01-01 03:00:00 2024-01-01 04:00:00</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:                2024-01-01 04:00:00 2024-01-01 05:00:00</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                       </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:        IT2339A 2024-12-31 19:00:00 2024-12-31 20:00:00</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:        IT2339A 2024-12-31 20:00:00 2024-12-31 21:00:00</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:        IT2339A 2024-12-31 21:00:00 2024-12-31 22:00:00</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:        IT2339A 2024-12-31 22:00:00 2024-12-31 23:00:00</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:        IT2339A 2024-12-31 23:00:00 2025-01-01 00:00:00</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                             metodo    udm</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                             &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                   </span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:                                  CAMP. CONTINUO, RAGGI BETA  µg/m³</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:                                  CAMP. CONTINUO, RAGGI BETA  µg/m³</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:                                  CAMP. CONTINUO, RAGGI BETA  µg/m³</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                                  CAMP. CONTINUO, RAGGI BETA  µg/m³</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                                  CAMP. CONTINUO, RAGGI BETA  µg/m³</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        valore_mean_PM10 valore_mean_PM2,5 valido_diventa_logico_PM10</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                   &lt;num&gt;             &lt;num&gt;                     &lt;lgcl&gt;</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:            32.70             27.25                         NA</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:            15.85             14.60                         NA</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:            15.75             14.25                         NA</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:            14.10             11.35                         NA</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:            16.00             11.35                         NA</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                              </span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:            31.60             15.70                       TRUE</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:            43.50             24.80                       TRUE</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:            47.20             33.00                       TRUE</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:            32.90             27.00                       TRUE</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:            48.50             37.70                       TRUE</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        valido_diventa_logico_PM2,5 validato_cor_diventa_logico_PM10</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                             &lt;lgcl&gt;                           &lt;lgcl&gt;</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:                          NA                               NA</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:                          NA                               NA</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:                          NA                               NA</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:                          NA                               NA</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:                          NA                               NA</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                             </span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:                        TRUE                             TRUE</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:                        TRUE                             TRUE</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:                        TRUE                             TRUE</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                        TRUE                             TRUE</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                        TRUE                             TRUE</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        validato_cor_diventa_logico_PM2,5 certificato_diventa_logico_PM10</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                   &lt;lgcl&gt;                          &lt;lgcl&gt;</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:                                NA                              NA</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:                                NA                              NA</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:                                NA                              NA</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:                                NA                              NA</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:                                NA                              NA</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                  </span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:                              TRUE                              NA</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:                              TRUE                              NA</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:                              TRUE                              NA</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                              TRUE                              NA</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                              TRUE                              NA</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        certificato_diventa_logico_PM2,5</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                  &lt;lgcl&gt;</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:                               NA</span></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:                               NA</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:                               NA</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:                               NA</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:                               NA</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                 </span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66338:                               NA</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66339:                               NA</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66340:                               NA</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                               NA</span></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                               NA</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code>Anche a `value.var` viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in `?dcast`.</code></pre>
+<ul>
+<li><p>per eseguire la conversione in formato <em>wide</em> evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di <code>codice_europeo</code>, <code>inizio</code>, <code>fine</code> e <code>metodo</code> e <code>inquinante</code> uguali.</p>
+<p>Possiamo fare così:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'indice id aumenta da 1 a N,</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dove N è il numero di righe con codice_europeo, inizio, fine, metodo e</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inquinante uguali</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>pm_genova[, id <span class="sc">:</span><span class="er">=</span> <span class="fu">seq_len</span>(.N), </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inizio, fine, metodo, inquinante)]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    pm_genova,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    id <span class="sc">+</span> codice_europeo <span class="sc">+</span> inizio <span class="sc">+</span> fine <span class="sc">+</span> metodo <span class="sc">+</span> udm <span class="sc">~</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    inquinante,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value.var =</span> <span class="fu">c</span>(<span class="st">"valore"</span>, <span class="st">"valido"</span>, <span class="st">"validato_cor"</span>, <span class="st">"certificato"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;id, codice_europeo, inizio, fine, metodo, udm&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           id codice_europeo              inizio                fine</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;int&gt;         &lt;char&gt;              &lt;POSc&gt;              &lt;POSc&gt;</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:     1                2024-01-01 00:00:00 2024-01-01 01:00:00</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:     1                2024-01-01 01:00:00 2024-01-01 02:00:00</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:     1                2024-01-01 02:00:00 2024-01-01 03:00:00</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:     1                2024-01-01 03:00:00 2024-01-01 04:00:00</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:     1                2024-01-01 04:00:00 2024-01-01 05:00:00</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                             </span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66543:     2                2024-01-09 08:00:00 2024-01-09 09:00:00</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66544:     2                2024-01-09 09:00:00 2024-01-09 10:00:00</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66545:     2                2024-01-09 10:00:00 2024-01-09 11:00:00</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66546:     2                2024-01-09 11:00:00 2024-01-09 12:00:00</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66547:     2                2024-01-09 12:00:00 2024-01-09 13:00:00</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                             metodo    udm</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                                             &lt;char&gt; &lt;char&gt;</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                   </span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66543: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66544: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66545: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66546: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66547: Contatore ottico particelle + conversione in concentrazione  µg/m³</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        valore_PM10 valore_PM2,5 valido_PM10 valido_PM2,5 validato_cor_PM10</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;num&gt;        &lt;num&gt;      &lt;lgcl&gt;       &lt;lgcl&gt;            &lt;lgcl&gt;</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:        24.9         22.2        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:        16.0         15.0        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:        15.2         14.0        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:        13.4         11.3        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:        15.1         11.5        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                                    </span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66543:        16.0         13.4        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66544:        13.3         10.8        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66545:        11.6          9.1        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66546:        10.8          8.1        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66547:        10.7          7.8        TRUE         TRUE              TRUE</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        validato_cor_PM2,5 certificato_PM10 certificato_PM2,5</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                    &lt;lgcl&gt;           &lt;lgcl&gt;            &lt;lgcl&gt;</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:               TRUE               NA                NA</span></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:               TRUE               NA                NA</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:               TRUE               NA                NA</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:               TRUE               NA                NA</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:               TRUE               NA                NA</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                                      </span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66543:               TRUE               NA                NA</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66544:               TRUE               NA                NA</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66545:               TRUE               NA                NA</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66546:               TRUE               NA                NA</span></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66547:               TRUE               NA                NA</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
 </div>
 </div>
 </div>
