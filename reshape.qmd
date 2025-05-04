@@ -61,7 +61,7 @@ melt(data, id.vars, measure.vars, variable.name = "variable", value.name = "valu
 -   `variable.name`: il nome della colonna che conterrà le variabili "sciolte" e quindi la tipologia di misura. Il valore di *default* è `variable`;
 -   `value.name`: il nome della colonna che conterrà i valori della misura. Il valore di *default* è `value`.
 
-Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare `id.vars` e `measure.vars`. In caso contrario la funzione `melt()` imposterà tutte le colonne non numeriche o di tipo logico come `id.vars` e le restanti colonne come `measure.vars`. 
+Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare `id.vars` e `measure.vars`. In caso contrario la funzione `melt()` imposterà tutte le colonne non numeriche o di tipo logico come `id.vars` e le restanti colonne come `measure.vars`.
 
 Proviamo a trasformare `campioni_wide` in formato *long*:
 
@@ -90,11 +90,11 @@ La complessità e potenza dell'operazione di proiezione è testimoniata dalla si
 dcast(data, formula, fun.aggregate = NULL, value.var = NULL, fill = NULL)
 ```
 
-- `data`: una `data.table`;
-- `formula`: la formula che indica come distribuire le righe e colonne, es. `id ~ variable` significa che la colonna `id` identificherà le righe, e quindi le entità osservate, mentre i valori univoci di `variable` diventeranno altrettante colonne;
-- `fun.aggregate`: definisce come aggregare i valori nel caso di più misure effettuate per la stessa tipologia di misura, sulla medesima entità osservata; 
-- `value.var`: il nome della colonna con i valori da distribuire;
-- `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
+-   `data`: una `data.table`;
+-   `formula`: la formula che indica come distribuire le righe e colonne, es. `id ~ variable` significa che la colonna `id` identificherà le righe, e quindi le entità osservate, mentre i valori univoci di `variable` diventeranno altrettante colonne;
+-   `fun.aggregate`: definisce come aggregare i valori nel caso di più misure effettuate per la stessa tipologia di misura, sulla medesima entità osservata;
+-   `value.var`: il nome della colonna con i valori da distribuire;
+-   `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
 
 Proviamo a trasformare `campioni_long` in formato *wide*:
 
@@ -121,6 +121,7 @@ campioni_long <- rbind(campioni_long,
 ```
 
 Se riprovassimo a proiettare i dati come fatto nella @sec-dcast-base, otterremo:
+
 ```{r}
 #| echo: false
 campioni_long |> 
@@ -132,6 +133,7 @@ campioni_long |>
 la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.
 
 Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, possiamo scrivere:
+
 ```{r}
 campioni_long |> 
   dcast(codice_campione + data_campionamento ~ tipo_misura,
@@ -141,56 +143,54 @@ campioni_long |>
   _[order(codice_campione)] # ordina per codice campione
 ```
 
-::: {.callout-tip}
-
+::: callout-tip
 ## Per i più golosi
 
 Con il comando `vignette("datatable-reshape")` è possible avere informazioni aggiuntive sulla modifica della forma dei dati con il pacchetto `data.table`.
-
 :::
 
-:::: {.panel-tabset}
-
-:::: {.panel-tabset}
-
+::: panel-tabset
 ## Esercizio
 
 Utilizzando il dataset `pm_genova`:
 
-- identificare se il dataset è in formato *wide* o *long*;
-- identificare l'enità osservata;
-- identificare la o le colonne con la tipologia di misura e il relativo valore;
-- convertire il dataset in formato *wide* o *long* a seconda di come è stato fornito;
-- valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio.
-
+-   identificare se il dataset è in formato *wide* o *long*;
+-   identificare l'enità osservata;
+-   identificare la o le colonne con la tipologia di misura e il relativo valore;
+-   convertire il dataset in formato *wide* o *long* a seconda di come è stato fornito;
+-   valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio;
+-   convertire il dataset in formato *wide* o *long*, a seconda di come è stato fornito, evitando operazioni di aggregazione sui valori.
 
 ## Soluzione
 
-- Ogni riga del dataset si riferisce a una misura, quindi è in formato *long*;
-- l'entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;
-- la tipologia di misura è identificata dalla colonna `inquinante` e i relativi valori sono salvati nelle colonna `valore`, `valido`, `validato_cor` e `certificato`;
-- la presenza di valori duplicati è attestata dall'utilizzo della funzione `dcast()` senza specificare l'argomento di `fun.aggregate` nel codice riportato nel punto successivo;
-- la conversione in formato `wide`, mediando i risultati delle misure ripetute, può essere ottenuta con:
+-   Ogni riga del dataset si riferisce a una misura, quindi è in formato *long*;
 
-```{r}
-#| echo: false
-pm_genova <- pm_genova_int1()
-```
+-   l'entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;
 
+-   la tipologia di misura è identificata dalla colonna `inquinante` e i relativi valori sono salvati nelle colonna `valore`, `valido`, `validato_cor` e `certificato`;
 
-```{r}
-dcast(
-  pm_genova,
-  codice_europeo + inizio + fine + metodo + udm ~ 
-  inquinante,
-  fun.aggregate = mean,
-  value.var = c("valore", "valido", "validato_cor", "certificato")
-  )
-```
+-   la presenza di valori duplicati è attestata dall'utilizzo della funzione `dcast()` senza specificare l'argomento di `fun.aggregate` nel codice riportato nel punto successivo;
 
-sarà necessario riconvertire i valori nelle colonne `valido`, `validato_cor` e `certificato` in valori logici.
+-   la conversione in formato *wide*, mediando i risultati delle misure ripetute, può essere ottenuta con:
 
-Un'alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:
+    ```{r}
+    #| echo: false
+    pm_genova <- pm_genova_int1()
+    ```
+
+    ```{r}
+    dcast(
+      pm_genova,
+      codice_europeo + inizio + fine + metodo + udm ~ 
+      inquinante,
+      fun.aggregate = mean,
+      value.var = c("valore", "valido", "validato_cor", "certificato")
+      )
+    ```
+
+    sarà necessario riconvertire i valori nelle colonne `valido`, `validato_cor` e `certificato` in valori logici.
+
+    Un'alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:
 
 ```{r}
 diventa_logico <- function(x) {
@@ -200,6 +200,7 @@ diventa_logico <- function(x) {
 ```
 
 utilizzo la funzione all'interno di una lista di `fun.aggregate`:
+
 ```{r}
 dcast(
     pm_genova,
@@ -210,6 +211,24 @@ dcast(
 )
 ```
 
-Anche a `value.var` viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in `?dcast`.  
+    Anche a `value.var` viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in `?dcast`.
 
-::::
+-   per eseguire la conversione in formato *wide* evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di `codice_europeo`, `inizio`, `fine` e `metodo` e `inquinante` uguali.
+
+    Possiamo fare così:
+
+    ```{r}
+    # l'indice id aumenta da 1 a N,
+    # dove N è il numero di righe con codice_europeo, inizio, fine, metodo e
+    # inquinante uguali
+    pm_genova[, id := seq_len(.N), 
+              by = .(codice_europeo, inizio, fine, metodo, inquinante)]
+
+      dcast(
+        pm_genova,
+        id + codice_europeo + inizio + fine + metodo + udm ~ 
+        inquinante,
+        value.var = c("valore", "valido", "validato_cor", "certificato")
+        )
+    ```
+:::
