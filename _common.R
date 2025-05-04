@@ -12,8 +12,46 @@ knitr::opts_chunk$set(
 
 ggplot2::theme_set(ggplot2::theme_gray(12))
 
-library("data.table")
-library("ggplot2")
-library("gt")
-library("glue")
-library("readxl")
+library(data.table)
+library(ggplot2)
+library(gt)
+library(glue)
+library(readxl)
+
+# function to reproduce the dataset obtained at the end of datatable.qmd
+pm_genova_int1 <- function(data = "data/2025-04-24_pm1025_ambiente_liguria.csv.gz"){
+  library(data.table)
+  
+  data_load <- fread(data,
+                     skip = "Codice europeo",
+                     encoding = "Latin-1")
+  
+  colnames(data_load) <- colnames(data_load) |> 
+    tolower() |> 
+    gsub(" ", "_", x = _) |> 
+    iconv(to = "ASCII//TRANSLIT")
+  
+  data_load[, `:=` (
+    # standard units
+    udm = gsub("microg/m3", "µg/m³", unita_di_misura),
+    # valido, validato_cor and certificato to logical
+    valido = fcase(valido == "SI", TRUE,
+                   valido == "NO", FALSE,
+                   default = NA),
+    validato_cor = fcase(validato_cor == "SI", TRUE,
+                         validato_cor == "NO", FALSE,
+                         default = NA),
+    certificato = fcase(certificato == "SI", TRUE,
+                        certificato == "NO", FALSE,
+                        default = NA),
+    # data format conversion
+    inizio = as.POSIXct(data_inizio, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+    fine = as.POSIXct(data_fine, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+    # removes unused columns
+    unita_di_misura = NULL,
+    data_inizio = NULL,
+    data_fine = NULL
+  )]
+  
+  data_load
+}

@@ -1,4 +1,4 @@
-# Cambiare la forma ai dati {#sec-reshape}
+# Cambiare la forma dei dati {#sec-reshape}
 
 ```{r}
 #| echo: false
@@ -129,7 +129,7 @@ campioni_long |>
   _[order(codice_campione)] # ordina per codice campione
 ```
 
-la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, si limita a contare il numero di misure per ogni unità e ogni tipologia di misura.
+la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.
 
 Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, possiamo scrivere:
 ```{r}
@@ -140,6 +140,16 @@ campioni_long |>
         fill = "NA") |>
   _[order(codice_campione)] # ordina per codice campione
 ```
+
+::: {.callout-tip}
+
+## Per i più golosi
+
+Con il comando `vignette("datatable-reshape")` è possible avere informazioni aggiuntive sulla modifica della forma dei dati con il pacchetto `data.table`.
+
+:::
+
+:::: {.panel-tabset}
 
 :::: {.panel-tabset}
 
@@ -164,7 +174,7 @@ Utilizzando il dataset `pm_genova`:
 
 ```{r}
 #| echo: false
-pm_genova <- fread("data/pm_genova_int1.csv.gz")
+pm_genova <- pm_genova_int1()
 ```
 
 
@@ -177,4 +187,29 @@ dcast(
   value.var = c("valore", "valido", "validato_cor", "certificato")
   )
 ```
+
+sarà necessario riconvertire i valori nelle colonne `valido`, `validato_cor` e `certificato` in valori logici.
+
+Un'alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:
+
+```{r}
+diventa_logico <- function(x) {
+  
+  lunghezza <- length(x)
+  ifelse(lunghezza == 1, x, NA)}
+```
+
+utilizzo la funzione all'interno di una lista di `fun.aggregate`:
+```{r}
+dcast(
+    pm_genova,
+    codice_europeo + inizio + fine + metodo + udm ~ 
+        inquinante,
+    fun.aggregate = list(mean, diventa_logico, diventa_logico, diventa_logico),
+    value.var = list("valore", "valido", "validato_cor", "certificato")
+)
+```
+
+Anche a `value.var` viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in `?dcast`.  
+
 ::::
