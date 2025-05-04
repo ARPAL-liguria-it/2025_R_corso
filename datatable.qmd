@@ -7,7 +7,7 @@ source("_common.R")
 
 ## Il pacchetto `data.table` {#sec-load}
 
-Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati.
+Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati. `data.table` è stato creato per lavorare in modo efficiente con dataset di grandi dimensioni, tuttavia la sua sintassi lo rende pratico e agevole da usare anche per dataset di piccole o medie dimensioni.
 
 Creare una `data.table` è semplice e molto simile a creare un `data.frame`. Ecco un esempio:
 
