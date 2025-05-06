@@ -11,7 +11,7 @@ I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osse
 
 Questa tipologia di dati possono essere organizzati in due differenti formati:
 
--   *wide*: con il termine largo si intende dati organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
+-   *wide*: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
 
     ```{r}
     campioni_wide <- data.table(
@@ -25,7 +25,7 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
 
     Questo formato risulta comodo per la visualizzazione dei dati ma spesso non è adatto per l'archiviazione efficiente, la creazione dei grafici o l'applicazione di alcune metodologie statistiche.
 
--   *long*: con il termine lungo si intende dati organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
+-   *long*: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
 
     ```{r}
     campioni_long <- data.table(
@@ -217,7 +217,7 @@ Utilizzando il dataset `pm_genova`:
   # l'indice id aumenta da 1 a N,
   # dove N è il numero di righe con codice_europeo, inizio, fine, metodo e
   # inquinante uguali
-  pm_genova[, id := seq_len(.N), 
+  pm_genova[, id := 1:.N, 
             by = .(codice_europeo, inizio, fine, metodo, inquinante)]
 
   dcast(
