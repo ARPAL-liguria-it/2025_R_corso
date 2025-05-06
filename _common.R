@@ -68,3 +68,23 @@ stazioni_int1 <- function(data = "data/2025-04-24_anagrafica_stazioni.xlsx",
              sheet = "Tabella 1") |> 
     setDT()
 }
+
+# function to reproduce the dataset obtained in the exercise of join.qmd
+pm_genova_int2 <- function(data_measure = "data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
+                           data_stations = "data/2025-04-24_anagrafica_stazioni.xlsx",
+                           tab_stations = "Tabella 1"){
+  stopifnot(file.exists(data_measure))
+  stopifnot(file.exists(data_stations))
+  library(data.table)
+  
+  measures <- pm_genova_int1(data = data_measure)
+  stations <- stazioni_int1(data = data_stations,
+                            tab = tab_stations)
+  
+  measures[stations,
+           on = .(codice_europeo = station_eu_code),
+           nomatch = NULL][, `:=` (
+             tipo_zona = factor(tipo_zona),
+             tipo_stazione = factor(tipo_stazione)
+           )]
+}
