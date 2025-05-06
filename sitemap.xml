@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>missing/index.html</loc>
-    <lastmod>2025-05-06T10:36:07.220Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.716Z</lastmod>
   </url>
   <url>
     <loc>missing/intro.html</loc>
-    <lastmod>2025-05-06T10:36:07.220Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.716Z</lastmod>
   </url>
   <url>
     <loc>missing/basics.html</loc>
-    <lastmod>2025-05-06T10:36:07.214Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.710Z</lastmod>
   </url>
   <url>
     <loc>missing/start.html</loc>
-    <lastmod>2025-05-06T10:36:07.222Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.718Z</lastmod>
   </url>
   <url>
     <loc>missing/objects.html</loc>
-    <lastmod>2025-05-06T10:36:07.220Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.716Z</lastmod>
   </url>
   <url>
     <loc>missing/datatable.html</loc>
-    <lastmod>2025-05-06T10:36:07.219Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.715Z</lastmod>
   </url>
   <url>
     <loc>missing/reshape.html</loc>
-    <lastmod>2025-05-06T10:36:07.222Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.717Z</lastmod>
   </url>
   <url>
     <loc>missing/join.html</loc>
-    <lastmod>2025-05-06T10:36:07.220Z</lastmod>
+    <lastmod>2025-05-06T16:10:25.716Z</lastmod>
+  </url>
+  <url>
+    <loc>missing/ggplot2.html</loc>
+    <lastmod>2025-05-06T16:10:25.715Z</lastmod>
   </url>
 </urlset>
