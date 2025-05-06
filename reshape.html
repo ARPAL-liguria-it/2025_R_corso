@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,10 +75,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
 <p>Questa tipologia di dati possono essere organizzati in due differenti formati:</p>
 <ul>
-<li><p><em>wide</em>: con il termine largo si intende dati organizzati con un’entità osservata per riga e una misura per colonna. Vediamo un esempio:</p>
+<li><p><em>wide</em>: i dati sono organizzati con un’entità osservata per riga e una misura per colonna. Vediamo un esempio:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>campioni_wide <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">codice_campione =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>),</span>
@@ -268,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        22311/24         2024-03-10   0.04   0.12</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Questo formato risulta comodo per la visualizzazione dei dati ma spesso non è adatto per l’archiviazione efficiente, la creazione dei grafici o l’applicazione di alcune metodologie statistiche.</p></li>
-<li><p><em>long</em>: con il termine lungo si intende dati organizzati con una misura per riga. La tipologia della misura è archiviata all’interno di un’apposita variabile, come mostrato nell’esempio:</p>
+<li><p><em>long</em>: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all’interno di un’apposita variabile, come mostrato nell’esempio:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice_campione =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>) <span class="sc">|&gt;</span> </span>
@@ -610,7 +610,7 @@ Per i più golosi
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'indice id aumenta da 1 a N,</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dove N è il numero di righe con codice_europeo, inizio, fine, metodo e</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inquinante uguali</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>pm_genova[, id <span class="sc">:</span><span class="er">=</span> <span class="fu">seq_len</span>(.N), </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>pm_genova[, id <span class="sc">:</span><span class="er">=</span> <span class="dv">1</span><span class="sc">:</span>.N, </span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inizio, fine, metodo, inquinante)]</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(</span>

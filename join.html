@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -279,8 +279,13 @@ window.Quarto = {
 
 <section id="tipologie-di-unioni" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">6.1</span> Tipologie di unioni</h2>
-<p>Quando lavoriamo con dati, spesso ci troviamo nella situazione di dover unire due insiemi di dati in base a una o più colonne chiave. Questo processo si chiama <em>join</em> o <em>merge</em> ed è fondamentale per combinare informazioni provenienti da fonti diverse.</p>
-<p>Per esempio, possiamo avere due <code>data.table</code>: - la prima si chiama <code>misure</code> e contiene le misure analitiche svolte su una serie di campioni; - la seconda si chiama <code>indirizzi</code> e contiene le informazioni relative al punto di prelievo. Per mettere in relazione le due tabelle serve una colonna in comune, nell’esempio mostrato sarà quella relativa al codice del campione:</p>
+<p>Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama <em>join</em> o <em>merge</em> ed è essenziale per integrare informazioni provenienti da fonti diverse.</p>
+<p>Prendiamo come esempio due <code>data.table</code>:</p>
+<ul>
+<li><code>misure</code> contiene i risultati analitici di una serie di campioni;</li>
+<li><code>indirizzi</code>: contiene le informazioni relative ai punti di prelievo.</li>
+</ul>
+<p>Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>, <span class="st">"22312/24"</span>),</span>
@@ -298,10 +303,15 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">civico =</span> <span class="fu">c</span>(<span class="st">"12"</span>, <span class="st">"11/10"</span>, <span class="st">"8R"</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Non tutti i codici dei campioni presenti nella tabella <code>misure</code> compaiono anche nella tabella <code>indirizzi</code>. Viceversa, non tutti i codici dei campioni per cui è noto l’indirizzo risultano associati a delle misure. Per poter procedere con l’operazione di <em>join</em> è necessario capire cosa fare con i dati per cui non c’è corrispondenza tra le due tabelle: questa scelta definisce le diverse tipologie di <em>join</em>.</p>
+<p>Notiamo che:</p>
+<ul>
+<li>non tutti i codici di <code>misure</code> sono presenti in <code>indirizzi</code>;</li>
+<li>non tutti i codici di <code>indirizzi</code> compaiono in <code>misure</code>.</li>
+</ul>
+<p>Prima di unire le tabelle, dobbiamo quindi decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di <em>join</em> da utilizzare.</p>
 <section id="sec-inner" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">6.1.1</span> Inner join</h3>
-<p>Se siamo interessati solo ai campioni per cui siano disponibili delle misure e sia noto l’indirizzo del punto di prelievo, effettueremo un <em>inner join</em>. In termini insiemistici equivale all’intersezione di due insiemi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> (<span class="math inline">\(A \cap B\)</span>), come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
+<p>Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, useremo un <em>inner join.</em> In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
 <div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -312,7 +322,7 @@ Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 </figcaption>
 </figure>
 </div>
-<p>Con <code>data.table</code> la sintassi è piuttosto semplice:</p>
+<p>Con <code>data.table</code> la sintassi è:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
@@ -326,11 +336,11 @@ Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: corso Papero     12</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: via de Topis  11/10</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nel caso in cui la colonna chiave abbia nomi diversi nelle due tabelle da unire, è possibile passare all’argomento <code>on</code> un vettore con i nomi delle colonne nelle due tabelle.</p>
+<p>Se le colonne chiave hanno nomi diversi, possiamo specificare on come coppia di nomi, ad esempio <code>on = .(codice_misure = codice_indirizzi)</code>. È possibile anche effettuare unioni su più colonne.</p>
 </section>
 <section id="sec-left" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">6.1.2</span> Right e left join</h3>
-<p>Se siamo interessati a tutti i campioni che dispongono di un indirizzo e a questi aggiungere, se disponibile, l’informazione sulle misure, opereremo un <em>right join</em>. Da un punto di vista insiemistico, immaginando che l’insieme <span class="math inline">\(B\)</span> sia quello contenente gli indirizzi e il <span class="math inline">\(A\)</span> quello dedicato alle misure, equivale a scrivere l’unione di <span class="math inline">\(B\)</span> con l’intersezione di <span class="math inline">\(A\)</span> con <span class="math inline">\(B\)</span> (<span class="math inline">\(B\cup(A\cap B)\)</span>), come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<p>Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un <em>right join</em>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
 <div id="fig-right" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -341,7 +351,7 @@ Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</sp
 </figcaption>
 </figure>
 </div>
-<p>Ecco come si fa:</p>
+<p>Ecco la sintassi:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
@@ -357,8 +367,12 @@ Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</sp
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: via de Topis  11/10</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    via Ratti     8R</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>È importante ricordare che le informazioni contenute nella tabella tra le parentesi quadre sono conservate integralmente, mentre le informazioni contenute nella tabella fuori dalle parentesi sono recuperate solo in caso di corrispondenza, altrimenti saranno riempite con <code>NA</code>.</p>
-<p>Nel caso si voglia effettuare un <em>left join</em>, cioè mostrare tutte le misure effettuate, indicando l’indirizzo del punto di prelievo laddove disponibile, è sufficiente invertire le due tabelle all’interno dell’espressione:</p>
+<p>Ricordiamo che nella sintassi <code>x[i]</code> di <code>data.table</code>:</p>
+<ul>
+<li>tutte le righe di <code>i</code> (<code>indirizzi</code> nell’esempio) sono mantenute;</li>
+<li>le colonne di <code>x</code> (<code>misure</code> nell’esempio) sono aggiunte solo se c’è corrispondenza, altrimenti sono <code>NA</code>.</li>
+</ul>
+<p>Per un <em>left join</em> (tutte le misure, con indirizzo se disponibile), basta invertire le tabelle:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>indirizzi[misure, <span class="co"># le tabelle</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
@@ -386,13 +400,13 @@ Per i più frettolosi
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Il valore predefinito dell’argomento <code>nomatch</code> è <code>NA</code>: possiamo quindi ometterlo quando facciamo <em>right</em> e <em>left join</em>.</p>
+<p>Il valore predefinito dell’argomento <code>nomatch</code> è <code>NA</code>: possiamo quindi ometterlo per <em>right</em> e <em>left join</em>.</p>
 </div>
 </div>
 </section>
 <section id="full-join" class="level3" data-number="6.1.3">
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">6.1.3</span> Full join</h3>
-<p>Se siamo interessati a tutti i valori presenti nelle due tabelle, messi in relazione quando possibile o sostituiti da <code>NA</code> in caso di assenza di corrispondenza, possiamo ricorrere a un <em>full join</em>. In termini insiemistici equivale all’unione di due insiemi <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> (<span class="math inline">\(A \cup B\)</span>), come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
+<p>Se vogliamo mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo <code>NA</code> in assenza di corrispondenza, usiamo un <em>full join</em>. In termini di insiemi, è l’unione <span class="math inline">\(A \cup B\)</span> , come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
 <div id="fig-full" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -403,7 +417,7 @@ Figura&nbsp;6.3: Full join (<span class="math inline">\(A \cup B\)</span>): veng
 </figcaption>
 </figure>
 </div>
-<p>La sintassi usata per questo caso è differente dalle precedenti e viene utilizzata la funzione <code>merge()</code>:</p>
+<p>La sintassi prevede la funzione <code>merge()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(misure, indirizzi, <span class="at">by =</span> <span class="st">"codice"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;codice&gt;</span></span>
@@ -422,6 +436,7 @@ Figura&nbsp;6.3: Full join (<span class="math inline">\(A \cup B\)</span>): veng
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:         &lt;NA&gt;   &lt;NA&gt;</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:    via Ratti     8R</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Se le colonne chiave hanno nomi diversi, usiamo <code>by.x</code> e <code>by.y</code>. Entrambi possono essere vettori con più di un elemento, per effettuare unioni su più colonne.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -439,10 +454,46 @@ Per i più golosi
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-
+<p>Unire i dataset <code>pm_genova</code> e <code>stazioni</code> creati nella <a href="datatable.html" class="quarto-xref"><span>Capitolo 4</span></a>:</p>
+<ul>
+<li>qual è la chiave che mette in relazione i due dataset?</li>
+<li>quale tipo di <em>join</em> usare per mantenere solo le misure associate a stazioni e viceversa?</li>
+<li>eseguire il <em>join</em> e salvare il risultato in <code>pm_genova_completo</code>;</li>
+<li>controllare la tipologia delle colonne di <code>pm_genova_completo</code> e correggerle se necessarie;</li>
+<li>verificare quali stazioni e righe sono state perse passando da <code>pm_genova</code> a <code>pm_genova_completo</code>.</li>
+</ul>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-
+<ul>
+<li><p>La chiave è il codice univoco della stazione: <code>codice_europeo</code> in <code>pm_genova</code> e <code>station_eu_code</code> in <code>stazioni</code>;</p></li>
+<li><p>serve un <em>inner join</em> (<span class="math inline">\(A \cap B\)</span>);</p></li>
+<li><p>ecco il codice:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pm_genova_completo <span class="ot">&lt;-</span> pm_genova[stazioni,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># la lista identifica le colonne in relazione</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># in data.table .() equivale a list()</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          on <span class="ot">=</span> .(<span class="at">codice_europeo =</span> station_eu_code),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                          nomatch <span class="ot">=</span> <span class="cn">NULL</span>]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>con <code>str(pm_genova_completo)</code> si nota che <code>tipo_zona</code> e <code>tipo_stazione</code> sono <code>character</code> invece che <code>factor</code>. Si corregge così:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pm_genova_completo[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tipo_zona =</span> <span class="fu">factor</span>(tipo_zona),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">tipo_stazione =</span> <span class="fu">factor</span>(tipo_stazione)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>per identificare stazioni e righe perse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pm_genova[codice_europeo <span class="sc">%notin%</span> pm_genova_completo[, codice_europeo],</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">unique</span>(codice_europeo)]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "IT2339A" "IT2327A" ""</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>pm_genova[codice_europeo <span class="sc">%notin%</span> pm_genova_completo[, codice_europeo],</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          .N]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 46698</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>abbiamo perso circa il 38% dei dati, probabilmente per codifiche errate o mancanti.</p></li>
+</ul>
 </div>
 </div>
 </div>
