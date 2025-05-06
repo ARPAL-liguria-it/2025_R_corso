@@ -1,0 +1,45 @@
+# Visualizzare i dati con `ggplot2` {#sec-ggplot2}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+La visualizzazione dei dati è una fase fondamentale nell'analisi statistica, in quanto un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.  
+Il pacchetto `ggplot2` di R è uno strumento potente e flessibile per produrre grafici professionali, basato sulla *Grammar of Graphics*: un approccio che permette di costruire visualizzazioni a più livelli in modo modulare e intuitivo.
+
+## Sintassi di base di ggplot2
+
+Un grafico con `ggplot2` si costruisce combinando tre elementi principali:
+
+- **dataset**:  il `data.frame` o la `data.table` contenente i dati da visualizzare;
+- **estetiche (`aes`)**: l'associazione delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);
+- **geometria (`geom`)**: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).
+
+Vediamo un esempio per la creazione di un semplice *scatter plot*:
+
+```{r}
+#| label: fig-scatterplot-base
+# dataset sintetico
+n <- 50
+valori <- rnorm(n, mean = 0.100, sd = 0.010)
+
+misure <- data.table(
+  codice = paste0(sample(1:40000, n), "/24"),
+  data_campionamento = sample(seq(as.IDate('2024-01-01'),
+                                  as.IDate('2024-12-31'),
+                                  by = "day"), 
+                              n,
+                              replace = TRUE),
+  piombo = valori,
+  arsenico = valori - rnorm(n, mean = 0.020, sd = 0.003)
+    )
+
+# grafico
+misure |>
+  ggplot(aes(x = piombo,
+             y = arsenico)) +
+  geom_point()
+```
+
+

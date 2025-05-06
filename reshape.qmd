@@ -14,20 +14,27 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
 -   *wide*: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
 
     ```{r}
+    #| results: hide
     campioni_wide <- data.table(
     codice_campione = c("22201/24", "22248/24", "22311/24"),
     data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10")),
     cadmio = c(0.05, 0.06, 0.04),
     piombo = c(0.1, 0.15, 0.12)
     )
-    campioni_wide
     ```
-
-    Questo formato risulta comodo per la visualizzazione dei dati ma spesso non è adatto per l'archiviazione efficiente, la creazione dei grafici o l'applicazione di alcune metodologie statistiche.
+    
+    ```{r}
+    #| echo: false
+    campioni_wide |>
+      gt()
+    ```
+    
+    Questo formato risulta comodo per la visualizzazione dei dati e il confronto diretto tra le diverse variabili.
 
 -   *long*: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
 
     ```{r}
+    #| results: hide
     campioni_long <- data.table(
       codice_campione = c("22201/24", "22248/24", "22311/24") |> 
         rep(each = 2),
@@ -38,12 +45,17 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
         rep(times = 3),
       valore_misura = c(0.05, 0.10, 0.06, 0.15, 0.04, 0.12)
     )
-    campioni_long
+    ```
+    
+    ```{r}
+    #| echo: false
+    campioni_long |>
+      gt()
     ```
 
-    È un formato comodo per l'archiviazione dei dati, la creazione di grafici e l'applicazione di alcune metodologie statistiche, tuttavia può risultare scomodo per visualizzare i dati.
+    È un formato indispensabile per la gestione dei dati con molte variabili o per la produzione di grafici e l'esecuzione di molte analisi statistiche.
 
-Passare dal formato *wide* a *long* richiede l'uso della funzione `melt()`, viceversa il passaggio dal formato *long* a *wide* necessità della funzione `dcast()`.
+La scelta tra i due formati dipende dal tipo di operazione che si vuole eseguire sui dati ed è frequente dover passare da un formato all'altro.
 
 ## La funzione `melt()`: da wide a long
 
@@ -51,7 +63,6 @@ La funzione `melt()` scioglie i dati in formato *wide* portandoli in formato *lo
 
 ```{r}
 #| eval: false
-#| output: false
 melt(data, id.vars, measure.vars, variable.name = "variable", value.name = "value")
 ```
 
@@ -80,19 +91,18 @@ La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: 
 
 ### Significato e sintassi di base {#sec-dcast-base}
 
-La funzione `dcast()` proietta i dati in formato *long* distribuendone il contenuto su un più colonne, per ottenere un formato *wide*. In generale, si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`: l'antitesi di `dcast()`.
+La funzione `dcast()` proietta i dati in formato *long* distribuendone il contenuto su un più colonne, per ottenere un formato *wide*. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
 
 La complessità e potenza dell'operazione di proiezione è testimoniata dalla sintassi della funzione `dcast()`:
 
 ```{r}
 #| eval: false
-#| output: false
 dcast(data, formula, fun.aggregate = NULL, value.var = NULL, fill = NULL)
 ```
 
 -   `data`: una `data.table`;
 -   `formula`: la formula che indica come distribuire le righe e colonne, es. `id ~ variable` significa che la colonna `id` identificherà le righe, e quindi le entità osservate, mentre i valori univoci di `variable` diventeranno altrettante colonne;
--   `fun.aggregate`: definisce come aggregare i valori nel caso di più misure effettuate per la stessa tipologia di misura, sulla medesima entità osservata;
+-   `fun.aggregate`: definisce come aggregare i valori nel caso di più misure effettuate per la stessa tipologia di misura e sulla medesima entità osservata;
 -   `value.var`: il nome della colonna con i valori da distribuire;
 -   `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
 
@@ -132,7 +142,7 @@ campioni_long |>
 
 la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.
 
-Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, possiamo scrivere:
+Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, si può scrivere:
 
 ```{r}
 campioni_long |> 

@@ -31,7 +31,7 @@ book:
         - join.qmd
     # - part: plots.qmd
     #   chapters: 
-    #     - ggplot2.qmd
+        - ggplot2.qmd
     # - part: report.qmd
     #   chapters: 
     #     - quarto.qmd
