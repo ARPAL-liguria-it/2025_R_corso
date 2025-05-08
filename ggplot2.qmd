@@ -5,22 +5,26 @@
 source("_common.R")
 ```
 
-La visualizzazione dei dati è una fase fondamentale nell'analisi statistica, in quanto un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.  
-Il pacchetto `ggplot2` di R è uno strumento potente e flessibile per produrre grafici professionali, basato sulla *Grammar of Graphics*: un approccio che permette di costruire visualizzazioni a più livelli in modo modulare e intuitivo.
+La visualizzazione dei dati è una fase fondamentale nell'analisi statistica: un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.  
+Il pacchetto `ggplot2` di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla *Grammar of Graphics* permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.
 
 ## Sintassi di base di ggplot2
 
 Un grafico con `ggplot2` si costruisce combinando tre elementi principali:
 
-- **dataset**:  il `data.frame` o la `data.table` contenente i dati da visualizzare;
-- **estetiche (`aes`)**: l'associazione delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);
-- **geometria (`geom`)**: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).
+- **dataset**:  il `data.frame` o la `data.table` con i dati da visualizzare;
+- **estetiche (`aes`)**: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);
+- **geometria (`geom_`)**: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).
 
-Vediamo un esempio per la creazione di un semplice *scatter plot*:
+Vediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:
 
 ```{r}
 #| label: fig-scatterplot-base
+#| fig-cap: Un semplice grafico di dispersione.
+
 # dataset sintetico
+library(data.table)
+
 n <- 50
 valori <- rnorm(n, mean = 0.100, sd = 0.010)
 
@@ -29,17 +33,142 @@ misure <- data.table(
   data_campionamento = sample(seq(as.IDate('2024-01-01'),
                                   as.IDate('2024-12-31'),
                                   by = "day"), 
-                              n,
-                              replace = TRUE),
+                              n, replace = TRUE),
+  matrice = sample(c("Acque superficiali", "Acque sotterranee", "Acque destinate al consumo umano"),
+                   n, replace = TRUE) |> factor(),
   piombo = valori,
   arsenico = valori - rnorm(n, mean = 0.020, sd = 0.003)
     )
 
-# grafico
-misure |>
-  ggplot(aes(x = piombo,
-             y = arsenico)) +
-  geom_point()
+# grafico di dispersione
+library(ggplot2)
+
+misure |>                           # dataset
+  ggplot(aes(x = piombo,            # piombo sull'asse delle x
+             y = arsenico)) +       # arsenico sull'asse delle y
+  geom_point()                      # grafico di dispersione
 ```
 
+### Aggiungere livelli al grafico {#sec-layers}
+
+`ggplot2` permette di sovrapporre più livelli per arricchire il grafico con elementi aggiuntivi come linee di tendenza, etichette, pannelli, titoli e annotazioni.  
+Ogni livello si aggiunge con l'operatore `+`.
+
+```{r}
+#| label: fig-scatterplot-plus
+#| fig-cap: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS.
+
+# grafico
+misure |>                           # dataset
+  ggplot(aes(x = piombo,            # piombo sull'asse delle x
+             y = arsenico)) +       # arsenico sull'asse delle y
+  geom_point() +                    # grafico di dispersione
+  geom_smooth(method = "lm",        # linea di tendenza con metodo OLS
+              linewidth = 1,
+              col = "red") +      
+  facet_wrap(vars(matrice)) +       # pannelli distinti per matrice
+  labs(                             # personalizzazione degli assi
+    title = "Relazione tra piombo e arsenico nei campioni di acqua del 2024",
+    x = "Piombo (µg/l)",
+    y = "Arsenico (µg/l)"
+  ) +
+  theme_bw()                        # scelgo lo stile
+```
+
+I livelli di tipo `geom_` aggiungono tipologie di grafici e i più comuni sono:
+
+- `geom_point()` per grafici a dispersione;
+- `geom_line()` per grafici a linee;
+- `geom_boxplot()` per boxplot;
+- `geom_hline()` per linee orizzontali;
+- `geom_vline()` per linee verticali;
+- `geom_bar()` o `geom_col()` per grafici a barre;
+- `geom_histogram()` per istogrammi;
+- `geom_density()` per funzioni di densità.
+
+I livelli di tipo `scale_` si utilizzano dopo i livelli `geom_` per modificare le proprietà degli assi e delle scale cromatiche. Le funzioni più comuni sono:
+
+- `scale_x_continuous()`, `scale_y_continuous()`: per assi numerici;
+- `scale_x_date()`, `scale_y_date()`: per assi temporali;
+- `scale_color_manual()`, `scale_fill_manual()`: per colori personalizzati;
+- `scale_size_continuous()`, `scale_shape_manual()`: per dimensioni e forme.
+
+Il livello `theme()` è usato per personalizzare l'aspetto generale del grafico, in particolare viene usato spesso per gestire la posizione e lo stile della legenda. Deve essere utilizzato dopo i livelli `geom_` e `scale_` ma prima dei comandi per la scelta dello stile del grafico, come `theme_bw()`.
+
+Vediamo un esempio in cui personalizziamo l'asse temporale e l'aspetto della legenda:
+
+```{r}
+#| label: fig-date
+#| fig-cap: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque.
+
+misure |>
+  ggplot(aes(
+    x = data_campionamento,
+    y = piombo,
+    col = matrice
+  )) +
+  geom_point() +
+  geom_hline(yintercept = 0.12,
+             col = "red",
+             size = 1,
+             linetype = "dashed") +
+  scale_x_date(date_breaks = "1 month",          # una linea di graduazione ogni mese
+               date_labels = "%d %b %Y",         # formato tipo 5 mag 2025
+               guide = guide_axis(angle = 90)) + # ruoto le etichette
+  scale_color_manual(values = c("#E69F00",       # imposto manualmente i colori
+                                "#56B4E9",
+                                "#009E73")) +
+  labs(
+    x = element_blank(),                         # tolgo il nome dell'asse x
+    y = "Piombo (µg/l)",
+    col = element_blank()                        # tolgo il titolo della legenda
+  ) +
+  theme_bw() +
+  theme(legend.position = "top",                 # metto la legenda in alto
+        legend.justification = "left",           # giustificata a sinistra
+        legend.direction = "vertical")           # orientata verticalmente
+```
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Utilizzando il dataset `pm_genova` importato e modificato nelle sezioni precedenti, rappresentare la distribuzione dei valori medi giornalieri di PM~10~ per i diversi comuni. Raffrontare visivamente i valori medi giornalieri con il limite di $50\, \mu g/m^3$.
+
+
+## Soluzione
+
+```{r}
+#| echo: false
+pm_genova <- pm_genova_int2()
+```
+
+```{r}
+#| label: fig-pm10
+#| fig-cap: boxplot dei valori medi giornalieri di PM~10~ misurati nel 2024 per i comuni monitorati nella provincia di Genova.
+
+library(data.table)
+library(ggplot2)
+
+pm_genova[inquinante == "PM10",
+          .(pm10 = mean(valore, na.rm = TRUE)),
+          by = .(comune,
+                 giorno = yday(inizio))] |>
+  ggplot(aes(
+    x = comune,
+    y = pm10
+  )) +
+  geom_boxplot() +
+  geom_hline(yintercept = 50,
+             size = 1,
+             col = "red",
+             linetype = "dashed") +
+  labs(
+    x = element_blank(),
+    y = expression("Concentrazione media giornaliera di " * PM[10] * ~  (mu * g / m^{3}))
+  ) +
+  theme_bw()
+  
+```
+::::
 

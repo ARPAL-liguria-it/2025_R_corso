@@ -1,3 +1,9 @@
+library(data.table)
+library(ggplot2)
+library(gt)
+library(glue)
+library(readxl)
+
 set.seed(1014)
 
 knitr::opts_chunk$set(
@@ -5,18 +11,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   # cache = TRUE,
   fig.retina = 2,
-  fig.width = 6,
+  fig.width = 10,
   fig.asp = 2/3,
   fig.show = "hold"
 )
 
-ggplot2::theme_set(ggplot2::theme_gray(12))
-
-library(data.table)
-library(ggplot2)
-library(gt)
-library(glue)
-library(readxl)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 18))
 
 # function to reproduce the dataset obtained at the end of datatable.qmd
 pm_genova_int1 <- function(data = "data/2025-04-24_pm1025_ambiente_liguria.csv.gz"){
