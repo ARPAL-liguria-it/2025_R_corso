@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -294,21 +294,23 @@ window.Quarto = {
 </ul>
 <p>Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>, <span class="st">"22312/24"</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">as.IDate</span>(<span class="fu">c</span>(<span class="st">"2024-01-15"</span>, <span class="st">"2024-02-20"</span>, <span class="st">"2024-03-10"</span>, <span class="st">"2024-03-10"</span>)),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadmio =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">piombo =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.12</span>, <span class="fl">0.11</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">arsenico =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="cn">NA</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>indirizzi <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22311/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22412/24"</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">comune =</span> <span class="fu">c</span>(<span class="st">"Paperopoli"</span>, <span class="st">"Topolinia"</span>, <span class="st">"Topolinia"</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">provincia =</span> <span class="fu">c</span>(<span class="st">"SV"</span>, <span class="st">"IM"</span>, <span class="st">"IM"</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">via =</span> <span class="fu">c</span>(<span class="st">"corso Papero"</span>, <span class="st">"via de Topis"</span>, <span class="st">"via Ratti"</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">civico =</span> <span class="fu">c</span>(<span class="st">"12"</span>, <span class="st">"11/10"</span>, <span class="st">"8R"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>, <span class="st">"22312/24"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">as.IDate</span>(<span class="fu">c</span>(<span class="st">"2024-01-15"</span>, <span class="st">"2024-02-20"</span>, <span class="st">"2024-03-10"</span>, <span class="st">"2024-03-10"</span>)),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cadmio =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">piombo =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.12</span>, <span class="fl">0.11</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">arsenico =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.09</span>, <span class="fl">0.05</span>, <span class="cn">NA</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>indirizzi <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">c</span>(<span class="st">"22311/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22412/24"</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">comune =</span> <span class="fu">c</span>(<span class="st">"Paperopoli"</span>, <span class="st">"Topolinia"</span>, <span class="st">"Topolinia"</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">provincia =</span> <span class="fu">c</span>(<span class="st">"SV"</span>, <span class="st">"IM"</span>, <span class="st">"IM"</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">via =</span> <span class="fu">c</span>(<span class="st">"corso Papero"</span>, <span class="st">"via de Topis"</span>, <span class="st">"via Ratti"</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">civico =</span> <span class="fu">c</span>(<span class="st">"12"</span>, <span class="st">"11/10"</span>, <span class="st">"8R"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notiamo che:</p>
 <ul>

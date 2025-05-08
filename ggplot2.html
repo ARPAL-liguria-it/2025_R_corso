@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -109,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -223,7 +252,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#sintassi-di-base-di-ggplot2" id="toc-sintassi-di-base-di-ggplot2" class="nav-link active" data-scroll-target="#sintassi-di-base-di-ggplot2"><span class="header-section-number">7.1</span> Sintassi di base di ggplot2</a></li>
+  <li><a href="#sintassi-di-base-di-ggplot2" id="toc-sintassi-di-base-di-ggplot2" class="nav-link active" data-scroll-target="#sintassi-di-base-di-ggplot2"><span class="header-section-number">7.1</span> Sintassi di base di ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#sec-layers" id="toc-sec-layers" class="nav-link" data-scroll-target="#sec-layers"><span class="header-section-number">7.1.1</span> Aggiungere livelli al grafico</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="missing/edit/main/ggplot2.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
@@ -249,53 +281,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>La visualizzazione dei dati è una fase fondamentale nell’analisi statistica, in quanto un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.<br>
-Il pacchetto <code>ggplot2</code> di R è uno strumento potente e flessibile per produrre grafici professionali, basato sulla <em>Grammar of Graphics</em>: un approccio che permette di costruire visualizzazioni a più livelli in modo modulare e intuitivo.</p>
+<p>La visualizzazione dei dati è una fase fondamentale nell’analisi statistica: un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.<br>
+Il pacchetto <code>ggplot2</code> di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla <em>Grammar of Graphics</em> permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.</p>
 <section id="sintassi-di-base-di-ggplot2" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sintassi-di-base-di-ggplot2"><span class="header-section-number">7.1</span> Sintassi di base di ggplot2</h2>
 <p>Un grafico con <code>ggplot2</code> si costruisce combinando tre elementi principali:</p>
 <ul>
-<li><strong>dataset</strong>: il <code>data.frame</code> o la <code>data.table</code> contenente i dati da visualizzare;</li>
-<li><strong>estetiche (<code>aes</code>)</strong>: l’associazione delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);</li>
-<li><strong>geometria (<code>geom</code>)</strong>: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).</li>
+<li><strong>dataset</strong>: il <code>data.frame</code> o la <code>data.table</code> con i dati da visualizzare;</li>
+<li><strong>estetiche (<code>aes</code>)</strong>: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);</li>
+<li><strong>geometria (<code>geom_</code>)</strong>: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).</li>
 </ul>
-<p>Vediamo un esempio per la creazione di un semplice <em>scatter plot</em>:</p>
+<p>Vediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset sintetico</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>valori <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.100</span>, <span class="at">sd =</span> <span class="fl">0.010</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">paste0</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40000</span>, n), <span class="st">"/24"</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fu">as.IDate</span>(<span class="st">'2024-01-01'</span>),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">as.IDate</span>(<span class="st">'2024-12-31'</span>),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="st">"day"</span>), </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                              n,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">piombo =</span> valori,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">arsenico =</span> valori <span class="sc">-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.020</span>, <span class="at">sd =</span> <span class="fl">0.003</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> piombo,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> arsenico)) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>valori <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.100</span>, <span class="at">sd =</span> <span class="fl">0.010</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice =</span> <span class="fu">paste0</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">40000</span>, n), <span class="st">"/24"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fu">as.IDate</span>(<span class="st">'2024-01-01'</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">as.IDate</span>(<span class="st">'2024-12-31'</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">by =</span> <span class="st">"day"</span>), </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                              n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">matrice =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Acque superficiali"</span>, <span class="st">"Acque sotterranee"</span>, <span class="st">"Acque destinate al consumo umano"</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                   n, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> <span class="fu">factor</span>(),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">piombo =</span> valori,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">arsenico =</span> valori <span class="sc">-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="fl">0.020</span>, <span class="at">sd =</span> <span class="fl">0.003</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico di dispersione</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span>                           <span class="co"># dataset</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> piombo,            <span class="co"># piombo sull'asse delle x</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> arsenico)) <span class="sc">+</span>       <span class="co"># arsenico sull'asse delle y</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()                      <span class="co"># grafico di dispersione</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scatterplot-base" class="quarto-float quarto-figure quarto-figure-center anchored" width="432">
+<div id="fig-scatterplot-base" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-scatterplot-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;7.1: "><img src="ggplot2_files/figure-html/fig-scatterplot-base-1.png" id="fig-scatterplot-base" class="img-fluid figure-img" width="432"></a>
+<a href="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;7.1: Un semplice grafico di dispersione."><img src="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="img-fluid figure-img" width="720"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-scatterplot-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Un semplice grafico di dispersione.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<section id="sec-layers" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-layers"><span class="header-section-number">7.1.1</span> Aggiungere livelli al grafico</h3>
+<p><code>ggplot2</code> permette di sovrapporre più livelli per arricchire il grafico con elementi aggiuntivi come linee di tendenza, etichette, pannelli, titoli e annotazioni.<br>
+Ogni livello si aggiunge con l’operatore <code>+</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span>                           <span class="co"># dataset</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> piombo,            <span class="co"># piombo sull'asse delle x</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> arsenico)) <span class="sc">+</span>       <span class="co"># arsenico sull'asse delle y</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                    <span class="co"># grafico di dispersione</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>,        <span class="co"># linea di tendenza con metodo OLS</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span>      </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(matrice)) <span class="sc">+</span>       <span class="co"># pannelli distinti per matrice</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(                             <span class="co"># personalizzazione degli assi</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relazione tra piombo e arsenico nei campioni di acqua del 2024"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Piombo (µg/l)"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Arsenico (µg/l)"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()                        <span class="co"># scelgo lo stile</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-scatterplot-plus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterplot-plus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS."><img src="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="img-fluid figure-img" width="720"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-plus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>I livelli di tipo <code>geom_</code> aggiungono tipologie di grafici e i più comuni sono:</p>
+<ul>
+<li><code>geom_point()</code> per grafici a dispersione;</li>
+<li><code>geom_line()</code> per grafici a linee;</li>
+<li><code>geom_boxplot()</code> per boxplot;</li>
+<li><code>geom_hline()</code> per linee orizzontali;</li>
+<li><code>geom_vline()</code> per linee verticali;</li>
+<li><code>geom_bar()</code> o <code>geom_col()</code> per grafici a barre;</li>
+<li><code>geom_histogram()</code> per istogrammi;</li>
+<li><code>geom_density()</code> per funzioni di densità.</li>
+</ul>
+<p>I livelli di tipo <code>scale_</code> si utilizzano dopo i livelli <code>geom_</code> per modificare le proprietà degli assi e delle scale cromatiche. Le funzioni più comuni sono:</p>
+<ul>
+<li><code>scale_x_continuous()</code>, <code>scale_y_continuous()</code>: per assi numerici;</li>
+<li><code>scale_x_date()</code>, <code>scale_y_date()</code>: per assi temporali;</li>
+<li><code>scale_color_manual()</code>, <code>scale_fill_manual()</code>: per colori personalizzati;</li>
+<li><code>scale_size_continuous()</code>, <code>scale_shape_manual()</code>: per dimensioni e forme.</li>
+</ul>
+<p>Il livello <code>theme()</code> è usato per personalizzare l’aspetto generale del grafico, in particolare viene usato spesso per gestire la posizione e lo stile della legenda. Deve essere utilizzato dopo i livelli <code>geom_</code> e <code>scale_</code> ma prima dei comandi per la scelta dello stile del grafico, come <code>theme_bw()</code>.</p>
+<p>Vediamo un esempio in cui personalizziamo l’asse temporale e l’aspetto della legenda:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data_campionamento,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> piombo,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> matrice</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.12</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"1 month"</span>,          <span class="co"># una linea di graduazione ogni mese</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">date_labels =</span> <span class="st">"%d %b %Y"</span>,         <span class="co"># formato tipo 5 mag 2025</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span> <span class="co"># ruoto le etichette</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#E69F00"</span>,       <span class="co"># imposto manualmente i colori</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"#56B4E9"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"#009E73"</span>)) <span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">element_blank</span>(),                         <span class="co"># tolgo il nome dell'asse x</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Piombo (µg/l)"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">element_blank</span>()                        <span class="co"># tolgo il titolo della legenda</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,                 <span class="co"># metto la legenda in alto</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="st">"left"</span>,           <span class="co"># giustificata a sinistra</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.direction =</span> <span class="st">"vertical"</span>)           <span class="co"># orientata verticalmente</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-date" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="ggplot2_files/figure-html/fig-date-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque."><img src="ggplot2_files/figure-html/fig-date-1.png" class="img-fluid figure-img" width="720"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Utilizzando il dataset <code>pm_genova</code> importato e modificato nelle sezioni precedenti, rappresentare la distribuzione dei valori medi giornalieri di PM<sub>10</sub> per i diversi comuni. Raffrontare visivamente i valori medi giornalieri con il limite di <span class="math inline">\(50\, \mu g/m^3\)</span>.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>pm_genova[inquinante <span class="sc">==</span> <span class="st">"PM10"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          .(<span class="at">pm10 =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(comune,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">giorno =</span> <span class="fu">yday</span>(inizio))] <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> comune,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> pm10</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">50</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"Concentrazione media giornaliera di "</span> <span class="sc">*</span> PM[<span class="dv">10</span>] <span class="sc">*</span> <span class="er">~</span>  (mu <span class="sc">*</span> g <span class="sc">/</span> m<span class="sc">^</span>{<span class="dv">3</span>}))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-pm10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="ggplot2_files/figure-html/fig-pm10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figura&nbsp;7.4: boxplot dei valori medi giornalieri di PM10 misurati nel 2024 per i comuni monitorati nella provincia di Genova."><img src="ggplot2_files/figure-html/fig-pm10-1.png" class="img-fluid figure-img" width="720"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pm10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.4: boxplot dei valori medi giornalieri di PM<sub>10</sub> misurati nel 2024 per i comuni monitorati nella provincia di Genova.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
