@@ -15,6 +15,8 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
 
     ```{r}
     #| results: hide
+    library(data.table)
+    
     campioni_wide <- data.table(
     codice_campione = c("22201/24", "22248/24", "22311/24"),
     data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10")),
@@ -25,6 +27,8 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
     
     ```{r}
     #| echo: false
+    library(gt)
+
     campioni_wide |>
       gt()
     ```

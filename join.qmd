@@ -17,6 +17,8 @@ Prendiamo come esempio due `data.table`:
 Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:
 
 ```{r}
+library(data.table)
+
 misure <- data.table(
   codice = c("22201/24", "22248/24", "22311/24", "22312/24"),
   data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10", "2024-03-10")),
