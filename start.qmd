@@ -77,8 +77,6 @@ Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alc
 Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
 
 ```{r}
-#| eval: true
-#| error: true
 
 # la funzione fammi_il_caffe prende come argomenti due stringa di caratteri:
 # la prima definisce il tipo e può essere "caffè" o "orzo"
@@ -167,7 +165,7 @@ Questa è la sezione più importante dell'intero corso, poiché insegna come muo
 R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è documentato, contenendo tutte le informazioni necessarie per comprenderne gli ambiti e le modalità di utilizzo. Per accedere a queste informazioni, è sufficiente anteporre un punto interrogativo `?` all'elemento del quale si desidera sapere di più:
 
 ```{r}
-#| output: false
+#| eval: false
 ?sum()
 ?iris
 ```
@@ -175,14 +173,14 @@ R offre un ottimo aiuto in linea: ogni pacchetto, dataset e funzione è document
 Se l'elemento di cui si vuole sapere di più è presente in un pacchetto noto, ma non attualmente caricato, sarà necessario specificare il pacchetto di appartenenza anteponendolo con `::`:
 
 ```{r}
-#| output: false
+#| eval: false
 ?ggplot2::geom_point()
 ```
 
 Se l'elemento è presente in un pacchetto installato ma non attualmente caricato e non si conosce esattamente a quale pacchetto appartenga, si può effettuare una ricerca tra i pacchetti installati anteponendo due punti interrogativi `??` all'elemento stesso e selezionando la voce di interesse:
 
 ```{r}
-#| output: false
+#| eval: false
 ??geom_point()
 ```
 
@@ -208,7 +206,11 @@ Quest'ultimo punto ha lo scopo di rendere il vostro codice riproducibile e facil
 ## Soluzione
 
 ```{r}
-?aggregate()    # 1.
-aggregate(. ~ Species, data = iris, FUN = mean)    # 2.
+#| eval: false
+?aggregate()                                      # 1.
+```
+
+```{r}
+aggregate(. ~ Species, data = iris, FUN = mean)   # 2.
 ```
 ::::
