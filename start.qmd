@@ -77,6 +77,7 @@ Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alc
 Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
 
 ```{r}
+#| error: true
 
 # la funzione fammi_il_caffe prende come argomenti due stringa di caratteri:
 # la prima definisce il tipo e può essere "caffè" o "orzo"
