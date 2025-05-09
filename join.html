@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -241,6 +241,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -320,7 +326,7 @@ window.Quarto = {
 <p>Prima di unire le tabelle, dobbiamo quindi decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di <em>join</em> da utilizzare.</p>
 <section id="sec-inner" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">6.1.1</span> Inner join</h3>
-<p>Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, useremo un <em>inner join.</em> In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
+<p>Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, useremo un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
 <div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -349,7 +355,7 @@ Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 </section>
 <section id="sec-left" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">6.1.2</span> Right e left join</h3>
-<p>Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un <em>right join</em>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<p>Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un <strong>right join</strong>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
 <div id="fig-right" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -381,7 +387,7 @@ Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</sp
 <li>tutte le righe di <code>i</code> (<code>indirizzi</code> nell’esempio) sono mantenute;</li>
 <li>le colonne di <code>x</code> (<code>misure</code> nell’esempio) sono aggiunte solo se c’è corrispondenza, altrimenti sono <code>NA</code>.</li>
 </ul>
-<p>Per un <em>left join</em> (tutte le misure, con indirizzo se disponibile), basta invertire le tabelle:</p>
+<p>Per un <strong>left join</strong> (tutte le misure, con indirizzo se disponibile), basta invertire le tabelle:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>indirizzi[misure, <span class="co"># le tabelle</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
@@ -409,7 +415,7 @@ Per i più frettolosi
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Il valore predefinito dell’argomento <code>nomatch</code> è <code>NA</code>: possiamo quindi ometterlo per <em>right</em> e <em>left join</em>.</p>
+<p>Il valore predefinito dell’argomento <code>nomatch</code> è <code>NA</code>: possiamo quindi ometterlo per <strong>right</strong> e <strong>left join</strong>.</p>
 </div>
 </div>
 </section>
@@ -475,7 +481,7 @@ Per i più golosi
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ul>
 <li><p>La chiave è il codice univoco della stazione: <code>codice_europeo</code> in <code>pm_genova</code> e <code>station_eu_code</code> in <code>stazioni</code>;</p></li>
-<li><p>serve un <em>inner join</em> (<span class="math inline">\(A \cap B\)</span>);</p></li>
+<li><p>serve un <strong>inner join</strong> (<span class="math inline">\(A \cap B\)</span>);</p></li>
 <li><p>ecco il codice:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pm_genova_completo <span class="ot">&lt;-</span> pm_genova[stazioni,</span>

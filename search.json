@@ -306,7 +306,7 @@
     "href": "ggplot2.html",
     "title": "7  Visualizzare i dati con ggplot2",
     "section": "",
-    "text": "7.1 Sintassi di base di ggplot2\nLa visualizzazione dei dati è una fase fondamentale nell’analisi statistica: un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.\nIl pacchetto ggplot2 di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla Grammar of Graphics permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.\nUn grafico con ggplot2 si costruisce combinando tre elementi principali:\nVediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:\n# dataset sintetico\nlibrary(data.table)\n\nn &lt;- 50\nvalori &lt;- rnorm(n, mean = 0.100, sd = 0.010)\n\nmisure &lt;- data.table(\n  codice = paste0(sample(1:40000, n), \"/24\"),\n  data_campionamento = sample(seq(as.IDate('2024-01-01'),\n                                  as.IDate('2024-12-31'),\n                                  by = \"day\"), \n                              n, replace = TRUE),\n  matrice = sample(c(\"Acque superficiali\", \"Acque sotterranee\", \"Acque destinate al consumo umano\"),\n                   n, replace = TRUE) |&gt; factor(),\n  piombo = valori,\n  arsenico = valori - rnorm(n, mean = 0.020, sd = 0.003)\n    )\n\n# grafico di dispersione\nlibrary(ggplot2)\n\nmisure |&gt;                           # dataset\n  ggplot(aes(x = piombo,            # piombo sull'asse delle x\n             y = arsenico)) +       # arsenico sull'asse delle y\n  geom_point()                      # grafico di dispersione\n\n\n\n\n\n\n\nFigura 7.1: Un semplice grafico di dispersione.",
+    "text": "7.1 Sintassi di base di ggplot2\nLa visualizzazione dei dati è una fase fondamentale nell’analisi statistica: un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.\nIl pacchetto ggplot2 di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla grammar of graphics permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.\nUn grafico con ggplot2 si costruisce combinando tre elementi principali:\nVediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:\n# dataset sintetico\nlibrary(data.table)\n\nn &lt;- 50\nvalori &lt;- rnorm(n, mean = 0.100, sd = 0.010)\n\nmisure &lt;- data.table(\n  codice = paste0(sample(1:40000, n), \"/24\"),\n  data_campionamento = sample(seq(as.IDate('2024-01-01'),\n                                  as.IDate('2024-12-31'),\n                                  by = \"day\"), \n                              n, replace = TRUE),\n  matrice = sample(c(\"Acque superficiali\", \"Acque sotterranee\", \"Acque destinate al consumo umano\"),\n                   n, replace = TRUE) |&gt; factor(),\n  piombo = valori,\n  arsenico = valori - rnorm(n, mean = 0.020, sd = 0.003)\n    )\n\n# grafico di dispersione\nlibrary(ggplot2)\n\nmisure |&gt;                           # dataset\n  ggplot(aes(x = piombo,            # piombo sull'asse delle x\n             y = arsenico)) +       # arsenico sull'asse delle y\n  geom_point()                      # grafico di dispersione\n\n\n\n\n\n\n\nFigura 7.1: Un semplice grafico di dispersione.",
     "crumbs": [
       "Le basi",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualizzare i dati con `ggplot2`</span>"
@@ -321,6 +321,28 @@
     "crumbs": [
       "Le basi",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualizzare i dati con `ggplot2`</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html",
+    "href": "quarto.html",
+    "title": "8  Report riproducibili",
+    "section": "",
+    "text": "8.1 I documenti Quarto\nNei capitoli precedenti abbiamo utilizzato gli script di R per organizzare il codice, aggiungendo commenti per spiegare il funzionamento di porzioni particolarmente ostiche. Tuttavia, un progetto di analisi dei dati reale può durare mesi, con la creazione di un numero elevato di script, collegati a porzioni di testo fondamentali per l’analisi ma che non sono sotto forma di codice. Nei contesti descritti è necessario un altro strumento: quarto.\nQuarto è un sistema di pubblicazione open source, evoluzione di R Markdown, che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file con estensione .qmd. Supporta diversi linguaggi (R, Python, Julia) e può generare output in HTML, PDF, Word, presentazioni e altro: questo libro è stato interamente creato utilizzando quarto.\nCreare un documento quarto da RStudio è semplice:\nQui possiamo specificare il titolo, l’autore e il formato di output del documento. Sempre nell’intestazione è possibile aggiungere altri elementi, come ad esempio lang: it per specificare che il documento è redatto in italiano.\nPossiamo iniziare a scrivere il nostro primo documento alternando testo e codice.",
+    "crumbs": [
+      "Le basi",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Report riproducibili</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#sec-quarto",
+    "href": "quarto.html#sec-quarto",
+    "title": "8  Report riproducibili",
+    "section": "",
+    "text": "vai su File &gt; New File &gt; Quarto Document;\ninserisci titolo e autore nel pannello di creazione;\nscegli il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);\nviene creato un file .qmd con un’intestazione YAML simile a:\n\n---\ntitle: \"Titolo del documento\"\nauthor: \"Nome Autore\"\nformat: html\n---\n\n\n\n8.1.1 Il testo\nPossiamo inserire il testo all’interno di un documento di quarto semplicemente scrivendo al di sotto dell’intestazione e utilizzando la tipica sintassi markdown, ormai sempre più diffusa. Vediamo un esempio aggiungendo del testo:\n\n---\ntitle: \"Il mio primo documento con Quarto\"\nauthor: \"Proprio io\"\nformat: html\nlang: it\n---\n    \n# Questo è un titolo di livello uno {#sec-riferimento}\n\nOra scrivo semplicemente del testo poi metto una parola in *corsivo* e una in **neretto**.\n\n## Questo un sottotitolo di livello due\n\nQui faccio vedere che so organizzare le idee facendo un elenco puntato:\n\n- carote;\n- patate;\n- cipolle.\n\nFaccio anche un elenco numerato:\n\n1. arrivò il toro;\n2. che bevvé l'acqua;\n3. che spense il fuoco;\n4. che bruciò il bastone;\n5. che picchiò il cane;\n6. che morse il gatto;\n7. che mangiò il topo;\n8. che al mercato mio padre comprò.\n\n### Questo è un elenco di terzo livello\n\nPosso esagerare con un'equazione in linea $c^2 = \\sqrt{a^2 + b^2}$ o una fuori corpo:\n\n$$\ni \\hbar \\frac{\\partial \\Psi}{\\partial t} (\\mathbf{r}, t) = \\hat{H} \\Psi (\\mathbf{r}, t) \n$$\n\nE così finisce la @sec-riferimento.\nPer vedere il risultato, si può cliccare il tasto .\n\n\n8.1.2 Il codice\nPer inserire del codice all’interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (chunk) di codice inizierà con ```{r} e terminerà con ``` e all’interno dello spezzone possiamo inserire del normale codice di R:\n```{r}\nsummary(mtcars)\n```\nMANCANO: - opzioni chunks; - grafici e caption; - tabelle con gt().",
+    "crumbs": [
+      "Le basi",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Report riproducibili</span>"
     ]
   }
 ]

@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>missing/index.html</loc>
-    <lastmod>2025-05-08T14:48:00.870Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.484Z</lastmod>
   </url>
   <url>
     <loc>missing/intro.html</loc>
-    <lastmod>2025-05-08T14:48:00.870Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.484Z</lastmod>
   </url>
   <url>
     <loc>missing/basics.html</loc>
-    <lastmod>2025-05-08T14:48:00.864Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.478Z</lastmod>
   </url>
   <url>
     <loc>missing/start.html</loc>
-    <lastmod>2025-05-08T14:48:00.872Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.485Z</lastmod>
   </url>
   <url>
     <loc>missing/objects.html</loc>
-    <lastmod>2025-05-08T14:48:00.870Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.484Z</lastmod>
   </url>
   <url>
     <loc>missing/datatable.html</loc>
-    <lastmod>2025-05-08T14:48:00.869Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.483Z</lastmod>
   </url>
   <url>
     <loc>missing/reshape.html</loc>
-    <lastmod>2025-05-08T14:48:00.872Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.485Z</lastmod>
   </url>
   <url>
     <loc>missing/join.html</loc>
-    <lastmod>2025-05-08T14:48:00.870Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.484Z</lastmod>
   </url>
   <url>
     <loc>missing/ggplot2.html</loc>
-    <lastmod>2025-05-08T14:48:00.869Z</lastmod>
+    <lastmod>2025-05-09T11:07:13.483Z</lastmod>
+  </url>
+  <url>
+    <loc>missing/quarto.html</loc>
+    <lastmod>2025-05-09T11:07:13.484Z</lastmod>
   </url>
 </urlset>
