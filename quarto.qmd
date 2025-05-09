@@ -1,0 +1,98 @@
+# Report riproducibili {#sec-report}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+## I documenti Quarto {#sec-quarto}
+
+Nei capitoli precedenti abbiamo utilizzato gli script di R per organizzare il codice, aggiungendo commenti per spiegare il funzionamento di porzioni particolarmente ostiche. Tuttavia, un progetto di analisi dei dati reale può durare mesi, con la creazione di un numero elevato di script, collegati a porzioni di testo fondamentali per l'analisi ma che non sono sotto forma di codice. Nei contesti descritti è necessario un altro strumento: **quarto**.
+
+**Quarto** è un sistema di pubblicazione *open source*, evoluzione di **R Markdown**, che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file con estensione .qmd. Supporta diversi linguaggi (`R`, `Python`, `Julia`) e può generare output in HTML, PDF, Word, presentazioni e altro: questo libro è stato interamente creato utilizzando **quarto**.
+
+Creare un documento **quarto** da RStudio è semplice:
+
+1. vai su **File > New File > Quarto Document**;
+2. inserisci titolo e autore nel pannello di creazione;
+3. scegli il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);
+4. viene creato un file `.qmd` con un'intestazione YAML simile a:
+
+```` markdown
+---
+title: "Titolo del documento"
+author: "Nome Autore"
+format: html
+---
+````
+
+Qui possiamo specificare il titolo, l'autore e il formato di output del documento. Sempre nell'intestazione è possibile aggiungere altri elementi, come ad esempio `lang: it` per specificare che il documento è redatto in italiano.
+
+Possiamo iniziare a scrivere il nostro primo documento alternando testo e codice.
+
+### Il testo
+
+Possiamo inserire il testo all'interno di un documento di **quarto** semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Vediamo un esempio aggiungendo del testo:
+
+```` markdown
+
+---
+title: "Il mio primo documento con Quarto"
+author: "Proprio io"
+format: html
+lang: it
+---
+    
+# Questo è un titolo di livello uno {#sec-riferimento}
+
+Ora scrivo semplicemente del testo poi metto una parola in *corsivo* e una in **neretto**.
+
+## Questo un sottotitolo di livello due
+
+Qui faccio vedere che so organizzare le idee facendo un elenco puntato:
+
+- carote;
+- patate;
+- cipolle.
+
+Faccio anche un elenco numerato:
+
+1. arrivò il toro;
+2. che bevvé l'acqua;
+3. che spense il fuoco;
+4. che bruciò il bastone;
+5. che picchiò il cane;
+6. che morse il gatto;
+7. che mangiò il topo;
+8. che al mercato mio padre comprò.
+
+### Questo è un elenco di terzo livello
+
+Posso esagerare con un'equazione in linea $c^2 = \sqrt{a^2 + b^2}$ o una fuori corpo:
+
+$$
+i \hbar \frac{\partial \Psi}{\partial t} (\mathbf{r}, t) = \hat{H} \Psi (\mathbf{r}, t) 
+$$
+
+E così finisce la @sec-riferimento.
+
+````
+
+Per vedere il risultato, si può cliccare il tasto ![](images/render.png){height=25}.
+
+### Il codice
+
+Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e all'interno dello spezzone possiamo inserire del normale codice di R:
+
+```` markdown
+```{{r}}
+summary(mtcars)
+```
+````
+
+MANCANO:
+- opzioni chunks;
+- grafici e caption;
+- tabelle con gt().
+
+

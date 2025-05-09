@@ -34,7 +34,7 @@ book:
         - ggplot2.qmd
     # - part: report.qmd
     #   chapters: 
-    #     - quarto.qmd
+        - quarto.qmd
     #     - dynamic.qmd
 format:
   html:
