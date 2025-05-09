@@ -11,7 +11,7 @@ I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osse
 
 Questa tipologia di dati possono essere organizzati in due differenti formati:
 
--   *wide*: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
+-   **wide**: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
 
     ```{r}
     #| results: hide
@@ -35,7 +35,7 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
     
     Questo formato risulta comodo per la visualizzazione dei dati e il confronto diretto tra le diverse variabili.
 
--   *long*: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
+-   **long**: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all'interno di un'apposita variabile, come mostrato nell'esempio:
 
     ```{r}
     #| results: hide
@@ -63,7 +63,7 @@ La scelta tra i due formati dipende dal tipo di operazione che si vuole eseguire
 
 ## La funzione `melt()`: da wide a long
 
-La funzione `melt()` scioglie i dati in formato *wide* portandoli in formato *long* e utilizza la seguente sintassi:
+La funzione `melt()` scioglie i dati in formato **wide** portandoli in formato **long** e utilizza la seguente sintassi:
 
 ```{r}
 #| eval: false
@@ -78,7 +78,7 @@ melt(data, id.vars, measure.vars, variable.name = "variable", value.name = "valu
 
 Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare `id.vars` e `measure.vars`. In caso contrario la funzione `melt()` imposterà tutte le colonne non numeriche o di tipo logico come `id.vars` e le restanti colonne come `measure.vars`.
 
-Proviamo a trasformare `campioni_wide` in formato *long*:
+Proviamo a trasformare `campioni_wide` in formato **long**:
 
 ```{r}
 campioni_wide |> 
@@ -95,7 +95,7 @@ La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: 
 
 ### Significato e sintassi di base {#sec-dcast-base}
 
-La funzione `dcast()` proietta i dati in formato *long* distribuendone il contenuto su un più colonne, per ottenere un formato *wide*. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
+La funzione `dcast()` proietta i dati in formato **long** distribuendone il contenuto su un più colonne, per ottenere un formato **wide**. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
 
 La complessità e potenza dell'operazione di proiezione è testimoniata dalla sintassi della funzione `dcast()`:
 
@@ -110,7 +110,7 @@ dcast(data, formula, fun.aggregate = NULL, value.var = NULL, fill = NULL)
 -   `value.var`: il nome della colonna con i valori da distribuire;
 -   `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
 
-Proviamo a trasformare `campioni_long` in formato *wide*:
+Proviamo a trasformare `campioni_long` in formato **wide**:
 
 ```{r}
 campioni_long |> 
@@ -168,20 +168,20 @@ Con il comando `vignette("datatable-reshape")` è possible avere informazioni ag
 
 Utilizzando il dataset `pm_genova`:
 
-- identificare se il dataset è in formato *wide* o *long*;
+- identificare se il dataset è in formato **wide** o **long**;
 - identificare l'enità osservata;
 - identificare la o le colonne con la tipologia di misura e il relativo valore;
-- convertire il dataset in formato *wide* o *long* a seconda di come è stato fornito;
+- convertire il dataset in formato **wide** o **long** a seconda di come è stato fornito;
 - valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio;
-- convertire il dataset in formato *wide* o *long*, a seconda di come è stato fornito, evitando operazioni di aggregazione sui valori.
+- convertire il dataset in formato **wide** o **long**, a seconda di come è stato fornito, evitando operazioni di aggregazione sui valori.
 
 ## Soluzione
 
-- Ogni riga del dataset si riferisce a una misura, quindi è in formato *long*;
+- Ogni riga del dataset si riferisce a una misura, quindi è in formato **long**;
 - l'entità osservata sono i campioni misurati con frequenza oraria o giornaliera nelle diverse stazioni;
 - la tipologia di misura è identificata dalla colonna `inquinante` e i relativi valori sono salvati nelle colonna `valore`, `valido`, `validato_cor` e `certificato`;
 - la presenza di valori duplicati è attestata dall'utilizzo della funzione `dcast()` senza specificare l'argomento di `fun.aggregate` nel codice riportato nel punto successivo;
-- la conversione in formato *wide*, mediando i risultati delle misure ripetute, può essere ottenuta con:
+- la conversione in formato **wide**, mediando i risultati delle misure ripetute, può essere ottenuta con:
 
   ```{r}
   #| echo: false
@@ -223,7 +223,7 @@ Utilizzando il dataset `pm_genova`:
 
   Anche a `value.var` viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in `?dcast`.
 
-- per eseguire la conversione in formato *wide* evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di `codice_europeo`, `inizio`, `fine` e `metodo` e `inquinante` uguali.
+- per eseguire la conversione in formato **wide** evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di `codice_europeo`, `inizio`, `fine` e `metodo` e `inquinante` uguali.
 
     Possiamo fare così:
 

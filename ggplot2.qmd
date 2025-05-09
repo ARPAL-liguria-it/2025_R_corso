@@ -6,7 +6,7 @@ source("_common.R")
 ```
 
 La visualizzazione dei dati è una fase fondamentale nell'analisi statistica: un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.  
-Il pacchetto `ggplot2` di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla *Grammar of Graphics* permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.
+Il pacchetto `ggplot2` di R è uno strumento potente e flessibile per produrre grafici professionali. È basato sulla *grammar of graphics* permettendo di costruire visualizzazioni a più livelli in modo modulare e intuitivo.
 
 ## Sintassi di base di ggplot2
 
