@@ -117,11 +117,10 @@ Applicare un filtro ai dati è uno dei modi più semplici per concentrarsi sulle
 
 In generale, un filtro può essere scritto come
 
-```
-dt[elemento %operatore% valore, ]
+`dt[elemento %operatore% valore, ]`
 
-```
 dove:
+
 - `dt` è la `data.table` da filtrare;
 - `variabile` è tipicamente il nome di una colonna di `dt`;
 - `%operatore%` indica il tipo di confronto o filtro da applicare;
@@ -137,24 +136,30 @@ stazioni[regione == "Liguria", ]
 
 Gli operatori più comuni sono:
 
-- `==`, `<`, `<=`, `>`, `>=`, `!=`: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo. Attenzione: usare `<` o `>` con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.
+- `==`, `<`, `<=`, `>`, `>=`, `!=`: confrontano la variabile con il valore e selezionano rispettivamente righe con valori uguali, minori, minori o uguali, maggiori, maggiori o uguali, o diversi dal valore. Questi operatori funzionano sia con valori numerici sia con stringhe di testo.
 
-- `%like%`: permette di cercare corrispondenze parziali all'interno di stringhe. Per esempio, nella colonna `nome_stazione` della `data.table` `stazioni`, si vogliono estrarre le informazioni relative alle stazioni identificate come `r stazioni[nome_stazione %like% "CAIR", nome_stazione]`. Non è possibile usare `== CAIRO`, perché il valore `CAIRO` può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:
+  Attenzione: usare `<` o `>` con testo permette di filtrare per ordine alfabetico, ma questo uso non è consigliato.
 
-```{r}
-stazioni[nome_stazione %like% "CAIR",]
-```
+- `%like%`: permette di cercare corrispondenze parziali all'interno di stringhe.
 
-Per selezionare invece tutte le righe che non contengono "CAIR", si usa:
-```{r}
-stazioni[!(nome_stazione %like% "CAIR"),]
-```
+  Per esempio, nella colonna `nome_stazione` della `data.table` `stazioni`, si vogliono estrarre le informazioni relative alle stazioni identificate come `r stazioni[nome_stazione %like% "CAIR", nome_stazione]`. Non è possibile usare `== CAIRO`, perché il valore `CAIRO` può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:
 
-- `%in%` e `%notin%`: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori. Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:
+  ```{r}
+  stazioni[nome_stazione %like% "CAIR",]
+  ```
+  
+  Per selezionare invece tutte le righe che non contengono "CAIR", si usa:
+  ```{r}
+  stazioni[!(nome_stazione %like% "CAIR"),]
+  ```
 
-```{r}
-stazioni[comune %in% c("Vado Ligure", "Quiliano"),]
-```
+- `%in%` e `%notin%`: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori.
+
+  Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:
+
+  ```{r}
+  stazioni[comune %in% c("Vado Ligure", "Quiliano"),]
+  ```
 
 È possibile combinare più condizioni usando gli operatori logici `&` (e) e `|` (o):
 
