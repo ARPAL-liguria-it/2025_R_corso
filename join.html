@@ -299,7 +299,7 @@ window.Quarto = {
 <li><code>indirizzi</code>: contiene le informazioni relative ai punti di prelievo.</li>
 </ul>
 <p>Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>misure <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
@@ -338,7 +338,7 @@ Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 </figure>
 </div>
 <p>Con <code>data.table</code> la sintassi è:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NULL</span>] <span class="co"># assegno NULL ai record senza corrispondenza</span></span>
@@ -367,7 +367,7 @@ Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</sp
 </figure>
 </div>
 <p>Ecco la sintassi:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure[indirizzi, <span class="co"># le tabelle</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NA</span>] <span class="co"># assegno NA ai record senza corrispondenza</span></span>
@@ -388,7 +388,7 @@ Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</sp
 <li>le colonne di <code>x</code> (<code>misure</code> nell’esempio) sono aggiunte solo se c’è corrispondenza, altrimenti sono <code>NA</code>.</li>
 </ul>
 <p>Per un <strong>left join</strong> (tutte le misure, con indirizzo se disponibile), basta invertire le tabelle:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>indirizzi[misure, <span class="co"># le tabelle</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       on <span class="ot">=</span> <span class="st">"codice"</span>, <span class="co"># la colonna chiave</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       nomatch <span class="ot">=</span> <span class="cn">NA</span>] <span class="co"># assegno NA ai record senza corrispondenza</span></span>
@@ -433,7 +433,7 @@ Figura&nbsp;6.3: Full join (<span class="math inline">\(A \cup B\)</span>): veng
 </figure>
 </div>
 <p>La sintassi prevede la funzione <code>merge()</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">merge</span>(misure, indirizzi, <span class="at">by =</span> <span class="st">"codice"</span>, <span class="at">all =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Key: &lt;codice&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      codice data_campionamento cadmio piombo arsenico     comune provincia</span></span>
@@ -483,7 +483,7 @@ Per i più golosi
 <li><p>La chiave è il codice univoco della stazione: <code>codice_europeo</code> in <code>pm_genova</code> e <code>station_eu_code</code> in <code>stazioni</code>;</p></li>
 <li><p>serve un <strong>inner join</strong> (<span class="math inline">\(A \cap B\)</span>);</p></li>
 <li><p>ecco il codice:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pm_genova_completo <span class="ot">&lt;-</span> pm_genova[stazioni,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># la lista identifica le colonne in relazione</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># in data.table .() equivale a list()</span></span>
@@ -491,14 +491,14 @@ Per i più golosi
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                          nomatch <span class="ot">=</span> <span class="cn">NULL</span>]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>con <code>str(pm_genova_completo)</code> si nota che <code>tipo_zona</code> e <code>tipo_stazione</code> sono <code>character</code> invece che <code>factor</code>. Si corregge così:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pm_genova_completo[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tipo_zona =</span> <span class="fu">factor</span>(tipo_zona),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">tipo_stazione =</span> <span class="fu">factor</span>(tipo_stazione)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>per identificare stazioni e righe perse:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pm_genova[codice_europeo <span class="sc">%notin%</span> pm_genova_completo[, codice_europeo],</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">unique</span>(codice_europeo)]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "IT2339A" "IT2327A" ""</span></span>

@@ -230,6 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#il-testo" id="toc-il-testo" class="nav-link" data-scroll-target="#il-testo"><span class="header-section-number">8.1.1</span> Il testo</a></li>
   <li><a href="#il-codice" id="toc-il-codice" class="nav-link" data-scroll-target="#il-codice"><span class="header-section-number">8.1.2</span> Il codice</a></li>
+  <li><a href="#le-tabelle" id="toc-le-tabelle" class="nav-link" data-scroll-target="#le-tabelle"><span class="header-section-number">8.1.3</span> Le tabelle</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="missing/edit/main/quarto.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
@@ -321,13 +322,723 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="il-codice" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="il-codice"><span class="header-section-number">8.1.2</span> Il codice</h3>
-<p>Per inserire del codice all’interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (<em>chunk</em>) di codice inizierà con <code>```{r}</code> e terminerà con <code>```</code> e all’interno dello spezzone possiamo inserire del normale codice di R:</p>
+<p>Per inserire del codice all’interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (<em>chunk</em>) di codice inizierà con <code>```{r}</code> e terminerà con <code>```</code> e al suo interno possiamo inserire del normale codice di R:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>MANCANO: - opzioni chunks; - grafici e caption; - tabelle con gt().</p>
+<p>È consigliabile associare a ogni spezzone di codice un’etichetta univoca che descriva brevemente cosa fa il codice e questo lo si può fare specificando l’opzione <code>label</code>, come di seguito:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary-mtcars</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il campo <code>label</code> non ammette spazi e l’unico carattere speciale ammesso è <code>-</code>. Nel caso di spezzoni di codice che generano grafici o tabelle, è buona norma impostare l’etichetta rispettivamente come <code>#| label: fig-qualcosa</code> e <code>#| label: tbl-qualcosa</code>: così facendo si potrà fare riferimento nel testo alla figura e alla tabella scrivendo rispettivamente <code>@fig-qualcosa</code> o <code>@tbl-qualcosa</code>.</p>
+<p>Oltre a <code>label</code> è possibile specificare altre opzioni che regolano la visibilità e il comportamento del codice. Tra le più usate abbiamo:</p>
+<ul>
+<li><code>echo</code>: regola la visibilità del codice all’interno dello spezzone. Il valore predefinito è <code>TRUE</code> e comporta la visibilità nel documento finale sia del codice presente all’interno dello spezzone, sia del suo risultato. Impostando <code>FALSE</code> si vede solo il risultato del codice.</li>
+<li><code>message</code> o <code>warning</code>: impostandoli su <code>FALSE</code> si evita l’inclusione di messaggio o avvisi all’interno del documento finale.</li>
+<li><code>fig-cap</code> e <code>tbl-cap</code>: imposta la didascalia di figure e tabelle e accetta una stringa di testo tra virgolette.</li>
+</ul>
+<p>Tutte le opzioni vanno specificate all’inizio dello spezzone e facendole precedere da <code>#|</code>.</p>
+<p>È anche possibile specificare piccole porzioni di codice il cui risultato verrà visualizzato in linea con il testo. Ecco un esempio:</p>
+<p>scrivendo</p>
+<blockquote class="blockquote">
+<p>il dataset <code>mtcars</code> contiene i dati di <code>32</code> modelli di automobili, ciascuno classificato sulla base di <code>11</code> variabili.</p>
+</blockquote>
+<p>viene visualizzato</p>
+<p>il dataset <code>mtcars</code> contiene i dati di 32 modelli di automobili, ciascuno classificato sulla base di 11 variabili.</p>
+</section>
+<section id="le-tabelle" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="le-tabelle"><span class="header-section-number">8.1.3</span> Le tabelle</h3>
+<p>All’interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto <code>gt</code>. Tale pacchetto permette di personalizzare nel dettaglio la visualizzazione delle tabelle, impostando i nomi delle colonne, le colonne da unire e la formattazione dei valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di <code>gt</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(Wind, <span class="at">n_sigfig =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span>                    <span class="co"># 2 cifre significative</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(                                          <span class="co"># nomi delle colonne</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ozone =</span> <span class="fu">html</span>(<span class="st">"Ozono,&lt;br&gt;ppbV"</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Solar.R =</span> <span class="fu">html</span>(<span class="st">"Solar R.,&lt;br&gt;cal/m&lt;sup&gt;2&lt;/sup&gt;"</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Wind =</span> <span class="fu">html</span>(<span class="st">"Vento,&lt;br&gt;mph"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Temp =</span> <span class="fu">html</span>(<span class="st">"Temp,&lt;br&gt;&amp;deg;F"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span>                                                 <span class="co"># sovra intestazione</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Tempo"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Month, Day)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Misure"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(Ozone, Solar.R, Wind, Temp)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-airquality" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;8.1: <code>gt</code> fa delle tabelle che spaccano.
+</figcaption>
+<div aria-describedby="tbl-airquality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlefoodfi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mwlefoodfi thead, #mwlefoodfi tbody, #mwlefoodfi tfoot, #mwlefoodfi tr, #mwlefoodfi td, #mwlefoodfi th {
+  border-style: none;
+}
+
+#mwlefoodfi p {
+  margin: 0;
+  padding: 0;
+}
+
+#mwlefoodfi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mwlefoodfi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mwlefoodfi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mwlefoodfi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mwlefoodfi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mwlefoodfi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mwlefoodfi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mwlefoodfi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mwlefoodfi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mwlefoodfi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mwlefoodfi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mwlefoodfi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mwlefoodfi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mwlefoodfi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mwlefoodfi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mwlefoodfi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mwlefoodfi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mwlefoodfi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mwlefoodfi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mwlefoodfi .gt_left {
+  text-align: left;
+}
+
+#mwlefoodfi .gt_center {
+  text-align: center;
+}
+
+#mwlefoodfi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mwlefoodfi .gt_font_normal {
+  font-weight: normal;
+}
+
+#mwlefoodfi .gt_font_bold {
+  font-weight: bold;
+}
+
+#mwlefoodfi .gt_font_italic {
+  font-style: italic;
+}
+
+#mwlefoodfi .gt_super {
+  font-size: 65%;
+}
+
+#mwlefoodfi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mwlefoodfi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mwlefoodfi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mwlefoodfi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mwlefoodfi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mwlefoodfi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mwlefoodfi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mwlefoodfi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwlefoodfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th colspan="4" id="Misure" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Misure
+</div></th>
+<th colspan="2" id="Tempo" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Tempo
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Ozone" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ozono,<br>
+ppbV</th>
+<th id="Solar.R" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Solar R.,<br>
+cal/m<sup>2</sup></th>
+<th id="Wind" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Vento,<br>
+mph</th>
+<th id="Temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp,<br>
+°F</th>
+<th id="Month" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Month</th>
+<th id="Day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Day</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">41</td>
+<td class="gt_row gt_right" headers="Solar.R">190</td>
+<td class="gt_row gt_right" headers="Wind">7.4</td>
+<td class="gt_row gt_right" headers="Temp">67</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">36</td>
+<td class="gt_row gt_right" headers="Solar.R">118</td>
+<td class="gt_row gt_right" headers="Wind">8.0</td>
+<td class="gt_row gt_right" headers="Temp">72</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">12</td>
+<td class="gt_row gt_right" headers="Solar.R">149</td>
+<td class="gt_row gt_right" headers="Wind">13</td>
+<td class="gt_row gt_right" headers="Temp">74</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">18</td>
+<td class="gt_row gt_right" headers="Solar.R">313</td>
+<td class="gt_row gt_right" headers="Wind">12</td>
+<td class="gt_row gt_right" headers="Temp">62</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">NA</td>
+<td class="gt_row gt_right" headers="Solar.R">NA</td>
+<td class="gt_row gt_right" headers="Wind">14</td>
+<td class="gt_row gt_right" headers="Temp">56</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">28</td>
+<td class="gt_row gt_right" headers="Solar.R">NA</td>
+<td class="gt_row gt_right" headers="Wind">15</td>
+<td class="gt_row gt_right" headers="Temp">66</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">23</td>
+<td class="gt_row gt_right" headers="Solar.R">299</td>
+<td class="gt_row gt_right" headers="Wind">8.6</td>
+<td class="gt_row gt_right" headers="Temp">65</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">19</td>
+<td class="gt_row gt_right" headers="Solar.R">99</td>
+<td class="gt_row gt_right" headers="Wind">14</td>
+<td class="gt_row gt_right" headers="Temp">59</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">8</td>
+<td class="gt_row gt_right" headers="Solar.R">19</td>
+<td class="gt_row gt_right" headers="Wind">20</td>
+<td class="gt_row gt_right" headers="Temp">61</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">NA</td>
+<td class="gt_row gt_right" headers="Solar.R">194</td>
+<td class="gt_row gt_right" headers="Wind">8.6</td>
+<td class="gt_row gt_right" headers="Temp">69</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">7</td>
+<td class="gt_row gt_right" headers="Solar.R">NA</td>
+<td class="gt_row gt_right" headers="Wind">6.9</td>
+<td class="gt_row gt_right" headers="Temp">74</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">16</td>
+<td class="gt_row gt_right" headers="Solar.R">256</td>
+<td class="gt_row gt_right" headers="Wind">9.7</td>
+<td class="gt_row gt_right" headers="Temp">69</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">11</td>
+<td class="gt_row gt_right" headers="Solar.R">290</td>
+<td class="gt_row gt_right" headers="Wind">9.2</td>
+<td class="gt_row gt_right" headers="Temp">66</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">13</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">14</td>
+<td class="gt_row gt_right" headers="Solar.R">274</td>
+<td class="gt_row gt_right" headers="Wind">11</td>
+<td class="gt_row gt_right" headers="Temp">68</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">18</td>
+<td class="gt_row gt_right" headers="Solar.R">65</td>
+<td class="gt_row gt_right" headers="Wind">13</td>
+<td class="gt_row gt_right" headers="Temp">58</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">14</td>
+<td class="gt_row gt_right" headers="Solar.R">334</td>
+<td class="gt_row gt_right" headers="Wind">12</td>
+<td class="gt_row gt_right" headers="Temp">64</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">34</td>
+<td class="gt_row gt_right" headers="Solar.R">307</td>
+<td class="gt_row gt_right" headers="Wind">12</td>
+<td class="gt_row gt_right" headers="Temp">66</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">6</td>
+<td class="gt_row gt_right" headers="Solar.R">78</td>
+<td class="gt_row gt_right" headers="Wind">18</td>
+<td class="gt_row gt_right" headers="Temp">57</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">18</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ozone">30</td>
+<td class="gt_row gt_right" headers="Solar.R">322</td>
+<td class="gt_row gt_right" headers="Wind">12</td>
+<td class="gt_row gt_right" headers="Temp">68</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ozone">11</td>
+<td class="gt_row gt_right" headers="Solar.R">44</td>
+<td class="gt_row gt_right" headers="Wind">9.7</td>
+<td class="gt_row gt_right" headers="Temp">62</td>
+<td class="gt_row gt_right" headers="Month">5</td>
+<td class="gt_row gt_right" headers="Day">20</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<section id="cosa-manca" class="level5" data-number="8.1.3.0.1">
+<h5 data-number="8.1.3.0.1" class="anchored" data-anchor-id="cosa-manca"><span class="header-section-number">8.1.3.0.1</span> COSA MANCA</h5>
+<ul>
+<li>esempio complessivo</li>
+<li>esercizio su pm_genova</li>
+<li>revisione</li>
+</ul>
 
 
+</section>
 </section>
 </section>
 

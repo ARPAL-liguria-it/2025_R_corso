@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Questa tipologia di dati possono essere organizzati in due differenti formati:</p>
 <ul>
 <li><p><strong>wide</strong>: i dati sono organizzati con un’entità osservata per riga e una misura per colonna. Vediamo un esempio:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>campioni_wide <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">piombo =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.12</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
@@ -763,7 +763,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Questo formato risulta comodo per la visualizzazione dei dati e il confronto diretto tra le diverse variabili.</p></li>
 <li><p><strong>long</strong>: i dati sono organizzati con una misura per riga. La tipologia della misura è archiviata all’interno di un’apposita variabile, come mostrato nell’esempio:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice_campione =</span> <span class="fu">c</span>(<span class="st">"22201/24"</span>, <span class="st">"22248/24"</span>, <span class="st">"22311/24"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="at">each =</span> <span class="dv">2</span>),</span>
@@ -775,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">valore_misura =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.10</span>, <span class="fl">0.06</span>, <span class="fl">0.15</span>, <span class="fl">0.04</span>, <span class="fl">0.12</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
@@ -1286,7 +1286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="la-funzione-melt-da-wide-a-long" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="la-funzione-melt-da-wide-a-long"><span class="header-section-number">5.2</span> La funzione <code>melt()</code>: da wide a long</h2>
 <p>La funzione <code>melt()</code> scioglie i dati in formato <strong>wide</strong> portandoli in formato <strong>long</strong> e utilizza la seguente sintassi:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(data, id.vars, measure.vars, <span class="at">variable.name =</span> <span class="st">"variable"</span>, <span class="at">value.name =</span> <span class="st">"value"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -1298,7 +1298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare <code>id.vars</code> e <code>measure.vars</code>. In caso contrario la funzione <code>melt()</code> imposterà tutte le colonne non numeriche o di tipo logico come <code>id.vars</code> e le restanti colonne come <code>measure.vars</code>.</p>
 <p>Proviamo a trasformare <code>campioni_wide</code> in formato <strong>long</strong>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>campioni_wide <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">melt</span>(<span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">"codice_campione"</span>, <span class="st">"data_campionamento"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"cadmio"</span>, <span class="st">"piombo"</span>),</span>
@@ -1322,7 +1322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="sec-dcast-base"><span class="header-section-number">5.3.1</span> Significato e sintassi di base</h3>
 <p>La funzione <code>dcast()</code> proietta i dati in formato <strong>long</strong> distribuendone il contenuto su un più colonne, per ottenere un formato <strong>wide</strong>. Si tratta di un’operazione analoga a quella fornita dalle tabelle <em>pivot</em> dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione <code>melt()</code>.</p>
 <p>La complessità e potenza dell’operazione di proiezione è testimoniata dalla sintassi della funzione <code>dcast()</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(data, formula, <span class="at">fun.aggregate =</span> <span class="cn">NULL</span>, <span class="at">value.var =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -1333,7 +1333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>fill</code>: il valore da mettere in caso di combinazioni mancanti (es. <code>NA</code> o <code>0</code>).</li>
 </ul>
 <p>Proviamo a trasformare <code>campioni_long</code> in formato <strong>wide</strong>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(codice_campione <span class="sc">+</span> data_campionamento <span class="sc">~</span> tipo_misura,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.var =</span> <span class="st">"valore_misura"</span>) <span class="sc">|&gt;</span></span>
@@ -1349,7 +1349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="misure-multiple-e-misure-mancanti" class="level3" data-number="5.3.2">
 <h3 data-number="5.3.2" class="anchored" data-anchor-id="misure-multiple-e-misure-mancanti"><span class="header-section-number">5.3.2</span> Misure multiple e misure mancanti</h3>
 <p>Immaginiamo che a <code>campioni_long</code> si debbano aggiungere i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, ma sono state effettuate tre misure indipendenti della misurazione di zinco.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nuovi_dati <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice_campione =</span> <span class="fu">rep</span>(<span class="st">"22345/24"</span>, <span class="dv">4</span>),</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_campionamento =</span> <span class="fu">rep</span>(<span class="st">"2024-04-01"</span>, <span class="dv">4</span>) <span class="sc">|&gt;</span> <span class="fu">as.IDate</span>(),</span>
@@ -1360,7 +1360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                       nuovi_dati)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Se riprovassimo a proiettare i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 5.3.1</span></a>, otterremo:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <pre><code>#&gt; Warning in dcast.data.table(campioni_long, codice_campione + data_campionamento
 #&gt; ~ : 'fun.aggregate' is NULL, but found duplicate row/column combinations, so
 #&gt; defaulting to length(). That is, the variables [codice_campione,
@@ -1380,7 +1380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.</p>
 <p>Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato <code>NA</code> per le misure mancanti, si può scrivere:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(codice_campione <span class="sc">+</span> data_campionamento <span class="sc">~</span> tipo_misura,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.var =</span> <span class="st">"valore_misura"</span>,</span>
@@ -1433,7 +1433,7 @@ Per i più golosi
 <li><p>la tipologia di misura è identificata dalla colonna <code>inquinante</code> e i relativi valori sono salvati nelle colonna <code>valore</code>, <code>valido</code>, <code>validato_cor</code> e <code>certificato</code>;</p></li>
 <li><p>la presenza di valori duplicati è attestata dall’utilizzo della funzione <code>dcast()</code> senza specificare l’argomento di <code>fun.aggregate</code> nel codice riportato nel punto successivo;</p></li>
 <li><p>la conversione in formato <strong>wide</strong>, mediando i risultati delle misure ripetute, può essere ottenuta con:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  pm_genova,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  codice_europeo <span class="sc">+</span> inizio <span class="sc">+</span> fine <span class="sc">+</span> metodo <span class="sc">+</span> udm <span class="sc">~</span> </span>
@@ -1497,14 +1497,14 @@ Per i più golosi
 </div>
 <p>sarà necessario riconvertire i valori nelle colonne <code>valido</code>, <code>validato_cor</code> e <code>certificato</code> in valori logici.</p>
 <p>Un’alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diventa_logico <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  lunghezza <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(lunghezza <span class="sc">==</span> <span class="dv">1</span>, x, <span class="cn">NA</span>)}</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>utilizzo la funzione all’interno di una lista di <code>fun.aggregate</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    pm_genova,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    codice_europeo <span class="sc">+</span> inizio <span class="sc">+</span> fine <span class="sc">+</span> metodo <span class="sc">+</span> udm <span class="sc">~</span> </span>
@@ -1595,7 +1595,7 @@ Per i più golosi
 <p>Anche a <code>value.var</code> viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in <code>?dcast</code>.</p></li>
 <li><p>per eseguire la conversione in formato <strong>wide</strong> evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di <code>codice_europeo</code>, <code>inizio</code>, <code>fine</code> e <code>metodo</code> e <code>inquinante</code> uguali.</p>
 <p>Possiamo fare così:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'indice id aumenta da 1 a N,</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dove N è il numero di righe con codice_europeo, inizio, fine, metodo e</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inquinante uguali</span></span>

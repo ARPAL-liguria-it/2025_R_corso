@@ -299,7 +299,7 @@ Il pacchetto <code>ggplot2</code> di R è uno strumento potente e flessibile per
 <li><strong>geometria (<code>geom_</code>)</strong>: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).</li>
 </ul>
 <p>Vediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset sintetico</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -326,13 +326,13 @@ Il pacchetto <code>ggplot2</code> di R è uno strumento potente e flessibile per
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> arsenico)) <span class="sc">+</span>       <span class="co"># arsenico sull'asse delle y</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()                      <span class="co"># grafico di dispersione</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scatterplot-base" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-scatterplot-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-scatterplot-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;7.1: Un semplice grafico di dispersione."><img src="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;7.1: un semplice grafico di dispersione."><img src="ggplot2_files/figure-html/fig-scatterplot-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.1: Un semplice grafico di dispersione.
+Figura&nbsp;7.1: un semplice grafico di dispersione.
 </figcaption>
 </figure>
 </div>
@@ -342,7 +342,7 @@ Figura&nbsp;7.1: Un semplice grafico di dispersione.
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-layers"><span class="header-section-number">7.1.1</span> Aggiungere livelli al grafico</h3>
 <p><code>ggplot2</code> permette di sovrapporre più livelli per arricchire il grafico con elementi aggiuntivi come linee di tendenza, etichette, pannelli, titoli e annotazioni.<br>
 Ogni livello si aggiunge con l’operatore <code>+</code>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span>                           <span class="co"># dataset</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> piombo,            <span class="co"># piombo sull'asse delle x</span></span>
@@ -360,10 +360,10 @@ Ogni livello si aggiunge con l’operatore <code>+</code>.</p>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()                        <span class="co"># scelgo lo stile</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-scatterplot-plus" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-scatterplot-plus" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-scatterplot-plus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS."><img src="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS."><img src="ggplot2_files/figure-html/fig-scatterplot-plus-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterplot-plus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una retta di regressione basata sul metodo OLS.
@@ -392,7 +392,7 @@ Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una r
 </ul>
 <p>Il livello <code>theme()</code> è usato per personalizzare l’aspetto generale del grafico, in particolare viene usato spesso per gestire la posizione e lo stile della legenda. Deve essere utilizzato dopo i livelli <code>geom_</code> e <code>scale_</code> ma prima dei comandi per la scelta dello stile del grafico, come <code>theme_bw()</code>.</p>
 <p>Vediamo un esempio in cui personalizziamo l’asse temporale e l’aspetto della legenda:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> data_campionamento,</span>
@@ -422,10 +422,10 @@ Figura&nbsp;7.2: un grafico di dispersione suddiviso su più panelli e con una r
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-date" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-date" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="ggplot2_files/figure-html/fig-date-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque."><img src="ggplot2_files/figure-html/fig-date-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="ggplot2_files/figure-html/fig-date-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque."><img src="ggplot2_files/figure-html/fig-date-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-date-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al variare del tempo in diverse tipologie di acque.
@@ -441,7 +441,7 @@ Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al v
 <p>Utilizzando il dataset <code>pm_genova</code> importato e modificato nelle sezioni precedenti, rappresentare la distribuzione dei valori medi giornalieri di PM<sub>10</sub> per i diversi comuni. Raffrontare visivamente i valori medi giornalieri con il limite di <span class="math inline">\(50\, \mu g/m^3\)</span>.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -465,10 +465,10 @@ Figura&nbsp;7.3: un grafico che mostra le concentrazioni di piombo misurate al v
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-pm10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-pm10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pm10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="ggplot2_files/figure-html/fig-pm10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figura&nbsp;7.4: boxplot dei valori medi giornalieri di PM10 misurati nel 2024 per i comuni monitorati nella provincia di Genova."><img src="ggplot2_files/figure-html/fig-pm10-1.png" class="img-fluid figure-img" width="720"></a>
+<a href="ggplot2_files/figure-html/fig-pm10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figura&nbsp;7.4: boxplot dei valori medi giornalieri di PM10 misurati nel 2024 per i comuni monitorati nella provincia di Genova."><img src="ggplot2_files/figure-html/fig-pm10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pm10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;7.4: boxplot dei valori medi giornalieri di PM<sub>10</sub> misurati nel 2024 per i comuni monitorati nella provincia di Genova.

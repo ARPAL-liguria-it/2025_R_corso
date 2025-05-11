@@ -306,7 +306,7 @@ window.Quarto = {
 <section id="numeri" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="numeri"><span class="header-section-number">3.1.1</span> Numeri</h3>
 <p>R gestisce diversi tipi di numeri, ma nella maggior parte dei casi useremo il tipo <code>double</code>. Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi. Anche i numeri interi (come 5) sono memorizzati come <code>double</code>, a meno che non specifichiamo esplicitamente il tipo <code>integer</code> aggiungendo una <code>L</code> (es. <code>5L</code>). Ogni misura - ad eccezione dei conteggi puri - ricade in questa tipologia, anche se dovesse avere valore intero (es. 5). L’Utilizzo di elementi di tipo <code>double</code> è semplice:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.5</span>) <span class="co"># double</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">5</span>L)      <span class="co"># integer</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -316,7 +316,7 @@ window.Quarto = {
 <section id="testo" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="testo"><span class="header-section-number">3.1.2</span> Testo</h3>
 <p>R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte <code>character</code> e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso utilizzeremo sempre le doppie virgolette):</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">"roba"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Talvolta, i numeri possono essere erroneamente archiviati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripulit. Per riconvertirli in numeri, si usa la funzione <code>as.numeric()</code>.</p>
@@ -324,7 +324,7 @@ window.Quarto = {
 <section id="logici" class="level3" data-number="3.1.3">
 <h3 data-number="3.1.3" class="anchored" data-anchor-id="logici"><span class="header-section-number">3.1.3</span> Logici</h3>
 <p>Gli elementi logici possono assumere esclusivamente valore <code>TRUE</code> o <code>FALSE</code>. Raramente vengono assegnati direttamente a una variabile, ma compaiono spesso a seguito di un’operazione logica:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
@@ -339,7 +339,7 @@ window.Quarto = {
 <h3 data-number="3.1.4" class="anchored" data-anchor-id="elementi-mancanti-ed-elementi-nulli"><span class="header-section-number">3.1.4</span> Elementi mancanti ed elementi nulli</h3>
 <p>R identifica gli elementi mancanti con <code>NA</code> (<em>not available</em>). <code>NA</code> rappresenta una tipologia particolare, in quanto diventa di tipo testo, numero o valore logico a seconda del contesto. In genere, le operazioni eseguite su gruppi di elementi in cui uno o più elementi sono <code>NA</code> restituiscono <code>NA</code>. Si può verificare se un elemento è di tipo <code>NA</code> con la funzione <code>is.na()</code>.</p>
 <p>Talvolta, R può restituire un elemento di tipo <code>NULL</code> quando si tenta di estrarre un elemento inesistente da un oggetto. Più comunemente, è possibile assegnare il valore <code>NULL</code> a un oggetto per eliminarne il contenuto:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a</span>
@@ -357,7 +357,7 @@ window.Quarto = {
 <p>Un vettore è un insieme ordinato di valori, tutti appartenenti alla stessa tipologia. Tutte le variabili create nella <a href="#sec-typeof" class="quarto-xref"><span>Sezione 3.1</span></a> sono esempi di vettori: anche se alcuni contengono solo numeri, testo o valori logici, essi non contengono mai elementi di tipologie diverse e possiedono una sola dimensione.</p>
 <p>Tecnicamente, i vettori non sono catalogati da R all’interno di una classe, tuttavia è comodo vederli come la più semplice delle classi, intendendo con questo termine - per semplicità - una tipologia di contenitore di elementi.</p>
 <p>È possibile accedere ai diversi elementi di un vettore utilizzando la notazione: <code>vettore[indici]</code> dove <code>indici</code> è a sua volta un vettore di elementi da includere o escludere. Esempi:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="cn">NA</span>, <span class="st">"e"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>f[<span class="dv">1</span>]          <span class="co"># seleziona il primo elemento</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "a"</span></span>
@@ -385,7 +385,7 @@ window.Quarto = {
 <p>Per verificare se un oggetto è un vettore si può usare la funzione <code>is.vector()</code>, mentre per conoscerne il numero di elementi si usa la funzione <code>length()</code>.</p>
 <p>Con i vettori possiamo iniziare a fare qualche calcolo con funzioni quali <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>quantile()</code>, <code>which.min()</code> e <code>which.max()</code> e molte altre.</p>
 <p>Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più usate sono <code>sample()</code> e <code>rnorm()</code>. La prima estrae un numero casuale di elementi da un vettore, la seconda genera valori da una distribuzione normale con parametri noti. Esempio:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sorprendimi <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="dv">30</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="co"># 30 valori indipendenti da 1 a 1000.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(sorprendimi)                                  <span class="co"># trova il valore massimo</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 998</span></span>
@@ -400,15 +400,15 @@ window.Quarto = {
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span>                 <span class="co"># la pipe per concatena le funzioni</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="objects_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="objects_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="720"></a></p>
+<p><a href="objects_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="objects_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Gli elementi di un vettore possono essere associati a un nome tramite l’attributo <code>names()</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>g</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 5</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(g) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tre"</span>, <span class="st">"cinque"</span>)</span>
@@ -424,7 +424,7 @@ window.Quarto = {
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="matrici-ed-array"><span class="header-section-number">3.2.2</span> Matrici ed array</h3>
 <p>La naturale estensione dei vettori sono le matrici e gli array multidimensionali, creati organizzando i vettori su righe e colonne.</p>
 <p>L’estrazione di elementi da una matrice avviene con la notazione <code>matrice[righe, colonne]</code>, come mostrato nell’esempio riportato di seguito:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>matrice <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">nrow =</span> <span class="dv">20</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>matrice[<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
@@ -435,7 +435,7 @@ window.Quarto = {
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si può determinare e modificare la dimensione di una matrice con il comando <code>dim()</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(matrice)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20  5</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(matrice) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">20</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -447,7 +447,7 @@ window.Quarto = {
 <p>Un fattore è un tipo di dato che può assumere solo valori finiti e noti. Ad esempio, il colore dei capelli dei bambini di una classe è un fattore, così come le tipologie di acque analizzate dal laboratorio (acque di mare, potabili, sotterranee, ecc.). I valori distinti che un fattore può assumere si chiamano livelli.</p>
 <p>Gli esempi di fattori visti in precedenza non sono ordinati, ma alcuni possono esserlo, come i giudizi di un esame: insufficiente, sufficiente, buono, distinto, ottimo.</p>
 <p>Internamente, R tratta i fattori come interi a cui associa etichette di testo. Per i fattori ordinati, gli interi seguono l’ordine specificato durante la definizione dei livelli; per i fattori non ordinati, gli interi sono assegnati in ordine alfabetico o di apparizione. Esempio:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>terza_c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ottimo"</span>, <span class="st">"ottimo"</span>, <span class="st">"buono"</span>, <span class="st">"insufficiente"</span>, <span class="st">"buono"</span>, <span class="st">"buono"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fattore senza specifica dei livelli</span></span>
@@ -475,7 +475,7 @@ window.Quarto = {
 <section id="liste" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="liste"><span class="header-section-number">3.2.4</span> Liste</h3>
 <p>I contenitori visti finora sono ottimi per raggruppare elementi della stessa tipologia. Le liste, invece, permettono di raggruppare elementi di tipi diversi mantenendoli comunque ordinati:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">numeri =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">testo =</span> <span class="fu">c</span>(<span class="st">"pippo"</span>, <span class="st">"ciccio"</span>, <span class="st">"riccio"</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">giudizi =</span> terza_c,</span>
@@ -489,7 +489,7 @@ window.Quarto = {
 </div>
 <p>Per accedere alla struttura di una lista si usa il comando <code>str()</code>, utile anche con altri tipi di contenitori.</p>
 <p>I singoli gruppi si estraggono per posizione con la sintassi <code>lista[[gruppo]]</code> o per nome con la sintassi <code>lista$gruppo</code>. All’interno del gruppo posso accedere ai singoli elementi come visto nelle sezioni precedenti:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">2</span>]]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "pippo"  "ciccio" "riccio"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lista<span class="sc">$</span>testo</span>
@@ -508,7 +508,7 @@ window.Quarto = {
 <p>I <code>data.frame</code> sono tabelle di dati che possono contenere colonne di diverse tipologie. Rispetto alle liste, offrono una maggiore facilità di consultazione, ma non permettono di immagazzinare gruppi di diversa lunghezza. Sono la tipologia di dati più frequentemente utilizzata.</p>
 <p>Internamente, R tratta le colonne di un <code>data.frame</code> come gruppi di una lista.</p>
 <p>Esempio con il dataset <code>iris</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 'data.frame':    150 obs. of  5 variables:</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...</span></span>
@@ -518,7 +518,7 @@ window.Quarto = {
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Creazione e modifica di un data frame:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lettere =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>),</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">interi =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">numeri =</span> <span class="fu">rnorm</span>(<span class="dv">6</span>))</span>
@@ -531,7 +531,7 @@ window.Quarto = {
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>interi <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>I nomi delle colonne si estraggono o modificano con la funzione <code>colnames()</code>:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "lettere" "numeri"  "sopra3"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"random"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -561,7 +561,7 @@ window.Quarto = {
 <p>Per praticità, assumiamo che: - i dati seguano una distribuzione normale; - le varianze dei due gruppi siano omogenee.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>piero <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.77</span>, <span class="fl">0.69</span>, <span class="fl">0.89</span>, <span class="fl">0.75</span>, <span class="fl">0.93</span>, <span class="fl">0.81</span>, <span class="fl">0.91</span>, <span class="fl">1.06</span>, <span class="fl">0.98</span>, <span class="cn">NA</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(piero, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
