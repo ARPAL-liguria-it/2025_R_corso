@@ -20,7 +20,7 @@ Vediamo un esempio per la creazione di un semplice grafico di dispersione a part
 
 ```{r}
 #| label: fig-scatterplot-base
-#| fig-cap: Un semplice grafico di dispersione.
+#| fig-cap: un semplice grafico di dispersione.
 
 # dataset sintetico
 library(data.table)

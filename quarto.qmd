@@ -82,7 +82,7 @@ Per vedere il risultato, si può cliccare il tasto ![](images/render.png){height
 
 ### Il codice
 
-Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e all'interno dello spezzone possiamo inserire del normale codice di R:
+Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e al suo interno possiamo inserire del normale codice di R:
 
 ```` markdown
 ```{{r}}
@@ -90,9 +90,67 @@ summary(mtcars)
 ```
 ````
 
-MANCANO:
-- opzioni chunks;
-- grafici e caption;
-- tabelle con gt().
+È consigliabile associare a ogni spezzone di codice un'etichetta univoca che descriva brevemente cosa fa il codice e questo lo si può fare specificando l'opzione `label`, come di seguito:
+
+```` markdown
+```{{r}}
+#| label: summary-mtcars
+summary(mtcars)
+```
+````
+Il campo `label` non ammette spazi e l'unico carattere speciale ammesso è `-`.
+Nel caso di spezzoni di codice che generano grafici o tabelle, è buona norma impostare l'etichetta rispettivamente come `#| label: fig-qualcosa` e `#| label: tbl-qualcosa`: così facendo si potrà fare riferimento nel testo alla figura e alla tabella scrivendo rispettivamente `@fig-qualcosa` o `@tbl-qualcosa`.
+
+Oltre a `label` è possibile specificare altre opzioni che regolano la visibilità e il comportamento del codice. Tra le più usate abbiamo:
+
+- `echo`: regola la visibilità del codice all'interno dello spezzone. Il valore predefinito è `TRUE` e comporta la visibilità nel documento finale sia del codice presente all'interno dello spezzone, sia del suo risultato. Impostando `FALSE` si vede solo il risultato del codice.
+- `message` o `warning`: impostandoli su `FALSE` si evita l'inclusione di messaggio o avvisi all'interno del documento finale.
+- `fig-cap` e `tbl-cap`: imposta la didascalia di figure e tabelle e accetta una stringa di testo tra virgolette.
+
+Tutte le opzioni vanno specificate all'inizio dello spezzone e facendole precedere da `#|`.
+
+È anche possibile specificare piccole porzioni di codice il cui risultato verrà visualizzato in linea con il testo. Ecco un esempio:
+
+scrivendo
+
+> il dataset `mtcars` contiene i dati di `` `r nrow(mtcars)` `` modelli di automobili, ciascuno classificato sulla base di `` `r ncol(mtcars)` `` variabili. 
+
+viene visualizzato
+
+il dataset `mtcars` contiene i dati di `r nrow(mtcars)` modelli di automobili, ciascuno classificato sulla base di `r ncol(mtcars)` variabili.
+
+### Le tabelle
+
+All'interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto `gt`. Tale pacchetto permette di personalizzare nel dettaglio la visualizzazione delle tabelle, impostando i nomi delle colonne, le colonne da unire e la formattazione dei valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di `gt`:
+
+```{r}
+#| label: tbl-airquality
+#| tbl-cap: "`gt` fa delle tabelle che spaccano."
+library(gt)
+
+airquality |>
+  head(20) |>
+  gt() |>
+  fmt_number(Wind, n_sigfig = 2) |>                    # 2 cifre significative
+  cols_label(                                          # nomi delle colonne
+    Ozone = html("Ozono,<br>ppbV"),
+    Solar.R = html("Solar R.,<br>cal/m<sup>2</sup>"),
+    Wind = html("Vento,<br>mph"),
+    Temp = html("Temp,<br>&deg;F")
+  ) |>                                                 # sovra intestazione
+  tab_spanner(
+    label = "Tempo",
+    columns = c(Month, Day)
+  ) |>
+  tab_spanner(
+    label = "Misure",
+    columns = c(Ozone, Solar.R, Wind, Temp)
+  )
+```
+
+##### COSA MANCA #####
+- esempio complessivo
+- esercizio su pm_genova
+- revisione
 
 
