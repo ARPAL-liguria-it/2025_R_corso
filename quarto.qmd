@@ -113,11 +113,11 @@ Tutte le opzioni vanno specificate all'inizio dello spezzone e facendole precede
 
 scrivendo
 
-> il dataset `mtcars` contiene i dati di `` `r nrow(mtcars)` `` modelli di automobili, ciascuno classificato sulla base di `` `r ncol(mtcars)` `` variabili. 
+> il dataset `mtcars` contiene i dati di `` `r knitr::inline_expr("nrow(mtcars)")` `` modelli di automobili, ciascuno classificato sulla base di `` `r  knitr::inline_expr("ncol(mtcars)")` `` variabili. 
 
 viene visualizzato
 
-il dataset `mtcars` contiene i dati di `r nrow(mtcars)` modelli di automobili, ciascuno classificato sulla base di `r ncol(mtcars)` variabili.
+> il dataset `mtcars` contiene i dati di `r nrow(mtcars)` modelli di automobili, ciascuno classificato sulla base di `r ncol(mtcars)` variabili.
 
 ### Le tabelle
 
@@ -131,13 +131,13 @@ library(gt)
 airquality |>
   head(20) |>
   gt() |>
-  fmt_number(Wind, n_sigfig = 2) |>                    # 2 cifre significative
-  cols_label(                                          # nomi delle colonne
+  fmt_number(Wind, n_sigfig = 2) |>                 # 2 cifre significative
+  cols_label(                                       # nomi delle colonne
     Ozone = html("Ozono,<br>ppbV"),
     Solar.R = html("Solar R.,<br>cal/m<sup>2</sup>"),
     Wind = html("Vento,<br>mph"),
     Temp = html("Temp,<br>&deg;F")
-  ) |>                                                 # sovra intestazione
+  ) |>                                              # sovra intestazione
   tab_spanner(
     label = "Tempo",
     columns = c(Month, Day)
@@ -148,8 +148,103 @@ airquality |>
   )
 ```
 
-##### COSA MANCA #####
-- esempio complessivo
+### Uniamo i puntini
+
+Abbiamo tutti gli elementi per un documento di esempio. Per semplificarci la vita, impostiamo nell'intestazione `echo`, `warning` e `message` come `FALSE` di default, così non vedremo il codice, senza doverlo specificare all'interno di ogni spezzone.
+
+```` markdown
+---
+title: "Analisi importanti"
+author: "Pico de Paperis, Ph.D."
+lang: it
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+# Introduzione
+
+Le analisi del piombo, cadmio e arsenico sono di vitale importanza: fortuna che ci sono io che le faccio! Sentendomi particolarmente generoso condivido con voi i risultati trovati in alcuni campioni selezionati.
+
+# Metodo
+
+1. Ho acceso il computer;
+2. ho preso i campioni;
+3. li ho messi nello strumento;
+4. ho letto i numeri;
+5. ho calcolato $\pi r^2$;
+6. ho trascritto i numeri;
+7. **applausi**.
+
+# Risultati {#sec-risultati}
+
+In @tbl-misure trovate i miei risultati e in @fig-pbas c'è pure un bel grafico.
+
+```{{r}}
+#| label: carico-dati
+library(data.table)
+
+misure <- data.table(
+  codice = c("22201/24", "22248/24", "22311/24", "22312/24"),
+  data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10", "2024-03-10")),
+  cadmio = c(0.05, 0.06, 0.04, 0.06),
+  piombo = c(0.1, 0.15, 0.12, 0.11),
+  arsenico = c(0.08, 0.09, 0.05, NA)
+    )
+```
+
+```{{r}}
+#| label: tbl-misure
+#| tbl-cap: "La tabella con i risultati."
+library(gt)
+
+misure |>
+  gt() |>
+  fmt_number(
+    c(cadmio, piombo, arsenico),
+    n_sigfig = 2) |>
+  cols_label(
+    codice = "Codice campione",
+    data_campionamento = "Data di campionamento",
+    cadmio = "Cd",
+    piombo = "Pb",
+    arsenico = "As"
+  ) |>
+  tab_spanner(
+    label = "Metalli (µg/l)",
+    columns = c(cadmio, piombo, arsenico)
+  )
+```
+
+
+```{{r}}
+#| label: fig-pbas
+#| fig-cap: "Grafico di dispersione della concentrazione di piombo e arsenico."
+library(ggplot2)
+
+misure |>                          
+  ggplot(aes(x = piombo,            
+             y = arsenico)) +      
+  geom_point() +                    
+  geom_hline(yintercept = 0.07,
+              col = "red",
+              linetype = "dashed") +
+  labs(                             
+    title = "Relazione tra piombo e arsenico nei campioni di acqua del 2024",
+    x = "Piombo (µg/l)",
+    y = "Arsenico (µg/l)"
+  ) +
+  theme_bw()   
+```
+
+# Conclusioni
+
+Come mostrato nella @sec-risultati, sono proprio bravo.
+
+````
+
 - esercizio su pm_genova
 - revisione
 
