@@ -133,10 +133,12 @@ airquality |>
   gt() |>
   fmt_number(Wind, n_sigfig = 2) |>                 # 2 cifre significative
   cols_label(                                       # nomi delle colonne
-    Ozone = html("Ozono,<br>ppbV"),
-    Solar.R = html("Solar R.,<br>cal/m<sup>2</sup>"),
-    Wind = html("Vento,<br>mph"),
-    Temp = html("Temp,<br>&deg;F")
+    Ozone = html("Ozono,<br>({{ppbV}})"),
+    Solar.R = html("Solar R.,<br>({{cal/m^2}})"),
+    Wind = html("Vento,<br>({{mph}})"),
+    Temp = html("Temp,<br>({{degF}})"),
+    Month = "Mese",
+    Day = "Giorno"
   ) |>                                              # sovra intestazione
   tab_spanner(
     label = "Tempo",
@@ -150,7 +152,7 @@ airquality |>
 
 ### Uniamo i puntini
 
-Abbiamo tutti gli elementi per un documento di esempio. Per semplificarci la vita, impostiamo nell'intestazione `echo`, `warning` e `message` come `FALSE` di default, così non vedremo il codice, senza doverlo specificare all'interno di ogni spezzone.
+Abbiamo tutti gli elementi per creare un documento di esempio. Per semplificarci la vita, impostiamo nell'intestazione `echo`, `warning` e `message` come `FALSE`, così non vedremo il codice senza doverlo specificare all'interno di ogni spezzone.
 
 ```` markdown
 ---
@@ -166,7 +168,10 @@ execute:
 
 # Introduzione
 
-Le analisi del piombo, cadmio e arsenico sono di vitale importanza: fortuna che ci sono io che le faccio! Sentendomi particolarmente generoso condivido con voi i risultati trovati in alcuni campioni selezionati.
+Le analisi del piombo, cadmio e arsenico sono di vitale importanza: 
+fortuna che ci sono io che le faccio!
+Sentendomi particolarmente generoso condivido con voi i risultati 
+trovati in alcuni campioni selezionati.
 
 # Metodo
 
@@ -188,7 +193,8 @@ library(data.table)
 
 misure <- data.table(
   codice = c("22201/24", "22248/24", "22311/24", "22312/24"),
-  data_campionamento = as.IDate(c("2024-01-15", "2024-02-20", "2024-03-10", "2024-03-10")),
+  data_campionamento = c("2024-01-15", "2024-02-20", "2024-03-10", "2024-03-10") |>
+    as.IDate(),
   cadmio = c(0.05, 0.06, 0.04, 0.06),
   piombo = c(0.1, 0.15, 0.12, 0.11),
   arsenico = c(0.08, 0.09, 0.05, NA)
@@ -245,7 +251,220 @@ Come mostrato nella @sec-risultati, sono proprio bravo.
 
 ````
 
-- esercizio su pm_genova
-- revisione
+::: {.callout-tip}
 
+## Per i più golosi
+
+All'indirizzo [quarto.org](https://quarto.org) è possibile consultare la documentazione ufficiale.
+
+:::
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Includere le modifiche eseguite sul dataset `pm_genova` e simulare un report in un documento di **quarto**.
+
+
+## Soluzione
+
+```` markdown
+---
+title: "Particolato atmosferico campionato nella provincia di Genova nel 2024"
+author: "Nome, Cognome"
+lang: it
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+# Introduzione
+
+Il decreto legislativo 155/2010 attua la direttiva 2008/50/CE 
+relativa alla qualità dell'aria ambiente e per un'aria più pulita
+in Europa e prevede il monitoraggio delle concentrazioni in aria
+di diverse specie. Tra queste figura il particolato atmosferico
+con diametro aerodinamico inferiore a 10 μm (PM~10~) e 2,5 μm (PM~2,5~).
+
+ARPAL gestisce la rete regionale ligure di rilevamento della qualità
+dell'aria e in questo report sono riassunti i valori di concentrazione
+di PM~10~ e PM~2,5~ misurati nel 2024 presso i comuni monitorati
+dalle stazioni di monitoraggio collocate nella provincia di Genova.
+
+# Metodo
+
+Dal sito [Ambiente in Liguria](https://www.banchedati.ambienteinliguria.it/)
+sono stati scaricati in formato .csv i dati relativi al PM~10~ e PM~2,5~ 
+misurati nel 2024 presso le stazioni di monitoraggio collocate
+nella provincia di Genova.
+A scopo didattico sono state rimosse le informazioni relative alle stazioni
+di monitoraggio, lasciando il solo codice europeo della stazione.
+Il file risultante è stato quindi compresso in formato .gz.
+
+```{{r}}
+#| label: carico-dati-aria
+library(data.table)
+
+pm_genova <- fread("data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
+                   skip = "Codice europeo",
+                   encoding = "Latin-1")   
+```
+
+```{{r}}
+#| label: cleaning-dati-aria
+
+colnames(pm_genova) <- colnames(pm_genova) |> 
+  tolower() |>                  # trasforma in minuscolo
+  gsub(" ", "_", x = _) |>      # sostituisce gli spazi con uderscore
+  iconv(to = "ASCII//TRANSLIT") # rimuove accenti e caratteri speciali  
+
+pm_genova[, valido := fcase(valido == "SI", TRUE,
+                            valido == "NO", FALSE,
+                            default = NA)]
+                            
+pm_genova[, `:=` (
+  # standardizza le unità
+  udm = gsub("microg/m3", "µg/m³", unita_di_misura),
+  # converte validato cor e certificato in valori logici
+  validato_cor = fcase(validato_cor == "SI", TRUE,
+                       validato_cor == "NO", FALSE,
+                       default = NA),
+  certificato = fcase(certificato == "SI", TRUE,
+                      certificato == "NO", FALSE,
+                      default = NA),
+  # converte le date specificando il formato di input
+  inizio = as.POSIXct(data_inizio, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  fine = as.POSIXct(data_fine, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  # elimina le vecchie colonne non più utili
+  unita_di_misura = NULL,
+  data_inizio = NULL,
+  data_fine = NULL
+)]
+
+```
+
+I dati relativi alle stazioni di monitoraggio italiane è stato scaricato
+dalla sezione [Dati e indicatori - Aria del sito dell'istituto superiore
+per la protezione e la ricerca ambientale
+(ISPRA)](https://www.isprambiente.gov.it/it/banche-dati/).
+
+```{{r}}
+#| label: carico-dati-stazioni
+library(readxl)
+
+stazioni <- read_excel("data/2025-04-24_anagrafica_stazioni.xlsx",
+                       sheet = "Tabella 1") |> 
+  setDT() 
+```
+
+```{{r}}
+#| label: join-data
+
+pm_genova_completo <- pm_genova[stazioni,
+                          # la lista identifica le colonne in relazione
+                          # in data.table .() equivale a list()
+                          on = .(codice_europeo = station_eu_code),
+                          nomatch = NULL]
+                          
+pm_genova_completo[, `:=` (
+    tipo_zona = factor(tipo_zona),
+    tipo_stazione = factor(tipo_stazione)
+  )]
+```
+
+Le elaborazioni sono state eseguite con [R](https://www.r-project.org/).
+
+# Risultati {#sec-risultati}
+
+La @tbl-misure riassume i valori di concentrazione di PM~10~ misurati
+presso le stazioni di monitoraggio della provincia di Genova nel 2024,
+mentre in @fig-misure sono mostrate le concentrazioni medie giornaliere
+raggruppate per comune.
+
+```{{r}}
+#| label: daily-data
+
+pm_genova_daily <- pm_genova_completo[,
+  .(avg = mean(valore, na.rm = TRUE),
+    sd = sd(valore, na.rm = TRUE),
+    min = min(valore, na.rm = TRUE),
+    max = max(valore, na.rm = TRUE),
+    n_valori = (!is.na(valore)) |> length()),
+  by = .(codice_europeo,
+         comune,
+         nome_stazione,
+         giorno = yday(inizio),
+         inquinante)]
+```
+
+```{{r}}
+#| label: above50-data
+
+pm_genova_above50 <- pm_genova_daily[, .(avg = mean(avg, na.rm = TRUE),
+                                         val_50 = (avg > 50) |> sum(na.rm = TRUE)),
+                                      by = .(nome_stazione,
+                                             comune)][order(-val_50)]
+```
+
+```{{r}}
+#| label: tbl-misure
+#| tbl-cap: "Concentrazione di PM~10~ in provincia di Genova nel 2024."
+library(gt)
+
+pm_genova_above50 |>
+  gt() |>
+  cols_label(
+    nome_stazione = "Stazione",
+    comune = "Comune",
+    avg = md("Media PM~10~ ({{:mu:g/m^3}})"),
+    val_50 = "n > 50 {{:mu:g/m^3}}"
+  ) |>
+  fmt_number(
+    columns = avg,
+    decimals = 0
+  ) |>
+  tab_footnote(
+  footnote = "Media annuale dei valori di concentrazione medi giornalieri.",
+  locations = cells_column_labels(columns = avg)
+  )
+  
+```
+
+
+```{{r}}
+#| label: fig-misure
+#| fig-cap: "Concentrazione di PM~10~ e PM~2,5~ in provincia di Genova nel 2024."
+library(ggplot2)
+
+pm_genova_daily |>
+  ggplot(
+  aes(x = comune, y = avg)
+  ) +
+  geom_boxplot() +
+  # limite solo per PM10
+  geom_hline(
+    data = pm_genova_daily[inquinante == "PM10"],
+    aes(yintercept = 50),
+    col = "red",
+    linetype = "dashed"
+    ) +
+  facet_wrap(vars(inquinante)) +
+  labs(
+    x = element_blank(),
+    y = expression("Concentrazione media giornaliera " * (mu * g / m^{3}))
+  ) +
+  theme_bw()
+```
+
+La stazione con più valori di PM~10~ superiori al limite giornaliero
+di $50\, \mu g/m^3$ è 
+`r knitr::inline_expr("pm_genova_above50[which.max(val_50), nome_stazione]")`, nel comune di 
+`r knitr::inline_expr("pm_genova_above50[which.max(val_50), comune]")`, con 
+`r knitr::inline_expr("pm_genova_above50[which.max(val_50), val_50]")` superamenti.
+
+```` 
+
+::::
 
