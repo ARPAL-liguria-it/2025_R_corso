@@ -7,9 +7,11 @@ source("_common.R")
 
 ## I documenti Quarto {#sec-quarto}
 
-Nei capitoli precedenti abbiamo utilizzato gli script di R per organizzare il codice, aggiungendo commenti per spiegare il funzionamento di porzioni particolarmente ostiche. Tuttavia, un progetto di analisi dei dati reale può durare mesi, con la creazione di un numero elevato di script, collegati a porzioni di testo fondamentali per l'analisi ma che non sono sotto forma di codice. Nei contesti descritti è necessario un altro strumento: **quarto**.
+Nei capitoli precedenti abbiamo visto come organizzare il codice in R, aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
 
-**Quarto** è un sistema di pubblicazione *open source*, evoluzione di **R Markdown**, che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file con estensione .qmd. Supporta diversi linguaggi (`R`, `Python`, `Julia`) e può generare output in HTML, PDF, Word, presentazioni e altro: questo libro è stato interamente creato utilizzando **quarto**.
+**Quarto** è una piattaforma *open source* che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file `.qmd`. Supporta linguaggi come `R`, `Python` e `Julia`, e consente di generare output in vari formati (HTML, PDF, Word).
+
+**Quarto** permette di aggiornare automaticamente i risultati a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, supportando più linguaggi di programmazione, facilita lavori collaborativi, evitando di doversi preoccupare di conoscere tutti lo stesso codice. La sua natura riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l'affidabilità dei risultati.
 
 Creare un documento **quarto** da RStudio è semplice:
 
