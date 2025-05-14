@@ -218,6 +218,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -288,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="prerequisiti" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="prerequisiti"><span class="header-section-number">1.2</span> Prerequisiti</h2>
 <p>Il corso è aperto a chiunque abbia una certa dimestichezza con il computer e una conoscenza di base della logica. Il candidato ideale ha già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è necessaria, ma sicuramente rappresenta un vantaggio.</p>
-<p>Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti <code>data.table</code>, <code>readxl</code>, <code>ggplot2</code>, <code>glue</code> e <code>gt</code>.</p>
+<p>Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti <code>data.table</code>, <code>readxl</code>, <code>ggplot2</code>, <code>gt</code> e <code>quarto</code>.</p>
 <section id="r" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="r"><span class="header-section-number">1.2.1</span> R</h3>
 <p>R può essere scaricato dal <em>Comprensive R Archive Network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: se si intende usare R regolarmente, è consigliabile mantenere il software aggiornato.</p>
@@ -326,8 +332,8 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <li><code>data.table</code>: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;</li>
 <li><code>ggplot2</code>: il pacchetto di riferimento per la creazione di grafici;</li>
 <li><code>readxl</code>: utile per importare dati da fogli Excel;</li>
-<li><code>glue</code>: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;</li>
 <li><code>gt</code>: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;</li>
+<li><code>quarto</code>: utilizzeremo la funzione <code>quarto_render()</code> per produrre report in serie;</li>
 <li><code>R.utils</code>: lo utilizzeremo solo per importare dati da file gz.</li>
 </ul>
 <p>Installiamo i pacchetti richiesti racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
