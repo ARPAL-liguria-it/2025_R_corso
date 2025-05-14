@@ -33,7 +33,7 @@ Inoltre, imparare un linguaggio di programmazione apre numerose porte e può sem
 
 Il corso è aperto a chiunque abbia una certa dimestichezza con il computer e una conoscenza di base della logica. Il candidato ideale ha già svolto qualche analisi su dati numerici, utilizzando strumenti statistici di base e fogli di calcolo. La conoscenza di un linguaggio di programmazione diverso da R non è necessaria, ma sicuramente rappresenta un vantaggio.
 
-Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti `data.table`, `readxl`, `ggplot2`, `glue` e `gt`.
+Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti `data.table`, `readxl`, `ggplot2`, `gt` e `quarto`.
 
 ### R
 
@@ -80,8 +80,8 @@ Durante il corso utilizzeremo alcuni pacchetti molto diffusi:
 - `data.table`: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;
 - `ggplot2`: il pacchetto di riferimento per la creazione di grafici;
 - `readxl`: utile per importare dati da fogli Excel;
-- `glue`: semplifica la concatenazione di stringhe, anche se lo useremo raramente in modo diretto;
 - `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;
+- `quarto`: utilizzeremo la funzione `quarto_render()` per produrre report in serie;
 - `R.utils`: lo utilizzeremo solo per importare dati da file gz.
 
 Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con il comando `c()` e scrivendo il seguente comando all'interno della console di R, dopo il simbolo `>`:

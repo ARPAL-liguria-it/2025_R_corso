@@ -1,0 +1,279 @@
+# Report parametrizzati {#sec-dynamic}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+I report parametrizzati in **Quarto** permettono di creare documenti altamente flessibili, in cui i parametri specificati dall'utente vengono utilizzati per generare contenuti dinamici. Questo è particolarmente utile quando si vuole creare report personalizzati, adattati a diverse condizioni o esigenze, senza dover riscrivere l'intero documento.
+
+In **Quarto**, i parametri sono definiti nell'intestazione YAML del documento e vengono poi utilizzati all'interno del codice e del testo. Questo approccio rende facile la generazione automatica di report con diverse variabili, come per esempio l'analisi di diversi dataset, la modifica dei filtri o dei criteri di calcolo, o la personalizzazione dei contenuti visualizzati.
+
+## Definizione dei parametri
+
+Per definire i parametri in un documento Quarto, basta aggiungere una sezione `params` nell'intestazione YAML. Ogni parametro viene definito con un nome e un valore predefinito. Ecco un esempio di come configurare un report parametrizzato per analizzare i dati relativi alla qualità dell'aria:
+
+```{r}
+#| label: load
+pm_genova_completo <- pm_genova_int2()
+```
+
+
+```` markdown
+---
+title: "Report sulla qualità dell'aria"
+author: "Nome, Cognome"
+lang: it
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+params:
+  comune: "Genova"
+---
+````
+
+In questo caso abbiamo definito solo un parametro: il nome del comune.
+
+## Utilizzo dei parametri
+
+Una volta definiti, i parametri possono essere utilizzati all'interno del codice o del testo del documento. In Quarto, è possibile fare riferimento ai parametri utilizzando la sintassi `params$nome_parametro`. Ecco un esempio che mostra come utilizzare questi parametri per caricare i dati e applicare un filtro sui valori di concentrazione:
+
+```` markdown
+```{{r}}
+#| label: filtro-dati-aria
+library(data.table)
+                  
+pm_genova_completo[comune == params$comune]
+```
+````
+
+## Personalizzare il report
+
+Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, possiamo creare un'introduzione che si adatta ai parametri definiti, come mostrato qui:
+
+```` markdown
+
+# Introduzione
+
+Nel presente report vengono analizzati i dati relativi alle concentrazioni di PM~10~ e PM~2,5~ misurate nel comune di `r knitr::inline_expr("params$comune")`.
+
+````
+
+Quando il report viene generato, il testo verrà automaticamente aggiornato per riflettere i valori specificati nei parametri.
+
+## Esempio completo
+
+Combiniamo tutti gli elementi sopra per creare un esempio completo di report parametrizzato in **Quarto**.
+
+```` markdown
+---
+title: "Report sulla qualità dell'aria"
+author: "Nome, Cognome"
+lang: it
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+params:
+  comune: "Genova"
+---
+
+# Introduzione
+
+Nel presente report vengono analizzati i dati relativi alle concentrazioni
+di PM~10~ e PM~2,5~ misurate nel comune di `r knitr::inline_expr("params$comune")`.
+
+# Metodo
+
+Dal sito [Ambiente in Liguria](https://www.banchedati.ambienteinliguria.it/)
+sono stati scaricati in formato .csv i dati relativi al PM~10~ e PM~2,5~ 
+misurati nel 2024 presso le stazioni di monitoraggio collocate
+nella provincia di Genova.
+A scopo didattico sono state rimosse le informazioni relative alle stazioni
+di monitoraggio, lasciando il solo codice europeo della stazione.
+Il file risultante è stato quindi compresso in formato .gz.
+
+```{{r}}
+#| label: carico-dati-aria
+library(data.table)
+
+pm_genova <- fread("data/2025-04-24_pm1025_ambiente_liguria.csv.gz",
+                   skip = "Codice europeo",
+                   encoding = "Latin-1")   
+```
+
+```{{r}}
+#| label: cleaning-dati-aria
+
+colnames(pm_genova) <- colnames(pm_genova) |> 
+  tolower() |>                  # trasforma in minuscolo
+  gsub(" ", "_", x = _) |>      # sostituisce gli spazi con uderscore
+  iconv(to = "ASCII//TRANSLIT") # rimuove accenti e caratteri speciali  
+
+pm_genova[, valido := fcase(valido == "SI", TRUE,
+                            valido == "NO", FALSE,
+                            default = NA)]
+                            
+pm_genova[, `:=` (
+  # standardizza le unità
+  udm = gsub("microg/m3", "µg/m³", unita_di_misura),
+  # converte validato cor e certificato in valori logici
+  validato_cor = fcase(validato_cor == "SI", TRUE,
+                       validato_cor == "NO", FALSE,
+                       default = NA),
+  certificato = fcase(certificato == "SI", TRUE,
+                      certificato == "NO", FALSE,
+                      default = NA),
+  # converte le date specificando il formato di input
+  inizio = as.POSIXct(data_inizio, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  fine = as.POSIXct(data_fine, format = "%d/%m/%Y %H:%M", tz = "GMT"),
+  # elimina le vecchie colonne non più utili
+  unita_di_misura = NULL,
+  data_inizio = NULL,
+  data_fine = NULL
+)]
+
+```
+
+I dati relativi alle stazioni di monitoraggio italiane è stato scaricato
+dalla sezione [Dati e indicatori - Aria del sito dell'istituto superiore
+per la protezione e la ricerca ambientale
+(ISPRA)](https://www.isprambiente.gov.it/it/banche-dati/).
+
+```{{r}}
+#| label: carico-dati-stazioni
+library(readxl)
+
+stazioni <- read_excel("data/2025-04-24_anagrafica_stazioni.xlsx",
+                       sheet = "Tabella 1") |> 
+  setDT() 
+```
+
+```{{r}}
+#| label: join-data
+
+pm_genova_completo <- pm_genova[stazioni,
+                          # la lista identifica le colonne in relazione
+                          # in data.table .() equivale a list()
+                          on = .(codice_europeo = station_eu_code),
+                          nomatch = NULL]
+                          
+pm_genova_completo[, `:=` (
+    tipo_zona = factor(tipo_zona),
+    tipo_stazione = factor(tipo_stazione)
+  )]
+```
+
+Le elaborazioni sono state eseguite con [R](https://www.r-project.org/).
+
+# Risultati {#sec-risultati}
+
+In @fig-misure sono mostrate le concentrazioni medie di PM~10~ e PM~2,5~
+misurate nel comune di `r knitr::inline_expr("params$comune")`.
+
+```{{r}}
+#| label: daily-data
+
+pm_genova_daily <- pm_genova_completo[comune == params$comune,
+  .(avg = mean(valore, na.rm = TRUE),
+    sd = sd(valore, na.rm = TRUE),
+    min = min(valore, na.rm = TRUE),
+    max = max(valore, na.rm = TRUE),
+    n_valori = (!is.na(valore)) |> length()),
+  by = .(codice_europeo,
+         nome_stazione,
+         giorno = yday(inizio),
+         inquinante)]
+```
+
+```{{r}}
+#| label: above50-data
+
+pm_genova_above50 <- pm_genova_daily[
+  inquinante == "PM10",
+  .(val_50 = (avg > 50) |> sum(na.rm = TRUE)),
+  by = .(nome_stazione)]
+```
+
+```{{r}}
+#| label: fig-misure
+#| fig-cap: !expr paste0("PM~10~ e PM~2,5~ a ", params$comune, ".")
+library(ggplot2)
+
+pm_genova_daily |>
+  ggplot(
+  aes(x = inquinante, y = avg)
+  ) +
+  geom_boxplot() +
+  labs(
+    x = element_blank(),
+    y = expression("Concentrazione media giornaliera " * (mu * g / m^{3}))
+  ) +
+  theme_bw()
+```
+
+La stazione con più valori di PM~10~ superiori al limite giornaliero
+di $50\, \mu g/m^3$ è 
+`r knitr::inline_expr("pm_genova_above50[which.max(val_50), nome_stazione]")` con 
+`r knitr::inline_expr("pm_genova_above50[which.max(val_50), val_50]")` superamenti.
+
+```` 
+
+Salviamo il report nel file `report_dinamico.qmd`.
+
+## Creazione di report multipli
+
+Per utilizzare `report_dinamico.qmd` come template per la creazione di report personalizzati abbiamo due opzioni:
+
+- da terminale con comandi come: 
+  ```
+  quarto render report_dinamico.qmd -P comune:Busalla
+  ```
+- usare uno script di R:
+```{r}
+#| eval: false
+# i comuni per cui voglio ottenere il report
+lista_comuni <- c("Busalla", "Genova", "Campomorone")
+
+# definisco una funzione personalizzata per creare i report
+report_aria <- function(template,
+                        par_comune){
+  
+  library(quarto)
+  
+  # sarebbe meglio acquisirli programmaticamente
+  comuni_validi <- c("Busalla", "Campomorone", "Chiavari",
+                     "Genova", "Masone", "Rapallo")
+  
+  stopifnot(file.exists(template))
+  stopifnot(par_comune %in% comuni_validi)
+  
+  output_file <- paste0(Sys.Date(), "_report_aria_", par_comune, ".html")
+  
+  quarto_render(input = template,
+                output_file = output_file,
+                execute_params = list(comune = par_comune))
+  
+}
+
+lapply(lista_comuni, function(x) {
+  report_aria(template = "report_dinamico.qmd", par_comune = x)
+})
+
+```
+
+L'approccio da riga di comando è ideale per contesti automatizzati e ambienti non interattivi, come l'esecuzione pianificata o in risposta a eventi esterni. Al contrario, l'approccio tramite script R è più adatto alla generazione di report multipli, alla gestione dinamica dei parametri e a un controllo più fine sul flusso di lavoro e sull'organizzazione dei risultati.
+
+:::: {.panel-tabset}
+
+## Esercizio
+
+Strutturare un template per report dinamici utile nel vostro contesto lavorativo:
+
+- quali sono le parti fisse del template?
+- Quali sono i parametri del report?
+
+::::
