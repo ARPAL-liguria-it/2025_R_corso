@@ -1,0 +1,16 @@
+# Visualizzazione e reportistica {#sec-reports-intro .unnumbered}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+Questa parte del corso è dedicata agli strumenti e alle tecniche per rappresentare i dati in modo chiaro, e per creare report dinamici e personalizzati che facilitano la riproducibilità delle analisi, la comunicazione e la condivisione dei risultati.
+
+Questa parte è suddivisa in tre capitoli così organizzati:
+
+- [nel primo capitolo](#sec-ggplot2) imparerai a costruire grafici personalizzati e informativi con il pacchetto `ggplot2`;
+- [nel secondo capitolo](#sec-report) vedrai come utilizzare **Quarto** per creare documenti dinamici che integrano testo, codice e output, generando report riproducibili;
+- [nel terzo capitolo](#sec-dynamic) tratteremo come realizzare report parametrizzati in **Quarto**, definendo parametri per generare contenuti dinamici e automatizzare la produzione di report multipli.
+
+Questi argomenti ti forniranno le competenze per comunicare efficacemente i risultati delle tue analisi e per automatizzare la creazione di documenti.

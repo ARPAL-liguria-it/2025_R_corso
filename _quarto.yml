@@ -24,16 +24,14 @@ book:
       chapters: 
         - start.qmd
         - objects.qmd
-    # - part: transform.qmd    
-    #   chapters: 
+    - part: transform.qmd    
+      chapters: 
         - datatable.qmd
         - reshape.qmd
         - join.qmd
-    # - part: plots.qmd
-    #   chapters: 
+    - part: reports.qmd
+      chapters: 
         - ggplot2.qmd
-    # - part: report.qmd
-    #   chapters: 
         - quarto.qmd
         - dynamic.qmd
 format:

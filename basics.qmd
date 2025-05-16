@@ -5,9 +5,11 @@
 source("_common.R")
 ```
 
-In questa prima parte inizierai a prendere dimestichezza con le basi di R:
+Questa parte introduce i concetti fondamentali per iniziare a lavorare con R in modo efficace e autonomo. Nei due capitoli che seguono, partirai dalle prime semplici operazioni nella console per familiarizzare con l'ambiente di lavoro e la sintassi di R, fino a comprendere la natura degli oggetti e dei dati con cui lavorerai.
 
-- nel primo capitolo partirai dall'interazione con la console fino a scrivere ed eseguire il nostro primo script;
-- nel secondo capitolo apprenderai l'uso delle diverse tipologie di oggetti di R;
-- nel terzo capitolo importerai dati da file esterni;
-- nel quarto capitolo inizierai a fare i primi esperimenti di trasformazione dei dati con la libreria `data.table`.
+Questa parte è suddivisa in due capitoli così organizzati:
+
+- [nel primo capitolo](#sec-basics) apprenderai a usare la console di R, organizzare il codice in script e consultare l'aiuto in linea;
+- [nel secondo capitolo](#sec-objects) imparerai i tipi di dati fondamentali in R e le principali classi di oggetti.
+
+Questi argomenti costituiscono le fondamenta indispensabili per affrontare con sicurezza le analisi e le manipolazioni di dati più complesse che vedremo nei capitoli successivi.

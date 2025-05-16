@@ -1,0 +1,16 @@
+# Lavorare con i dati {#sec-transform-intro .unnumbered}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+Questa parte del corso è dedicata a tecniche per la manipolazione e l'integrazione dei dati con R, fondamentali per lavorare con dataset di qualunque tipo: dai più semplici ai più complessi e di grandi dimensioni.
+
+Il materiale è suddiviso in tre capitoli, così organizzati:
+
+- [nel primo capitolo](#sec-datatable) imparerai a utilizzare il pacchetto `data.table` per gestire e manipolare dati in modo efficiente e a importare dati da file esterni;
+- [nel secondo capitolo](#sec-reshape) vedrai come cambiare la struttura dei dataset passando da formato **wide** a **long** e viceversa;
+- [nel terzo capitolo](#sec-join) apprenderai a integrare le informazioni contenute in diverse tabelle in relazione tra loro attraverso le operazioni di **join**.
+
+Questi argomenti ti permetteranno di preparare, combinare e riorganizzare i dati in modo flessibile e performante, creando basi solide per analisi statistiche e visualizzazioni più complesse.

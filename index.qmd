@@ -9,19 +9,26 @@ source("_common.R")
 
 Questo documento raccoglie il materiale presentato durante l'omonimo corso tenuto in ARPAL nel 2025.
 
-Questo corso e il relativo materiale sono stati creati per aiutare i colleghi a scoprire la potenza e la flessibilità di un linguaggio di programmazione dedicato all’analisi dei dati: R.
+Questo corso e il relativo materiale sono stati creati per aiutare i colleghi a scoprire la potenza e la flessibilità di un linguaggio di programmazione dedicato all’analisi dei dati: `R`.
 
 R è una scelta ideale perché permette di iniziare subito a eseguire analisi semplici, grazie a una sintassi intuitiva e a numerose funzioni già pronte, disponibili in librerie specializzate. Inoltre, con R è possibile creare grafici chiari e di grande impatto, anche senza esperienza pregressa.
 
-Il corso è pensato per chi ha poca o nessuna esperienza con software di analisi dati, e anche per chi ha una conoscenza base di Python. Durante le 20 ore di formazione, affronteremo insieme tutti i passaggi fondamentali, dalla manipolazione dei dati alla creazione di report riproducibili.
+Il corso è pensato per chi ha poca o nessuna esperienza con software di analisi dati, e anche per chi ha una conoscenza base di `python`. Durante le 20 ore di formazione, affronteremo insieme tutti i passaggi fondamentali, dalla manipolazione dei dati alla creazione di report riproducibili.
 
-Il materiale è organizzato in capitoli chiari, con esempi pratici ed esercizi, per facilitare l’apprendimento e l’applicazione immediata.
+Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.
+
+@sec-basics-intro, introduce i concetti essenziali per iniziare a programmare in R: dall'uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.
+
+@ec-transform-intro, si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto `data.table` e funzioni per il *reshaping* e le *join*. Queste competenze sono cruciali per preparare i dati all'analisi.
+
+@sec-reports-intro, guida alla creazione di grafici professionali con `ggplot2` e all'uso di *Quarto* per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.
+
 
 Questo documento è rilasciato gratuitamente con licenza [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
 ::: {.callout-important}
 ## Attenzione {.unnumbered}
 
-Questa è una bozza in fase di stesura: il materiale non è ancora completo e non è ancora stato sottoposto a revisione.
+Questa è una bozza in fase di stesura: il materiale non è ancora stato sottoposto a revisione.
 
 :::
