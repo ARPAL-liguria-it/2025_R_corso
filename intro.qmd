@@ -63,6 +63,13 @@ knitr::include_graphics("images/rstudio.png", dpi = 72)
 
 L'uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare R, ma ne semplifica notevolmente l'impiego. Altri IDE comunemente utilizzati con R sono Visual Studio Code, Vim ed Emacs.
 
+### I progetti di RStudio
+
+Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all'interno di un progetto dedicato: creiamolo cliccando sull'icona ![](images/rproject.png){height=25} di Rstudio, in alto a destra.
+Scegliamo "New Project..." e dopo aver selezionato "New directory" decidiamo dove salvare il progetto e con quale nome.
+
+All'interno della cartella dedicata al progetto creiamo la cartella `data` e salviamo al suo interno un [dataset in formato xlsx](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx) e [uno in formato csv compresso](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz): li utilizzeremo tra qualche capitolo.
+
 ### I pacchetti di R
 
 Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del [CRAN](https://cran.r-project.org/web/packages/available_packages_by_date.html). Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.
@@ -71,7 +78,6 @@ I pacchetti si installano in R con il comando:
 
 ```{r}
 #| eval: false
-#| output: false
 install.packages("pacchetto")
 ```
 
