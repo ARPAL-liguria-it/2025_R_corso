@@ -5,6 +5,8 @@
 source("_common.R")
 ```
 
+In questo capitolo vedrai come gestire i dati nei due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Vedrai come passare da un formato all'altro con i comandi `melt()` e `dcast()`. Imparerai a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla visualizzazione.
+
 ## La forma dei dati {#sec-shapes}
 
 I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.

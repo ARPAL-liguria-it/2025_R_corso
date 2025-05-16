@@ -5,6 +5,10 @@
 source("_common.R")
 ```
 
+In questo capitolo imparerai a realizzare report personalizzati e flessibili utilizzando i parametri in documenti **Quarto**. Apprenderai a creare template riutilizzabili per analisi su dati diversi e a produrre automaticamente più report con script R o da linea di comando, migliorando l'efficienza, l'automazione e la riproducibilità del flusso di lavoro.
+
+## Report parametrizzati
+
 I report parametrizzati in **Quarto** permettono di creare documenti altamente flessibili, in cui i parametri specificati dall'utente vengono utilizzati per generare contenuti dinamici. Questo è particolarmente utile quando si vuole creare report personalizzati, adattati a diverse condizioni o esigenze, senza dover riscrivere l'intero documento.
 
 In **Quarto**, i parametri sono definiti nell'intestazione YAML del documento e vengono poi utilizzati all'interno del codice e del testo. Questo approccio rende facile la generazione automatica di report con diverse variabili, come per esempio l'analisi di diversi dataset, la modifica dei filtri o dei criteri di calcolo, o la personalizzazione dei contenuti visualizzati.

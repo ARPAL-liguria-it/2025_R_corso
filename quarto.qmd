@@ -5,6 +5,8 @@
 source("_common.R")
 ```
 
+In questo capitolo imparerai a utilizzare **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R. Vedrai come integrare codice, testo e output in un unico file, gestire formattazioni avanzate e produrre report chiari e personalizzati. Imparerai anche a inserire tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle tue analisi.
+
 ## I documenti Quarto {#sec-quarto}
 
 Nei capitoli precedenti abbiamo visto come organizzare il codice in R, aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.

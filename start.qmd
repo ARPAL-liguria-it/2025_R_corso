@@ -5,6 +5,8 @@
 source("_common.R")
 ```
 
+In questo capitolo inizierai a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Vedrai anche come organizzare il codice in script e a consultare la documentazione e l'aiuto in linea per lavorare in autonomia.
+
 ## Una bella calcolatrice
 
 Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo
@@ -28,7 +30,9 @@ Possiamo anche eseguire calcoli su vettori: definiamo un vettore di 100 elementi
 1:100 + 2
 ```
 
-Se volessimo ripetere il calcolo aggiungendo 3 invece di 2, possiamo premere il tasto freccia su (🔼) nella console per richiamare l'ultimo comando, modificarlo e premere Invio.
+Da questo esempio in poi, adotteremo la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riporteranno l'output della console.
+
+Se volessimo ripetere il calcolo precedente aggiungendo 3 invece di 2, possiamo posizionarci sulla console e premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
 Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio
 
 ```{r}

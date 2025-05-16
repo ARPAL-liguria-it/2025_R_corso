@@ -5,6 +5,8 @@
 source("_common.R")
 ```
 
+In questo capitolo scoprirai come utilizzare il pacchetto `data.table` per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Entrerai in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati. Vedrai come importare dati da file esterni e come pulire e preparare i dati per l'analisi.
+
 ## Il pacchetto `data.table` {#sec-load}
 
 Rispetto ai tradizionali `data.frame` trattati nella @sec-df, il pacchetto `data.table` offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati. `data.table` è stato creato per lavorare in modo efficiente con dataset di grandi dimensioni, tuttavia la sua sintassi lo rende pratico e agevole da usare anche per dataset di piccole o medie dimensioni.

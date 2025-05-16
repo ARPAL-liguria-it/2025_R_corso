@@ -5,6 +5,8 @@
 source("_common.R")
 ```
 
+In questo capitolo imparerai a integrare informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Vedrai come utilizzare diverse tipologie di **join** con il pacchetto `data.table`, gestendo casi di chiavi mancanti o non corrispondenti.
+
 ## Tipologie di unioni
 
 Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama *join* o *merge* ed è essenziale per integrare informazioni provenienti da fonti diverse.
