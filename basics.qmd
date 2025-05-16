@@ -9,7 +9,7 @@ Questa parte introduce i concetti fondamentali per iniziare a lavorare con R in 
 
 Questa parte è suddivisa in due capitoli così organizzati:
 
-- [nel primo capitolo](#sec-basics) apprenderai a usare la console di R, organizzare il codice in script e consultare l'aiuto in linea;
-- [nel secondo capitolo](#sec-objects) imparerai i tipi di dati fondamentali in R e le principali classi di oggetti.
+- [nel capitolo 2](#sec-basics) apprenderai a usare la console di R, organizzare il codice in script e consultare l'aiuto in linea;
+- [nel capitolo 3](#sec-objects) imparerai i tipi di dati fondamentali in R e le principali classi di oggetti.
 
 Questi argomenti costituiscono le fondamenta indispensabili per affrontare con sicurezza le analisi e le manipolazioni di dati più complesse che vedremo nei capitoli successivi.

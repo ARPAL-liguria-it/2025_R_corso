@@ -17,11 +17,11 @@ Il corso è pensato per chi ha poca o nessuna esperienza con software di analisi
 
 Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.
 
-@sec-basics-intro, introduce i concetti essenziali per iniziare a programmare in R: dall'uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.
+[**Le basi**](#sec-basics-intro), introduce i concetti essenziali per iniziare a programmare in R: dall'uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.
 
-@ec-transform-intro, si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto `data.table` e funzioni per il *reshaping* e le *join*. Queste competenze sono cruciali per preparare i dati all'analisi.
+[**Lavorare con i dati**](#sec-transform-intro), si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto `data.table` e funzioni per il *reshaping* e le *join*. Queste competenze sono cruciali per preparare i dati all'analisi.
 
-@sec-reports-intro, guida alla creazione di grafici professionali con `ggplot2` e all'uso di *Quarto* per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.
+[**Visualizzazione e reportistica**](#sec-reports-intro), guida alla creazione di grafici professionali con `ggplot2` e all'uso di *Quarto* per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.
 
 
 Questo documento è rilasciato gratuitamente con licenza [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
