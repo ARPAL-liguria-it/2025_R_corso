@@ -15,6 +15,7 @@ Per definire i parametri in un documento Quarto, basta aggiungere una sezione `p
 
 ```{r}
 #| label: load
+#| echo: false
 pm_genova_completo <- pm_genova_int2()
 ```
 
@@ -242,10 +243,10 @@ lista_comuni <- c("Busalla", "Genova", "Campomorone")
 report_aria <- function(template,
                         par_comune){
   
-  library(quarto)
+library(quarto)
   
-  # sarebbe meglio acquisirli programmaticamente
-  comuni_validi <- c("Busalla", "Campomorone", "Chiavari",
+# sarebbe meglio acquisirli programmaticamente
+comuni_validi <- c("Busalla", "Campomorone", "Chiavari",
                      "Genova", "Masone", "Rapallo")
   
   stopifnot(file.exists(template))
