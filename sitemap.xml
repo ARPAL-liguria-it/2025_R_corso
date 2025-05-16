@@ -2,46 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/index.html</loc>
-    <lastmod>2025-05-16T10:12:27.850Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.927Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/intro.html</loc>
-    <lastmod>2025-05-16T10:12:27.850Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.927Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/basics.html</loc>
-    <lastmod>2025-05-16T10:12:27.844Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.921Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/start.html</loc>
-    <lastmod>2025-05-16T10:12:27.852Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.929Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/objects.html</loc>
-    <lastmod>2025-05-16T10:12:27.851Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.927Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arpal-liguria-it.github.io/2025_R_corso/transform.html</loc>
+    <lastmod>2025-05-16T11:04:30.929Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/datatable.html</loc>
-    <lastmod>2025-05-16T10:12:27.849Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.926Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/reshape.html</loc>
-    <lastmod>2025-05-16T10:12:27.852Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.929Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/join.html</loc>
-    <lastmod>2025-05-16T10:12:27.850Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.927Z</lastmod>
+  </url>
+  <url>
+    <loc>https://arpal-liguria-it.github.io/2025_R_corso/reports.html</loc>
+    <lastmod>2025-05-16T11:04:30.929Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/ggplot2.html</loc>
-    <lastmod>2025-05-16T10:12:27.849Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.926Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/quarto.html</loc>
-    <lastmod>2025-05-16T10:12:27.851Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.927Z</lastmod>
   </url>
   <url>
     <loc>https://arpal-liguria-it.github.io/2025_R_corso/dynamic.html</loc>
-    <lastmod>2025-05-16T10:12:27.849Z</lastmod>
+    <lastmod>2025-05-16T11:04:30.926Z</lastmod>
   </url>
 </urlset>

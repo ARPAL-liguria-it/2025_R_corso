@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>Le basi – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>Visualizzazione e reportistica – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./start.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./ggplot2.html" rel="next">
+<link href="./join.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html">Visualizzazione e reportistica</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./basics.html" class="sidebar-item-text sidebar-link active">
+            <a href="./basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Le basi</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./reports.html" class="sidebar-item-text sidebar-link">
+            <a href="./reports.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Visualizzazione e reportistica</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -223,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-basics-intro" class="quarto-section-identifier">Le basi</span></h1>
+<h1 class="title"><span id="sec-reports-intro" class="quarto-section-identifier">Visualizzazione e reportistica</span></h1>
 </div>
 
 
@@ -240,13 +240,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Questa parte introduce i concetti fondamentali per iniziare a lavorare con R in modo efficace e autonomo. Nei due capitoli che seguono, partirai dalle prime semplici operazioni nella console per familiarizzare con l’ambiente di lavoro e la sintassi di R, fino a comprendere la natura degli oggetti e dei dati con cui lavorerai.</p>
-<p>Questa parte è suddivisa in due capitoli così organizzati:</p>
+<p>Questa parte del corso è dedicata agli strumenti e alle tecniche per rappresentare i dati in modo chiaro, e per creare report dinamici e personalizzati che facilitano la riproducibilità delle analisi, la comunicazione e la condivisione dei risultati.</p>
+<p>Questa parte è suddivisa in tre capitoli così organizzati:</p>
 <ul>
-<li><a href="start.html">nel primo capitolo</a> apprenderai a usare la console di R, organizzare il codice in script e consultare l’aiuto in linea;</li>
-<li><a href="objects.html">nel secondo capitolo</a> imparerai i tipi di dati fondamentali in R e le principali classi di oggetti.</li>
+<li><a href="ggplot2.html">nel primo capitolo</a> imparerai a costruire grafici personalizzati e informativi con il pacchetto <code>ggplot2</code>;</li>
+<li><a href="quarto.html">nel secondo capitolo</a> vedrai come utilizzare <strong>Quarto</strong> per creare documenti dinamici che integrano testo, codice e output, generando report riproducibili;</li>
+<li><a href="dynamic.html">nel terzo capitolo</a> tratteremo come realizzare report parametrizzati in <strong>Quarto</strong>, definendo parametri per generare contenuti dinamici e automatizzare la produzione di report multipli.</li>
 </ul>
-<p>Questi argomenti costituiscono le fondamenta indispensabili per affrontare con sicurezza le analisi e le manipolazioni di dati più complesse che vedremo nei capitoli successivi.</p>
+<p>Questi argomenti ti forniranno le competenze per comunicare efficacemente i risultati delle tue analisi e per automatizzare la creazione di documenti.</p>
 
 
 
@@ -652,13 +653,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduzione">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span>
+      <a href="./join.html" class="pagination-link" aria-label="Unire diverse fonti di dati">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./start.html" class="pagination-link" aria-label="Il primo assaggio">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2.html" class="pagination-link" aria-label="Visualizzare i dati con `ggplot2`">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -667,4 +668,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/basics.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/reports.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>
