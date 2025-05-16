@@ -10,6 +10,7 @@ source("_common.R")
 Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo
 
 ```{r}
+#| output: false
 2 + 3
 ```
 
