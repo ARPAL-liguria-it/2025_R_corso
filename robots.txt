@@ -1,1 +1,1 @@
-Sitemap: missing/sitemap.xml
+Sitemap: https://arpal-liguria-it.github.io/2025_R_corso/sitemap.xml

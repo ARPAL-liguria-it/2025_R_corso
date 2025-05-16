@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrea Bisignano, Andrea Bazzano">
+<meta name="author" content="Andrea Bazzano">
 
-<title>1&nbsp; Introduzione – Corso di R: dalle basi alla prima analisi dei dati</title>
+<title>1&nbsp; Introduzione – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,9 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Corso di R: dalle basi alla prima analisi dei dati</a> 
+      <a href="./">R in ARPAL: dalle basi alla prima analisi dei dati</a> 
         <div class="sidebar-tools-main">
-    <a href="./missing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-git"></i></a>
+    <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Attiva/disattiva la modalità lettore">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -241,11 +241,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">1.2.1</span> R</a></li>
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">1.2.2</span> RStudio</a></li>
-  <li><a href="#i-pacchetti-di-r" id="toc-i-pacchetti-di-r" class="nav-link" data-scroll-target="#i-pacchetti-di-r"><span class="header-section-number">1.2.3</span> I pacchetti di R</a></li>
+  <li><a href="#i-progetti-di-rstudio" id="toc-i-progetti-di-rstudio" class="nav-link" data-scroll-target="#i-progetti-di-rstudio"><span class="header-section-number">1.2.3</span> I progetti di RStudio</a></li>
+  <li><a href="#i-pacchetti-di-r" id="toc-i-pacchetti-di-r" class="nav-link" data-scroll-target="#i-pacchetti-di-r"><span class="header-section-number">1.2.4</span> I pacchetti di R</a></li>
   </ul></li>
   <li><a href="#per-approfondire" id="toc-per-approfondire" class="nav-link" data-scroll-target="#per-approfondire"><span class="header-section-number">1.3</span> Per approfondire</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="missing/edit/main/intro.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/intro.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -306,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schermata di Rstudio." data-fig-align="center">
+<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Schermata di Rstudio.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rstudio-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova il pannello dedicato al codice sorgente, al suo fianco il pannello dedicato agli ambienti e allo storico. In basso, da sinistra a destra, si trova la console e il pannello dedicato agli output."><img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Schermata di Rstudio."></a>
@@ -320,8 +321,13 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 </div>
 <p>L’uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare R, ma ne semplifica notevolmente l’impiego. Altri IDE comunemente utilizzati con R sono Visual Studio Code, Vim ed Emacs.</p>
 </section>
-<section id="i-pacchetti-di-r" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.3</span> I pacchetti di R</h3>
+<section id="i-progetti-di-rstudio" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="i-progetti-di-rstudio"><span class="header-section-number">1.2.3</span> I progetti di RStudio</h3>
+<p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all’interno di un progetto dedicato: creiamolo cliccando sull’icona <img src="images/rproject.png" height="25"> di Rstudio, in alto a destra. Scegliamo “New Project…” e dopo aver selezionato “New directory” decidiamo dove salvare il progetto e con quale nome.</p>
+<p>All’interno della cartella dedicata al progetto creiamo la cartella <code>data</code> e salviamo al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: li utilizzeremo tra qualche capitolo.</p>
+</section>
+<section id="i-pacchetti-di-r" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.4</span> I pacchetti di R</h3>
 <p>Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>. Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.</p>
 <p>I pacchetti si installano in R con il comando:</p>
 <div class="cell" data-layout-align="center">
@@ -428,7 +434,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("missing");
+        var filterRegex = new RegExp("https:\/\/arpal-liguria-it\.github\.io\/2025_R_corso\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -768,7 +774,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="missing/edit/main/intro.qmd" class="toc-action"><i class="bi bi-git"></i>Modifica questa pagina</a></li><li><a href="missing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/intro.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
