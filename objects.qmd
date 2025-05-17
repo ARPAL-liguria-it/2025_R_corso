@@ -226,7 +226,7 @@ I `data.frame` possono anche avere nomi per ogni riga, ma è consigliabile evita
 La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Per questo motivo sono nati pacchetti dedicati, tra cui:
 
 - `dplyr` permette di manipolare i dati concatenando funzioni con nomi descrittivi come `filter()`, `mutate()`, `group_by()`, ecc.
-- `data.table` nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi estesa rispetto a quella base di R: lo vedremo nel prossimo capitolo.
+- `data.table` nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi estesa rispetto a quella base di R: lo vedremo nel @sec-datatable.
 
 :::: {.panel-tabset}
 

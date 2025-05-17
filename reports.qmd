@@ -9,8 +9,8 @@ Questa parte del corso è dedicata agli strumenti e alle tecniche per rappresent
 
 Questa parte è suddivisa in tre capitoli così organizzati:
 
-- [nel capitolo 7](#sec-ggplot2) imparerai a costruire grafici personalizzati e informativi con il pacchetto `ggplot2`;
-- [nel capitolo 8](#sec-report) vedrai come utilizzare **Quarto** per creare documenti dinamici che integrano testo, codice e output, generando report riproducibili;
-- [nel capitolo 9](#sec-dynamic) tratteremo come realizzare report parametrizzati in **Quarto**, definendo parametri per generare contenuti dinamici e automatizzare la produzione di report multipli.
+- [nel capitolo 8](#sec-ggplot2) imparerai a costruire grafici personalizzati e informativi con il pacchetto `ggplot2`;
+- [nel capitolo 9](#sec-report) vedrai come utilizzare **Quarto** per creare documenti dinamici che integrano testo, codice e output, generando report riproducibili;
+- [nel capitolo 10](#sec-dynamic) tratteremo come realizzare report parametrizzati in **Quarto**, definendo parametri per generare contenuti dinamici e automatizzare la produzione di report multipli.
 
 Questi argomenti ti forniranno le competenze per comunicare efficacemente i risultati delle tue analisi e per automatizzare la creazione di documenti.

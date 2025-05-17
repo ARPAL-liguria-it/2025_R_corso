@@ -66,7 +66,7 @@ Nella creazione di variabili è bene fare caso ad alcune regole:
 
 Durante il corso utilizzeremo nomi di variabili e funzioni scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
 
-## Funzioni
+## Funzioni {#sec-functions}
 
 Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili e le incontreremo ovunque. Durante il corso non distingueremo tra funzioni e metodi (dove le prime danno *output* e le seconde no): per noi, qualunque contenitore di operazioni applicate a un *input* sarà una funzione.
 
@@ -120,7 +120,7 @@ Gli argomenti (o *input*) della funzione sono racchiusi tra parentesi tonde, con
 
 ## Il primo script
 
-Nella sezione precedente abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.
+Nella @sec-functions abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.
 
 Per questo motivo, possiamo creare un `file.R` in cui elencare in ordine i comandi da eseguire.
 Per farlo, in RStudio basta cliccare sull'icona ![](images/newfile.png){height=25} in alto a sinistra, selezionare "R Script" e salvare il file. All'interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:
@@ -162,7 +162,7 @@ aggregate(. ~ Species, data = iris, FUN = quartili)
 ```
 
 
-Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno il nostro principale strumento di lavoro. Nei prossimi capitoli vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
+Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno il nostro principale strumento di lavoro. Nel @sec-report vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
 
 ## Chiedere aiuto {#sec-help}
 

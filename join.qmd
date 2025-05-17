@@ -118,7 +118,7 @@ Con il comando `vignette("datatable-joins")` è possible avere informazioni aggi
 ::: panel-tabset
 ## Esercizio
 
-Unire i dataset `pm_genova` e `stazioni` creati nella @sec-datatable:
+Unire i dataset `pm_genova` e `stazioni` creati nel @sec-datatable:
 
 - qual è la chiave che mette in relazione i due dataset?
 - quale tipo di *join* usare per mantenere solo le misure associate a stazioni e viceversa?

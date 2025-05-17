@@ -9,15 +9,13 @@ Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici anal
 
 Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.
 
-Durante il proseguo del corso imparerai a:
+Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.
 
--   chiedere aiuto;
--   strutturare un documento alternando testo e codice per rendere le analisi riproducibili;
--   importare dati da file esterni all'interno di R;
--   immagazzinare, consultare e modificare i dati all'interno delle diverse tipologie di oggetti di R;
--   trasformare e combinare i dati;
--   utilizzare i nostri dati per ottenere informazioni statistiche di base;
--   creare semplici grafici.
+[**Le basi**](#sec-basics-intro), introduce i concetti essenziali per iniziare a programmare in R: dall'uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.
+
+[**Lavorare con i dati**](#sec-transform-intro), si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto `data.table` e funzioni per il *reshaping* e le *join*. Queste competenze sono cruciali per preparare i dati all'analisi.
+
+[**Visualizzazione e reportistica**](#sec-reports-intro), guida alla creazione di grafici professionali con `ggplot2` e all'uso di *Quarto* per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.
 
 ## Quanta fatica
 
@@ -68,7 +66,7 @@ L'uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare
 Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all'interno di un progetto dedicato: creiamolo cliccando sull'icona ![](images/rproject.png){height=25} di Rstudio, in alto a destra.
 Scegliamo "New Project..." e dopo aver selezionato "New directory" decidiamo dove salvare il progetto e con quale nome.
 
-All'interno della cartella dedicata al progetto creiamo la cartella `data` e salviamo al suo interno un [dataset in formato xlsx](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx) e [uno in formato csv compresso](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz): li utilizzeremo tra qualche capitolo.
+All'interno della cartella dedicata al progetto creiamo la cartella `data` e salviamo al suo interno un [dataset in formato xlsx](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx) e [uno in formato csv compresso](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz): li utilizzeremo nel @sec-datatable.
 
 ### I pacchetti di R
 

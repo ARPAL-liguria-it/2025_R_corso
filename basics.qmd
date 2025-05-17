@@ -7,9 +7,10 @@ source("_common.R")
 
 Questa parte introduce i concetti fondamentali per iniziare a lavorare con R in modo efficace e autonomo. Nei due capitoli che seguono, partirai dalle prime semplici operazioni nella console per familiarizzare con l'ambiente di lavoro e la sintassi di R, fino a comprendere la natura degli oggetti e dei dati con cui lavorerai.
 
-Questa parte è suddivisa in due capitoli così organizzati:
+Questa parte è suddivisa in tre capitoli così organizzati:
 
 - [nel capitolo 2](#sec-basics) apprenderai a usare la console di R, organizzare il codice in script e consultare l'aiuto in linea;
-- [nel capitolo 3](#sec-objects) imparerai i tipi di dati fondamentali in R e le principali classi di oggetti.
+- [nel capitolo 3](#sec-objects) imparerai i tipi di dati fondamentali in R e le principali classi di oggetti;
+- [nel capitolo 4](#sec-coding) imparerai alcuni costrutti elementari per iniziare a programmare con R.
 
 Questi argomenti costituiscono le fondamenta indispensabili per affrontare con sicurezza le analisi e le manipolazioni di dati più complesse che vedremo nei capitoli successivi.

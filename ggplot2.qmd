@@ -134,7 +134,7 @@ misure |>
 
 ## Esercizio
 
-Utilizzando il dataset `pm_genova` importato e modificato nelle sezioni precedenti, rappresentare la distribuzione dei valori medi giornalieri di PM~10~ per i diversi comuni. Raffrontare visivamente i valori medi giornalieri con il limite di $50\, \mu g/m^3$.
+Utilizzando il dataset `pm_genova` importato e modificato rispettivamente nei [Capitoli @sec-datatable] e [-@sec-join], rappresentare la distribuzione dei valori medi giornalieri di PM~10~ per i diversi comuni. Raffrontare visivamente i valori medi giornalieri con il limite di $50\, \mu g/m^3$.
 
 
 ## Soluzione

@@ -24,6 +24,7 @@ book:
       chapters: 
         - start.qmd
         - objects.qmd
+        - coding.qmd
     - part: transform.qmd    
       chapters: 
         - datatable.qmd

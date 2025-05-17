@@ -9,7 +9,7 @@ In questo capitolo imparerai a utilizzare **Quarto**, uno strumento potente per 
 
 ## I documenti Quarto {#sec-quarto}
 
-Nei capitoli precedenti abbiamo visto come organizzare il codice in R, aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
+A partire dal @sec-basics abbiamo visto come organizzare il codice in R, aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
 
 **Quarto** è una piattaforma *open source* che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file `.qmd`. Supporta linguaggi come `R`, `Python` e `Julia`, e consente di generare output in vari formati (HTML, PDF, Word).
 

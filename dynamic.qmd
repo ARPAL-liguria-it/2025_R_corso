@@ -276,9 +276,13 @@ L'approccio da riga di comando è ideale per contesti automatizzati e ambienti n
 
 ## Esercizio
 
-Strutturare un template per report dinamici utile nel vostro contesto lavorativo:
+Strutturare un template per report dinamici utile nel vostro contesto lavorativo.
+Una volta identificata l'applicazione di interesse riflettete su:
 
-- quali sono le parti fisse del template?
+- Quali sono le parti fisse del report?
 - Quali sono i parametri del report?
+- In quale modalità è meglio creare i report?
+
+Iniziate a strutturare un report statico per uno dei casi di interesse e introducete i parametri solo in un secondo momento.
 
 ::::
