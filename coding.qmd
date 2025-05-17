@@ -1,0 +1,132 @@
+# Elementi di programmazione {#sec-coding}
+
+```{r}
+#| echo: false
+source("_common.R")
+```
+
+In questo capitolo imparerai le basi della programmazione in R focalizzandoti su come ripetere istruzioni con i cicli (`for` e `while`) o applicando funzioni in modo efficiente (`lapply()`). Infine, imparerai a far seguire al codice percorsi differenziati con i flussi condizionali (`if`, `else` e `ifelse()`).
+
+## Introduzione ai Cicli (Loops)
+
+In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:
+
+- `for`: esegue un blocco di codice per ogni elemento di una sequenza.
+- `while`: esegue un blocco di codice finché una condizione è vera.
+
+Vediamo un esempio:
+
+```{r}
+# ciclo for
+for(i in 1:5) {
+  print(i)
+}
+
+# ciclo while
+i <- 1
+while(i <= 5) {
+  print(i)
+  i <- i + 1
+}
+```
+
+Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R, spesso è più efficiente e leggibile evitare i cicli espliciti usando funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).
+
+### La funzione `lapply()`
+
+`lapply()` è la più generale e più usata di queste funzioni speciali e ha queste caratteristiche:
+
+- applica una funzione a ogni elemento di una lista o di un vettore.
+- restituisce sempre una lista.
+- utilizza la sintassi `lapply(X, FUN, ...)` dove `X` è l'oggetto e `FUN` la funzione da applicare.
+
+Ecco un esempio:
+
+```{r}
+# una lista di tre vettori numerici
+my_list <- list(
+  a = 1:5,
+  b = 6:10,
+  c = 11:15
+)
+
+# calcola la media di ogni vettore
+medie <- lapply(my_list, mean)
+print(medie)
+
+```
+
+`lapply()` si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, usiamo una **funzione anonima** come argomento `FUN`.
+
+Vediamo come calcolarci la media della somma dei quadrati della lista di vettori, definita nell'esempio precedente:
+
+```{r}
+result <- lapply(my_list, function(x) sum(x^2))
+print(result)
+```
+
+- `function(x) sum(x^2)` è una funzione anonima che prende un vettore `x`, eleva al quadrato ogni elemento (`x^2`), e ne calcola la somma (`sum()`).
+- `lapply()` applica questa funzione a ogni elemento della lista `my_list`.
+- Il risultato è una lista con la somma dei quadrati per ciascun vettore.
+
+In generale, l'utilizzo di `lapply()` è preferito ai cicli `for` in quanto permette sia di ottenere codice più pulito e leggibile, sia una maggiore efficienza in fase di esecuzione.
+
+## Flussi condizionali
+
+I flussi condizionali permettono di eseguire del codice solo se una certa condizione è vera.
+
+- `if` valuta una condizione e, se vera, esegue un blocco di codice.
+- `else` definisce cosa fare se la condizione è falsa.
+- `ifelse()` è una funzione vettoriale che valuta una condizione su ogni elemento di un vettore e restituisce un valore se la condizione è vera, un altro se falsa.
+
+Vediamo due esempi base:
+
+```{r}
+# if ed else
+x <- 10
+if (x > 5) {
+  print("grande")
+} else {
+  print("piccolo")
+}
+
+# ifelse()
+v <- c(3, 7, 2, 9)
+risultato <- ifelse(v > 5, "grande", "piccolo")
+print(risultato)
+```
+
+`ifelse()` è preferibile nei casi in cui si lavori con vettori o colonne di dati e si voglia applicare una condizione a ogni elemento. Inoltre permette di utilizzare codice più compatto e veloce rispetto a un ciclo `for` con `if` ed `else`.
+Nel caso di condizioni multiple è possibile utilizzare più `ifelse()` annidati ma è bene prestare sempre attenzione alla leggibilità del codice.
+
+::: panel-tabset
+## Esercizio
+
+Franco ha misurato le concentrazioni di cianuro in diversi campioni d'acqua prelevati da varie stazioni di monitoraggio e le ha organizzate in una lista.
+
+```{r}
+concentrazioni <- list(
+  stazione1 = c(10, 12, 60, 30),
+  stazione2 = c(11, 95, 85, 42),
+  stazione3 = c(10, 10, 14, 18)
+)
+```
+
+
+Aiutalo a:
+
+1. classificare ogni concentrazione come "Sicura" se è inferiore o uguale a 15 µg/l, "Attenzione" se è tra 15 e 50 µg/l, e "Pericolosa" se superiore a 50 µg/l;
+2. calcolare la media delle concentrazioni per ogni stazione.
+
+## Soluzione
+
+```{r}
+classifica <- lapply(concentrazioni, function(x) {
+  ifelse(x <= 15, "Sicura",
+         ifelse(x <= 50, "Attenzione", "Pericolosa"))
+  })
+
+print(classifica)
+```
+
+:::
