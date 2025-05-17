@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>5&nbsp; Cambiare la forma dei dati – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>6&nbsp; Cambiare la forma dei dati – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -185,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -199,19 +205,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datatable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./join.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,19 +234,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -255,12 +261,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#sec-shapes" id="toc-sec-shapes" class="nav-link active" data-scroll-target="#sec-shapes"><span class="header-section-number">5.1</span> La forma dei dati</a></li>
-  <li><a href="#la-funzione-melt-da-wide-a-long" id="toc-la-funzione-melt-da-wide-a-long" class="nav-link" data-scroll-target="#la-funzione-melt-da-wide-a-long"><span class="header-section-number">5.2</span> La funzione <code>melt()</code>: da wide a long</a></li>
-  <li><a href="#la-funzione-dcast-da-long-a-wide" id="toc-la-funzione-dcast-da-long-a-wide" class="nav-link" data-scroll-target="#la-funzione-dcast-da-long-a-wide"><span class="header-section-number">5.3</span> La funzione <code>dcast()</code>: da long a wide</a>
+  <li><a href="#sec-shapes" id="toc-sec-shapes" class="nav-link active" data-scroll-target="#sec-shapes"><span class="header-section-number">6.1</span> La forma dei dati</a></li>
+  <li><a href="#la-funzione-melt-da-wide-a-long" id="toc-la-funzione-melt-da-wide-a-long" class="nav-link" data-scroll-target="#la-funzione-melt-da-wide-a-long"><span class="header-section-number">6.2</span> La funzione <code>melt()</code>: da wide a long</a></li>
+  <li><a href="#la-funzione-dcast-da-long-a-wide" id="toc-la-funzione-dcast-da-long-a-wide" class="nav-link" data-scroll-target="#la-funzione-dcast-da-long-a-wide"><span class="header-section-number">6.3</span> La funzione <code>dcast()</code>: da long a wide</a>
   <ul class="collapse">
-  <li><a href="#sec-dcast-base" id="toc-sec-dcast-base" class="nav-link" data-scroll-target="#sec-dcast-base"><span class="header-section-number">5.3.1</span> Significato e sintassi di base</a></li>
-  <li><a href="#misure-multiple-e-misure-mancanti" id="toc-misure-multiple-e-misure-mancanti" class="nav-link" data-scroll-target="#misure-multiple-e-misure-mancanti"><span class="header-section-number">5.3.2</span> Misure multiple e misure mancanti</a></li>
+  <li><a href="#sec-dcast-base" id="toc-sec-dcast-base" class="nav-link" data-scroll-target="#sec-dcast-base"><span class="header-section-number">6.3.1</span> Significato e sintassi di base</a></li>
+  <li><a href="#misure-multiple-e-misure-mancanti" id="toc-misure-multiple-e-misure-mancanti" class="nav-link" data-scroll-target="#misure-multiple-e-misure-mancanti"><span class="header-section-number">6.3.2</span> Misure multiple e misure mancanti</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/reshape.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
@@ -268,9 +274,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./reshape.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-reshape" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></h1>
+<h1 class="title"><span id="sec-reshape" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></h1>
 </div>
 
 
@@ -288,8 +294,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In questo capitolo vedrai come gestire i dati nei due formati principali: <strong>wide</strong> (una entità osservata per riga, variabili in colonne) e <strong>long</strong> (una misura per riga, con tipo e valore separati). Vedrai come passare da un formato all’altro con i comandi <code>melt()</code> e <code>dcast()</code>. Imparerai a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all’analisi e alla visualizzazione.</p>
-<section id="sec-shapes" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sec-shapes"><span class="header-section-number">5.1</span> La forma dei dati</h2>
+<section id="sec-shapes" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-shapes"><span class="header-section-number">6.1</span> La forma dei dati</h2>
 <p>I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
 <p>Questa tipologia di dati possono essere organizzati in due differenti formati:</p>
 <ul>
@@ -1312,8 +1318,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>La scelta tra i due formati dipende dal tipo di operazione che si vuole eseguire sui dati ed è frequente dover passare da un formato all’altro.</p>
 </section>
-<section id="la-funzione-melt-da-wide-a-long" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="la-funzione-melt-da-wide-a-long"><span class="header-section-number">5.2</span> La funzione <code>melt()</code>: da wide a long</h2>
+<section id="la-funzione-melt-da-wide-a-long" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="la-funzione-melt-da-wide-a-long"><span class="header-section-number">6.2</span> La funzione <code>melt()</code>: da wide a long</h2>
 <p>La funzione <code>melt()</code> scioglie i dati in formato <strong>wide</strong> portandoli in formato <strong>long</strong> e utilizza la seguente sintassi:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">melt</span>(data, id.vars, measure.vars, <span class="at">variable.name =</span> <span class="st">"variable"</span>, <span class="at">value.name =</span> <span class="st">"value"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1345,10 +1351,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>La funzione “scioglie” le colonne specificate in <code>measure.vars</code> in due colonne: la prima relativa alla tipologia di misura, identificata con il nome specificato in <code>variable.name</code> e una seconda relativa al valore della misura, identificata con il nome specificato in <code>value.name</code>. Le informazioni contenute in <code>id.vars</code> sono ripetute per il numero totale di misure effettuate per ogni entità osservata.</p>
 </section>
-<section id="la-funzione-dcast-da-long-a-wide" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="la-funzione-dcast-da-long-a-wide"><span class="header-section-number">5.3</span> La funzione <code>dcast()</code>: da long a wide</h2>
-<section id="sec-dcast-base" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="sec-dcast-base"><span class="header-section-number">5.3.1</span> Significato e sintassi di base</h3>
+<section id="la-funzione-dcast-da-long-a-wide" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="la-funzione-dcast-da-long-a-wide"><span class="header-section-number">6.3</span> La funzione <code>dcast()</code>: da long a wide</h2>
+<section id="sec-dcast-base" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="sec-dcast-base"><span class="header-section-number">6.3.1</span> Significato e sintassi di base</h3>
 <p>La funzione <code>dcast()</code> proietta i dati in formato <strong>long</strong> distribuendone il contenuto su un più colonne, per ottenere un formato <strong>wide</strong>. Si tratta di un’operazione analoga a quella fornita dalle tabelle <em>pivot</em> dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione <code>melt()</code>.</p>
 <p>La complessità e potenza dell’operazione di proiezione è testimoniata dalla sintassi della funzione <code>dcast()</code>:</p>
 <div class="cell" data-layout-align="center">
@@ -1375,8 +1381,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        22311/24         2024-03-10   0.04   0.12</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="misure-multiple-e-misure-mancanti" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="misure-multiple-e-misure-mancanti"><span class="header-section-number">5.3.2</span> Misure multiple e misure mancanti</h3>
+<section id="misure-multiple-e-misure-mancanti" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="misure-multiple-e-misure-mancanti"><span class="header-section-number">6.3.2</span> Misure multiple e misure mancanti</h3>
 <p>Immaginiamo che a <code>campioni_long</code> si debbano aggiungere i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, ma sono state effettuate tre misure indipendenti della misurazione di zinco.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nuovi_dati <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
@@ -1388,7 +1394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="ot">&lt;-</span> <span class="fu">rbind</span>(campioni_long,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                       nuovi_dati)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se riprovassimo a proiettare i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 5.3.1</span></a>, otterremo:</p>
+<p>Se riprovassimo a proiettare i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 6.3.1</span></a>, otterremo:</p>
 <div class="cell" data-layout-align="center">
 <pre><code>#&gt; Warning in dcast.data.table(campioni_long, codice_campione + data_campionamento
 #&gt; ~ : 'fun.aggregate' is NULL, but found duplicate row/column combinations, so
@@ -2103,12 +2109,12 @@ Per i più golosi
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./datatable.html" class="pagination-link" aria-label="Manipolare i dati con `data.table`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./join.html" class="pagination-link" aria-label="Unire diverse fonti di dati">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

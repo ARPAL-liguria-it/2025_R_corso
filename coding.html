@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>Le basi – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>4&nbsp; Elementi di programmazione – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./start.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./transform.html" rel="next">
+<link href="./objects.html" rel="prev">
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -84,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./coding.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -131,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./basics.html" class="sidebar-item-text sidebar-link active">
+            <a href="./basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Le basi</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -152,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+  <a href="./coding.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
   </div>
 </li>
@@ -221,15 +256,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#introduzione-ai-cicli-loops" id="toc-introduzione-ai-cicli-loops" class="nav-link active" data-scroll-target="#introduzione-ai-cicli-loops"><span class="header-section-number">4.1</span> Introduzione ai Cicli (Loops)</a>
+  <ul class="collapse">
+  <li><a href="#la-funzione-lapply" id="toc-la-funzione-lapply" class="nav-link" data-scroll-target="#la-funzione-lapply"><span class="header-section-number">4.1.1</span> La funzione <code>lapply()</code></a></li>
+  </ul></li>
+  <li><a href="#flussi-condizionali" id="toc-flussi-condizionali" class="nav-link" data-scroll-target="#flussi-condizionali"><span class="header-section-number">4.2</span> Flussi condizionali</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/coding.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./basics.html">Le basi</a></li><li class="breadcrumb-item"><a href="./coding.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-basics-intro" class="quarto-section-identifier">Le basi</span></h1>
+<h1 class="title"><span id="sec-coding" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></h1>
 </div>
 
 
@@ -246,16 +291,157 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Questa parte introduce i concetti fondamentali per iniziare a lavorare con R in modo efficace e autonomo. Nei due capitoli che seguono, partirai dalle prime semplici operazioni nella console per familiarizzare con l’ambiente di lavoro e la sintassi di R, fino a comprendere la natura degli oggetti e dei dati con cui lavorerai.</p>
-<p>Questa parte è suddivisa in tre capitoli così organizzati:</p>
+<p>In questo capitolo imparerai le basi della programmazione in R focalizzandoti su come ripetere istruzioni con i cicli (<code>for</code> e <code>while</code>) o applicando funzioni in modo efficiente (<code>lapply()</code>). Infine, imparerai a far seguire al codice percorsi differenziati con i flussi condizionali (<code>if</code>, <code>else</code> e <code>ifelse()</code>).</p>
+<section id="introduzione-ai-cicli-loops" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introduzione-ai-cicli-loops"><span class="header-section-number">4.1</span> Introduzione ai Cicli (Loops)</h2>
+<p>In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:</p>
 <ul>
-<li><a href="start.html">nel capitolo 2</a> apprenderai a usare la console di R, organizzare il codice in script e consultare l’aiuto in linea;</li>
-<li><a href="objects.html">nel capitolo 3</a> imparerai i tipi di dati fondamentali in R e le principali classi di oggetti;</li>
-<li><a href="coding.html">nel capitolo 4</a> imparerai alcuni costrutti elementari per iniziare a programmare con R.</li>
+<li><code>for</code>: esegue un blocco di codice per ogni elemento di una sequenza.</li>
+<li><code>while</code>: esegue un blocco di codice finché una condizione è vera.</li>
 </ul>
-<p>Questi argomenti costituiscono le fondamenta indispensabili per affrontare con sicurezza le analisi e le manipolazioni di dati più complesse che vedremo nei capitoli successivi.</p>
+<p>Vediamo un esempio:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ciclo for</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ciclo while</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i <span class="sc">&lt;=</span> <span class="dv">5</span>) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R, spesso è più efficiente e leggibile evitare i cicli espliciti usando funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).</p>
+<section id="la-funzione-lapply" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="la-funzione-lapply"><span class="header-section-number">4.1.1</span> La funzione <code>lapply()</code></h3>
+<p><code>lapply()</code> è la più generale e più usata di queste funzioni speciali e ha queste caratteristiche:</p>
+<ul>
+<li>applica una funzione a ogni elemento di una lista o di un vettore.</li>
+<li>restituisce sempre una lista.</li>
+<li>utilizza la sintassi <code>lapply(X, FUN, ...)</code> dove <code>X</code> è l’oggetto e <code>FUN</code> la funzione da applicare.</li>
+</ul>
+<p>Ecco un esempio:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># una lista di tre vettori numerici</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calcola la media di ogni vettore</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>medie <span class="ot">&lt;-</span> <span class="fu">lapply</span>(my_list, mean)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(medie)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $a</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $b</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $c</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>lapply()</code> si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, usiamo una <strong>funzione anonima</strong> come argomento <code>FUN</code>.</p>
+<p>Vediamo come calcolarci la media della somma dei quadrati della lista di vettori, definita nell’esempio precedente:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lapply</span>(my_list, <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $a</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 55</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $b</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 330</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $c</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 855</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>function(x) sum(x^2)</code> è una funzione anonima che prende un vettore <code>x</code>, eleva al quadrato ogni elemento (<code>x^2</code>), e ne calcola la somma (<code>sum()</code>).</li>
+<li><code>lapply()</code> applica questa funzione a ogni elemento della lista <code>my_list</code>.</li>
+<li>Il risultato è una lista con la somma dei quadrati per ciascun vettore.</li>
+</ul>
+<p>In generale, l’utilizzo di <code>lapply()</code> è preferito ai cicli <code>for</code> in quanto permette sia di ottenere codice più pulito e leggibile, sia una maggiore efficienza in fase di esecuzione.</p>
+</section>
+</section>
+<section id="flussi-condizionali" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="flussi-condizionali"><span class="header-section-number">4.2</span> Flussi condizionali</h2>
+<p>I flussi condizionali permettono di eseguire del codice solo se una certa condizione è vera.</p>
+<ul>
+<li><code>if</code> valuta una condizione e, se vera, esegue un blocco di codice.</li>
+<li><code>else</code> definisce cosa fare se la condizione è falsa.</li>
+<li><code>ifelse()</code> è una funzione vettoriale che valuta una condizione su ogni elemento di un vettore e restituisce un valore se la condizione è vera, un altro se falsa.</li>
+</ul>
+<p>Vediamo due esempi base:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if ed else</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"grande"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"piccolo"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "grande"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ifelse()</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">9</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>risultato <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(v <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="st">"grande"</span>, <span class="st">"piccolo"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(risultato)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "piccolo" "grande"  "piccolo" "grande"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>ifelse()</code> è preferibile nei casi in cui si lavori con vettori o colonne di dati e si voglia applicare una condizione a ogni elemento. Inoltre permette di utilizzare codice più compatto e veloce rispetto a un ciclo <code>for</code> con <code>if</code> ed <code>else</code>. Nel caso di condizioni multiple è possibile utilizzare più <code>ifelse()</code> annidati ma è bene prestare sempre attenzione alla leggibilità del codice.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Franco ha misurato le concentrazioni di cianuro in diversi campioni d’acqua prelevati da varie stazioni di monitoraggio e le ha organizzate in una lista.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>concentrazioni <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">stazione1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">60</span>, <span class="dv">30</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">stazione2 =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">95</span>, <span class="dv">85</span>, <span class="dv">42</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stazione3 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">18</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aiutalo a:</p>
+<ol type="1">
+<li>classificare ogni concentrazione come “Sicura” se è inferiore o uguale a 15 µg/l, “Attenzione” se è tra 15 e 50 µg/l, e “Pericolosa” se superiore a 50 µg/l;</li>
+<li>calcolare la media delle concentrazioni per ogni stazione.</li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>classifica <span class="ot">&lt;-</span> <span class="fu">lapply</span>(concentrazioni, <span class="cf">function</span>(x) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">&lt;=</span> <span class="dv">15</span>, <span class="st">"Sicura"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ifelse</span>(x <span class="sc">&lt;=</span> <span class="dv">50</span>, <span class="st">"Attenzione"</span>, <span class="st">"Pericolosa"</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(classifica)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stazione1</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Sicura"     "Sicura"     "Pericolosa" "Attenzione"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stazione2</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Sicura"     "Pericolosa" "Pericolosa" "Attenzione"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stazione3</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Sicura"     "Sicura"     "Sicura"     "Attenzione"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -659,13 +845,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduzione">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduzione</span></span>
+      <a href="./objects.html" class="pagination-link" aria-label="Oggetti di R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./start.html" class="pagination-link" aria-label="Il primo assaggio">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo assaggio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transform.html" class="pagination-link" aria-label="Lavorare con i dati">
+        <span class="nav-page-text">Lavorare con i dati</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -674,4 +860,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/basics.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/coding.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div></div></footer></body></html>

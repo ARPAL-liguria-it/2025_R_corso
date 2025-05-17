@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>6&nbsp; Unire diverse fonti di dati – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>7&nbsp; Unire diverse fonti di dati – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -217,6 +217,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -231,19 +237,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datatable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./join.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,19 +266,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,11 +293,11 @@ window.Quarto = {
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#tipologie-di-unioni" id="toc-tipologie-di-unioni" class="nav-link active" data-scroll-target="#tipologie-di-unioni"><span class="header-section-number">6.1</span> Tipologie di unioni</a>
+  <li><a href="#tipologie-di-unioni" id="toc-tipologie-di-unioni" class="nav-link active" data-scroll-target="#tipologie-di-unioni"><span class="header-section-number">7.1</span> Tipologie di unioni</a>
   <ul class="collapse">
-  <li><a href="#sec-inner" id="toc-sec-inner" class="nav-link" data-scroll-target="#sec-inner"><span class="header-section-number">6.1.1</span> Inner join</a></li>
-  <li><a href="#sec-left" id="toc-sec-left" class="nav-link" data-scroll-target="#sec-left"><span class="header-section-number">6.1.2</span> Right e left join</a></li>
-  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">6.1.3</span> Full join</a></li>
+  <li><a href="#sec-inner" id="toc-sec-inner" class="nav-link" data-scroll-target="#sec-inner"><span class="header-section-number">7.1.1</span> Inner join</a></li>
+  <li><a href="#sec-left" id="toc-sec-left" class="nav-link" data-scroll-target="#sec-left"><span class="header-section-number">7.1.2</span> Right e left join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">7.1.3</span> Full join</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/join.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
@@ -299,9 +305,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./join.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-join" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></h1>
+<h1 class="title"><span id="sec-join" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></h1>
 </div>
 
 
@@ -319,8 +325,8 @@ window.Quarto = {
 
 
 <p>In questo capitolo imparerai a integrare informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Vedrai come utilizzare diverse tipologie di <strong>join</strong> con il pacchetto <code>data.table</code>, gestendo casi di chiavi mancanti o non corrispondenti.</p>
-<section id="tipologie-di-unioni" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">6.1</span> Tipologie di unioni</h2>
+<section id="tipologie-di-unioni" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">7.1</span> Tipologie di unioni</h2>
 <p>Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama <em>join</em> o <em>merge</em> ed è essenziale per integrare informazioni provenienti da fonti diverse.</p>
 <p>Prendiamo come esempio due <code>data.table</code>:</p>
 <ul>
@@ -353,16 +359,16 @@ window.Quarto = {
 <li>non tutti i codici di <code>indirizzi</code> compaiono in <code>misure</code>.</li>
 </ul>
 <p>Prima di unire le tabelle, dobbiamo quindi decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di <em>join</em> da utilizzare.</p>
-<section id="sec-inner" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">6.1.1</span> Inner join</h3>
-<p>Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, useremo un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
+<section id="sec-inner" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">7.1.1</span> Inner join</h3>
+<p>Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, useremo un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>.</p>
 <div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/inner_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;6.1: Inner join (A \cap B): vengono restituite solo le righe di A che compaiono anche in B."><img src="images/inner_join.png" class="img-fluid figure-img"></a>
+<a href="images/inner_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;7.1: Inner join (A \cap B): vengono restituite solo le righe di A che compaiono anche in B."><img src="images/inner_join.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): vengono restituite solo le righe di A che compaiono anche in B.
+Figura&nbsp;7.1: Inner join (<span class="math inline">\(A \cap B\)</span>): vengono restituite solo le righe di A che compaiono anche in B.
 </figcaption>
 </figure>
 </div>
@@ -382,16 +388,16 @@ Figura&nbsp;6.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 </div>
 <p>Se le colonne chiave hanno nomi diversi, possiamo specificare on come coppia di nomi, ad esempio <code>on = .(codice_misure = codice_indirizzi)</code>. È possibile anche effettuare unioni su più colonne.</p>
 </section>
-<section id="sec-left" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">6.1.2</span> Right e left join</h3>
-<p>Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un <strong>right join</strong>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<section id="sec-left" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">7.1.2</span> Right e left join</h3>
+<p>Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un <strong>right join</strong>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>.</p>
 <div id="fig-right" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/right_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;6.2: Right join (B \cup (A \cap B)): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili."><img src="images/right_join.png" class="img-fluid figure-img"></a>
+<a href="images/right_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figura&nbsp;7.2: Right join (B \cup (A \cap B)): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili."><img src="images/right_join.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</span>): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili.
+Figura&nbsp;7.2: Right join (<span class="math inline">\(B \cup (A \cap B)\)</span>): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili.
 </figcaption>
 </figure>
 </div>
@@ -448,16 +454,16 @@ Per i più frettolosi
 </div>
 </div>
 </section>
-<section id="full-join" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">6.1.3</span> Full join</h3>
-<p>Se vogliamo mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo <code>NA</code> in assenza di corrispondenza, usiamo un <em>full join</em>. In termini di insiemi, è l’unione <span class="math inline">\(A \cup B\)</span> , come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>.</p>
+<section id="full-join" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">7.1.3</span> Full join</h3>
+<p>Se vogliamo mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo <code>NA</code> in assenza di corrispondenza, usiamo un <em>full join</em>. In termini di insiemi, è l’unione <span class="math inline">\(A \cup B\)</span> , come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>7.3</span></a>.</p>
 <div id="fig-full" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/full_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;6.3: Full join (A \cup B): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano NA."><img src="images/full_join.png" class="img-fluid figure-img"></a>
+<a href="images/full_join.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;7.3: Full join (A \cup B): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano NA."><img src="images/full_join.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.3: Full join (<span class="math inline">\(A \cup B\)</span>): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano <code>NA</code>.
+Figura&nbsp;7.3: Full join (<span class="math inline">\(A \cup B\)</span>): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano <code>NA</code>.
 </figcaption>
 </figure>
 </div>
@@ -498,7 +504,7 @@ Per i più golosi
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Unire i dataset <code>pm_genova</code> e <code>stazioni</code> creati nella <a href="datatable.html" class="quarto-xref"><span>Capitolo 4</span></a>:</p>
+<p>Unire i dataset <code>pm_genova</code> e <code>stazioni</code> creati nel <a href="datatable.html" class="quarto-xref"><span>Capitolo 5</span></a>:</p>
 <ul>
 <li>qual è la chiave che mette in relazione i due dataset?</li>
 <li>quale tipo di <em>join</em> usare per mantenere solo le misure associate a stazioni e viceversa?</li>
@@ -949,7 +955,7 @@ Per i più golosi
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./reshape.html" class="pagination-link" aria-label="Cambiare la forma dei dati">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

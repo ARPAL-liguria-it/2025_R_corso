@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -188,6 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -202,19 +208,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datatable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./join.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -231,19 +237,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -294,16 +300,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.</p>
 <p>Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.</p>
-<p>Durante il proseguo del corso imparerai a:</p>
-<ul>
-<li>chiedere aiuto;</li>
-<li>strutturare un documento alternando testo e codice per rendere le analisi riproducibili;</li>
-<li>importare dati da file esterni all’interno di R;</li>
-<li>immagazzinare, consultare e modificare i dati all’interno delle diverse tipologie di oggetti di R;</li>
-<li>trasformare e combinare i dati;</li>
-<li>utilizzare i nostri dati per ottenere informazioni statistiche di base;</li>
-<li>creare semplici grafici.</li>
-</ul>
+<p>Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.</p>
+<p><a href="basics.html"><strong>Le basi</strong></a>, introduce i concetti essenziali per iniziare a programmare in R: dall’uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.</p>
+<p><a href="transform.html"><strong>Lavorare con i dati</strong></a>, si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto <code>data.table</code> e funzioni per il <em>reshaping</em> e le <em>join</em>. Queste competenze sono cruciali per preparare i dati all’analisi.</p>
+<p><a href="reports.html"><strong>Visualizzazione e reportistica</strong></a>, guida alla creazione di grafici professionali con <code>ggplot2</code> e all’uso di <em>Quarto</em> per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.</p>
 <section id="quanta-fatica" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="quanta-fatica"><span class="header-section-number">1.1</span> Quanta fatica</h2>
 <p>L’utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.</p>
@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schermata di Rstudio." data-fig-align="center">
+<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Schermata di Rstudio.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rstudio-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova il pannello dedicato al codice sorgente, al suo fianco il pannello dedicato agli ambienti e allo storico. In basso, da sinistra a destra, si trova la console e il pannello dedicato agli output."><img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Schermata di Rstudio."></a>
@@ -346,7 +346,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <section id="i-progetti-di-rstudio" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="i-progetti-di-rstudio"><span class="header-section-number">1.2.3</span> I progetti di RStudio</h3>
 <p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all’interno di un progetto dedicato: creiamolo cliccando sull’icona <img src="images/rproject.png" height="25"> di Rstudio, in alto a destra. Scegliamo “New Project…” e dopo aver selezionato “New directory” decidiamo dove salvare il progetto e con quale nome.</p>
-<p>All’interno della cartella dedicata al progetto creiamo la cartella <code>data</code> e salviamo al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: li utilizzeremo tra qualche capitolo.</p>
+<p>All’interno della cartella dedicata al progetto creiamo la cartella <code>data</code> e salviamo al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: li utilizzeremo nel <a href="datatable.html" class="quarto-xref"><span>Capitolo 5</span></a>.</p>
 </section>
 <section id="i-pacchetti-di-r" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.4</span> I pacchetti di R</h3>

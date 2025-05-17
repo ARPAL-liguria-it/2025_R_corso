@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>4&nbsp; Manipolare i dati con data.table – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>5&nbsp; Manipolare i dati con data.table – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -214,6 +214,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -228,19 +234,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datatable.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./join.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,19 +263,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -284,26 +290,26 @@ window.Quarto = {
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#sec-load" id="toc-sec-load" class="nav-link active" data-scroll-target="#sec-load"><span class="header-section-number">4.1</span> Il pacchetto <code>data.table</code></a></li>
-  <li><a href="#importare-i-dati" id="toc-importare-i-dati" class="nav-link" data-scroll-target="#importare-i-dati"><span class="header-section-number">4.2</span> Importare i dati</a>
+  <li><a href="#sec-load" id="toc-sec-load" class="nav-link active" data-scroll-target="#sec-load"><span class="header-section-number">5.1</span> Il pacchetto <code>data.table</code></a></li>
+  <li><a href="#importare-i-dati" id="toc-importare-i-dati" class="nav-link" data-scroll-target="#importare-i-dati"><span class="header-section-number">5.2</span> Importare i dati</a>
   <ul class="collapse">
-  <li><a href="#sec-csv" id="toc-sec-csv" class="nav-link" data-scroll-target="#sec-csv"><span class="header-section-number">4.2.1</span> File .csv, .tsv e .gz</a></li>
-  <li><a href="#file-xlsx" id="toc-file-xlsx" class="nav-link" data-scroll-target="#file-xlsx"><span class="header-section-number">4.2.2</span> File xlsx</a></li>
+  <li><a href="#sec-csv" id="toc-sec-csv" class="nav-link" data-scroll-target="#sec-csv"><span class="header-section-number">5.2.1</span> File .csv, .tsv e .gz</a></li>
+  <li><a href="#file-xlsx" id="toc-file-xlsx" class="nav-link" data-scroll-target="#file-xlsx"><span class="header-section-number">5.2.2</span> File xlsx</a></li>
   </ul></li>
-  <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter"><span class="header-section-number">4.3</span> Filtrare i dati</a></li>
-  <li><a href="#sec-select" id="toc-sec-select" class="nav-link" data-scroll-target="#sec-select"><span class="header-section-number">4.4</span> Selezionare le colonne</a></li>
-  <li><a href="#sec-update" id="toc-sec-update" class="nav-link" data-scroll-target="#sec-update"><span class="header-section-number">4.5</span> Modificare le colonne</a></li>
-  <li><a href="#sec-by" id="toc-sec-by" class="nav-link" data-scroll-target="#sec-by"><span class="header-section-number">4.6</span> Fare calcoli su gruppi di dati</a></li>
-  <li><a href="#concatenare-operazioni" id="toc-concatenare-operazioni" class="nav-link" data-scroll-target="#concatenare-operazioni"><span class="header-section-number">4.7</span> Concatenare operazioni</a></li>
+  <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter"><span class="header-section-number">5.3</span> Filtrare i dati</a></li>
+  <li><a href="#sec-select" id="toc-sec-select" class="nav-link" data-scroll-target="#sec-select"><span class="header-section-number">5.4</span> Selezionare le colonne</a></li>
+  <li><a href="#sec-update" id="toc-sec-update" class="nav-link" data-scroll-target="#sec-update"><span class="header-section-number">5.5</span> Modificare le colonne</a></li>
+  <li><a href="#sec-by" id="toc-sec-by" class="nav-link" data-scroll-target="#sec-by"><span class="header-section-number">5.6</span> Fare calcoli su gruppi di dati</a></li>
+  <li><a href="#concatenare-operazioni" id="toc-concatenare-operazioni" class="nav-link" data-scroll-target="#concatenare-operazioni"><span class="header-section-number">5.7</span> Concatenare operazioni</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/edit/main/datatable.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/ARPAL-liguria-it/2025_R_corso/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transform.html">Lavorare con i dati</a></li><li class="breadcrumb-item"><a href="./datatable.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-datatable" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></h1>
+<h1 class="title"><span id="sec-datatable" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></h1>
 </div>
 
 
@@ -321,8 +327,8 @@ window.Quarto = {
 
 
 <p>In questo capitolo scoprirai come utilizzare il pacchetto <code>data.table</code> per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Entrerai in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati. Vedrai come importare dati da file esterni e come pulire e preparare i dati per l’analisi.</p>
-<section id="sec-load" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-load"><span class="header-section-number">4.1</span> Il pacchetto <code>data.table</code></h2>
+<section id="sec-load" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-load"><span class="header-section-number">5.1</span> Il pacchetto <code>data.table</code></h2>
 <p>Rispetto ai tradizionali <code>data.frame</code> trattati nella <a href="objects.html#sec-df" class="quarto-xref"><span>Sezione 3.2.5</span></a>, il pacchetto <code>data.table</code> offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati. <code>data.table</code> è stato creato per lavorare in modo efficiente con dataset di grandi dimensioni, tuttavia la sua sintassi lo rende pratico e agevole da usare anche per dataset di piccole o medie dimensioni.</p>
 <p>Creare una <code>data.table</code> è semplice e molto simile a creare un <code>data.frame</code>. Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
@@ -361,10 +367,10 @@ window.Quarto = {
 </div>
 <p>Per sfruttare appieno le potenzialità di <code>data.table</code>, il passo successivo sarà imparare a importare dati da file esterni.</p>
 </section>
-<section id="importare-i-dati" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="importare-i-dati"><span class="header-section-number">4.2</span> Importare i dati</h2>
-<section id="sec-csv" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="sec-csv"><span class="header-section-number">4.2.1</span> File .csv, .tsv e .gz</h3>
+<section id="importare-i-dati" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="importare-i-dati"><span class="header-section-number">5.2</span> Importare i dati</h2>
+<section id="sec-csv" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="sec-csv"><span class="header-section-number">5.2.1</span> File .csv, .tsv e .gz</h3>
 <p>La funzione <code>fread()</code> del pacchetto <code>data.table</code> consente di importare facilmente dati in formato .csv, .tsv. Inoltre, supporta anche l’importazione di file compressi, come quelli con estensione .gz, grazie al supporto del pacchetto <code>R.utils</code>.</p>
 <p><code>fread()</code> cerca di riconoscere automaticamente il tipo di dati nelle varie colonne (numeri, date, testi), ma è sempre buona pratica verificare il risultato dell’importazione.</p>
 <p>Ecco un esempio:</p>
@@ -416,10 +422,10 @@ Pipe e segnalibri
 <p>Usando la pipe <code>|&gt;</code> l’output della funzione precedente è passato come primo argomento della funzione successiva. È possibile specificare in quale argomento posizionare l’output ricorrendo al segnalibro <code>_</code>.</p>
 </div>
 </div>
-<p>Nella <a href="#sec-update" class="quarto-xref"><span>Sezione 4.5</span></a> verranno affrontati e risolti gli altri problemi del dataset.</p>
+<p>Nella <a href="#sec-update" class="quarto-xref"><span>Sezione 5.5</span></a> verranno affrontati e risolti gli altri problemi del dataset.</p>
 </section>
-<section id="file-xlsx" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="file-xlsx"><span class="header-section-number">4.2.2</span> File xlsx</h3>
+<section id="file-xlsx" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="file-xlsx"><span class="header-section-number">5.2.2</span> File xlsx</h3>
 <p>Per importare file Excel è necessario utilizzare il pacchetto <code>readxl</code>, come mostrato nell’esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -448,8 +454,8 @@ Pipe e segnalibri
 <p>Anche in questo caso, <code>read_excel()</code> cerca di identificare automaticamente i tipi di dati nelle diverse colonne: distingue senza problemi tra numeri e caratteri, ma non riconosce <code>tipo_zona</code> come fattore. A differenza di <code>fread()</code>, <code>read_excel()</code> non restituisce direttamente una <code>data.table</code>.</p>
 </section>
 </section>
-<section id="sec-filter" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-filter"><span class="header-section-number">4.3</span> Filtrare i dati</h2>
+<section id="sec-filter" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-filter"><span class="header-section-number">5.3</span> Filtrare i dati</h2>
 <p>Applicare un filtro ai dati è uno dei modi più semplici per concentrarsi sulle informazioni di interesse. Con <code>data.table</code>, i filtri si applicano sempre sull’elemento <code>i</code> della sintassi <code>dt[i, j, by]</code>.</p>
 <p>In generale, un filtro può essere scritto come</p>
 <p><code>dt[elemento %operatore% valore, ]</code></p>
@@ -707,9 +713,9 @@ Pipe e segnalibri
 <span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sec-select" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-select"><span class="header-section-number">4.4</span> Selezionare le colonne</h2>
-<p>I filtri visti nella <a href="#sec-filter" class="quarto-xref"><span>Sezione 4.3</span></a> agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>.</p>
+<section id="sec-select" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-select"><span class="header-section-number">5.4</span> Selezionare le colonne</h2>
+<p>I filtri visti nella <a href="#sec-filter" class="quarto-xref"><span>Sezione 5.3</span></a> agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>.</p>
 <p>Ad esempio, per estrarre i codici europei delle stazioni liguri:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span>
@@ -854,9 +860,9 @@ Pipe e segnalibri
 <span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>liguria_eu_id <span class="ot">&lt;-</span> stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sec-update" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="sec-update"><span class="header-section-number">4.5</span> Modificare le colonne</h2>
-<p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 4.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
+<section id="sec-update" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-update"><span class="header-section-number">5.5</span> Modificare le colonne</h2>
+<p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 5.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converte i valori di `valido` da testo a valori logici</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, valido <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(valido <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
@@ -900,8 +906,8 @@ Buone maniere
 </div>
 </div>
 </section>
-<section id="sec-by" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="sec-by"><span class="header-section-number">4.6</span> Fare calcoli su gruppi di dati</h2>
+<section id="sec-by" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-by"><span class="header-section-number">5.6</span> Fare calcoli su gruppi di dati</h2>
 <p>L’elemento <code>by</code> della sintassi <code>dt[i, j, by]</code> permette di ripetere un’operazione su diversi gruppi. Ad esempio, nel caso in cui si voglia calcolare il numero di giorni sottoposti a campionamento, il numero di valori misurati e il numero di valori mancanti per ogni stazione e inquinante, è possibile usare la seguente istruzione:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pm_genova[ , .(</span>
@@ -958,10 +964,10 @@ Buone maniere
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8420:        IT2298A      PM2,5 2024-01-01           9.50000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="concatenare-operazioni" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="concatenare-operazioni"><span class="header-section-number">4.7</span> Concatenare operazioni</h2>
+<section id="concatenare-operazioni" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="concatenare-operazioni"><span class="header-section-number">5.7</span> Concatenare operazioni</h2>
 <p>Nel caso di operazioni complesse, composte di più passaggi, normalmente si usa la pipe (<code>|&gt;</code>) o si salva ogni risultato intermedio in una variabile. Il pacchetto <code>data.table</code> offre una possibilità in più.</p>
-<p>Riprendendo l’esempio della <a href="#sec-by" class="quarto-xref"><span>Sezione 4.6</span></a> e volendo calcolare per ogni stazione il numero di giornate il cui la concentrazione media giornaliera di PM10 è superiore del limite di <span class="math inline">\(50\, \mu g/m^3\)</span>, è possibile usare l’espressione:</p>
+<p>Riprendendo l’esempio della <a href="#sec-by" class="quarto-xref"><span>Sezione 5.6</span></a> e volendo calcolare per ogni stazione il numero di giornate il cui la concentrazione media giornaliera di PM10 è superiore del limite di <span class="math inline">\(50\, \mu g/m^3\)</span>, è possibile usare l’espressione:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prima espressione</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
@@ -1459,7 +1465,7 @@ Per i più golosi
   </div>
   <div class="nav-page nav-page-next">
       <a href="./reshape.html" class="pagination-link" aria-label="Cambiare la forma dei dati">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1bc3b17e7a2c2828f435aa750fb76336.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -185,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Oggetti di R</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Elementi di programmazione</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -199,19 +205,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./datatable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipolare i dati con <code>data.table</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reshape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cambiare la forma dei dati</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./join.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Unire diverse fonti di dati</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,19 +234,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report riproducibili</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dynamic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Report parametrizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#una-bella-calcolatrice" id="toc-una-bella-calcolatrice" class="nav-link active" data-scroll-target="#una-bella-calcolatrice"><span class="header-section-number">2.1</span> Una bella calcolatrice</a></li>
-  <li><a href="#funzioni" id="toc-funzioni" class="nav-link" data-scroll-target="#funzioni"><span class="header-section-number">2.2</span> Funzioni</a></li>
+  <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions"><span class="header-section-number">2.2</span> Funzioni</a></li>
   <li><a href="#il-primo-script" id="toc-il-primo-script" class="nav-link" data-scroll-target="#il-primo-script"><span class="header-section-number">2.3</span> Il primo script</a></li>
   <li><a href="#sec-help" id="toc-sec-help" class="nav-link" data-scroll-target="#sec-help"><span class="header-section-number">2.4</span> Chiedere aiuto</a></li>
   </ul>
@@ -345,8 +351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Durante il corso utilizzeremo nomi di variabili e funzioni scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
 </section>
-<section id="funzioni" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="funzioni"><span class="header-section-number">2.2</span> Funzioni</h2>
+<section id="sec-functions" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-functions"><span class="header-section-number">2.2</span> Funzioni</h2>
 <p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili e le incontreremo ovunque. Durante il corso non distingueremo tra funzioni e metodi (dove le prime danno <em>output</em> e le seconde no): per noi, qualunque contenitore di operazioni applicate a un <em>input</em> sarà una funzione.</p>
 <p>R offre già molte funzioni pronte all’uso. Per esempio, possiamo assegnare alcuni numeri a una variabile e calcolarne la somma:</p>
 <div class="cell" data-layout-align="center">
@@ -396,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="il-primo-script" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="il-primo-script"><span class="header-section-number">2.3</span> Il primo script</h2>
-<p>Nella sezione precedente abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.</p>
+<p>Nella <a href="#sec-functions" class="quarto-xref"><span>Sezione 2.2</span></a> abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.</p>
 <p>Per questo motivo, possiamo creare un <code>file.R</code> in cui elencare in ordine i comandi da eseguire. Per farlo, in RStudio basta cliccare sull’icona <img src="images/newfile.png" height="25"> in alto a sinistra, selezionare “R Script” e salvare il file. All’interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># richiamo un dataset di R</span></span>
@@ -432,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Le variabili che permettono di distinguere meglio le tre specie sono </span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># la lunghezza e la larghezza dei petali.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno il nostro principale strumento di lavoro. Nei prossimi capitoli vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un’analisi.</p>
+<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno il nostro principale strumento di lavoro. Nel <a href="quarto.html" class="quarto-xref"><span>Capitolo 9</span></a> vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un’analisi.</p>
 </section>
 <section id="sec-help" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-help"><span class="header-section-number">2.4</span> Chiedere aiuto</h2>
