@@ -290,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo si inizierà a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincerà a organizzare il codice in script e a consultare la documentazione e l’aiuto in linea per lavorare in autonomia.</p>
+<p>In questo capitolo si inizia a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincia a organizzare il codice in script e a consultare la documentazione e l’aiuto in linea per lavorare in autonomia.</p>
 <section id="una-bella-calcolatrice" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="una-bella-calcolatrice"><span class="header-section-number">2.1</span> Una bella calcolatrice</h2>
 <p>Per iniziare a prendere confidenza con la console di R, è possibile usarla come una calcolatrice, scrivendo</p>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  93  94  95  96  97  98  99 100 101 102</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Da questo esempio in poi, sarà adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da <code>#&gt;</code> riportano l’output della console.</p>
+<p>Da questo esempio in poi, è adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da <code>#&gt;</code> riportano l’output della console.</p>
 <p>Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, ci si può posizionare sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l’ultimo comando, modificarlo e premere Invio. Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -349,18 +349,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>non sono ammessi caratteri diversi da lettere, numeri e <em>underscore</em>, compresi gli spazi;</li>
 <li>sono ammessi caratteri accentati, ma il loro uso può complicare molto la vita.</li>
 </ul>
-<p>Durante il corso i nomi di variabili e funzioni saranno scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
+<p>Durante il corso i nomi di variabili e funzioni sono scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
 </section>
 <section id="sec-functions" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-functions"><span class="header-section-number">2.2</span> Funzioni</h2>
-<p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si opererà una distinzione tra funzioni e metodi (dove le prime danno <em>output</em> e le seconde no): qualunque contenitore di operazioni applicate a un <em>input</em> sarà una funzione.</p>
+<p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si distingue tra funzioni e metodi (dove le prime danno <em>output</em> e le seconde no): qualunque contenitore di operazioni applicate a un <em>input</em> è una funzione.</p>
 <p>R offre già molte funzioni pronte all’uso. Per esempio, è possibile assegnare alcuni numeri a una variabile e calcolarne la somma:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(b)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gli input delle funzioni vengono specificati all’interno di parentesi tonde. Alcune funzioni richiedono pochi <em>input</em>, altre che ne richiedono di più. Nella <a href="#sec-help" class="quarto-xref"><span>Sezione 2.4</span></a> si acquisiranno informazioni sull’utilizzo di una qualunque funzione.</p>
+<p>Gli input delle funzioni vengono specificati all’interno di parentesi tonde. Alcune funzioni richiedono pochi <em>input</em>, altre che ne richiedono di più. Nella <a href="#sec-help" class="quarto-xref"><span>Sezione 2.4</span></a> è spiegato come reperire informazioni sull’utilizzo di una qualunque funzione.</p>
 <p>Oltre alle funzioni predefinite, è possibile scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># la funzione fammi_il_caffe prende come argomenti due stringa di caratteri:</span></span>
@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Gli argomenti (o <em>input</em>) della funzione sono racchiusi tra parentesi tonde, con eventuali valori predefiniti dichiarati dopo l’uguale. Il corpo della funzione è racchiuso tra parentesi graffe e tipicamente contiene:</p>
 <ul>
-<li>una parte di validazione degli argomenti, per assicurarsi che la funzione non venga utilizzata correttamente;</li>
+<li>una parte di validazione degli argomenti, per assicurarsi che la funzione venga utilizzata correttamente;</li>
 <li>una parte in cui vengono eseguiti i calcoli;</li>
 <li>una parte finale che restituisce il risultato.</li>
 </ul>
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Le variabili che permettono di distinguere meglio le tre specie sono </span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># la lunghezza e la larghezza dei petali.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno lo strumento di lavoro principale. Nel <a href="quarto.html" class="quarto-xref"><span>Capitolo 9</span></a> gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità di un’analisi.</p>
+<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno lo strumento di lavoro principale per prendere appunti e tenere traccia di quanto fatto durante il proseguo del corso. Nel <a href="quarto.html" class="quarto-xref"><span>Capitolo 9</span></a> gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità delle analisi.</p>
 </section>
 <section id="sec-help" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-help"><span class="header-section-number">2.4</span> Chiedere aiuto</h2>
