@@ -110,7 +110,7 @@ concentrazioni <- list(
 
 Ora non sa come fare per:
 
-1. calcolare la media delle concentrazioni per ogni stazione.
+1. calcolare la media delle concentrazioni per ogni stazione;
 2. classificare ogni concentrazione come "Sicura" se è inferiore o uguale a 15 µg/l, "Attenzione" se è tra 15 e 50 µg/l, e "Pericolosa" se superiore a 50 µg/l.
 
 ## Soluzione
