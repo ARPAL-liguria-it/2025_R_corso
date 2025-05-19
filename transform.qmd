@@ -9,8 +9,8 @@ Questa parte del corso è dedicata a tecniche per la manipolazione e l'integrazi
 
 Il materiale è suddiviso in tre capitoli, così organizzati:
 
-- [nel capitolo 5](#sec-datatable) si utilizzerà il pacchetto `data.table` per gestire e manipolare dati in modo efficiente e a importare dati da file esterni;
-- [nel capitolo 6](#sec-reshape) si modificherà la struttura dei dataset passando da formato **wide** a **long** e viceversa;
-- [nel capitolo 7](#sec-join) si integreranno le informazioni contenute in diverse tabelle in relazione tra loro attraverso le operazioni di **join**.
+- [nel capitolo 5](#sec-datatable) si utilizza il pacchetto `data.table` per gestire e manipolare dati in modo efficiente e importare dati da file esterni;
+- [nel capitolo 6](#sec-reshape) si modifica la struttura dei dataset passando da formato **wide** a **long** e viceversa;
+- [nel capitolo 7](#sec-join) si integrano le informazioni contenute in diverse tabelle in relazione tra loro usando le operazioni di **join**.
 
-Questi argomenti permetteranno di preparare, combinare e riorganizzare i dati in modo flessibile e performante, creando basi solide per analisi statistiche e visualizzazioni più complesse.
+Questi argomenti permettono di preparare, combinare e riorganizzare i dati in modo flessibile e performante, creando basi solide per analisi statistiche e visualizzazioni più complesse.
