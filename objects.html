@@ -333,24 +333,24 @@ window.Quarto = {
 </header>
 
 
-<p>In questo capitolo si affronteranno le principali tipologie di elementi e contenitori in R. Si capirà come R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.</p>
+<p>In questo capitolo si affrontano le principali tipologie di elementi e contenitori in R. Si analizzerà il modo in cui R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.</p>
 <section id="sec-typeof" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-typeof"><span class="header-section-number">3.1</span> Tipologie di elementi</h2>
 <p>Prima di vedere le classi di oggetti di R, che possono essere immaginate come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che è possibile inserire in questi contenitori.</p>
-<p>Quando si avrà un dubbio sulla tipologia di un dato elemento è possiible usare la funzione <code>typeof()</code>.</p>
+<p>Quando si avrà un dubbio sulla tipologia di un dato elemento è bene usare la funzione <code>typeof()</code>.</p>
 <section id="numeri" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="numeri"><span class="header-section-number">3.1.1</span> Numeri</h3>
-<p>R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si userà il tipo <code>double</code>. Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi. Anche i numeri interi (come 5) sono memorizzati come <code>double</code>, a meno che non sia assegnato esplicitamente il tipo <code>integer</code>, aggiungendo una <code>L</code> (es. <code>5L</code>). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia <code>double</code>, anche se dovesse avere valore intero (es. 5). L’Utilizzo di elementi di tipo <code>double</code> è semplice:</p>
+<p>R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si usa il tipo <code>double</code>. Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi. Anche i numeri interi (come 5) sono memorizzati come <code>double</code>, a meno che non sia assegnato esplicitamente il tipo <code>integer</code>, aggiungendo una <code>L</code> (es. <code>5L</code>). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia <code>double</code>, anche se dovesse avere valore intero (es. 5). L’Utilizzo di elementi di tipo <code>double</code> è semplice:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">2.5</span>) <span class="co"># double</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">5</span>L)      <span class="co"># integer</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Altre tipologie di numeri più rare comprendono i tipi <code>complex</code> e <code>raw</code>, rispettivamente per numeri complessi e bytes: non saranno trattate nel corso.</p>
+<p>Altre tipologie di numeri più rare comprendono i tipi <code>complex</code> e <code>raw</code>, rispettivamente per numeri complessi e bytes: non sono trattate nel corso.</p>
 <p>Alcune operazioni matematiche possono generare numeri particolari come <code>NaN</code> (<em>not a number</em>), <code>Inf</code> e <code>-Inf</code>. Il primo si ottiene, ad esempio, dividendo zero per zero, mentre gli ultimi dividendo un numero positivo o negativo per zero. Per verificare se un numero è <code>NaN</code> o <code>Inf</code>, si usano rispettivamente le funzioni <code>is.nan()</code> e <code>is.infinite()</code>.</p>
 </section>
 <section id="testo" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="testo"><span class="header-section-number">3.1.2</span> Testo</h3>
-<p>R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte <code>character</code> e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso saranno sempre utilizzate le doppie virgolette):</p>
+<p>R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza sono tutte <code>character</code> e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso saranno sempre utilizzate le doppie virgolette):</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="st">"roba"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -523,7 +523,7 @@ window.Quarto = {
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ matrice: int [1:5, 1:20] 1 2 3 4 5 6 7 8 9 10 ...</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Per accedere alla struttura di una lista si usa il comando <code>str()</code>, utile anche con altri tipi di contenitori.</p>
-<p>I singoli gruppi si estraggono per posizione con la sintassi <code>lista[[gruppo]]</code> o per nome con la sintassi <code>lista$gruppo</code>. All’interno del gruppo posso accedere ai singoli elementi come visto nelle sezioni precedenti:</p>
+<p>I singoli gruppi si estraggono per posizione con la sintassi <code>lista[[gruppo]]</code> o per nome con la sintassi <code>lista$gruppo</code>. All’interno del gruppo è possibile accedere ai singoli elementi come visto nelle sezioni precedenti:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lista[[<span class="dv">2</span>]]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "pippo"  "ciccio" "riccio"</span></span>
