@@ -5,17 +5,17 @@
 source("_common.R")
 ```
 
-In questo capitolo si affronteranno le principali tipologie di elementi e contenitori in R. Si capirà come R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
+In questo capitolo si affrontano le principali tipologie di elementi e contenitori in R. Si analizzerà il modo in cui R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
 
 ## Tipologie di elementi {#sec-typeof}
 
 Prima di vedere le classi di oggetti di R, che possono essere immaginate come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che è possibile inserire in questi contenitori.
 
-Quando si avrà un dubbio sulla tipologia di un dato elemento è possiible usare la funzione `typeof()`.
+Quando si avrà un dubbio sulla tipologia di un dato elemento è bene usare la funzione `typeof()`.
 
 ### Numeri
 
-R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si userà il tipo `double`.
+R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si usa il tipo `double`.
 Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi.
 Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non sia assegnato esplicitamente il tipo `integer`, aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia `double`, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
 
@@ -24,13 +24,13 @@ a <- c(2, 2.1, 2.5) # double
 b <- c(1L, 5L)      # integer
 ```
 
-Altre tipologie di numeri più rare comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non saranno trattate nel corso.
+Altre tipologie di numeri più rare comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non sono trattate nel corso.
 
 Alcune operazioni matematiche possono generare numeri particolari come `NaN` (*not a number*), `Inf` e `-Inf`. Il primo si ottiene, ad esempio, dividendo zero per zero, mentre gli ultimi dividendo un numero positivo o negativo per zero. Per verificare se un numero è `NaN` o `Inf`, si usano rispettivamente le funzioni `is.nan()` e `is.infinite()`.
 
 ### Testo
 
-R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte `character` e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso saranno sempre utilizzate le doppie virgolette):
+R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza sono tutte `character` e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso saranno sempre utilizzate le doppie virgolette):
 
 ```{r}
 c <- "roba"
@@ -180,7 +180,7 @@ str(lista)
 
 Per accedere alla struttura di una lista si usa il comando `str()`, utile anche con altri tipi di contenitori.
 
-I singoli gruppi si estraggono per posizione con la sintassi `lista[[gruppo]]` o per nome con la sintassi `lista$gruppo`. All'interno del gruppo posso accedere ai singoli elementi come visto nelle sezioni precedenti:
+I singoli gruppi si estraggono per posizione con la sintassi `lista[[gruppo]]` o per nome con la sintassi `lista$gruppo`. All'interno del gruppo è possibile accedere ai singoli elementi come visto nelle sezioni precedenti:
 
 ```{r}
 lista[[2]]
