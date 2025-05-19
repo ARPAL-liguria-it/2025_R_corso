@@ -7,7 +7,7 @@ source("_common.R")
 
 La visualizzazione dei dati è una fase fondamentale nell'analisi statistica: un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.
 
-In questo capitolo imparerai a creare grafici professionali e personalizzati con il pacchetto `ggplot2`, basato sulla *grammar of graphics*. Apprenderai a sovrapporre più livelli per arricchire le visualizzazioni, personalizzare assi, colori, legende e temi.
+In questo capitolo si creeranno grafici professionali e personalizzati con il pacchetto `ggplot2`, basato sulla *grammar of graphics*. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzare assi, colori, legende e temi.
 
 ## Sintassi di base di ggplot2
 
@@ -17,7 +17,7 @@ Un grafico con `ggplot2` si costruisce combinando tre elementi principali:
 - **estetiche (`aes`)**: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);
 - **geometria (`geom_`)**: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).
 
-Vediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:
+Ecco un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:
 
 ```{r}
 #| label: fig-scatterplot-base
@@ -96,7 +96,7 @@ I livelli di tipo `scale_` si utilizzano dopo i livelli `geom_` per modificare l
 
 Il livello `theme()` è usato per personalizzare l'aspetto generale del grafico, in particolare viene usato spesso per gestire la posizione e lo stile della legenda. Deve essere utilizzato dopo i livelli `geom_` e `scale_` ma prima dei comandi per la scelta dello stile del grafico, come `theme_bw()`.
 
-Vediamo un esempio in cui personalizziamo l'asse temporale e l'aspetto della legenda:
+In questo esempio si personalizza l'asse temporale e l'aspetto della legenda:
 
 ```{r}
 #| label: fig-date

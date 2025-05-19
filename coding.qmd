@@ -5,16 +5,16 @@
 source("_common.R")
 ```
 
-In questo capitolo imparerai le basi della programmazione in R focalizzandoti su come ripetere istruzioni con i cicli (`for` e `while`) o applicando funzioni in modo efficiente (`lapply()`). Infine, imparerai a far seguire al codice percorsi differenziati con i flussi condizionali (`if`, `else` e `ifelse()`).
+In questo capitolo sono discussi alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (`for` e `while`), applicando funzioni in modo efficiente (`lapply()`), e facendo seguire al codice percorsi differenziati con i flussi condizionali (`if`, `else` e `ifelse()`).
 
 ## Introduzione ai Cicli (Loops)
 
 In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:
 
-- `for`: esegue un blocco di codice per ogni elemento di una sequenza.
-- `while`: esegue un blocco di codice finché una condizione è vera.
+- `for`: per eseguire un blocco di codice per ogni elemento di una sequenza;
+- `while`: per eseguire un blocco di codice finché una condizione è vera.
 
-Vediamo un esempio:
+Ecco un esempio:
 
 ```{r}
 # ciclo for
@@ -30,15 +30,13 @@ while(i <= 5) {
 }
 ```
 
-Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R, spesso è più efficiente e leggibile evitare i cicli espliciti usando funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).
+Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).
 
 ### La funzione `lapply()`
 
-`lapply()` è la più generale e più usata di queste funzioni speciali e ha queste caratteristiche:
+`lapply()` è la più generale e più usata di queste funzioni speciali e permette di applicare una funzione a ogni elemento di una lista o di un vettore, restituendo una lista.
 
-- applica una funzione a ogni elemento di una lista o di un vettore.
-- restituisce sempre una lista.
-- utilizza la sintassi `lapply(X, FUN, ...)` dove `X` è l'oggetto e `FUN` la funzione da applicare.
+La sintassi è `lapply(X, FUN, ...)` dove `X` è l'oggetto e `FUN` la funzione da applicare.
 
 Ecco un esempio:
 
@@ -56,9 +54,9 @@ print(medie)
 
 ```
 
-`lapply()` si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, usiamo una **funzione anonima** come argomento `FUN`.
+`lapply()` si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, si usa una **funzione anonima** come argomento `FUN`.
 
-Vediamo come calcolarci la media della somma dei quadrati della lista di vettori, definita nell'esempio precedente:
+Ecco come calcolare la media della somma dei quadrati della lista di vettori, definita nell'esempio precedente:
 
 ```{r}
 result <- lapply(my_list, function(x) sum(x^2))
@@ -69,8 +67,6 @@ print(result)
 - `lapply()` applica questa funzione a ogni elemento della lista `my_list`.
 - Il risultato è una lista con la somma dei quadrati per ciascun vettore.
 
-In generale, l'utilizzo di `lapply()` è preferito ai cicli `for` in quanto permette sia di ottenere codice più pulito e leggibile, sia una maggiore efficienza in fase di esecuzione.
-
 ## Flussi condizionali
 
 I flussi condizionali permettono di eseguire del codice solo se una certa condizione è vera.
@@ -79,7 +75,7 @@ I flussi condizionali permettono di eseguire del codice solo se una certa condiz
 - `else` definisce cosa fare se la condizione è falsa.
 - `ifelse()` è una funzione vettoriale che valuta una condizione su ogni elemento di un vettore e restituisce un valore se la condizione è vera, un altro se falsa.
 
-Vediamo due esempi base:
+Due esempi base:
 
 ```{r}
 # if ed else
@@ -112,8 +108,7 @@ concentrazioni <- list(
 )
 ```
 
-
-Aiutalo a:
+Ora non sa come fare per:
 
 1. calcolare la media delle concentrazioni per ogni stazione.
 2. classificare ogni concentrazione come "Sicura" se è inferiore o uguale a 15 µg/l, "Attenzione" se è tra 15 e 50 µg/l, e "Pericolosa" se superiore a 50 µg/l.

@@ -5,11 +5,11 @@
 source("_common.R")
 ```
 
-In questo capitolo imparerai a utilizzare **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R. Vedrai come integrare codice, testo e output in un unico file, gestire formattazioni avanzate e produrre report chiari e personalizzati. Imparerai anche a inserire tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle tue analisi.
+In questo capitolo si utilizzerà **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All'interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.
 
 ## I documenti Quarto {#sec-quarto}
 
-A partire dal @sec-basics abbiamo visto come organizzare il codice in R, aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
+A partire dal @sec-basics si è organizzato il codice in R utilizzando script e aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
 
 **Quarto** è una piattaforma *open source* che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file `.qmd`. Supporta linguaggi come `R`, `Python` e `Julia`, e consente di generare output in vari formati (HTML, PDF, Word).
 
@@ -17,9 +17,9 @@ A partire dal @sec-basics abbiamo visto come organizzare il codice in R, aggiung
 
 Creare un documento **quarto** da RStudio è semplice:
 
-1. vai su **File > New File > Quarto Document**;
-2. inserisci titolo e autore nel pannello di creazione;
-3. scegli il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);
+1. si segue **File > New File > Quarto Document**;
+2. si inserisce il titolo e l'autore nel pannello di creazione;
+3. si sceglie il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);
 4. viene creato un file `.qmd` con un'intestazione YAML simile a:
 
 ```` markdown
@@ -30,13 +30,13 @@ format: html
 ---
 ````
 
-Qui possiamo specificare il titolo, l'autore e il formato di output del documento. Sempre nell'intestazione è possibile aggiungere altri elementi, come ad esempio `lang: it` per specificare che il documento è redatto in italiano.
+Qui si specifica il titolo, l'autore e il formato di output del documento. Sempre nell'intestazione è possibile aggiungere altri elementi, come ad esempio `lang: it` per specificare che il documento è redatto in italiano.
 
-Possiamo iniziare a scrivere il nostro primo documento alternando testo e codice.
+Ora si può iniziare a scrivere il primo documento alternando testo e codice.
 
 ### Il testo
 
-Possiamo inserire il testo all'interno di un documento di **quarto** semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Vediamo un esempio aggiungendo del testo:
+All'interno di un documento di **quarto** il testo è inserito semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Ecco un esempio:
 
 ```` markdown
 
@@ -86,7 +86,7 @@ Per vedere il risultato, si può cliccare il tasto ![](images/render.png){height
 
 ### Il codice
 
-Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e al suo interno possiamo inserire del normale codice di R:
+Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e al suo interno è possibile inserire del normale codice di R:
 
 ```` markdown
 ```{{r}}
@@ -105,7 +105,7 @@ summary(mtcars)
 Il campo `label` non ammette spazi e l'unico carattere speciale ammesso è `-`.
 Nel caso di spezzoni di codice che generano grafici o tabelle, è buona norma impostare l'etichetta rispettivamente come `#| label: fig-qualcosa` e `#| label: tbl-qualcosa`: così facendo si potrà fare riferimento nel testo alla figura e alla tabella scrivendo rispettivamente `@fig-qualcosa` o `@tbl-qualcosa`.
 
-Oltre a `label` è possibile specificare altre opzioni che regolano la visibilità e il comportamento del codice. Tra le più usate abbiamo:
+Oltre a `label` è possibile specificare altre opzioni che regolano la visibilità e il comportamento del codice. Tra le più usate ci sono:
 
 - `echo`: regola la visibilità del codice all'interno dello spezzone. Il valore predefinito è `TRUE` e comporta la visibilità nel documento finale sia del codice presente all'interno dello spezzone, sia del suo risultato. Impostando `FALSE` si vede solo il risultato del codice.
 - `message` o `warning`: impostandoli su `FALSE` si evita l'inclusione di messaggio o avvisi all'interno del documento finale.
@@ -154,9 +154,9 @@ airquality |>
   )
 ```
 
-### Uniamo i puntini
+### Unire i puntini
 
-Abbiamo tutti gli elementi per creare un documento di esempio. Per semplificarci la vita, impostiamo nell'intestazione `echo`, `warning` e `message` come `FALSE`, così non vedremo il codice senza doverlo specificare all'interno di ogni spezzone.
+Nelle sezioni precedenti sono stati forniti tutti gli elementi per creare un documento di esempio. Per rendersi la vita più semplice, è possibile specificare nell'intestazione `echo`, `warning` e `message` come `FALSE`, così non si vedrà il codice senza doverlo ripetere all'interno di ogni spezzone.
 
 ```` markdown
 ---

@@ -5,15 +5,15 @@
 source("_common.R")
 ```
 
-In questo capitolo vedrai come gestire i dati nei due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Vedrai come passare da un formato all'altro con i comandi `melt()` e `dcast()`. Imparerai a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla visualizzazione.
+In questo capitolo sono gestiti i dati nei loro due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Si passerà da un formato all'altro con i comandi `melt()` e `dcast()`, imparando a gestire casi con misure multiple o mancanti, e a utilizzando opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla visualizzazione.
 
 ## La forma dei dati {#sec-shapes}
 
-I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.
+I dati con cui si lavora abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.
 
 Questa tipologia di dati possono essere organizzati in due differenti formati:
 
--   **wide**: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Vediamo un esempio:
+-   **wide**: i dati sono organizzati con un'entità osservata per riga e una misura per colonna. Ecco un esempio:
 
     ```{r}
     #| results: hide
@@ -80,7 +80,7 @@ melt(data, id.vars, measure.vars, variable.name = "variable", value.name = "valu
 
 Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare `id.vars` e `measure.vars`. In caso contrario la funzione `melt()` imposterà tutte le colonne non numeriche o di tipo logico come `id.vars` e le restanti colonne come `measure.vars`.
 
-Proviamo a trasformare `campioni_wide` in formato **long**:
+Ecco come trasformare `campioni_wide` in formato **long**:
 
 ```{r}
 campioni_wide |> 
@@ -112,7 +112,7 @@ dcast(data, formula, fun.aggregate = NULL, value.var = NULL, fill = NULL)
 -   `value.var`: il nome della colonna con i valori da distribuire;
 -   `fill`: il valore da mettere in caso di combinazioni mancanti (es. `NA` o `0`).
 
-Proviamo a trasformare `campioni_long` in formato **wide**:
+Ecco come trasformare `campioni_long` in formato **wide**:
 
 ```{r}
 campioni_long |> 
@@ -123,7 +123,7 @@ campioni_long |>
 
 ### Misure multiple e misure mancanti
 
-Immaginiamo che a `campioni_long` si debbano aggiungere i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, ma sono state effettuate tre misure indipendenti della misurazione di zinco.
+Si devono aggiungere a `campioni_long` i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, mentre sono state effettuate tre determinazioni indipendenti della concentrazione di zinco.
 
 ```{r}
 nuovi_dati <- data.table(
@@ -136,7 +136,7 @@ campioni_long <- rbind(campioni_long,
                        nuovi_dati)
 ```
 
-Se riprovassimo a proiettare i dati come fatto nella @sec-dcast-base, otterremo:
+Se si proiettassero i dati come fatto nella @sec-dcast-base, si otterrebbe:
 
 ```{r}
 #| echo: false
@@ -146,9 +146,9 @@ campioni_long |>
   _[order(codice_campione)] # ordina per codice campione
 ```
 
-la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.
+la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa farci, avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.
 
-Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato `NA` per le misure mancanti, si può scrivere:
+Nel caso si voglia ottenere la media delle misure ripetute, usando `NA` per le misure mancanti, si può scrivere:
 
 ```{r}
 campioni_long |> 
@@ -171,7 +171,7 @@ Con il comando `vignette("datatable-reshape")` è possible avere informazioni ag
 Utilizzando il dataset `pm_genova`:
 
 - identificare se il dataset è in formato **wide** o **long**;
-- identificare l'enità osservata;
+- identificare l'entità osservata;
 - identificare la o le colonne con la tipologia di misura e il relativo valore;
 - convertire il dataset in formato **wide** o **long** a seconda di come è stato fornito;
 - valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio;
@@ -200,7 +200,7 @@ Utilizzando il dataset `pm_genova`:
     )
   ```
 
-  sarà necessario riconvertire i valori nelle colonne `valido`, `validato_cor` e `certificato` in valori logici.
+  Manca la riconversione dei valori nelle colonne `valido`, `validato_cor` e `certificato` in valori logici.
 
   Un'alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:
 
@@ -227,7 +227,7 @@ Utilizzando il dataset `pm_genova`:
 
 - per eseguire la conversione in formato **wide** evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di `codice_europeo`, `inizio`, `fine` e `metodo` e `inquinante` uguali.
 
-    Possiamo fare così:
+    Si può fare così:
 
   ```{r}
   # l'indice id aumenta da 1 a N,

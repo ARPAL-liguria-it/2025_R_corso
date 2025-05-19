@@ -5,38 +5,38 @@
 source("_common.R")
 ```
 
-In questo capitolo imparerai a conoscere le principali tipologie di elementi e contenitori in R. Vedrai come R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Tratteremo i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Inizieremo a creare, manipolare e accedere a questi oggetti, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
+In questo capitolo si affronteranno le principali tipologie di elementi e contenitori in R. Si capirà come R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
 
 ## Tipologie di elementi {#sec-typeof}
 
-Prima di vedere le classi di oggetti di R, che possiamo pensare come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che possiamo inserire in questi contenitori.
+Prima di vedere le classi di oggetti di R, che possono essere immaginate come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che è possibile inserire in questi contenitori.
 
-Quando saremo in dubbio sulla tipologia di un dato elemento possiamo usare la funzione `typeof()`.
+Quando si avrà un dubbio sulla tipologia di un dato elemento è possiible usare la funzione `typeof()`.
 
 ### Numeri
 
-R gestisce diversi tipi di numeri, ma nella maggior parte dei casi useremo il tipo `double`.
+R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si userà il tipo `double`.
 Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi.
-Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non specifichiamo esplicitamente il tipo `integer` aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade in questa tipologia, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
+Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non sia assegnato esplicitamente il tipo `integer`, aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia `double`, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
 
 ```{r}
 a <- c(2, 2.1, 2.5) # double
 b <- c(1L, 5L)      # integer
 ```
 
-Altre tipologie di numeri più rare comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non le utilizzeremo.
+Altre tipologie di numeri più rare comprendono i tipi `complex` e `raw`, rispettivamente per numeri complessi e bytes: non saranno trattate nel corso.
 
 Alcune operazioni matematiche possono generare numeri particolari come `NaN` (*not a number*), `Inf` e `-Inf`. Il primo si ottiene, ad esempio, dividendo zero per zero, mentre gli ultimi dividendo un numero positivo o negativo per zero. Per verificare se un numero è `NaN` o `Inf`, si usano rispettivamente le funzioni `is.nan()` e `is.infinite()`.
 
 ### Testo
 
-R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte `character` e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso utilizzeremo sempre le doppie virgolette):
+R usa una singola tipologia per le stringhe di testo: indipendentemente dalla loro lunghezza saranno tutte `character` e si creano racchiudendo il testo tra virgolette (singole o doppie; in questo corso saranno sempre utilizzate le doppie virgolette):
 
 ```{r}
 c <- "roba"
 ```
 
-Talvolta, i numeri possono essere erroneamente archiviati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripulit. Per riconvertirli in numeri, si usa la funzione `as.numeric()`.
+Talvolta, i numeri possono essere erroneamente archiviati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripuliti. Per riconvertirli in numeri, si usa la funzione `as.numeric()`.
 
 ### Logici
 
@@ -94,7 +94,7 @@ f[!is.na(f)]  # seleziona solo gli elementi non NA
 
 Per verificare se un oggetto è un vettore si può usare la funzione `is.vector()`, mentre per conoscerne il numero di elementi si usa la funzione `length()`.
 
-Con i vettori possiamo iniziare a fare qualche calcolo con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
+Con i vettori è possibile iniziare a fare qualche calcolo con funzioni quali `max()`, `min()`, `sum()`, `mean()`, `median()`, `quantile()`, `which.min()` e `which.max()` e molte altre.
 
 Spesso è utile generare vettori casuali; a tale scopo, le funzioni forse più usate sono `sample()` e `rnorm()`. La prima estrae un numero casuale di elementi da un vettore, la seconda genera valori da una distribuzione normale con parametri noti. Esempio:
 
@@ -106,7 +106,7 @@ m <- which.max(sorprendimi)
 sorprendimi[m]
 max(sorprendimi) == sorprendimi[m]                # funziona!
 
-rnorm(1000, mean = 10, sd = 3) |>                 # la pipe per concatena le funzioni
+rnorm(1000, mean = 10, sd = 3) |>                 # la pipe per concatenare le funzioni
   hist()
 ```
 
@@ -226,7 +226,7 @@ I `data.frame` possono anche avere nomi per ogni riga, ma è consigliabile evita
 La sintassi base di R rende spesso complicato filtrare o eseguire operazioni complesse sui data frame. Per questo motivo sono nati pacchetti dedicati, tra cui:
 
 - `dplyr` permette di manipolare i dati concatenando funzioni con nomi descrittivi come `filter()`, `mutate()`, `group_by()`, ecc.
-- `data.table` nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi estesa rispetto a quella base di R: lo vedremo nel @sec-datatable.
+- `data.table` nato per la manipolazione efficiente di grandi quantità di dati, propone una sintassi estesa rispetto a quella base di R: come spiegato nel @sec-datatable.
 
 :::: {.panel-tabset}
 
@@ -244,7 +244,7 @@ Pina ha preparato altre 10 prove indipendenti dello stesso campione di acqua per
 - calcolare gli intervalli di confidenza per ciascun operatore;
 - Valutare statisticamente la presenza di differenze significative tra i valori ottenuti dai due operatori.
 
-Per praticità, assumiamo che:
+Per praticità, si assuma che:
 
 - i dati seguano una distribuzione normale;
 - le varianze dei due gruppi siano omogenee.
@@ -276,7 +276,7 @@ ci <- function(data, alfa = 0.975){
 ci(piero)
 
 # 2
-# In seguito vedremo come questo modo di organizzare i dati non sia ottimale
+# In seguito si vedrà come questo modo di organizzare i dati non sia ottimale
 risultati <- data.frame(piero = piero,
                         pina = c(1.09, 0.89, 0.74, 1.07, 0.68,
                                  0.89, 1.25, 1.10, 0.86, 0.88))

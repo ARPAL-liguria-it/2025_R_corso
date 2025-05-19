@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo imparerai a realizzare report personalizzati e flessibili utilizzando i parametri in documenti **Quarto**. Apprenderai a creare template riutilizzabili per analisi su dati diversi e a produrre automaticamente più report con script R o da linea di comando, migliorando l'efficienza, l'automazione e la riproducibilità del flusso di lavoro.
+In questo capitolo si realizzeranno report personalizzati e flessibili utilizzando i parametri in documenti **Quarto**. Utilizzando template riutilizzabili si produrranno automaticamente report con script R o da linea di comando, migliorando l'efficienza, l'automazione e la riproducibilità del flusso di lavoro.
 
 ## Report parametrizzati
 
@@ -39,7 +39,7 @@ params:
 ---
 ````
 
-In questo caso abbiamo definito solo un parametro: il nome del comune.
+In questo caso si è definito solo un parametro: il nome del comune.
 
 ## Utilizzo dei parametri
 
@@ -56,7 +56,7 @@ pm_genova_completo[comune == params$comune]
 
 ## Personalizzare il report
 
-Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, possiamo creare un'introduzione che si adatta ai parametri definiti, come mostrato qui:
+Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, si può creare un'introduzione che si adatta ai parametri definiti, come mostrato qui:
 
 ```` markdown
 
@@ -70,7 +70,7 @@ Quando il report viene generato, il testo verrà automaticamente aggiornato per 
 
 ## Esempio completo
 
-Combiniamo tutti gli elementi sopra per creare un esempio completo di report parametrizzato in **Quarto**.
+Ecco come si combinano tutti gli elementi sopra per creare un esempio completo di report parametrizzato in **Quarto**.
 
 ```` markdown
 ---
@@ -227,11 +227,11 @@ di $50\, \mu g/m^3$ è
 
 ```` 
 
-Salviamo il report nel file `report_dinamico.qmd`.
+Il report è da salvare nel file `report_dinamico.qmd`.
 
 ## Creazione di report multipli
 
-Per utilizzare `report_dinamico.qmd` come template per la creazione di report personalizzati abbiamo due opzioni:
+Per utilizzare `report_dinamico.qmd` come template per la creazione di report personalizzati ci sono due opzioni:
 
 - da terminale con comandi come: 
   ```

@@ -5,13 +5,13 @@
 source("_common.R")
 ```
 
-In questo capitolo imparerai a integrare informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Vedrai come utilizzare diverse tipologie di **join** con il pacchetto `data.table`, gestendo casi di chiavi mancanti o non corrispondenti.
+In questo capitolo si integreranno informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Si utilizzeranno alcune tra le diverse tipologie di **join** del pacchetto `data.table`, gestendo casi di chiavi mancanti o non corrispondenti.
 
 ## Tipologie di unioni
 
 Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama *join* o *merge* ed è essenziale per integrare informazioni provenienti da fonti diverse.
 
-Prendiamo come esempio due `data.table`:
+Si prendano come esempio due `data.table`:
 
 - `misure` contiene i risultati analitici di una serie di campioni;
 - `indirizzi`: contiene le informazioni relative ai punti di prelievo.
@@ -38,16 +38,16 @@ indirizzi <- data.table(
 )
 ```
 
-Notiamo che:
+Si nota che:
 
 - non tutti i codici di `misure` sono presenti in `indirizzi`;
 - non tutti i codici di `indirizzi` compaiono in `misure`.
 
-Prima di unire le tabelle, dobbiamo quindi decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di *join* da utilizzare.
+Prima di unire le tabelle, è importante decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di *join* da utilizzare.
 
 ### Inner join {#sec-inner}
 
-Se vogliamo mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, useremo un **inner join**. In termini di insiemi, corrisponde all’intersezione $A \cap B$, come mostrato in @fig-inner.
+Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, si usa un **inner join**. In termini di insiemi, corrisponde alliintersezione $A \cap B$, come mostrato in @fig-inner.
 
 ![Inner join ($A \cap B$): vengono restituite solo le righe di A che compaiono anche in B.](images/inner_join.png){#fig-inner}
 
@@ -59,11 +59,11 @@ misure[indirizzi, # le tabelle
        nomatch = NULL] # assegno NULL ai record senza corrispondenza
 ```
 
-Se le colonne chiave hanno nomi diversi, possiamo specificare on come coppia di nomi, ad esempio `on = .(codice_misure = codice_indirizzi)`. È possibile anche effettuare unioni su più colonne.
+Se le colonne chiave hanno nomi diversi, è possibile specificare `on` come coppia di nomi, ad esempio `on = .(codice_misure = codice_indirizzi)`. È possibile anche effettuare unioni su più colonne.
 
 ### Right e left join {#sec-left}
 
-Se vogliamo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, useremo un **right join**. In termini insiemistici $B\cup(A\cap B)$ dove $B$ sono gli indirizzi e $A$ le misure, come mostrato in @fig-right.
+Volendo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, si usa un **right join**. In termini insiemistici $B\cup(A\cap B)$ dove $B$ sono gli indirizzi e $A$ le misure, come mostrato in @fig-right.
 
 ![Right join ($B \cup (A \cap B)$): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili.](images/right_join.png){#fig-right}
 
@@ -75,7 +75,7 @@ misure[indirizzi, # le tabelle
        nomatch = NA] # assegno NA ai record senza corrispondenza
 ```
 
-Ricordiamo che nella sintassi `x[i]` di `data.table`:
+È bene ricordare che nella sintassi `x[i]` di `data.table`:
 
 - tutte le righe di `i` (`indirizzi` nell'esempio) sono mantenute;
 - le colonne di `x` (`misure` nell'esempio) sono aggiunte solo se c'è corrispondenza, altrimenti sono `NA`.
@@ -92,13 +92,13 @@ indirizzi[misure, # le tabelle
 
 ## Per i più frettolosi
 
-Il valore predefinito dell'argomento `nomatch` è `NA`: possiamo quindi ometterlo per **right** e **left join**.
+Il valore predefinito dell'argomento `nomatch` è `NA`: è possibile quindi ometterlo per **right** e **left join**.
 
 :::
 
 ### Full join
 
-Se vogliamo mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo `NA` in assenza di corrispondenza, usiamo un *full join*. In termini di insiemi, è l'unione $A \cup B$ , come mostrato in @fig-full.
+Se si vuole mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo `NA` in assenza di corrispondenza, si usa un *full join*. In termini di insiemi, è l'unione $A \cup B$ , come mostrato in @fig-full.
 
 ![Full join ($A \cup B$): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano `NA`.](images/full_join.png){#fig-full}
 
@@ -107,7 +107,7 @@ La sintassi prevede la funzione `merge()`:
 merge(misure, indirizzi, by = "codice", all = TRUE)
 ```
 
-Se le colonne chiave hanno nomi diversi, usiamo `by.x` e `by.y`. Entrambi possono essere vettori con più di un elemento, per effettuare unioni su più colonne.
+Se le colonne chiave hanno nomi diversi, si specificano `by.x` e `by.y`. Entrambi possono essere vettori con più di un elemento, per effettuare unioni su più colonne.
 
 ::: callout-tip
 ## Per i più golosi
@@ -163,7 +163,7 @@ Unire i dataset `pm_genova` e `stazioni` creati nel @sec-datatable:
             .N]
   ```
   
-  abbiamo perso circa il `r (100 * (1 - (pm_genova_completo[, .N] / pm_genova[,.N]))) |> round(0)`% dei dati, probabilmente per codifiche errate o mancanti.
+  Si è perso circa il `r (100 * (1 - (pm_genova_completo[, .N] / pm_genova[,.N]))) |> round(0)`% dei dati, probabilmente per codifiche errate o mancanti.
 
 :::
 

@@ -7,8 +7,6 @@ source("_common.R")
 
 Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.
 
-Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.
-
 Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.
 
 [**Le basi**](#sec-basics-intro), introduce i concetti essenziali per iniziare a programmare in R: dall'uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.
@@ -16,6 +14,8 @@ Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspe
 [**Lavorare con i dati**](#sec-transform-intro), si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto `data.table` e funzioni per il *reshaping* e le *join*. Queste competenze sono cruciali per preparare i dati all'analisi.
 
 [**Visualizzazione e reportistica**](#sec-reports-intro), guida alla creazione di grafici professionali con `ggplot2` e all'uso di *Quarto* per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.
+
+Al termine del corso, sarà proposto lo sviluppo di una breve applicazione dei concetti e delle tecniche imparate, con lo scopo di creare un documento completo e autonomo che possa facilitare un aspetto del proprio contesto lavorativo.
 
 ## Quanta fatica
 
@@ -63,10 +63,10 @@ L'uso di RStudio o di un altro IDE non è strettamente necessario per utilizzare
 
 ### I progetti di RStudio
 
-Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all'interno di un progetto dedicato: creiamolo cliccando sull'icona ![](images/rproject.png){height=25} di Rstudio, in alto a destra.
-Scegliamo "New Project..." e dopo aver selezionato "New directory" decidiamo dove salvare il progetto e con quale nome.
+Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso si lavorerà all'interno di un progetto dedicato: per crearlo è necessario cliccare sull'icona ![](images/rproject.png){height=25} di Rstudio, in alto a destra.
+Selezionando prima "New Project..." e poi "New directory" è richiesto dove salvare il progetto e con quale nome.
 
-All'interno della cartella dedicata al progetto creiamo la cartella `data` e salviamo al suo interno un [dataset in formato xlsx](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx) e [uno in formato csv compresso](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz): li utilizzeremo nel @sec-datatable.
+All'interno della cartella dedicata al progetto si crea la cartella `data`, salvando al suo interno un [dataset in formato xlsx](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx) e [uno in formato csv compresso](https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz): saranno utili nel @sec-datatable.
 
 ### I pacchetti di R
 
@@ -79,24 +79,24 @@ I pacchetti si installano in R con il comando:
 install.packages("pacchetto")
 ```
 
-Durante il corso utilizzeremo alcuni pacchetti molto diffusi:
+Durante il corso saranno utilizzati alcuni pacchetti molto diffusi:
 
 - `data.table`: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;
 - `ggplot2`: il pacchetto di riferimento per la creazione di grafici;
 - `readxl`: utile per importare dati da fogli Excel;
-- `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;
-- `quarto`: utilizzeremo la funzione `quarto_render()` per produrre report in serie;
-- `R.utils`: lo utilizzeremo solo per importare dati da file gz.
+- `gt`: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente sarà usato direttamente;
+- `quarto`: sarà necessaria la funzione `quarto_render()` per produrre report in serie;
+- `R.utils`: è utile solo per importare dati da file gz.
 
-Installiamo i pacchetti richiesti racchiudendoli all'interno di un vettore con il comando `c()` e scrivendo il seguente comando all'interno della console di R, dopo il simbolo `>`:
+I pacchetti richiesti si installano racchiudendoli all'interno di un vettore con il comando `c()` e scrivendo il seguente comando all'interno della console di R, dopo il simbolo `>`:
 
 ```{r}
 #| output: false
 
-install.packages(c("data.table", "readxl", "ggplot2", "glue", "gt", "R.utils"))
+install.packages(c("data.table", "readxl", "ggplot2", "gt", "R.utils", "quarto"))
 ```
 
-Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.
+Quando necessario, si procederà direttamente a caricare e usare tali pacchetti.
 
 ## Per approfondire
 

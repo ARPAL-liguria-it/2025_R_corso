@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo scoprirai come utilizzare il pacchetto `data.table` per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Entrerai in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati. Vedrai come importare dati da file esterni e come pulire e preparare i dati per l'analisi.
+In questo capitolo si utilizzerà il pacchetto `data.table` per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Una volta entranti in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati, si vedrà come importare dati da file esterni, pulirli e prepararli per l'analisi.
 
 ## Il pacchetto `data.table` {#sec-load}
 
@@ -39,7 +39,7 @@ In altre parole, l'istruzione data si legge così:
 
 > prendi la `data.table` `dt`, filtra o ordina le righe con `i`, seleziona o calcola `j` e ripeti l'operazione per ogni gruppo definito da `by`.
 
-Vediamo subito un esempio pratico:
+Ecco subito un esempio pratico:
 ```{r}
 # prendi dt, ordina per id in ordine decrescente e calcola la media di b per ogni id
 dt[order(-id), .(avg = mean(b)), by = id]

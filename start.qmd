@@ -5,11 +5,11 @@
 source("_common.R")
 ```
 
-In questo capitolo inizierai a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Vedrai anche come organizzare il codice in script e a consultare la documentazione e l'aiuto in linea per lavorare in autonomia.
+In questo capitolo si inizierà a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincerà a organizzare il codice in script e a consultare la documentazione e l'aiuto in linea per lavorare in autonomia.
 
 ## Una bella calcolatrice
 
-Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo
+Per iniziare a prendere confidenza con la console di R, è possibile usarla come una calcolatrice, scrivendo
 
 ```{r}
 #| output: false
@@ -24,28 +24,28 @@ R, in tutta la sua potenza, dovrebbe produrre
 
 Questo significa che il risultato è un vettore composto da un solo elemento, e tale elemento è pari a 5.
 
-Possiamo anche eseguire calcoli su vettori: definiamo un vettore di 100 elementi che contiene gli interi da 1 a 100, e aggiungiamo 2 a ciascuno di essi.
+È possibile anche eseguire calcoli su vettori: si definisce un vettore di 100 elementi che contiene gli interi da 1 a 100, aggiungendo 2 a ciascuno di essi.
 
 ```{r}
 1:100 + 2
 ```
 
-Da questo esempio in poi, adotteremo la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riporteranno l'output della console.
+Da questo esempio in poi, sarà adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riportano l'output della console.
 
-Se volessimo ripetere il calcolo precedente aggiungendo 3 invece di 2, possiamo posizionarci sulla console e premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
+Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, ci si può posizionare sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
 Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio
 
 ```{r}
 a <- 1:100
 ```
 
-a questo punto possiamo fare semplicemente:
+a questo punto, si scrive semplicemente:
 
 ```{r}
 a + 3
 ```
 
-Possiamo usare la variabile `a` per altri calcoli. Per esempio, eleviamo al quadrato tutti gli elementi associati alla variabile `a`:
+La variabile `a` è riutilizzabile per altri calcoli. Per esempio, per elevare al quadrato tutti i suoi elementi:
 
 ```{r}
 a^2
@@ -64,22 +64,22 @@ Nella creazione di variabili è bene fare caso ad alcune regole:
 - non sono ammessi caratteri diversi da lettere, numeri e *underscore*, compresi gli spazi;
 - sono ammessi caratteri accentati, ma il loro uso può complicare molto la vita.
 
-Durante il corso utilizzeremo nomi di variabili e funzioni scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
+Durante il corso i nomi di variabili e funzioni saranno scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
 
 ## Funzioni {#sec-functions}
 
-Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili e le incontreremo ovunque. Durante il corso non distingueremo tra funzioni e metodi (dove le prime danno *output* e le seconde no): per noi, qualunque contenitore di operazioni applicate a un *input* sarà una funzione.
+Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si opererà una distinzione tra funzioni e metodi (dove le prime danno *output* e le seconde no): qualunque contenitore di operazioni applicate a un *input* sarà una funzione.
 
-R offre già molte funzioni pronte all'uso. Per esempio, possiamo assegnare alcuni numeri a una variabile e calcolarne la somma:
+R offre già molte funzioni pronte all'uso. Per esempio, è possibile assegnare alcuni numeri a una variabile e calcolarne la somma:
 
 ```{r}
 b <- c(2, 3, 5)
 sum(b)
 ```
 
-Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alcune funzioni richiedono pochi *input*, altre che ne richiedono di più. Nella @sec-help vedremo come acquisire informazioni sull'utilizzo di una funzione.
+Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alcune funzioni richiedono pochi *input*, altre che ne richiedono di più. Nella @sec-help si acquisiranno informazioni sull'utilizzo di una qualunque funzione.
 
-Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
+Oltre alle funzioni predefinite, è possibile scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
 
 ```{r}
 #| error: true
@@ -90,15 +90,15 @@ Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scri
 # l'output è una stringa di testo
 fammi_il_caffe <- function(tipo = "caffè",
                            modo = "corto"){
-  # controllo che l'input abbia le caratteristiche desiderate
+  # controlla che l'input abbia le caratteristiche desiderate
   stopifnot(is.character(tipo))
   stopifnot(is.character(modo))
   stopifnot(tipo %in% c("caffè", "orzo"))
   stopifnot(modo %in% c("corto", "lungo", "macchiato"))
   
-  # determino il prezzo scegliendo un numero casuale tra 1 e 2 con intervallo 0.1
+  # determina il prezzo scegliendo un numero casuale tra 1 e 2 con intervallo 0.1
   prezzo <- sample(seq(from = 1, to = 2, by = 0.1), 1)
-  # formatto il caffé e il prezzo
+  # formatta il caffé e il prezzo
   prodotto_txt <- paste("Ecco a lei il suo", tipo, modo, sep = " ")
   prezzo_txt <- paste("Sono", prezzo, "€.", sep = " ")
   
@@ -120,10 +120,10 @@ Gli argomenti (o *input*) della funzione sono racchiusi tra parentesi tonde, con
 
 ## Il primo script
 
-Nella @sec-functions abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.
+Nella @sec-functions è stato presentato del codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.
 
-Per questo motivo, possiamo creare un `file.R` in cui elencare in ordine i comandi da eseguire.
-Per farlo, in RStudio basta cliccare sull'icona ![](images/newfile.png){height=25} in alto a sinistra, selezionare "R Script" e salvare il file. All'interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:
+Per questo motivo, è meglio creare un `file.R` in cui elencare in ordine i comandi da eseguire.
+Per farlo, in RStudio basta cliccare sull'icona ![](images/newfile.png){height=25} in alto a sinistra, selezionare "R Script" e salvare il file. All'interno di questo file si scriveranno, ad esempio, le seguenti istruzioni:
 
 ```{r}
 #| output: false
@@ -162,7 +162,7 @@ aggregate(. ~ Species, data = iris, FUN = quartili)
 ```
 
 
-Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno il nostro principale strumento di lavoro. Nel @sec-report vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
+Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno lo strumento di lavoro principale. Nel @sec-report gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
 
 ## Chiedere aiuto {#sec-help}
 
@@ -190,7 +190,7 @@ Se l'elemento è presente in un pacchetto installato ma non attualmente caricato
 ??geom_point()
 ```
 
-All'interno della sezione di *help* si trova una descrizione iniziale dell'elemento e, se si tratta di una funzione, i diversi *input* richiesti; seguono poi sezioni che spesso spiegato il funzionamento della funziona, per concludere con utili esempi d'uso.
+All'interno della sezione di *help* si trova una descrizione iniziale dell'elemento e, se si tratta di una funzione, i diversi *input* richiesti; seguono poi sezioni che spesso spiegano il funzionamento della funzione, per concludere con utili esempi d'uso.
 
 A volte l'aiuto in linea potrebbe non essere sufficiente; in tal caso si consiglia di rivolgersi a Google o qualche large language model (LLM) come DeepSeek, ChatGPT o Perplexity. Questi strumenti di intelligenza artificiale permettono, a fronte di richieste dettagliate e ben strutturate di farsi scrivere e spiegare interi programmi, anche complessi, richiedendo poche rifiniture manuali.
 
