@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo si inizierà a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincerà a organizzare il codice in script e a consultare la documentazione e l'aiuto in linea per lavorare in autonomia.
+In questo capitolo si inizia a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincia a organizzare il codice in script e a consultare la documentazione e l'aiuto in linea per lavorare in autonomia.
 
 ## Una bella calcolatrice
 
@@ -30,7 +30,7 @@ Questo significa che il risultato è un vettore composto da un solo elemento, e 
 1:100 + 2
 ```
 
-Da questo esempio in poi, sarà adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riportano l'output della console.
+Da questo esempio in poi, è adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riportano l'output della console.
 
 Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, ci si può posizionare sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
 Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio
@@ -64,11 +64,11 @@ Nella creazione di variabili è bene fare caso ad alcune regole:
 - non sono ammessi caratteri diversi da lettere, numeri e *underscore*, compresi gli spazi;
 - sono ammessi caratteri accentati, ma il loro uso può complicare molto la vita.
 
-Durante il corso i nomi di variabili e funzioni saranno scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
+Durante il corso i nomi di variabili e funzioni sono scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli *underscore* al posto degli spazi (notazione *snake_case*).
 
 ## Funzioni {#sec-functions}
 
-Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si opererà una distinzione tra funzioni e metodi (dove le prime danno *output* e le seconde no): qualunque contenitore di operazioni applicate a un *input* sarà una funzione.
+Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli *input*, per ottenere nessuno, uno o più *output*. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si distingue tra funzioni e metodi (dove le prime danno *output* e le seconde no): qualunque contenitore di operazioni applicate a un *input* è una funzione.
 
 R offre già molte funzioni pronte all'uso. Per esempio, è possibile assegnare alcuni numeri a una variabile e calcolarne la somma:
 
@@ -77,7 +77,7 @@ b <- c(2, 3, 5)
 sum(b)
 ```
 
-Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alcune funzioni richiedono pochi *input*, altre che ne richiedono di più. Nella @sec-help si acquisiranno informazioni sull'utilizzo di una qualunque funzione.
+Gli input delle funzioni vengono specificati all'interno di parentesi tonde. Alcune funzioni richiedono pochi *input*, altre che ne richiedono di più. Nella @sec-help è spiegato come reperire informazioni sull'utilizzo di una qualunque funzione.
 
 Oltre alle funzioni predefinite, è possibile scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:
 
@@ -114,7 +114,7 @@ fammi_il_caffe("orzo", "corretto")
 
 Gli argomenti (o *input*) della funzione sono racchiusi tra parentesi tonde, con eventuali valori predefiniti dichiarati dopo l'uguale. Il corpo della funzione è racchiuso tra parentesi graffe e tipicamente contiene:
 
-- una parte di validazione degli argomenti, per assicurarsi che la funzione non venga utilizzata correttamente;
+- una parte di validazione degli argomenti, per assicurarsi che la funzione venga utilizzata correttamente;
 - una parte in cui vengono eseguiti i calcoli;
 - una parte finale che restituisce il risultato.
 
@@ -162,7 +162,7 @@ aggregate(. ~ Species, data = iris, FUN = quartili)
 ```
 
 
-Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno lo strumento di lavoro principale. Nel @sec-report gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità di un'analisi.
+Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D'ora in poi, gli script saranno lo strumento di lavoro principale per prendere appunti e tenere traccia di quanto fatto durante il proseguo del corso. Nel @sec-report gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità delle  analisi.
 
 ## Chiedere aiuto {#sec-help}
 
