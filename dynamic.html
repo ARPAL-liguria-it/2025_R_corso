@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo imparerai a realizzare report personalizzati e flessibili utilizzando i parametri in documenti <strong>Quarto</strong>. Apprenderai a creare template riutilizzabili per analisi su dati diversi e a produrre automaticamente più report con script R o da linea di comando, migliorando l’efficienza, l’automazione e la riproducibilità del flusso di lavoro.</p>
+<p>In questo capitolo si realizzeranno report personalizzati e flessibili utilizzando i parametri in documenti <strong>Quarto</strong>. Utilizzando template riutilizzabili si produrranno automaticamente report con script R o da linea di comando, migliorando l’efficienza, l’automazione e la riproducibilità del flusso di lavoro.</p>
 <section id="report-parametrizzati" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="report-parametrizzati"><span class="header-section-number">10.1</span> Report parametrizzati</h2>
 <p>I report parametrizzati in <strong>Quarto</strong> permettono di creare documenti altamente flessibili, in cui i parametri specificati dall’utente vengono utilizzati per generare contenuti dinamici. Questo è particolarmente utile quando si vuole creare report personalizzati, adattati a diverse condizioni o esigenze, senza dover riscrivere l’intero documento.</p>
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">params:</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  comune: "Genova"</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In questo caso abbiamo definito solo un parametro: il nome del comune.</p>
+<p>In questo caso si è definito solo un parametro: il nome del comune.</p>
 </section>
 <section id="utilizzo-dei-parametri" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="utilizzo-dei-parametri"><span class="header-section-number">10.3</span> Utilizzo dei parametri</h2>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="personalizzare-il-report" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="personalizzare-il-report"><span class="header-section-number">10.4</span> Personalizzare il report</h2>
-<p>Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, possiamo creare un’introduzione che si adatta ai parametri definiti, come mostrato qui:</p>
+<p>Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, si può creare un’introduzione che si adatta ai parametri definiti, come mostrato qui:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduzione</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="esempio-completo" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="esempio-completo"><span class="header-section-number">10.5</span> Esempio completo</h2>
-<p>Combiniamo tutti gli elementi sopra per creare un esempio completo di report parametrizzato in <strong>Quarto</strong>.</p>
+<p>Ecco come si combinano tutti gli elementi sopra per creare un esempio completo di report parametrizzato in <strong>Quarto</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Report sulla qualità dell'aria"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nome, Cognome"</span></span>
@@ -487,11 +487,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>di $50\, \mu g/m^3$ è </span>
 <span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="in">`r pm_genova_above50[which.max(val_50), nome_stazione]`</span> con </span>
 <span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="in">`r pm_genova_above50[which.max(val_50), val_50]`</span> superamenti.</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Salviamo il report nel file <code>report_dinamico.qmd</code>.</p>
+<p>Il report è da salvare nel file <code>report_dinamico.qmd</code>.</p>
 </section>
 <section id="creazione-di-report-multipli" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="creazione-di-report-multipli"><span class="header-section-number">10.6</span> Creazione di report multipli</h2>
-<p>Per utilizzare <code>report_dinamico.qmd</code> come template per la creazione di report personalizzati abbiamo due opzioni:</p>
+<p>Per utilizzare <code>report_dinamico.qmd</code> come template per la creazione di report personalizzati ci sono due opzioni:</p>
 <ul>
 <li><p>da terminale con comandi come:</p>
 <pre><code>quarto render report_dinamico.qmd -P comune:Busalla</code></pre></li>

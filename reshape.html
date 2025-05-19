@@ -293,13 +293,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo vedrai come gestire i dati nei due formati principali: <strong>wide</strong> (una entità osservata per riga, variabili in colonne) e <strong>long</strong> (una misura per riga, con tipo e valore separati). Vedrai come passare da un formato all’altro con i comandi <code>melt()</code> e <code>dcast()</code>. Imparerai a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all’analisi e alla visualizzazione.</p>
+<p>In questo capitolo sono gestiti i dati nei loro due formati principali: <strong>wide</strong> (una entità osservata per riga, variabili in colonne) e <strong>long</strong> (una misura per riga, con tipo e valore separati). Si passerà da un formato all’altro con i comandi <code>melt()</code> e <code>dcast()</code>, imparando a gestire casi con misure multiple o mancanti, e a utilizzando opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all’analisi e alla visualizzazione.</p>
 <section id="sec-shapes" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-shapes"><span class="header-section-number">6.1</span> La forma dei dati</h2>
-<p>I dati con cui lavoriamo abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
+<p>I dati con cui si lavora abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
 <p>Questa tipologia di dati possono essere organizzati in due differenti formati:</p>
 <ul>
-<li><p><strong>wide</strong>: i dati sono organizzati con un’entità osservata per riga e una misura per colonna. Vediamo un esempio:</p>
+<li><p><strong>wide</strong>: i dati sono organizzati con un’entità osservata per riga e una misura per colonna. Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1332,7 +1332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>value.name</code>: il nome della colonna che conterrà i valori della misura. Il valore di <em>default</em> è <code>value</code>.</li>
 </ul>
 <p>Tutti gli argomenti sono opzionali, tuttavia è sempre buona norma specificare <code>id.vars</code> e <code>measure.vars</code>. In caso contrario la funzione <code>melt()</code> imposterà tutte le colonne non numeriche o di tipo logico come <code>id.vars</code> e le restanti colonne come <code>measure.vars</code>.</p>
-<p>Proviamo a trasformare <code>campioni_wide</code> in formato <strong>long</strong>:</p>
+<p>Ecco come trasformare <code>campioni_wide</code> in formato <strong>long</strong>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>campioni_wide <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">melt</span>(<span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">"codice_campione"</span>, <span class="st">"data_campionamento"</span>),</span>
@@ -1367,7 +1367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>value.var</code>: il nome della colonna con i valori da distribuire;</li>
 <li><code>fill</code>: il valore da mettere in caso di combinazioni mancanti (es. <code>NA</code> o <code>0</code>).</li>
 </ul>
-<p>Proviamo a trasformare <code>campioni_long</code> in formato <strong>wide</strong>:</p>
+<p>Ecco come trasformare <code>campioni_long</code> in formato <strong>wide</strong>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(codice_campione <span class="sc">+</span> data_campionamento <span class="sc">~</span> tipo_misura,</span>
@@ -1383,7 +1383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="misure-multiple-e-misure-mancanti" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="misure-multiple-e-misure-mancanti"><span class="header-section-number">6.3.2</span> Misure multiple e misure mancanti</h3>
-<p>Immaginiamo che a <code>campioni_long</code> si debbano aggiungere i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, ma sono state effettuate tre misure indipendenti della misurazione di zinco.</p>
+<p>Si devono aggiungere a <code>campioni_long</code> i valori misurati per un quarto campione per cui la concentrazione di cadmio è stata misurata una volta, mentre sono state effettuate tre determinazioni indipendenti della concentrazione di zinco.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nuovi_dati <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">codice_campione =</span> <span class="fu">rep</span>(<span class="st">"22345/24"</span>, <span class="dv">4</span>),</span>
@@ -1394,7 +1394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="ot">&lt;-</span> <span class="fu">rbind</span>(campioni_long,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                       nuovi_dati)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se riprovassimo a proiettare i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 6.3.1</span></a>, otterremo:</p>
+<p>Se si proiettassero i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 6.3.1</span></a>, si otterrebbe:</p>
 <div class="cell" data-layout-align="center">
 <pre><code>#&gt; Warning in dcast.data.table(campioni_long, codice_campione + data_campionamento
 #&gt; ~ : 'fun.aggregate' is NULL, but found duplicate row/column combinations, so
@@ -1413,8 +1413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #&gt; 3:        22311/24         2024-03-10      1      1     0
 #&gt; 4:        22345/24         2024-04-01      1      0     3</code></pre>
 </div>
-<p>la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa vogliamo farci, ci avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.</p>
-<p>Nel caso volessimo la media delle misure ripetute e volessimo che venisse usato <code>NA</code> per le misure mancanti, si può scrivere:</p>
+<p>la funzione, si è accorta che compaiono misure ripetute e, non sapendo cosa farci, avvisa e si limita a contare il numero di misure per ogni entità e ogni tipologia di misura.</p>
+<p>Nel caso si voglia ottenere la media delle misure ripetute, usando <code>NA</code> per le misure mancanti, si può scrivere:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast</span>(codice_campione <span class="sc">+</span> data_campionamento <span class="sc">~</span> tipo_misura,</span>
@@ -1454,7 +1454,7 @@ Per i più golosi
 <p>Utilizzando il dataset <code>pm_genova</code>:</p>
 <ul>
 <li>identificare se il dataset è in formato <strong>wide</strong> o <strong>long</strong>;</li>
-<li>identificare l’enità osservata;</li>
+<li>identificare l’entità osservata;</li>
 <li>identificare la o le colonne con la tipologia di misura e il relativo valore;</li>
 <li>convertire il dataset in formato <strong>wide</strong> o <strong>long</strong> a seconda di come è stato fornito;</li>
 <li>valutare la presenza di valori duplicati ed eventualmente fornire il risultato medio;</li>
@@ -1530,7 +1530,7 @@ Per i più golosi
 <span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66341:                  1               NA                NA</span></span>
 <span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 66342:                  1               NA                NA</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>sarà necessario riconvertire i valori nelle colonne <code>valido</code>, <code>validato_cor</code> e <code>certificato</code> in valori logici.</p>
+<p>Manca la riconversione dei valori nelle colonne <code>valido</code>, <code>validato_cor</code> e <code>certificato</code> in valori logici.</p>
 <p>Un’alternativa più complessa ma maggiormente efficiente è ottenibile definendo prima una funzione che calcolerà il numero di elementi e in caso di mancanza di elementi ripetuti li convertirà in valori logici:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diventa_logico <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -1629,7 +1629,7 @@ Per i più golosi
 </div>
 <p>Anche a <code>value.var</code> viene assegnata una lista, questo permette di associare univocamente i valori e le funzioni da applicare. Per maggiori informazioni, è possibile consultare gli ultimi due esempi riportati in <code>?dcast</code>.</p></li>
 <li><p>per eseguire la conversione in formato <strong>wide</strong> evitando operazioni di aggregazione, è necessario creare un indice che distingua i valori replicati. I valori replicati hanno insiemi di <code>codice_europeo</code>, <code>inizio</code>, <code>fine</code> e <code>metodo</code> e <code>inquinante</code> uguali.</p>
-<p>Possiamo fare così:</p>
+<p>Si può fare così:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'indice id aumenta da 1 a N,</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dove N è il numero di righe con codice_europeo, inizio, fine, metodo e</span></span>

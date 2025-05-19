@@ -290,17 +290,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo inizierai a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Vedrai anche come organizzare il codice in script e a consultare la documentazione e l’aiuto in linea per lavorare in autonomia.</p>
+<p>In questo capitolo si inizierà a usare R per eseguire semplici calcoli e operazioni su dati, creare e gestire variabili, utilizzare funzioni predefinite e scrivere funzioni personalizzate. Si comincerà a organizzare il codice in script e a consultare la documentazione e l’aiuto in linea per lavorare in autonomia.</p>
 <section id="una-bella-calcolatrice" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="una-bella-calcolatrice"><span class="header-section-number">2.1</span> Una bella calcolatrice</h2>
-<p>Iniziamo a prendere confidenza con la console di R, utilizzandola come una calcolatrice, e scriviamo</p>
+<p>Per iniziare a prendere confidenza con la console di R, è possibile usarla come una calcolatrice, scrivendo</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R, in tutta la sua potenza, dovrebbe produrre</p>
 <pre><code>[1] 5</code></pre>
 <p>Questo significa che il risultato è un vettore composto da un solo elemento, e tale elemento è pari a 5.</p>
-<p>Possiamo anche eseguire calcoli su vettori: definiamo un vettore di 100 elementi che contiene gli interi da 1 a 100, e aggiungiamo 2 a ciascuno di essi.</p>
+<p>È possibile anche eseguire calcoli su vettori: si definisce un vettore di 100 elementi che contiene gli interi da 1 a 100, aggiungendo 2 a ciascuno di essi.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="dv">2</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20</span></span>
@@ -310,12 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  93  94  95  96  97  98  99 100 101 102</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Da questo esempio in poi, adotteremo la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da <code>#&gt;</code> riporteranno l’output della console.</p>
-<p>Se volessimo ripetere il calcolo precedente aggiungendo 3 invece di 2, possiamo posizionarci sulla console e premere il tasto freccia su (🔼) della tastiera per richiamare l’ultimo comando, modificarlo e premere Invio. Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio</p>
+<p>Da questo esempio in poi, sarà adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da <code>#&gt;</code> riportano l’output della console.</p>
+<p>Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, ci si può posizionare sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l’ultimo comando, modificarlo e premere Invio. Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>a questo punto possiamo fare semplicemente:</p>
+<p>a questo punto, si scrive semplicemente:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">3</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21</span></span>
@@ -325,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [73]  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91]  94  95  96  97  98  99 100 101 102 103</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Possiamo usare la variabile <code>a</code> per altri calcoli. Per esempio, eleviamo al quadrato tutti gli elementi associati alla variabile <code>a</code>:</p>
+<p>La variabile <code>a</code> è riutilizzabile per altri calcoli. Per esempio, per elevare al quadrato tutti i suoi elementi:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1]     1     4     9    16    25    36    49    64    81   100   121   144</span></span>
@@ -349,19 +349,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>non sono ammessi caratteri diversi da lettere, numeri e <em>underscore</em>, compresi gli spazi;</li>
 <li>sono ammessi caratteri accentati, ma il loro uso può complicare molto la vita.</li>
 </ul>
-<p>Durante il corso utilizzeremo nomi di variabili e funzioni scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
+<p>Durante il corso i nomi di variabili e funzioni saranno scritti in caratteri minuscoli e senza lettere accentate, utilizzando gli <em>underscore</em> al posto degli spazi (notazione <em>snake_case</em>).</p>
 </section>
 <section id="sec-functions" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-functions"><span class="header-section-number">2.2</span> Funzioni</h2>
-<p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili e le incontreremo ovunque. Durante il corso non distingueremo tra funzioni e metodi (dove le prime danno <em>output</em> e le seconde no): per noi, qualunque contenitore di operazioni applicate a un <em>input</em> sarà una funzione.</p>
-<p>R offre già molte funzioni pronte all’uso. Per esempio, possiamo assegnare alcuni numeri a una variabile e calcolarne la somma:</p>
+<p>Le funzioni sono una parte fondamentale di R e consentono di eseguire una serie di operazioni dati degli <em>input</em>, per ottenere nessuno, uno o più <em>output</em>. Si tratta di una definizione generale, perché le funzioni sono elementi estremamente versatili che si incontreranno ovunque. Durante il corso non si opererà una distinzione tra funzioni e metodi (dove le prime danno <em>output</em> e le seconde no): qualunque contenitore di operazioni applicate a un <em>input</em> sarà una funzione.</p>
+<p>R offre già molte funzioni pronte all’uso. Per esempio, è possibile assegnare alcuni numeri a una variabile e calcolarne la somma:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(b)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gli input delle funzioni vengono specificati all’interno di parentesi tonde. Alcune funzioni richiedono pochi <em>input</em>, altre che ne richiedono di più. Nella <a href="#sec-help" class="quarto-xref"><span>Sezione 2.4</span></a> vedremo come acquisire informazioni sull’utilizzo di una funzione.</p>
-<p>Oltre alle funzioni predefinite, possiamo scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:</p>
+<p>Gli input delle funzioni vengono specificati all’interno di parentesi tonde. Alcune funzioni richiedono pochi <em>input</em>, altre che ne richiedono di più. Nella <a href="#sec-help" class="quarto-xref"><span>Sezione 2.4</span></a> si acquisiranno informazioni sull’utilizzo di una qualunque funzione.</p>
+<p>Oltre alle funzioni predefinite, è possibile scrivere funzioni personalizzate. Scrivere funzioni efficienti, robuste e ben documentate richiede pratica, ma la sintassi di base è:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># la funzione fammi_il_caffe prende come argomenti due stringa di caratteri:</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># la prima definisce il tipo e può essere "caffè" o "orzo"</span></span>
@@ -369,15 +369,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># l'output è una stringa di testo</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fammi_il_caffe <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">tipo =</span> <span class="st">"caffè"</span>,</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">modo =</span> <span class="st">"corto"</span>){</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># controllo che l'input abbia le caratteristiche desiderate</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># controlla che l'input abbia le caratteristiche desiderate</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(tipo))</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.character</span>(modo))</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(tipo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"caffè"</span>, <span class="st">"orzo"</span>))</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(modo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"corto"</span>, <span class="st">"lungo"</span>, <span class="st">"macchiato"</span>))</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># determino il prezzo scegliendo un numero casuale tra 1 e 2 con intervallo 0.1</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># determina il prezzo scegliendo un numero casuale tra 1 e 2 con intervallo 0.1</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  prezzo <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">2</span>, <span class="at">by =</span> <span class="fl">0.1</span>), <span class="dv">1</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># formatto il caffé e il prezzo</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># formatta il caffé e il prezzo</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  prodotto_txt <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Ecco a lei il suo"</span>, tipo, modo, <span class="at">sep =</span> <span class="st">" "</span>)</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  prezzo_txt <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Sono"</span>, prezzo, <span class="st">"€."</span>, <span class="at">sep =</span> <span class="st">" "</span>)</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -402,8 +402,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="il-primo-script" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="il-primo-script"><span class="header-section-number">2.3</span> Il primo script</h2>
-<p>Nella <a href="#sec-functions" class="quarto-xref"><span>Sezione 2.2</span></a> abbiamo visto codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.</p>
-<p>Per questo motivo, possiamo creare un <code>file.R</code> in cui elencare in ordine i comandi da eseguire. Per farlo, in RStudio basta cliccare sull’icona <img src="images/newfile.png" height="25"> in alto a sinistra, selezionare “R Script” e salvare il file. All’interno di questo file possiamo scrivere, ad esempio, le seguenti istruzioni:</p>
+<p>Nella <a href="#sec-functions" class="quarto-xref"><span>Sezione 2.2</span></a> è stato presentato del codice che si estende su più righe: inserirlo riga per riga nella console può diventare scomodo, e si rischia di dimenticare cosa si è fatto poco prima.</p>
+<p>Per questo motivo, è meglio creare un <code>file.R</code> in cui elencare in ordine i comandi da eseguire. Per farlo, in RStudio basta cliccare sull’icona <img src="images/newfile.png" height="25"> in alto a sinistra, selezionare “R Script” e salvare il file. All’interno di questo file si scriveranno, ad esempio, le seguenti istruzioni:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># richiamo un dataset di R</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>iris</span>
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Le variabili che permettono di distinguere meglio le tre specie sono </span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co"># la lunghezza e la larghezza dei petali.</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno il nostro principale strumento di lavoro. Nel <a href="quarto.html" class="quarto-xref"><span>Capitolo 9</span></a> vedremo inoltre come includere gli script in un documento completo, migliorando ulteriormente la riproducibilità di un’analisi.</p>
+<p>Con gli script è possibile tenere traccia di quanto è stato fatto, commentando il codice per renderlo maggiormente comprensibile a sé stessi e ai colleghi. D’ora in poi, gli script saranno lo strumento di lavoro principale. Nel <a href="quarto.html" class="quarto-xref"><span>Capitolo 9</span></a> gli script saranno inclusi in un documento completo, migliorando ulteriormente la riproducibilità di un’analisi.</p>
 </section>
 <section id="sec-help" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-help"><span class="header-section-number">2.4</span> Chiedere aiuto</h2>
@@ -456,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>??<span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>All’interno della sezione di <em>help</em> si trova una descrizione iniziale dell’elemento e, se si tratta di una funzione, i diversi <em>input</em> richiesti; seguono poi sezioni che spesso spiegato il funzionamento della funziona, per concludere con utili esempi d’uso.</p>
+<p>All’interno della sezione di <em>help</em> si trova una descrizione iniziale dell’elemento e, se si tratta di una funzione, i diversi <em>input</em> richiesti; seguono poi sezioni che spesso spiegano il funzionamento della funzione, per concludere con utili esempi d’uso.</p>
 <p>A volte l’aiuto in linea potrebbe non essere sufficiente; in tal caso si consiglia di rivolgersi a Google o qualche large language model (LLM) come DeepSeek, ChatGPT o Perplexity. Questi strumenti di intelligenza artificiale permettono, a fronte di richieste dettagliate e ben strutturate di farsi scrivere e spiegare interi programmi, anche complessi, richiedendo poche rifiniture manuali.</p>
 <p>In alternativa o in completamento all’uso di strumenti di intelligenza artificiale, esistono forum dedicati alla programmazione e con una folta comunità di preparatissimi (e spesso burberi) utilizzatori di R. Tra questi <a href="https://stackoverflow.com/questions">StackOverflow</a> risulta particolarmente ricco di spunti e risorse. Per utilizzarlo al meglio:</p>
 <ul>

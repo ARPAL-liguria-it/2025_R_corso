@@ -299,11 +299,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Lo scopo del corso è fornire gli strumenti necessari per eseguire semplici analisi dei dati utilizzando il linguaggio R.</p>
-<p>Al termine del corso, realizzerai una piccola analisi guidata, mettendo in pratica quanto imparato e creando un documento completo e autonomo.</p>
 <p>Il materiale è organizzato in tre parti principali, ciascuna dedicata a un aspetto fondamentale del lavoro con R.</p>
 <p><a href="basics.html"><strong>Le basi</strong></a>, introduce i concetti essenziali per iniziare a programmare in R: dall’uso della console e delle variabili, alla comprensione dei principali tipi di dati e oggetti. Qui si gettano le fondamenta indispensabili per affrontare le fasi successive.</p>
 <p><a href="transform.html"><strong>Lavorare con i dati</strong></a>, si concentra sulle tecniche per manipolare, trasformare e unire dataset, utilizzando strumenti efficienti come il pacchetto <code>data.table</code> e funzioni per il <em>reshaping</em> e le <em>join</em>. Queste competenze sono cruciali per preparare i dati all’analisi.</p>
 <p><a href="reports.html"><strong>Visualizzazione e reportistica</strong></a>, guida alla creazione di grafici professionali con <code>ggplot2</code> e all’uso di <em>Quarto</em> per produrre report dinamici e personalizzati, migliorando la comunicazione e la condivisione dei risultati.</p>
+<p>Al termine del corso, sarà proposto lo sviluppo di una breve applicazione dei concetti e delle tecniche imparate, con lo scopo di creare un documento completo e autonomo che possa facilitare un aspetto del proprio contesto lavorativo.</p>
 <section id="quanta-fatica" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="quanta-fatica"><span class="header-section-number">1.1</span> Quanta fatica</h2>
 <p>L’utilizzo di un linguaggio di programmazione richiede un importante investimento iniziale per apprenderne le basi, le funzioni principali e il loro campo di applicazione. Tuttavia, l’impegno profuso viene ampiamente ripagato dalla possibilità di riutilizzare e adattare il codice, nonché di ripetere le analisi con poco sforzo, rendendo l’intero processo riproducibile e documentabile.</p>
@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Anche RStudio è un software libero, rilasciato sotto licenza GNU Affero General Public License v3.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Schermata di Rstudio.">
+<div id="fig-rstudio-console" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schermata di Rstudio." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rstudio-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova il pannello dedicato al codice sorgente, al suo fianco il pannello dedicato agli ambienti e allo storico. In basso, da sinistra a destra, si trova la console e il pannello dedicato agli output."><img src="images/rstudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Schermata di Rstudio."></a>
@@ -345,8 +345,8 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 </section>
 <section id="i-progetti-di-rstudio" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="i-progetti-di-rstudio"><span class="header-section-number">1.2.3</span> I progetti di RStudio</h3>
-<p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso lavoreremo all’interno di un progetto dedicato: creiamolo cliccando sull’icona <img src="images/rproject.png" height="25"> di Rstudio, in alto a destra. Scegliamo “New Project…” e dopo aver selezionato “New directory” decidiamo dove salvare il progetto e con quale nome.</p>
-<p>All’interno della cartella dedicata al progetto creiamo la cartella <code>data</code> e salviamo al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: li utilizzeremo nel <a href="datatable.html" class="quarto-xref"><span>Capitolo 5</span></a>.</p>
+<p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso si lavorerà all’interno di un progetto dedicato: per crearlo è necessario cliccare sull’icona <img src="images/rproject.png" height="25"> di Rstudio, in alto a destra. Selezionando prima “New Project…” e poi “New directory” è richiesto dove salvare il progetto e con quale nome.</p>
+<p>All’interno della cartella dedicata al progetto si crea la cartella <code>data</code>, salvando al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: saranno utili nel <a href="datatable.html" class="quarto-xref"><span>Capitolo 5</span></a>.</p>
 </section>
 <section id="i-pacchetti-di-r" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="i-pacchetti-di-r"><span class="header-section-number">1.2.4</span> I pacchetti di R</h3>
@@ -355,20 +355,20 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacchetto"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Durante il corso utilizzeremo alcuni pacchetti molto diffusi:</p>
+<p>Durante il corso saranno utilizzati alcuni pacchetti molto diffusi:</p>
 <ul>
 <li><code>data.table</code>: consente di caricare e manipolare efficientemente grandi insiemi di dati, con una sintassi particolare ma intuitiva;</li>
 <li><code>ggplot2</code>: il pacchetto di riferimento per la creazione di grafici;</li>
 <li><code>readxl</code>: utile per importare dati da fogli Excel;</li>
-<li><code>gt</code>: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente lo useremo direttamente;</li>
-<li><code>quarto</code>: utilizzeremo la funzione <code>quarto_render()</code> per produrre report in serie;</li>
-<li><code>R.utils</code>: lo utilizzeremo solo per importare dati da file gz.</li>
+<li><code>gt</code>: utilizzato per produrre tabelle di alta qualità. Le tabelle che vedrete nel corso saranno realizzate con questo pacchetto, anche se raramente sarà usato direttamente;</li>
+<li><code>quarto</code>: sarà necessaria la funzione <code>quarto_render()</code> per produrre report in serie;</li>
+<li><code>R.utils</code>: è utile solo per importare dati da file gz.</li>
 </ul>
-<p>Installiamo i pacchetti richiesti racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
+<p>I pacchetti richiesti si installano racchiudendoli all’interno di un vettore con il comando <code>c()</code> e scrivendo il seguente comando all’interno della console di R, dopo il simbolo <code>&gt;</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"glue"</span>, <span class="st">"gt"</span>, <span class="st">"R.utils"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"R.utils"</span>, <span class="st">"quarto"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Quando ne avremo bisogno saremo pronti a caricare e usare tali pacchetti.</p>
+<p>Quando necessario, si procederà direttamente a caricare e usare tali pacchetti.</p>
 </section>
 </section>
 <section id="per-approfondire" class="level2" data-number="1.3">

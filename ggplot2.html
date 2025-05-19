@@ -323,7 +323,7 @@ window.Quarto = {
 
 
 <p>La visualizzazione dei dati è una fase fondamentale nell’analisi statistica: un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.</p>
-<p>In questo capitolo imparerai a creare grafici professionali e personalizzati con il pacchetto <code>ggplot2</code>, basato sulla <em>grammar of graphics</em>. Apprenderai a sovrapporre più livelli per arricchire le visualizzazioni, personalizzare assi, colori, legende e temi.</p>
+<p>In questo capitolo si creeranno grafici professionali e personalizzati con il pacchetto <code>ggplot2</code>, basato sulla <em>grammar of graphics</em>. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzare assi, colori, legende e temi.</p>
 <section id="sintassi-di-base-di-ggplot2" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="sintassi-di-base-di-ggplot2"><span class="header-section-number">8.1</span> Sintassi di base di ggplot2</h2>
 <p>Un grafico con <code>ggplot2</code> si costruisce combinando tre elementi principali:</p>
@@ -332,7 +332,7 @@ window.Quarto = {
 <li><strong>estetiche (<code>aes</code>)</strong>: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);</li>
 <li><strong>geometria (<code>geom_</code>)</strong>: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).</li>
 </ul>
-<p>Vediamo un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:</p>
+<p>Ecco un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset sintetico</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
@@ -425,7 +425,7 @@ Figura&nbsp;8.2: un grafico di dispersione suddiviso su più panelli e con una r
 <li><code>scale_size_continuous()</code>, <code>scale_shape_manual()</code>: per dimensioni e forme.</li>
 </ul>
 <p>Il livello <code>theme()</code> è usato per personalizzare l’aspetto generale del grafico, in particolare viene usato spesso per gestire la posizione e lo stile della legenda. Deve essere utilizzato dopo i livelli <code>geom_</code> e <code>scale_</code> ma prima dei comandi per la scelta dello stile del grafico, come <code>theme_bw()</code>.</p>
-<p>Vediamo un esempio in cui personalizziamo l’asse temporale e l’aspetto della legenda:</p>
+<p>In questo esempio si personalizza l’asse temporale e l’aspetto della legenda:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>

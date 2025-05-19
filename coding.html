@@ -291,15 +291,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo imparerai le basi della programmazione in R focalizzandoti su come ripetere istruzioni con i cicli (<code>for</code> e <code>while</code>) o applicando funzioni in modo efficiente (<code>lapply()</code>). Infine, imparerai a far seguire al codice percorsi differenziati con i flussi condizionali (<code>if</code>, <code>else</code> e <code>ifelse()</code>).</p>
+<p>In questo capitolo sono discussi alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (<code>for</code> e <code>while</code>), applicando funzioni in modo efficiente (<code>lapply()</code>), e facendo seguire al codice percorsi differenziati con i flussi condizionali (<code>if</code>, <code>else</code> e <code>ifelse()</code>).</p>
 <section id="introduzione-ai-cicli-loops" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="introduzione-ai-cicli-loops"><span class="header-section-number">4.1</span> Introduzione ai Cicli (Loops)</h2>
 <p>In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:</p>
 <ul>
-<li><code>for</code>: esegue un blocco di codice per ogni elemento di una sequenza.</li>
-<li><code>while</code>: esegue un blocco di codice finché una condizione è vera.</li>
+<li><code>for</code>: per eseguire un blocco di codice per ogni elemento di una sequenza;</li>
+<li><code>while</code>: per eseguire un blocco di codice finché una condizione è vera.</li>
 </ul>
-<p>Vediamo un esempio:</p>
+<p>Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ciclo for</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
@@ -323,15 +323,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R, spesso è più efficiente e leggibile evitare i cicli espliciti usando funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).</p>
+<p>Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).</p>
 <section id="la-funzione-lapply" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="la-funzione-lapply"><span class="header-section-number">4.1.1</span> La funzione <code>lapply()</code></h3>
-<p><code>lapply()</code> è la più generale e più usata di queste funzioni speciali e ha queste caratteristiche:</p>
-<ul>
-<li>applica una funzione a ogni elemento di una lista o di un vettore.</li>
-<li>restituisce sempre una lista.</li>
-<li>utilizza la sintassi <code>lapply(X, FUN, ...)</code> dove <code>X</code> è l’oggetto e <code>FUN</code> la funzione da applicare.</li>
-</ul>
+<p><code>lapply()</code> è la più generale e più usata di queste funzioni speciali e permette di applicare una funzione a ogni elemento di una lista o di un vettore, restituendo una lista.</p>
+<p>La sintassi è <code>lapply(X, FUN, ...)</code> dove <code>X</code> è l’oggetto e <code>FUN</code> la funzione da applicare.</p>
 <p>Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># una lista di tre vettori numerici</span></span>
@@ -353,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $c</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>lapply()</code> si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, usiamo una <strong>funzione anonima</strong> come argomento <code>FUN</code>.</p>
-<p>Vediamo come calcolarci la media della somma dei quadrati della lista di vettori, definita nell’esempio precedente:</p>
+<p><code>lapply()</code> si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, si usa una <strong>funzione anonima</strong> come argomento <code>FUN</code>.</p>
+<p>Ecco come calcolare la media della somma dei quadrati della lista di vettori, definita nell’esempio precedente:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lapply</span>(my_list, <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span>
@@ -372,7 +368,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>lapply()</code> applica questa funzione a ogni elemento della lista <code>my_list</code>.</li>
 <li>Il risultato è una lista con la somma dei quadrati per ciascun vettore.</li>
 </ul>
-<p>In generale, l’utilizzo di <code>lapply()</code> è preferito ai cicli <code>for</code> in quanto permette sia di ottenere codice più pulito e leggibile, sia una maggiore efficienza in fase di esecuzione.</p>
 </section>
 </section>
 <section id="flussi-condizionali" class="level2" data-number="4.2">
@@ -383,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>else</code> definisce cosa fare se la condizione è falsa.</li>
 <li><code>ifelse()</code> è una funzione vettoriale che valuta una condizione su ogni elemento di un vettore e restituisce un valore se la condizione è vera, un altro se falsa.</li>
 </ul>
-<p>Vediamo due esempi base:</p>
+<p>Due esempi base:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if ed else</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -413,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stazione3 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">18</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Aiutalo a:</p>
+<p>Ora non sa come fare per:</p>
 <ol type="1">
 <li>calcolare la media delle concentrazioni per ogni stazione.</li>
 <li>classificare ogni concentrazione come “Sicura” se è inferiore o uguale a 15 µg/l, “Attenzione” se è tra 15 e 50 µg/l, e “Pericolosa” se superiore a 50 µg/l.</li>
