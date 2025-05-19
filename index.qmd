@@ -9,11 +9,11 @@ source("_common.R")
 
 Questo documento raccoglie il materiale presentato durante l'omonimo corso tenuto in ARPAL nel 2025.
 
-Il corso e il relativo materiale sono stati creati per aiutare i colleghi a scoprire la potenza e la flessibilità di un linguaggio di programmazione dedicato allianalisi dei dati: `R`.
+Il corso e il relativo materiale sono stati creati per aiutare i colleghi a scoprire la potenza e la flessibilità di un linguaggio di programmazione dedicato allianalisi dei dati: R.
 
 R è una scelta ideale perché permette di iniziare subito a eseguire analisi semplici, grazie a una sintassi intuitiva e a numerose funzioni già pronte, disponibili in librerie specializzate. Inoltre, con R è possibile creare grafici chiari e di grande impatto, anche senza esperienza pregressa.
 
-Il corso è pensato per chi ha poca o nessuna esperienza con software di analisi dati e durante le 20 ore di formazione, affronteremo insieme tutti i passaggi fondamentali per portare a termine un'analisi: dalla manipolazione dei dati alla creazione di report riproducibili.
+Il corso è stato pensato per chi ha poca o nessuna esperienza con software di analisi dati e durante le 20 ore di formazione, si affrontano con gradualità tutti i passaggi fondamentali per portare a termine un'analisi: dalla manipolazione dei dati alla creazione di report riproducibili.
 
 Questo documento è rilasciato gratuitamente con licenza [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
 
