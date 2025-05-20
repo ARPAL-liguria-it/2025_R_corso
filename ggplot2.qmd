@@ -7,7 +7,7 @@ source("_common.R")
 
 La visualizzazione dei dati è una fase fondamentale nell'analisi statistica: un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.
 
-In questo capitolo si creeranno grafici professionali e personalizzati con il pacchetto `ggplot2`, basato sulla *grammar of graphics*. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzare assi, colori, legende e temi.
+In questo capitolo si creano grafici professionali e personalizzati con il pacchetto `ggplot2`, basato sulla *grammar of graphics*. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzando assi, colori, legende e temi.
 
 ## Sintassi di base di ggplot2
 
