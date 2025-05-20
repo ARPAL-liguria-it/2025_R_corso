@@ -5,13 +5,13 @@
 source("_common.R")
 ```
 
-In questo capitolo si realizzeranno report personalizzati e flessibili utilizzando i parametri in documenti **Quarto**. Utilizzando template riutilizzabili si produrranno automaticamente report con script R o da linea di comando, migliorando l'efficienza, l'automazione e la riproducibilità del flusso di lavoro.
+In questo capitolo si realizzano report personalizzati e flessibili integrando i parametri all'interno di documenti **Quarto**. Impiegando template riutilizzabili sarà possibile produrre automaticamente report con script R o da linea di comando, migliorando l'efficienza, l'automazione e la riproducibilità del flusso di lavoro.
 
 ## Report parametrizzati
 
-I report parametrizzati in **Quarto** permettono di creare documenti altamente flessibili, in cui i parametri specificati dall'utente vengono utilizzati per generare contenuti dinamici. Questo è particolarmente utile quando si vuole creare report personalizzati, adattati a diverse condizioni o esigenze, senza dover riscrivere l'intero documento.
+I report parametrizzati in **Quarto** permettono di creare documenti altamente flessibili, in cui i parametri specificati dall'utente vengono utilizzati per generare contenuti dinamici. Si tratta di una funzionalità particolarmente utile quando si vogliono creare report personalizzati, adattabili a diverse condizioni o esigenze, senza dover riscrivere ogni volta l'intero documento.
 
-In **Quarto**, i parametri sono definiti nell'intestazione YAML del documento e vengono poi utilizzati all'interno del codice e del testo. Questo approccio rende facile la generazione automatica di report con diverse variabili, come per esempio l'analisi di diversi dataset, la modifica dei filtri o dei criteri di calcolo, o la personalizzazione dei contenuti visualizzati.
+In **Quarto**, i parametri sono definiti nell'intestazione YAML del documento e vengono poi utilizzati all'interno del codice e del testo. Questo approccio rende facile la generazione automatica di report con diverse variabili, come per esempio l'analisi di diversi dataset, la modifica di filtri o di criteri di calcolo, o la personalizzazione dei contenuti visualizzati.
 
 ## Definizione dei parametri
 
@@ -43,7 +43,7 @@ In questo caso si è definito solo un parametro: il nome del comune.
 
 ## Utilizzo dei parametri
 
-Una volta definiti, i parametri possono essere utilizzati all'interno del codice o del testo del documento. In Quarto, è possibile fare riferimento ai parametri utilizzando la sintassi `params$nome_parametro`. Ecco un esempio che mostra come utilizzare questi parametri per caricare i dati e applicare un filtro sui valori di concentrazione:
+Una volta definiti, i parametri possono essere utilizzati all'interno del codice o del testo del documento utilizzando la sintassi `params$nome_parametro`. Ecco un esempio che mostra come utilizzare questi parametri per caricare i dati e applicare un filtro sui valori di concentrazione:
 
 ```` markdown
 ```{{r}}
@@ -56,7 +56,7 @@ pm_genova_completo[comune == params$comune]
 
 ## Personalizzare il report
 
-Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, si può creare un'introduzione che si adatta ai parametri definiti, come mostrato qui:
+Utilizzando i parametri, è possibile modificare dinamicamente anche il testo del report. Ad esempio, si può creare un'introduzione che si adatti ai parametri definiti, come mostrato qui:
 
 ```` markdown
 
@@ -70,7 +70,7 @@ Quando il report viene generato, il testo verrà automaticamente aggiornato per 
 
 ## Esempio completo
 
-Ecco come si combinano tutti gli elementi sopra per creare un esempio completo di report parametrizzato in **Quarto**.
+Ecco come si combinano gli elementi visti nelle sezioni precedenti per creare un report parametrizzato in **Quarto**.
 
 ```` markdown
 ---
@@ -143,7 +143,7 @@ pm_genova[, `:=` (
 
 ```
 
-I dati relativi alle stazioni di monitoraggio italiane è stato scaricato
+I dati relativi alle stazioni di monitoraggio italiane sono stati scaricati
 dalla sezione [Dati e indicatori - Aria del sito dell'istituto superiore
 per la protezione e la ricerca ambientale
 (ISPRA)](https://www.isprambiente.gov.it/it/banche-dati/).
@@ -227,7 +227,7 @@ di $50\, \mu g/m^3$ è
 
 ```` 
 
-Il report è da salvare nel file `report_dinamico.qmd`.
+Il report va salvato nel file `report_dinamico.qmd` per utilizzarlo nella sezione successiva.
 
 ## Creazione di report multipli
 
@@ -237,7 +237,7 @@ Per utilizzare `report_dinamico.qmd` come template per la creazione di report pe
   ```
   quarto render report_dinamico.qmd -P comune:Busalla
   ```
-- usare uno script di R:
+- con uno script di R:
 ```{r}
 #| eval: false
 # i comuni per cui voglio ottenere il report
