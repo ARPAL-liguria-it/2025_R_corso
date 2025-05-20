@@ -266,7 +266,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -324,7 +324,7 @@ window.Quarto = {
 </header>
 
 
-<p>In questo capitolo si integrano diverse tipologie di informazioni combinando due dataset con colonne chiave comuni. Sono esaminate alcune tra le diverse tipologie di <strong>join</strong> del pacchetto <code>data.table</code>, prendendo in considerazione casi di chiavi mancanti o non corrispondenti.</p>
+<p>n questo capitolo si esplora come combinare diverse tipologie di informazioni unendo due dataset basati su colonne chiave comuni. Si esaminano alcune delle tipologie di <strong>join</strong> del pacchetto <code>data.table</code>, affrontando anche casi di chiavi mancanti o non corrispondenti.</p>
 <section id="tipologie-di-unioni" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">7.1</span> Tipologie di unioni</h2>
 <p>Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama <em>join</em> o <em>merge</em> ed è essenziale per integrare informazioni provenienti da fonti diverse.</p>
@@ -333,7 +333,7 @@ window.Quarto = {
 <li><code>misure</code> contiene i risultati analitici di una serie di campioni;</li>
 <li><code>indirizzi</code> contiene le informazioni relative ai punti di prelievo.</li>
 </ul>
-<p>Per collegare queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:</p>
+<p>Per unire queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -361,7 +361,7 @@ window.Quarto = {
 <p>Prima di unire le tabelle, è importante decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di <em>join</em> da utilizzare.</p>
 <section id="sec-inner" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">7.1.1</span> Inner join</h3>
-<p>Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, si usa un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>.</p>
+<p>Per mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, si utilizza un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come illustrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>.</p>
 <div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -390,7 +390,7 @@ Figura&nbsp;7.1: Inner join (<span class="math inline">\(A \cap B\)</span>): ven
 </section>
 <section id="sec-left" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="sec-left"><span class="header-section-number">7.1.2</span> Right e left join</h3>
-<p>Volendo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, si usa un <strong>right join</strong>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>.</p>
+<p>Per mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, si utilizza un <strong>right join</strong>. In termini insiemistici <span class="math inline">\(B\cup(A\cap B)\)</span> dove <span class="math inline">\(B\)</span> sono gli indirizzi e <span class="math inline">\(A\)</span> le misure, come mostrato in <a href="#fig-right" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>.</p>
 <div id="fig-right" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-right-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -456,7 +456,7 @@ Per i più frettolosi
 </section>
 <section id="full-join" class="level3" data-number="7.1.3">
 <h3 data-number="7.1.3" class="anchored" data-anchor-id="full-join"><span class="header-section-number">7.1.3</span> Full join</h3>
-<p>Se si vuole mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo <code>NA</code> in assenza di corrispondenza, si usa un <em>full join</em>. In termini di insiemi, è l’unione <span class="math inline">\(A \cup B\)</span> , come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>7.3</span></a>.</p>
+<p>Per mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo <code>NA</code> in assenza di corrispondenza, si usa un <em>full join</em>. In termini di insiemi, è l’unione <span class="math inline">\(A \cup B\)</span> , come mostrato in <a href="#fig-full" class="quarto-xref">Figura&nbsp;<span>7.3</span></a>.</p>
 <div id="fig-full" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -497,7 +497,7 @@ Per i più golosi
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Con il comando <code>vignette("datatable-joins")</code> è possible avere informazioni aggiuntive sull’unione di serie di dati con il pacchetto <code>data.table</code>.</p>
+<p>Utilizzando il comando <code>vignette("datatable-joins")</code> è possibile accedere a informazioni aggiuntive sull’unione di dataset con il pacchetto <code>data.table</code>.</p>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -515,7 +515,7 @@ Per i più golosi
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ul>
-<li><p>La chiave è il codice univoco della stazione: <code>codice_europeo</code> in <code>pm_genova</code> e <code>station_eu_code</code> in <code>stazioni</code>;</p></li>
+<li><p>La chiave di unione è il codice univoco della stazione: <code>codice_europeo</code> in <code>pm_genova</code> e <code>station_eu_code</code> in <code>stazioni</code>;</p></li>
 <li><p>serve un <strong>inner join</strong> (<span class="math inline">\(A \cap B\)</span>);</p></li>
 <li><p>ecco il codice:</p>
 <div class="cell" data-layout-align="center">

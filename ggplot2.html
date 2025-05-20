@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andrea Bazzano">
 
-<title>8&nbsp; Visualizzare i dati con ggplot2 – R in ARPAL: dalle basi alla prima analisi dei dati</title>
+<title>8&nbsp; Visualizzazione dei dati con ggplot2 – R in ARPAL: dalle basi alla prima analisi dei dati</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html">Visualizzazione e reportistica</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html">Visualizzazione e reportistica</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -266,7 +266,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -303,9 +303,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html">Visualizzazione e reportistica</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reports.html">Visualizzazione e reportistica</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></h1>
+<h1 class="title"><span id="sec-ggplot2" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></h1>
 </div>
 
 
@@ -322,17 +322,17 @@ window.Quarto = {
 </header>
 
 
-<p>La visualizzazione dei dati è una fase fondamentale nell’analisi statistica: un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.</p>
+<p>La visualizzazione dei dati è una fase cruciale nell’analisi statistica, in quanto un grafico chiaro facilita l’interpretazione e la comunicazione dei risultati.</p>
 <p>In questo capitolo si creano grafici professionali e personalizzati con il pacchetto <code>ggplot2</code>, basato sulla <em>grammar of graphics</em>. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzando assi, colori, legende e temi.</p>
 <section id="sintassi-di-base-di-ggplot2" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="sintassi-di-base-di-ggplot2"><span class="header-section-number">8.1</span> Sintassi di base di ggplot2</h2>
-<p>Un grafico con <code>ggplot2</code> si costruisce combinando tre elementi principali:</p>
+<p>Un grafico creato con <code>ggplot2</code> si costruisce combinando tre elementi principali:</p>
 <ul>
-<li><strong>dataset</strong>: il <code>data.frame</code> o la <code>data.table</code> con i dati da visualizzare;</li>
+<li><strong>dataset</strong>: il <code>data.frame</code> o la <code>data.table</code> contenente i dati da visualizzare;</li>
 <li><strong>estetiche (<code>aes</code>)</strong>: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);</li>
 <li><strong>geometria (<code>geom_</code>)</strong>: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).</li>
 </ul>
-<p>Ecco un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:</p>
+<p>Di seguito viene mostrato un esempio per la creazione di un semplice grafico a dispersione utilizzando un dataset sintetico:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset sintetico</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
@@ -374,8 +374,7 @@ Figura&nbsp;8.1: un semplice grafico di dispersione.
 </div>
 <section id="sec-layers" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="sec-layers"><span class="header-section-number">8.1.1</span> Aggiungere livelli al grafico</h3>
-<p><code>ggplot2</code> permette di sovrapporre più livelli per arricchire il grafico con elementi aggiuntivi come linee di tendenza, etichette, pannelli, titoli e annotazioni.<br>
-Ogni livello si aggiunge con l’operatore <code>+</code>.</p>
+<p><code>ggplot2</code> consente di aggiungere più livelli per arricchire il grafico con elementi aggiuntivi, come linee di tendenza, etichette, pannelli, titoli e annotazioni. I livelli vengono aggiunti tramite l’operatore <code>+</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>misure <span class="sc">|&gt;</span>                           <span class="co"># dataset</span></span>
@@ -406,7 +405,7 @@ Figura&nbsp;8.2: un grafico di dispersione suddiviso su più panelli e con una r
 </div>
 </div>
 </div>
-<p>I livelli di tipo <code>geom_</code> aggiungono tipologie di grafici e i più comuni sono:</p>
+<p>I livelli di tipo <code>geom_</code> aggiungono diverse tipologie di grafici. I più comuni sono:</p>
 <ul>
 <li><code>geom_point()</code> per grafici a dispersione;</li>
 <li><code>geom_line()</code> per grafici a linee;</li>

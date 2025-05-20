@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,18 +293,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo si utilizza <strong>Quarto</strong>, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All’interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.</p>
+<p>In questo capitolo si utilizza <strong>Quarto</strong>, uno strumento per creare documenti dinamici e professionali con R, che consente di integrare codice, testo e output in un unico file, generando report chiari e personalizzati. I report possono includere tabelle e grafici, migliorando così la comunicazione e la riproducibilità dei risultati.</p>
 <section id="sec-quarto" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="sec-quarto"><span class="header-section-number">9.1</span> I documenti Quarto</h2>
-<p>A partire dal <a href="start.html" class="quarto-xref"><span>Capitolo 2</span></a> si è organizzato il codice in R utilizzando script e aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, <strong>Quarto</strong> si rivela uno strumento utile.</p>
+<p>A partire dal <a href="start.html" class="quarto-xref"><span>Capitolo 2</span></a> il codice in R è stato organizzato utilizzando script e commenti per chiarire le sezioni più complesse. Tuttavia, nei progetti di analisi dati complessi, è importante integrare documentazione testuale per collegare il codice ai risultati. In tali casi, <strong>Quarto</strong> si rivela uno strumento particolarmente utile.</p>
 <p><strong>Quarto</strong> è una piattaforma <em>open source</em> che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file <code>.qmd</code>. Supporta linguaggi come <code>R</code>, <code>Python</code> e <code>Julia</code>, e consente di generare output in vari formati (HTML, PDF, Word).</p>
 <p>I documenti cosí generati possono aggiornarsi automaticamente a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, Quarto supporta più linguaggi di programmazione, facilitando lavori collaborativi, senza doversi preoccupare di creare gruppi di lavoro che condividano lo stesso linguaggio di programmazione. La sua natuta riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l’affidabilità dei risultati.</p>
 <p>Creare un documento <strong>Quarto</strong> da RStudio è semplice:</p>
 <ol type="1">
-<li>si segue <strong>File &gt; New File &gt; Quarto Document</strong>;</li>
-<li>si inserisce il titolo e l’autore nel pannello di creazione;</li>
-<li>si sceglie il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);</li>
-<li>viene creato un file <code>.qmd</code> con un’intestazione YAML simile a:</li>
+<li>selezionare <strong>File &gt; New File &gt; Quarto Document</strong>;</li>
+<li>inserire il titolo e l’autore nel pannello di creazione;</li>
+<li>scegliere il formato di output (il default è HTML, ma è possibile selezionare anche PDF, Word, ecc.);</li>
+<li>verrà creato un file <code>.qmd</code> con un’intestazione YAML simile a:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Titolo del documento"</span></span>
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ora si può iniziare a scrivere il primo documento alternando testo e codice.</p>
 <section id="il-testo" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="il-testo"><span class="header-section-number">9.1.1</span> Il testo</h3>
-<p>All’interno di un documento <strong>Quarto</strong> il testo è inserito semplicemente scrivendo al di sotto dell’intestazione e utilizzando la tipica sintassi <strong>markdown</strong>, ormai sempre più diffusa. Ecco un esempio:</p>
+<p>In un documento <strong>Quarto</strong>, il testo si inserisce scrivendo al di sotto dell’intestazione e utilizzando la sempre più diffusa sintassi <strong>markdown</strong>. Ecco un esempio:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>title: "Il mio primo documento con Quarto"</span>
@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="il-codice" class="level3" data-number="9.1.2">
 <h3 data-number="9.1.2" class="anchored" data-anchor-id="il-codice"><span class="header-section-number">9.1.2</span> Il codice</h3>
-<p>Per inserire del codice all’interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (<em>chunk</em>) di codice inizierà con <code>```{r}</code> e terminerà con <code>```</code> e al suo interno è possibile inserire del normale codice di R:</p>
+<p>Per inserire del codice all’interno del documento è sufficiente premere i tasti Ctrl + Alt + I: lo spezzone (<em>chunk</em>) di codice inizierà con <code>```{r}</code> e terminerà con <code>```</code> e al suo interno è possibile inserire del normale codice di R:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="le-tabelle" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="le-tabelle"><span class="header-section-number">9.1.3</span> Le tabelle</h3>
-<p>All’interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto <code>gt</code>. Tale pacchetto permette di personalizzare nel dettaglio la visualizzazione delle tabelle, impostando i nomi delle colonne, le colonne da unire e la formattazione dei valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di <code>gt</code>:</p>
+<p>All’interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto <code>gt</code>. Tale pacchetto consente di configurare la visualizzazione delle tabelle, impostando i nomi delle colonne, unendo le colonne e formattando i valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di <code>gt</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1074,7 +1074,7 @@ Tempo
 </section>
 <section id="unire-i-puntini" class="level3" data-number="9.1.4">
 <h3 data-number="9.1.4" class="anchored" data-anchor-id="unire-i-puntini"><span class="header-section-number">9.1.4</span> Unire i puntini</h3>
-<p>Nelle sezioni precedenti sono stati forniti tutti gli elementi per creare un documento di esempio. Per rendersi la vita più semplice, è possibile specificare nell’intestazione <code>echo</code>, <code>warning</code> e <code>message</code> come <code>FALSE</code>, così non si vedrà il codice senza doverlo ripetere all’interno di ogni spezzone.</p>
+<p>Nelle sezioni precedenti sono stati forniti tutti gli elementi per creare un documento di esempio. Per semplificare il processo, è possibile specificare nell’intestazione <code>echo</code>, <code>warning</code> e <code>message</code> come <code>FALSE</code>, così non si vedrà il codice senza doverlo ripetere all’interno di ogni spezzone.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Analisi importanti"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Pico de Paperis, Ph.D."</span></span>
@@ -1792,8 +1792,8 @@ Per i più golosi
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ggplot2.html" class="pagination-link" aria-label="Visualizzare i dati con `ggplot2`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span>
+      <a href="./ggplot2.html" class="pagination-link" aria-label="Visualizzazione dei dati con `ggplot2`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

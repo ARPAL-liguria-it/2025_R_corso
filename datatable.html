@@ -263,7 +263,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,7 +326,7 @@ window.Quarto = {
 </header>
 
 
-<p>In questo capitolo si utilizzerà il pacchetto <code>data.table</code> per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Una volta entranti in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati, si vedrà come importare dati da file esterni, pulirli e prepararli per l’analisi.</p>
+<p>In questo capitolo si utilizzerà il pacchetto <code>data.table</code> per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Una volta entrati in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati, si apprenderà come importare dati da file esterni, pulirli e prepararli per l’analisi.</p>
 <section id="sec-load" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-load"><span class="header-section-number">5.1</span> Il pacchetto <code>data.table</code></h2>
 <p>Rispetto ai tradizionali <code>data.frame</code> trattati nella <a href="objects.html#sec-df" class="quarto-xref"><span>Sezione 3.2.5</span></a>, il pacchetto <code>data.table</code> offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati. <code>data.table</code> è stato creato per lavorare in modo efficiente con dataset di grandi dimensioni, tuttavia la sua sintassi lo rende pratico e agevole da usare anche per dataset di piccole o medie dimensioni.</p>
@@ -862,7 +862,7 @@ Pipe e segnalibri
 </section>
 <section id="sec-update" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-update"><span class="header-section-number">5.5</span> Modificare le colonne</h2>
-<p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 5.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
+<p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 5.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore di modifica <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converte i valori di `valido` da testo a valori logici</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, valido <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(valido <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>

@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -291,10 +291,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo sono discussi alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (<code>for</code> e <code>while</code>), applicando funzioni in modo efficiente (<code>lapply()</code>), e facendo seguire al codice percorsi differenziati con i flussi condizionali (<code>if</code>, <code>else</code> e <code>ifelse()</code>).</p>
+<p>In questo capitolo si approfondiscono alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (<code>for</code> e <code>while</code>), applicare funzioni in modo efficiente (<code>lapply()</code>) e gestire flussi condizionali (<code>if</code>, <code>else</code> e <code>ifelse()</code>).</p>
 <section id="introduzione-ai-cicli-loops" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="introduzione-ai-cicli-loops"><span class="header-section-number">4.1</span> Introduzione ai Cicli (Loops)</h2>
-<p>In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:</p>
+<p>I cicli consentono di ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:</p>
 <ul>
 <li><code>for</code>: per eseguire un blocco di codice per ogni elemento di una sequenza;</li>
 <li><code>while</code>: per eseguire un blocco di codice finché una condizione è vera.</li>
@@ -323,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).</p>
+<p>Questo cicli sono comuni a ogni linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).</p>
 <section id="la-funzione-lapply" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="la-funzione-lapply"><span class="header-section-number">4.1.1</span> La funzione <code>lapply()</code></h3>
 <p><code>lapply()</code> è la più generale e più usata di queste funzioni speciali e permette di applicare una funzione a ogni elemento di una lista o di un vettore, restituendo una lista.</p>
@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>lapply()</code> si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, si usa una <strong>funzione anonima</strong> come argomento <code>FUN</code>.</p>
-<p>Ecco come calcolare la media della somma dei quadrati della lista di vettori, definita nell’esempio precedente:</p>
+<p>Ecco come calcolare la somma dei quadrati della lista di vettori, definita nell’esempio precedente:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">lapply</span>(my_list, <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span>

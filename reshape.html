@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,10 +293,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo si mostra come gestire i dati nei loro due formati principali: <strong>wide</strong> (una entità osservata per riga, variabili in colonne) e <strong>long</strong> (una misura per riga, con tipo e valore separati). Si passerà da un formato all’altro con i comandi <code>melt()</code> e <code>dcast()</code>, imparando a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione. Queste tecniche sono fondamentali per preparare i dati all’analisi e alla successiva fase di visualizzazione.</p>
+<p>In questo capitolo vengono mostrati i principali formati di dati: <strong>wide</strong> (un’entità osservata per riga, con variabili in colonne) e <strong>long</strong> (una misura per riga, con tipo e valore separati). Si esploreranno i comandi <code>melt()</code> e <code>dcast()</code> per passare da un formato all’altro, affrontando casi con misure multiple o mancanti e l’uso di opzioni di aggregazione. Queste tecniche sono fondamentali per preparare i dati all’analisi e alla fase successiva di visualizzazione.</p>
 <section id="sec-shapes" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-shapes"><span class="header-section-number">6.1</span> La forma dei dati</h2>
-<p>I dati con cui si lavora abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
+<p>I dati con cui si lavora abitualmente sono costituiti da entità osservate (o osservabili) e misure (o variabili) ad esse associate. Ad esempio, nei dati prodotti da un laboratorio, le entità osservate sono i singoli campioni, mentre le misure corrispondono ai valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.</p>
 <p>Questa tipologia di dati possono essere organizzati in due differenti formati:</p>
 <ul>
 <li><p><strong>wide</strong>: i dati sono organizzati con un’entità osservata per riga e una misura per colonna. Ecco un esempio:</p>
@@ -1349,13 +1349,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:        22311/24         2024-03-10      cadmio          0.04</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:        22311/24         2024-03-10      piombo          0.12</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>La funzione “scioglie” le colonne specificate in <code>measure.vars</code> in due colonne: la prima relativa alla tipologia di misura, identificata con il nome specificato in <code>variable.name</code> e una seconda relativa al valore della misura, identificata con il nome specificato in <code>value.name</code>. Le informazioni contenute in <code>id.vars</code> sono ripetute per il numero totale di misure effettuate per ogni entità osservata.</p>
+<p>La funzione “scioglie” le colonne specificate in <code>measure.vars</code> in due colonne: una relativa alla tipologia di misura, identificata dal nome specificato in <code>variable.name</code>, e una seconda relativa al valore della misura, identificata dal nome specificato in <code>value.name</code>. Le informazioni contenute in <code>id.vars</code> sono ripetute per ogni entità osservata, in base al numero totale di misure effettuate.</p>
 </section>
 <section id="la-funzione-dcast-da-long-a-wide" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="la-funzione-dcast-da-long-a-wide"><span class="header-section-number">6.3</span> La funzione <code>dcast()</code>: da long a wide</h2>
 <section id="sec-dcast-base" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="sec-dcast-base"><span class="header-section-number">6.3.1</span> Significato e sintassi di base</h3>
-<p>La funzione <code>dcast()</code> proietta i dati in formato <strong>long</strong> distribuendone il contenuto su un più colonne, per ottenere un formato <strong>wide</strong>. Si tratta di un’operazione analoga a quella fornita dalle tabelle <em>pivot</em> dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione <code>melt()</code>.</p>
+<p>La funzione <code>dcast()</code> proietta i dati in formato <strong>long</strong> distribuendo il contenuto su un più colonne, per ottenere un formato <strong>wide</strong>. Si tratta di un’operazione analoga a quella fornita dalle tabelle <em>pivot</em> dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione <code>melt()</code>.</p>
 <p>La complessità e potenza dell’operazione di proiezione è testimoniata dalla sintassi della funzione <code>dcast()</code>:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(data, formula, <span class="at">fun.aggregate =</span> <span class="cn">NULL</span>, <span class="at">value.var =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1394,7 +1394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>campioni_long <span class="ot">&lt;-</span> <span class="fu">rbind</span>(campioni_long,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                       nuovi_dati)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se si proiettassero i dati come fatto nella <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 6.3.1</span></a>, si otterrebbe:</p>
+<p>Se i dati venissero proiettati come mostrato nella sezione <a href="#sec-dcast-base" class="quarto-xref"><span>Sezione 6.3.1</span></a>, si otterrebbe:</p>
 <div class="cell" data-layout-align="center">
 <pre><code>#&gt; Warning in dcast.data.table(campioni_long, codice_campione + data_campionamento
 #&gt; ~ : 'fun.aggregate' is NULL, but found duplicate row/column combinations, so

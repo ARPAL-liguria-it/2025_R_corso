@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Per eseguire il codice presentato durante il corso, è necessario installare R, RStudio e i seguenti pacchetti <code>data.table</code>, <code>readxl</code>, <code>ggplot2</code>, <code>gt</code> e <code>quarto</code>.</p>
 <section id="r" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="r"><span class="header-section-number">1.2.1</span> R</h3>
-<p>R può essere scaricato dal <em>Comprensive R Archive Network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: se si intende usare R regolarmente, è consigliabile mantenere il software aggiornato.</p>
+<p>R può essere scaricato dal <em>Comprehensive R Archive Network</em> (<a href="https://cloud.r-project.org/">CRAN</a>), seguendo le istruzioni relative al proprio sistema operativo. Ogni anno viene rilasciata una nuova versione principale, accompagnata da circa tre aggiornamenti minori: per un uso regolare di R, è consigliabile mantenere il software aggiornato.</p>
 <p>R è un software libero, distribuito sotto una combinazione di licenze GNU General Public License v2 e v3 e GNU Lesser General Public License v2.1.</p>
 </section>
 <section id="rstudio" class="level3" data-number="1.2.2">
@@ -345,7 +345,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 </section>
 <section id="i-progetti-di-rstudio" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="i-progetti-di-rstudio"><span class="header-section-number">1.2.3</span> I progetti di RStudio</h3>
-<p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso si lavorerà all’interno di un progetto dedicato: per crearlo è necessario cliccare sull’icona <img src="images/rproject.png" height="25"> di RStudio, in alto a destra. Selezionando prima “New Project…” e poi “New directory” è richiesto dove salvare il progetto e con quale nome.</p>
+<p>Per mantenere in ordine e facilmente accessibili i diversi file collegati a una medesima analisi è possibile creare un progetto di RStudio. Durante il corso si lavorerà all’interno di un progetto dedicato: per crearlo si clicca sull’icona <img src="images/rproject.png" height="25"> di RStudio, in alto a destra. Selezionando prima “New Project…” e poi “New directory”, viene richiesto di indicare dove salvare il progetto e con quale nome.</p>
 <p>All’interno della cartella dedicata al progetto si crea la cartella <code>data</code>, salvando al suo interno un <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_anagrafica_stazioni.xlsx">dataset in formato xlsx</a> e <a href="https://github.com/ARPAL-liguria-it/2025_R_corso/raw/refs/heads/main/data/2025-04-24_pm1025_ambiente_liguria.csv.gz">uno in formato csv compresso</a>: saranno utili nel <a href="datatable.html" class="quarto-xref"><span>Capitolo 5</span></a>.</p>
 </section>
 <section id="i-pacchetti-di-r" class="level3" data-number="1.2.4">
@@ -353,7 +353,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <p>Le funzionalità di R possono essere ampliate tramite pacchetti. La lista completa, molto ampia e variegata, è presente sul sito del <a href="https://cran.r-project.org/web/packages/available_packages_by_date.html">CRAN</a>. Alcuni di questi pacchetti sono sviluppati da appassionati, altri da statistici e ingegneri del software di fama mondiale. Tutte le funzioni e i dati contenuti in un pacchetto sono documentati, il codice sorgente è completamente consultabile e spesso è possibile collaborare direttamente allo sviluppo su piattaforme come GitHub. Molti pacchetti sono inoltre collegati a libri di testo o articoli scientifici.</p>
 <p>I pacchetti si installano in R con il comando:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacchetto"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"nome_pacchetto"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Durante il corso saranno utilizzati alcuni pacchetti molto diffusi:</p>
 <ul>
@@ -368,7 +368,7 @@ Figura&nbsp;1.1: Schermata di RStudio: in alto, da sinistra a destra, si trova i
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gt"</span>, <span class="st">"R.utils"</span>, <span class="st">"quarto"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Una volta installati, si procederà direttamente a caricare e usare tali pacchetti solo laddove necessario.</p>
+<p>Una volta installati, i pacchetti verranno caricati e utilizzati solo laddove necessario.</p>
 </section>
 </section>
 <section id="per-approfondire" class="level2" data-number="1.3">

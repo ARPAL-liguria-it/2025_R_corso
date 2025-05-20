@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzare i dati con <code>ggplot2</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualizzazione dei dati con <code>ggplot2</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In questo capitolo si realizzano report personalizzati e flessibili integrando i parametri all’interno di documenti <strong>Quarto</strong>. Impiegando template riutilizzabili sarà possibile produrre automaticamente report con script R o da linea di comando, migliorando l’efficienza, l’automazione e la riproducibilità del flusso di lavoro.</p>
 <section id="report-parametrizzati" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="report-parametrizzati"><span class="header-section-number">10.1</span> Report parametrizzati</h2>
-<p>I report parametrizzati in <strong>Quarto</strong> permettono di creare documenti altamente flessibili, in cui i parametri specificati dall’utente vengono utilizzati per generare contenuti dinamici. Si tratta di una funzionalità particolarmente utile quando si vogliono creare report personalizzati, adattabili a diverse condizioni o esigenze, senza dover riscrivere ogni volta l’intero documento.</p>
+<p>I report parametrizzati in <strong>Quarto</strong> consentono di creare documenti altamente flessibili, in cui i parametri specificati dall’utente vengono utilizzati per generare contenuti dinamici. Si tratta di una funzionalità particolarmente utile quando si vogliono creare report personalizzati, adattabili a diverse condizioni o esigenze, senza dover riscrivere ogni volta l’intero documento.</p>
 <p>In <strong>Quarto</strong>, i parametri sono definiti nell’intestazione YAML del documento e vengono poi utilizzati all’interno del codice e del testo. Questo approccio rende facile la generazione automatica di report con diverse variabili, come per esempio l’analisi di diversi dataset, la modifica di filtri o di criteri di calcolo, o la personalizzazione dei contenuti visualizzati.</p>
 </section>
 <section id="definizione-dei-parametri" class="level2" data-number="10.2">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">params:</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  comune: "Genova"</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In questo caso si è definito solo un parametro: il nome del comune.</p>
+<p>In questo caso è stato definito un solo parametro: il nome del comune.</p>
 </section>
 <section id="utilizzo-dei-parametri" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="utilizzo-dei-parametri"><span class="header-section-number">10.3</span> Utilizzo dei parametri</h2>
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduzione</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Nel presente report vengono analizzati i dati relativi alle concentrazioni di PM~10~ e PM~2,5~ misurate nel comune di <span class="in">`r params$comune`</span>.</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Quando il report viene generato, il testo verrà automaticamente aggiornato per riflettere i valori specificati nei parametri.</p>
+<p>Quando il report viene generato, il testo viene automaticamente aggiornato in base ai valori specificati nei parametri.</p>
 </section>
 <section id="esempio-completo" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="esempio-completo"><span class="header-section-number">10.5</span> Esempio completo</h2>
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
 <span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tolower</span>() <span class="sc">|&gt;</span>                  <span class="co"># trasforma in minuscolo</span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span>      <span class="co"># sostituisce gli spazi con uderscore</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span>      <span class="co"># sostituisce gli spazi con underscore</span></span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>) <span class="co"># rimuove accenti e caratteri speciali  </span></span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>pm_genova[, valido <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(valido <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
@@ -526,12 +526,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report_aria</span>(<span class="at">template =</span> <span class="st">"report_dinamico.qmd"</span>, <span class="at">par_comune =</span> x)</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>L’approccio da riga di comando è ideale per contesti automatizzati e ambienti non interattivi, come l’esecuzione pianificata o in risposta a eventi esterni. Al contrario, l’approccio tramite script R è più adatto alla generazione di report multipli, alla gestione dinamica dei parametri e a un controllo più fine sul flusso di lavoro e sull’organizzazione dei risultati.</p>
+<p>L’approccio da riga di comando risulta ideale in contesti automatizzati o non interattivi, come l’esecuzione pianificata o in risposta a eventi esterni. Al contrario, l’approccio tramite script R è più adatto alla generazione di report multipli, alla gestione dinamica dei parametri e a un controllo più fine sul flusso di lavoro e sull’organizzazione dei risultati.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Strutturare un template per report dinamici utile nel vostro contesto lavorativo. Una volta identificata l’applicazione di interesse riflettete su:</p>
+<p>Strutturare un template per report dinamici utile nel vostro contesto lavorativo. Dopo aver identificato l’applicazione di interesse, riflettere su:</p>
 <ul>
 <li>Quali sono le parti fisse del report?</li>
 <li>Quali sono i parametri del report?</li>
