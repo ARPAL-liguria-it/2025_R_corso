@@ -293,13 +293,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In questo capitolo si utilizzerà <strong>Quarto</strong>, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All’interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.</p>
+<p>In questo capitolo si utilizza <strong>Quarto</strong>, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All’interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.</p>
 <section id="sec-quarto" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="sec-quarto"><span class="header-section-number">9.1</span> I documenti Quarto</h2>
 <p>A partire dal <a href="start.html" class="quarto-xref"><span>Capitolo 2</span></a> si è organizzato il codice in R utilizzando script e aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, <strong>Quarto</strong> si rivela uno strumento utile.</p>
 <p><strong>Quarto</strong> è una piattaforma <em>open source</em> che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file <code>.qmd</code>. Supporta linguaggi come <code>R</code>, <code>Python</code> e <code>Julia</code>, e consente di generare output in vari formati (HTML, PDF, Word).</p>
-<p><strong>Quarto</strong> permette di aggiornare automaticamente i risultati a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, supportando più linguaggi di programmazione, facilita lavori collaborativi, evitando di doversi preoccupare di conoscere tutti lo stesso codice. La sua natura riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l’affidabilità dei risultati.</p>
-<p>Creare un documento <strong>quarto</strong> da RStudio è semplice:</p>
+<p>I documenti cosí generati possono aggiornarsi automaticamente a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, Quarto supporta più linguaggi di programmazione, facilitando lavori collaborativi, senza doversi preoccupare di creare gruppi di lavoro che condividano lo stesso linguaggio di programmazione. La sua natuta riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l’affidabilità dei risultati.</p>
+<p>Creare un documento <strong>Quarto</strong> da RStudio è semplice:</p>
 <ol type="1">
 <li>si segue <strong>File &gt; New File &gt; Quarto Document</strong>;</li>
 <li>si inserisce il titolo e l’autore nel pannello di creazione;</li>
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ora si può iniziare a scrivere il primo documento alternando testo e codice.</p>
 <section id="il-testo" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="il-testo"><span class="header-section-number">9.1.1</span> Il testo</h3>
-<p>All’interno di un documento di <strong>quarto</strong> il testo è inserito semplicemente scrivendo al di sotto dell’intestazione e utilizzando la tipica sintassi <strong>markdown</strong>, ormai sempre più diffusa. Ecco un esempio:</p>
+<p>All’interno di un documento <strong>Quarto</strong> il testo è inserito semplicemente scrivendo al di sotto dell’intestazione e utilizzando la tipica sintassi <strong>markdown</strong>, ormai sempre più diffusa. Ecco un esempio:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>title: "Il mio primo documento con Quarto"</span>
