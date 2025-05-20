@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo si utilizzerà **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All'interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.
+In questo capitolo si utilizza **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All'interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.
 
 ## I documenti Quarto {#sec-quarto}
 
@@ -13,9 +13,9 @@ A partire dal @sec-basics si è organizzato il codice in R utilizzando script e 
 
 **Quarto** è una piattaforma *open source* che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file `.qmd`. Supporta linguaggi come `R`, `Python` e `Julia`, e consente di generare output in vari formati (HTML, PDF, Word).
 
-**Quarto** permette di aggiornare automaticamente i risultati a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, supportando più linguaggi di programmazione, facilita lavori collaborativi, evitando di doversi preoccupare di conoscere tutti lo stesso codice. La sua natura riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l'affidabilità dei risultati.
+I documenti cosí generati possono aggiornarsi automaticamente a ogni cambiamento di codice o dati, garantendo coerenza e riducendo il rischio di errori. Inoltre, Quarto supporta più linguaggi di programmazione, facilitando lavori collaborativi, senza doversi preoccupare di creare gruppi di lavoro che condividano lo stesso linguaggio di programmazione. La sua natuta riproducibile assicura trasparenza e tracciabilità, aspetti essenziali per l'affidabilità dei risultati.
 
-Creare un documento **quarto** da RStudio è semplice:
+Creare un documento **Quarto** da RStudio è semplice:
 
 1. si segue **File > New File > Quarto Document**;
 2. si inserisce il titolo e l'autore nel pannello di creazione;
@@ -36,7 +36,7 @@ Ora si può iniziare a scrivere il primo documento alternando testo e codice.
 
 ### Il testo
 
-All'interno di un documento di **quarto** il testo è inserito semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Ecco un esempio:
+All'interno di un documento **Quarto** il testo è inserito semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Ecco un esempio:
 
 ```` markdown
 
