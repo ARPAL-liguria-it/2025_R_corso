@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo si integreranno informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Si utilizzeranno alcune tra le diverse tipologie di **join** del pacchetto `data.table`, gestendo casi di chiavi mancanti o non corrispondenti.
+In questo capitolo si integrano diverse tipologie di informazioni combinando due dataset con colonne chiave comuni. Sono esaminate alcune tra le diverse tipologie di **join** del pacchetto `data.table`, prendendo in considerazione casi di chiavi mancanti o non corrispondenti.
 
 ## Tipologie di unioni
 
@@ -14,9 +14,9 @@ Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dat
 Si prendano come esempio due `data.table`:
 
 - `misure` contiene i risultati analitici di una serie di campioni;
-- `indirizzi`: contiene le informazioni relative ai punti di prelievo.
+- `indirizzi` contiene le informazioni relative ai punti di prelievo.
 
-Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:
+Per collegare queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:
 
 ```{r}
 library(data.table)
@@ -47,7 +47,7 @@ Prima di unire le tabelle, è importante decidere come gestire i dati senza corr
 
 ### Inner join {#sec-inner}
 
-Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, si usa un **inner join**. In termini di insiemi, corrisponde alliintersezione $A \cap B$, come mostrato in @fig-inner.
+Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, si usa un **inner join**. In termini di insiemi, corrisponde all'intersezione $A \cap B$, come mostrato in @fig-inner.
 
 ![Inner join ($A \cap B$): vengono restituite solo le righe di A che compaiono anche in B.](images/inner_join.png){#fig-inner}
 
