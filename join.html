@@ -324,16 +324,16 @@ window.Quarto = {
 </header>
 
 
-<p>In questo capitolo si integreranno informazioni da tabelle diverse combinando due dataset con colonne chiave comuni. Si utilizzeranno alcune tra le diverse tipologie di <strong>join</strong> del pacchetto <code>data.table</code>, gestendo casi di chiavi mancanti o non corrispondenti.</p>
+<p>In questo capitolo si integrano diverse tipologie di informazioni combinando due dataset con colonne chiave comuni. Sono esaminate alcune tra le diverse tipologie di <strong>join</strong> del pacchetto <code>data.table</code>, prendendo in considerazione casi di chiavi mancanti o non corrispondenti.</p>
 <section id="tipologie-di-unioni" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="tipologie-di-unioni"><span class="header-section-number">7.1</span> Tipologie di unioni</h2>
 <p>Quando si lavora con i dati, capita spesso di dover combinare due insiemi di dati basandosi su una o più colonne chiave comuni. Questo processo si chiama <em>join</em> o <em>merge</em> ed è essenziale per integrare informazioni provenienti da fonti diverse.</p>
 <p>Si prendano come esempio due <code>data.table</code>:</p>
 <ul>
 <li><code>misure</code> contiene i risultati analitici di una serie di campioni;</li>
-<li><code>indirizzi</code>: contiene le informazioni relative ai punti di prelievo.</li>
+<li><code>indirizzi</code> contiene le informazioni relative ai punti di prelievo.</li>
 </ul>
-<p>Per collegare queste due tabelle serve una colonna in comune, che nel nostro caso è il codice del campione:</p>
+<p>Per collegare queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -361,7 +361,7 @@ window.Quarto = {
 <p>Prima di unire le tabelle, è importante decidere come gestire i dati senza corrispondenza: questa scelta determina il tipo di <em>join</em> da utilizzare.</p>
 <section id="sec-inner" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-inner"><span class="header-section-number">7.1.1</span> Inner join</h3>
-<p>Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, si usa un <strong>inner join</strong>. In termini di insiemi, corrisponde alliintersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>.</p>
+<p>Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l’indirizzo, si usa un <strong>inner join</strong>. In termini di insiemi, corrisponde all’intersezione <span class="math inline">\(A \cap B\)</span>, come mostrato in <a href="#fig-inner" class="quarto-xref">Figura&nbsp;<span>7.1</span></a>.</p>
 <div id="fig-inner" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
