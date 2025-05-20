@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo sono gestiti i dati nei loro due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Si passerà da un formato all'altro con i comandi `melt()` e `dcast()`, imparando a gestire casi con misure multiple o mancanti, e a utilizzando opzioni di aggregazione per risolvere duplicati. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla visualizzazione.
+In questo capitolo si mostra come gestire i dati nei loro due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Si passerà da un formato all'altro con i comandi `melt()` e `dcast()`, imparando a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla successiva fase di visualizzazione.
 
 ## La forma dei dati {#sec-shapes}
 
@@ -59,7 +59,7 @@ Questa tipologia di dati possono essere organizzati in due differenti formati:
       gt()
     ```
 
-    È un formato indispensabile per la gestione dei dati con molte variabili o per la produzione di grafici e l'esecuzione di molte analisi statistiche.
+    È un formato indispensabile per la gestione dei dati con molte variabili o per la produzione di grafici e l'esecuzione di numerose analisi statistiche.
 
 La scelta tra i due formati dipende dal tipo di operazione che si vuole eseguire sui dati ed è frequente dover passare da un formato all'altro.
 
