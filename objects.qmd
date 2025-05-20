@@ -5,19 +5,19 @@
 source("_common.R")
 ```
 
-In questo capitolo si affrontano le principali tipologie di elementi e contenitori in R. Si analizzerà il modo in cui R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si comincerà a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
+In questo capitolo si affrontano le principali tipologie di elementi e contenitori in R. Si analizzerà il modo in cui R gestisce numeri, testo, valori logici, elementi mancanti e nulli. Saranno presentati i contenitori fondamentali per organizzare i dati: vettori, matrici, fattori, liste e data frame. Si inizia a creare, manipolare e accedere a questi oggetti fondamentali, oltre a utilizzare funzioni base per esplorarne la struttura e il contenuto.
 
 ## Tipologie di elementi {#sec-typeof}
 
 Prima di vedere le classi di oggetti di R, che possono essere immaginate come diverse tipologie di contenitori, è bene dare uno sguardo alle tipologie di elementi che è possibile inserire in questi contenitori.
 
-Quando si avrà un dubbio sulla tipologia di un dato elemento è bene usare la funzione `typeof()`.
+In caso di dubbio sulla tipologia di un dato elemento è bene usare la funzione `typeof()`.
 
 ### Numeri
 
 R gestisce diversi tipi di numeri, ma nella maggior parte dei casi si usa il tipo `double`.
 Questo significa che i numeri con la virgola (decimali) sono memorizzati con precisione elevata, permettendo di rappresentare valori molto precisi.
-Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non sia assegnato esplicitamente il tipo `integer`, aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia `double`, anche se dovesse avere valore intero (es. 5). L'Utilizzo di elementi di tipo `double` è semplice:
+Anche i numeri interi (come 5) sono memorizzati come `double`, a meno che non sia assegnato esplicitamente il tipo `integer`, aggiungendo una `L` (es. `5L`). Ogni misura - ad eccezione dei conteggi puri - ricade nella tipologia `double`, anche se dovesse avere valore intero (es. 5). L'utilizzo di elementi di tipo `double` è semplice:
 
 ```{r}
 a <- c(2, 2.1, 2.5) # double
@@ -36,7 +36,7 @@ R usa una singola tipologia per le stringhe di testo: indipendentemente dalla lo
 c <- "roba"
 ```
 
-Talvolta, i numeri possono essere erroneamente archiviati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripuliti. Per riconvertirli in numeri, si usa la funzione `as.numeric()`.
+Talvolta, i numeri possono essere erroneamente memorizzati come testo. Questo è un risultato indesiderato ma abbastanza frequente quando si importano dati non ben ripuliti. Per riconvertirli in numeri, si usa la funzione `as.numeric()`.
 
 ### Logici
 

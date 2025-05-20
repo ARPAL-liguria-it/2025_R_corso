@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo si integrano diverse tipologie di informazioni combinando due dataset con colonne chiave comuni. Sono esaminate alcune tra le diverse tipologie di **join** del pacchetto `data.table`, prendendo in considerazione casi di chiavi mancanti o non corrispondenti.
+n questo capitolo si esplora come combinare diverse tipologie di informazioni unendo due dataset basati su colonne chiave comuni. Si esaminano alcune delle tipologie di **join** del pacchetto `data.table`, affrontando anche casi di chiavi mancanti o non corrispondenti.
 
 ## Tipologie di unioni
 
@@ -16,7 +16,7 @@ Si prendano come esempio due `data.table`:
 - `misure` contiene i risultati analitici di una serie di campioni;
 - `indirizzi` contiene le informazioni relative ai punti di prelievo.
 
-Per collegare queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:
+Per unire queste due tabelle serve una colonna in comune, che nel caso proposto è il codice del campione:
 
 ```{r}
 library(data.table)
@@ -47,7 +47,7 @@ Prima di unire le tabelle, è importante decidere come gestire i dati senza corr
 
 ### Inner join {#sec-inner}
 
-Se si vogliono mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, si usa un **inner join**. In termini di insiemi, corrisponde all'intersezione $A \cap B$, come mostrato in @fig-inner.
+Per mantenere solo i campioni per cui sono disponibili sia le misure che l'indirizzo, si utilizza un **inner join**. In termini di insiemi, corrisponde all'intersezione $A \cap B$, come illustrato in @fig-inner.
 
 ![Inner join ($A \cap B$): vengono restituite solo le righe di A che compaiono anche in B.](images/inner_join.png){#fig-inner}
 
@@ -63,7 +63,7 @@ Se le colonne chiave hanno nomi diversi, è possibile specificare `on` come copp
 
 ### Right e left join {#sec-left}
 
-Volendo mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, si usa un **right join**. In termini insiemistici $B\cup(A\cap B)$ dove $B$ sono gli indirizzi e $A$ le misure, come mostrato in @fig-right.
+Per mantenere tutti i campioni con indirizzo, aggiungendo le misure quando disponibili, si utilizza un **right join**. In termini insiemistici $B\cup(A\cap B)$ dove $B$ sono gli indirizzi e $A$ le misure, come mostrato in @fig-right.
 
 ![Right join ($B \cup (A \cap B)$): vengono restituite tutte le righe di B, completate con le informazioni contenute in A, quando disponibili.](images/right_join.png){#fig-right}
 
@@ -98,7 +98,7 @@ Il valore predefinito dell'argomento `nomatch` è `NA`: è possibile quindi omet
 
 ### Full join
 
-Se si vuole mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo `NA` in assenza di corrispondenza, si usa un *full join*. In termini di insiemi, è l'unione $A \cup B$ , come mostrato in @fig-full.
+Per mantenere tutti i dati di entrambe le tabelle, mettendoli in relazione quando possibile e inserendo `NA` in assenza di corrispondenza, si usa un *full join*. In termini di insiemi, è l'unione $A \cup B$ , come mostrato in @fig-full.
 
 ![Full join ($A \cup B$): vengono restituite tutte le righe di A e B, in caso di mancanza di corrispondenza tra i valori si utilizzano `NA`.](images/full_join.png){#fig-full}
 
@@ -112,7 +112,7 @@ Se le colonne chiave hanno nomi diversi, si specificano `by.x` e `by.y`. Entramb
 ::: callout-tip
 ## Per i più golosi
 
-Con il comando `vignette("datatable-joins")` è possible avere informazioni aggiuntive sull'unione di serie di dati con il pacchetto `data.table`.
+Utilizzando il comando `vignette("datatable-joins")` è possibile accedere a informazioni aggiuntive sull'unione di dataset con il pacchetto `data.table`.
 :::
 
 ::: panel-tabset
@@ -128,7 +128,7 @@ Unire i dataset `pm_genova` e `stazioni` creati nel @sec-datatable:
 
 ## Soluzione
 
-- La chiave è il codice univoco della stazione: `codice_europeo` in `pm_genova` e `station_eu_code` in `stazioni`;
+- La chiave di unione è il codice univoco della stazione: `codice_europeo` in `pm_genova` e `station_eu_code` in `stazioni`;
 - serve un **inner join** ($A \cap B$);
 - ecco il codice:
 

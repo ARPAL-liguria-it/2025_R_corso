@@ -5,11 +5,11 @@
 source("_common.R")
 ```
 
-In questo capitolo si mostra come gestire i dati nei loro due formati principali: **wide** (una entità osservata per riga, variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Si passerà da un formato all'altro con i comandi `melt()` e `dcast()`, imparando a gestire casi con misure multiple o mancanti, e a utilizzare opzioni di aggregazione. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla successiva fase di visualizzazione.
+In questo capitolo vengono mostrati i principali formati di dati: **wide** (un'entità osservata per riga, con variabili in colonne) e **long** (una misura per riga, con tipo e valore separati). Si esploreranno i comandi `melt()` e `dcast()` per passare da un formato all'altro, affrontando casi con misure multiple o mancanti e l'uso di opzioni di aggregazione. Queste tecniche sono fondamentali per preparare i dati all'analisi e alla fase successiva di visualizzazione.
 
 ## La forma dei dati {#sec-shapes}
 
-I dati con cui si lavora abitualmente sono composti da entità osservate (o osservabili) e misure (o variabili) ad essi associate. Ad esempio, volendo prendere in considerazione i dati prodotti da un laboratorio, le entità osservate saranno i singoli campioni, mentre le misure saranno i valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.
+I dati con cui si lavora abitualmente sono costituiti da entità osservate (o osservabili) e misure (o variabili) ad esse associate. Ad esempio, nei dati prodotti da un laboratorio, le entità osservate sono i singoli campioni, mentre le misure corrispondono ai valori risultanti dalle diverse metodiche a cui tali campioni sono sottoposti.
 
 Questa tipologia di dati possono essere organizzati in due differenti formati:
 
@@ -91,13 +91,13 @@ campioni_wide |>
   _[order(codice_campione)] # ordina per codice campione
 ```
 
-La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: la prima relativa alla tipologia di misura, identificata con il nome specificato in `variable.name` e una seconda relativa al valore della misura, identificata con il nome specificato in `value.name`. Le informazioni contenute in `id.vars` sono ripetute per il numero totale di misure effettuate per ogni entità osservata.
+La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: una relativa alla tipologia di misura, identificata dal nome specificato in `variable.name`, e una seconda relativa al valore della misura, identificata dal nome specificato in `value.name`. Le informazioni contenute in `id.vars` sono ripetute per ogni entità osservata, in base al numero totale di misure effettuate.
 
 ## La funzione `dcast()`: da long a wide
 
 ### Significato e sintassi di base {#sec-dcast-base}
 
-La funzione `dcast()` proietta i dati in formato **long** distribuendone il contenuto su un più colonne, per ottenere un formato **wide**. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
+La funzione `dcast()` proietta i dati in formato **long** distribuendo il contenuto su un più colonne, per ottenere un formato **wide**. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
 
 La complessità e potenza dell'operazione di proiezione è testimoniata dalla sintassi della funzione `dcast()`:
 
@@ -136,7 +136,7 @@ campioni_long <- rbind(campioni_long,
                        nuovi_dati)
 ```
 
-Se si proiettassero i dati come fatto nella @sec-dcast-base, si otterrebbe:
+Se i dati venissero proiettati come mostrato nella sezione @sec-dcast-base, si otterrebbe:
 
 ```{r}
 #| echo: false

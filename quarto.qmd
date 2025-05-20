@@ -5,11 +5,11 @@
 source("_common.R")
 ```
 
-In questo capitolo si utilizza **Quarto**, uno strumento potente per creare documenti dinamici e professionali con R, arrivando a integrare codice, testo e output in un unico file per produrre report chiari e personalizzati. All'interno dei report si inseriranno tabelle e grafici in modo efficace, migliorando la comunicazione e la riproducibilità dei risultati delle proprie analisi.
+In questo capitolo si utilizza **Quarto**, uno strumento per creare documenti dinamici e professionali con R, che consente di integrare codice, testo e output in un unico file, generando report chiari e personalizzati. I report possono includere tabelle e grafici, migliorando così la comunicazione e la riproducibilità dei risultati.
 
 ## I documenti Quarto {#sec-quarto}
 
-A partire dal @sec-basics si è organizzato il codice in R utilizzando script e aggiungendo commenti per chiarire le parti più complesse. Tuttavia, in progetti di analisi dati complessi, è necessario integrare anche documentazione testuale per collegare il codice ai risultati. In questi casi, **Quarto** si rivela uno strumento utile.
+A partire dal @sec-basics il codice in R è stato organizzato utilizzando script e commenti per chiarire le sezioni più complesse. Tuttavia, nei progetti di analisi dati complessi, è importante integrare documentazione testuale per collegare il codice ai risultati. In tali casi, **Quarto** si rivela uno strumento particolarmente utile.
 
 **Quarto** è una piattaforma *open source* che permette di creare documenti dinamici e riproducibili combinando testo, codice e risultati in un unico file `.qmd`. Supporta linguaggi come `R`, `Python` e `Julia`, e consente di generare output in vari formati (HTML, PDF, Word).
 
@@ -17,10 +17,10 @@ I documenti cosí generati possono aggiornarsi automaticamente a ogni cambiament
 
 Creare un documento **Quarto** da RStudio è semplice:
 
-1. si segue **File > New File > Quarto Document**;
-2. si inserisce il titolo e l'autore nel pannello di creazione;
-3. si sceglie il formato di output (default HTML, ma puoi selezionare PDF, Word, ecc.);
-4. viene creato un file `.qmd` con un'intestazione YAML simile a:
+1. selezionare **File > New File > Quarto Document**;
+2. inserire il titolo e l'autore nel pannello di creazione;
+3. scegliere il formato di output (il default è HTML, ma è possibile selezionare anche PDF, Word, ecc.);
+4. verrà creato un file `.qmd` con un'intestazione YAML simile a:
 
 ```` markdown
 ---
@@ -36,7 +36,7 @@ Ora si può iniziare a scrivere il primo documento alternando testo e codice.
 
 ### Il testo
 
-All'interno di un documento **Quarto** il testo è inserito semplicemente scrivendo al di sotto dell'intestazione e utilizzando la tipica sintassi **markdown**, ormai sempre più diffusa. Ecco un esempio:
+In un documento **Quarto**, il testo si inserisce scrivendo al di sotto dell'intestazione e utilizzando la sempre più diffusa sintassi **markdown**. Ecco un esempio:
 
 ```` markdown
 
@@ -86,7 +86,7 @@ Per vedere il risultato, si può cliccare il tasto ![](images/render.png){height
 
 ### Il codice
 
-Per inserire del codice all'interno del documento è sufficiente schiacciare i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e al suo interno è possibile inserire del normale codice di R:
+Per inserire del codice all'interno del documento è sufficiente premere i tasti Ctrl + Alt + I: lo spezzone (*chunk*) di codice inizierà con `` ```{r} `` e terminerà con `` ``` `` e al suo interno è possibile inserire del normale codice di R:
 
 ```` markdown
 ```{{r}}
@@ -125,7 +125,7 @@ viene visualizzato
 
 ### Le tabelle
 
-All'interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto `gt`. Tale pacchetto permette di personalizzare nel dettaglio la visualizzazione delle tabelle, impostando i nomi delle colonne, le colonne da unire e la formattazione dei valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di `gt`:
+All'interno di documenti Quarto è possibile visualizzare dataset come tabelle opportunamente formattate utilizzando il pacchetto `gt`. Tale pacchetto consente di configurare la visualizzazione delle tabelle, impostando i nomi delle colonne, unendo le colonne e formattando i valori numerici. Ecco un semplice esempio riadattato dalla documentazione ufficiale di `gt`:
 
 ```{r}
 #| label: tbl-airquality
@@ -156,7 +156,7 @@ airquality |>
 
 ### Unire i puntini
 
-Nelle sezioni precedenti sono stati forniti tutti gli elementi per creare un documento di esempio. Per rendersi la vita più semplice, è possibile specificare nell'intestazione `echo`, `warning` e `message` come `FALSE`, così non si vedrà il codice senza doverlo ripetere all'interno di ogni spezzone.
+Nelle sezioni precedenti sono stati forniti tutti gli elementi per creare un documento di esempio. Per semplificare il processo, è possibile specificare nell'intestazione `echo`, `warning` e `message` come `FALSE`, così non si vedrà il codice senza doverlo ripetere all'interno di ogni spezzone.
 
 ```` markdown
 ---

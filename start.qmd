@@ -24,7 +24,7 @@ R, in tutta la sua potenza, dovrebbe produrre
 
 Questo significa che il risultato è un vettore composto da un solo elemento, e tale elemento è pari a 5.
 
-È possibile anche eseguire calcoli su vettori: si definisce un vettore di 100 elementi che contiene gli interi da 1 a 100, aggiungendo 2 a ciascuno di essi.
+È possibile anche eseguire calcoli su vettori: si definisce un vettore di 100 elementi contenente gli interi da 1 a 100, aggiungendo 2 a ciascuno di essi.
 
 ```{r}
 1:100 + 2
@@ -32,7 +32,7 @@ Questo significa che il risultato è un vettore composto da un solo elemento, e 
 
 Da questo esempio in poi, è adottata la convenzione secondo cui le righe scritte in colore grigio chiaro e precedute da `#>` riportano l'output della console.
 
-Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, ci si può posizionare sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
+Se si volesse ripetere il calcolo precedente aggiungendo 3 invece di 2, è possibile posizionarsi sulla console, premere il tasto freccia su (🔼) della tastiera per richiamare l'ultimo comando, modificarlo e premere Invio.
 Tuttavia, è più comodo assegnare il vettore dei numeri da 1 a 100 a una variabile, ad esempio
 
 ```{r}

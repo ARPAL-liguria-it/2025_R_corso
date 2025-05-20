@@ -1,23 +1,23 @@
-# Visualizzare i dati con `ggplot2` {#sec-ggplot2}
+# Visualizzazione dei dati con `ggplot2` {#sec-ggplot2}
 
 ```{r}
 #| echo: false
 source("_common.R")
 ```
 
-La visualizzazione dei dati è una fase fondamentale nell'analisi statistica: un  grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.
+La visualizzazione dei dati è una fase cruciale nell'analisi statistica, in quanto un grafico chiaro facilita l'interpretazione e la comunicazione dei risultati.
 
 In questo capitolo si creano grafici professionali e personalizzati con il pacchetto `ggplot2`, basato sulla *grammar of graphics*. Combinando e sovrapponendo più livelli grafici sarà possibile arricchire le visualizzazioni, personalizzando assi, colori, legende e temi.
 
 ## Sintassi di base di ggplot2
 
-Un grafico con `ggplot2` si costruisce combinando tre elementi principali:
+Un grafico creato con `ggplot2` si costruisce combinando tre elementi principali:
 
-- **dataset**:  il `data.frame` o la `data.table` con i dati da visualizzare;
+- **dataset**:  il `data.frame` o la `data.table` contenente i dati da visualizzare;
 - **estetiche (`aes`)**: la mappatura delle variabili del dataset alle proprietà visive del grafico (assi, colore, forma, dimensione);
 - **geometria (`geom_`)**: il tipo di oggetto grafico da disegnare (punti, linee, barre, ecc.).
 
-Ecco un esempio per la creazione di un semplice grafico di dispersione a partire da un dataset sintetico:
+Di seguito viene mostrato un esempio per la creazione di un semplice grafico a dispersione utilizzando un dataset sintetico:
 
 ```{r}
 #| label: fig-scatterplot-base
@@ -52,8 +52,8 @@ misure |>                           # dataset
 
 ### Aggiungere livelli al grafico {#sec-layers}
 
-`ggplot2` permette di sovrapporre più livelli per arricchire il grafico con elementi aggiuntivi come linee di tendenza, etichette, pannelli, titoli e annotazioni.  
-Ogni livello si aggiunge con l'operatore `+`.
+`ggplot2` consente di aggiungere più livelli per arricchire il grafico con elementi aggiuntivi, come linee di tendenza, etichette, pannelli, titoli e annotazioni.
+I livelli vengono aggiunti tramite l'operatore `+`.
 
 ```{r}
 #| label: fig-scatterplot-plus
@@ -76,7 +76,7 @@ misure |>                           # dataset
   theme_bw()                        # scelgo lo stile
 ```
 
-I livelli di tipo `geom_` aggiungono tipologie di grafici e i più comuni sono:
+I livelli di tipo `geom_` aggiungono diverse tipologie di grafici. I più comuni sono:
 
 - `geom_point()` per grafici a dispersione;
 - `geom_line()` per grafici a linee;

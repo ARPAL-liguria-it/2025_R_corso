@@ -5,11 +5,11 @@
 source("_common.R")
 ```
 
-In questo capitolo sono discussi alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (`for` e `while`), applicando funzioni in modo efficiente (`lapply()`), e facendo seguire al codice percorsi differenziati con i flussi condizionali (`if`, `else` e `ifelse()`).
+In questo capitolo si approfondiscono alcuni elementi fondamentali di programmazione in R, focalizzandosi su come ripetere istruzioni con i cicli (`for` e `while`), applicare funzioni in modo efficiente (`lapply()`) e gestire flussi condizionali (`if`, `else` e `ifelse()`).
 
 ## Introduzione ai Cicli (Loops)
 
-In programmazione, i cicli servono a ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:
+I cicli consentono di ripetere una serie di istruzioni più volte, evitando di scrivere codice ripetuto manualmente. In R, i cicli più comuni sono:
 
 - `for`: per eseguire un blocco di codice per ogni elemento di una sequenza;
 - `while`: per eseguire un blocco di codice finché una condizione è vera.
@@ -30,7 +30,7 @@ while(i <= 5) {
 }
 ```
 
-Questo genere di cicli sono comuni a ogni tipologia di linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).
+Questo cicli sono comuni a ogni linguaggio di programmazione, tuttavia in R spesso è più efficiente e leggibile evitare i cicli espliciti e utilizzare al loro posto funzioni che applicano altre funzioni a ogni elemento di un oggetto (lista, vettore, dataframe).
 
 ### La funzione `lapply()`
 
@@ -56,7 +56,7 @@ print(medie)
 
 `lapply()` si presta anche ad applicare una funzione personalizzata senza doverla definire prima. In questi casi, si usa una **funzione anonima** come argomento `FUN`.
 
-Ecco come calcolare la media della somma dei quadrati della lista di vettori, definita nell'esempio precedente:
+Ecco come calcolare la somma dei quadrati della lista di vettori, definita nell'esempio precedente:
 
 ```{r}
 result <- lapply(my_list, function(x) sum(x^2))

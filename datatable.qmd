@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-In questo capitolo si utilizzerà il pacchetto `data.table` per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Una volta entranti in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati, si vedrà come importare dati da file esterni, pulirli e prepararli per l'analisi.
+In questo capitolo si utilizzerà il pacchetto `data.table` per gestire e manipolare dati in modo efficiente, anche su dataset di grandi dimensioni. Una volta entrati in contatto con la sintassi di base per filtrare, selezionare e raggruppare dati, si apprenderà come importare dati da file esterni, pulirli e prepararli per l'analisi.
 
 ## Il pacchetto `data.table` {#sec-load}
 
@@ -216,7 +216,7 @@ liguria_eu_id <- stazioni[regione == "Liguria", station_eu_code]
 
 ## Modificare le colonne {#sec-update}
 
-L'importazione dei dati descritta nella @sec-csv ha prodotto una `data.table` in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l'elemento `j` della sintassi `dt[i, j, by]`, ma utilizzando l'operatore `:=` al posto di `=`, come nell'esempio:
+L'importazione dei dati descritta nella @sec-csv ha prodotto una `data.table` in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l'elemento `j` della sintassi `dt[i, j, by]`, ma utilizzando l'operatore di modifica `:=` al posto di `=`, come nell'esempio:
 
 ```{r}
 # converte i valori di `valido` da testo a valori logici
