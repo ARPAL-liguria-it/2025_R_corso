@@ -5,7 +5,7 @@
 source("_common.R")
 ```
 
-n questo capitolo si esplora come combinare diverse tipologie di informazioni unendo due dataset basati su colonne chiave comuni. Si esaminano alcune delle tipologie di **join** del pacchetto `data.table`, affrontando anche casi di chiavi mancanti o non corrispondenti.
+In questo capitolo si esplora come combinare diverse tipologie di informazioni unendo due dataset basati su colonne chiave comuni. Si esaminano alcune delle tipologie di **join** del pacchetto `data.table`, affrontando anche casi di chiavi mancanti o non corrispondenti.
 
 ## Tipologie di unioni
 

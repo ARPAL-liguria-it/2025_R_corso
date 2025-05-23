@@ -97,7 +97,7 @@ La funzione "scioglie" le colonne specificate in `measure.vars` in due colonne: 
 
 ### Significato e sintassi di base {#sec-dcast-base}
 
-La funzione `dcast()` proietta i dati in formato **long** distribuendo il contenuto su un più colonne, per ottenere un formato **wide**. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
+La funzione `dcast()` proietta i dati in formato **long** distribuendo il contenuto su più colonne, per ottenere un formato **wide**. Si tratta di un'operazione analoga a quella fornita dalle tabelle *pivot* dei sistemi basati su fogli di calcolo e, nettamente più delicata rispetto a quella eseguita dalla funzione `melt()`.
 
 La complessità e potenza dell'operazione di proiezione è testimoniata dalla sintassi della funzione `dcast()`:
 
