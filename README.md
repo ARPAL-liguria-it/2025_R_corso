@@ -38,7 +38,7 @@ quarto preview
 
 Consulta anche il file [CONTRIBUTING.md](CONTRIBUTING.md) per maggiori dettagli.
 
-## 📑 Indice
+## 📑 Contenuti
 
 L'indice completo è disponibile direttamente nella versione online.
 I capitoli principali includono:
