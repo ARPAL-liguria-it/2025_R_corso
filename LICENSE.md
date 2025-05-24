@@ -14,5 +14,6 @@ Il materiale contenuto in questo repository è rilasciato sotto la licenza
 ## Per maggiori dettagli
 
 Per ulteriori informazioni, consulta la licenza completa su [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
 ---
 © 2025 ARPA Liguria
