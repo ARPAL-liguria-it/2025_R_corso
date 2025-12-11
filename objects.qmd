@@ -139,7 +139,7 @@ dim(matrice)
 dim(matrice) <- c(5, 20)
 ```
 
-Su vettori e matrici di tipo numerico è possibile eseguire operazioni di algebra lineare, come il prodotto righe per colonne, utilizzando l'operatore `%*%`, o il calcolo dell'inversa con il comando `inv()` del pacchetto `MASS`. Tuttavia, raramente sarà necessario eseguire queste operazioni manualmente, poiché numerosissimi algoritmi sono già implementati in modo molto efficiente in funzioni e pacchetti dedicati.
+Su vettori e matrici numeriche è possibile eseguire operazioni di algebra lineare, ad esempio il prodotto matriciale con `%*%` o la risoluzione di sistemi lineari tramite `solve()`. Nella pratica, tuttavia, queste operazioni sono raramente eseguite manualmente, perché funzioni e pacchetti dedicati integrano già routine efficienti per la maggior parte degli algoritmi di analisi.
 
 ### Fattori
 
