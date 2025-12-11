@@ -16,10 +16,3 @@ R è una scelta ideale perché permette di iniziare subito a eseguire analisi se
 Il corso è stato pensato per chi ha poca o nessuna esperienza con software di analisi dati e durante le 20 ore di formazione, si affrontano con gradualità tutti i passaggi fondamentali per portare a termine un'analisi: dalla manipolazione dei dati alla creazione di report riproducibili.
 
 Questo documento è rilasciato gratuitamente con licenza [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it).
-
-::: {.callout-important}
-## Attenzione {.unnumbered}
-
-Questa è una bozza in fase di stesura: il materiale non è ancora stato sottoposto a revisione.
-
-:::
