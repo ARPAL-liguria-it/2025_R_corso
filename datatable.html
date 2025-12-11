@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,14 +71,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -332,13 +333,13 @@ window.Quarto = {
 <p>Rispetto ai tradizionali <code>data.frame</code> trattati nella <a href="objects.html#sec-df" class="quarto-xref"><span>Sezione 3.2.5</span></a>, il pacchetto <code>data.table</code> offre uno strumento più potente, efficiente e flessibile per gestire e manipolare i dati. <code>data.table</code> è stato creato per lavorare in modo efficiente con dataset di grandi dimensioni, tuttavia la sua sintassi lo rende pratico e agevole da usare anche per dataset di piccole o medie dimensioni.</p>
 <p>Creare una <code>data.table</code> è semplice e molto simile a creare un <code>data.frame</code>. Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># carico il pacchetto</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># carico il pacchetto</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>), <span class="at">each =</span> <span class="dv">10</span>),</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">sample</span>(letters, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Se si ha già un <code>data.frame</code>, è possibile convertirlo in una <code>data.table</code> usando la funzione <code>setDT()</code>.</p>
 <p>La sintassi di base del pacchetto <code>data.table</code> si ispira, con buona dose di creatività, al linguaggio SQL, integrandolo con il sistema di indicizzazione di base di R per selezionare e modificare i dati:</p>
@@ -355,7 +356,7 @@ window.Quarto = {
 </blockquote>
 <p>Ecco subito un esempio pratico:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prendi dt, ordina per id in ordine decrescente e calcola la media di b per ogni id</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prendi dt, ordina per id in ordine decrescente e calcola la media di b per ogni id</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dt[<span class="fu">order</span>(<span class="sc">-</span>id), .(<span class="at">avg =</span> <span class="fu">mean</span>(b)), by <span class="ot">=</span> id]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id         avg</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;       &lt;num&gt;</span></span>
@@ -363,7 +364,7 @@ window.Quarto = {
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:      d -0.34352763</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:      c  0.14841647</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:      b  0.19524443</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:      a  0.06563361</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:      a  0.06563361</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Per sfruttare appieno le potenzialità di <code>data.table</code>, il passo successivo sarà imparare a importare dati da file esterni.</p>
 </section>
@@ -375,7 +376,7 @@ window.Quarto = {
 <p><code>fread()</code> cerca di riconoscere automaticamente il tipo di dati nelle varie colonne (numeri, date, testi), ma è sempre buona pratica verificare il risultato dell’importazione.</p>
 <p>Ecco un esempio:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pm_genova <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/2025-04-24_pm1025_ambiente_liguria.csv.gz"</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pm_genova <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/2025-04-24_pm1025_ambiente_liguria.csv.gz"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="st">"Codice europeo"</span>, <span class="co"># salta fino alla riga contenente "Codice europeo"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">encoding =</span> <span class="st">"Latin-1"</span>)    <span class="co"># gestisce accenti e caratteri speciali</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Il dataset proviene da Ambiente in Liguria ed è stato modificato a scopo di didattico</span></span>
@@ -392,7 +393,7 @@ window.Quarto = {
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Valido         : chr  "SI" "SI" "SI" "SI" ...</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Validato COR   : chr  "SI" "SI" "SI" "SI" ...</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Certificato    : chr  "ancora da esaminare" "ancora da esaminare" "ancora da esaminare" "ancora da esaminare" ...</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Nel dataset importato è possibile notare che sono state distinte le colonne numeriche da quelle testuali, ma ci sono ancora aspetti da migliorare:</p>
 <ul>
@@ -404,10 +405,10 @@ window.Quarto = {
 </ul>
 <p>È possibile sistemare i nomi delle colonne così:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pm_genova) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(pm_genova) <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tolower</span>() <span class="sc">|&gt;</span>                  <span class="co"># trasforma in minuscolo</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"_"</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span>      <span class="co"># sostituisce gli spazi con uderscore</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>) <span class="co"># rimuove accenti e caratteri speciali  </span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">iconv</span>(<span class="at">to =</span> <span class="st">"ASCII//TRANSLIT"</span>) <span class="co"># rimuove accenti e caratteri speciali  </span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -415,7 +416,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Pipe e segnalibri
+<span class="screen-reader-only">Consiglio</span>Pipe e segnalibri
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -428,7 +429,7 @@ Pipe e segnalibri
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="file-xlsx"><span class="header-section-number">5.2.2</span> File xlsx</h3>
 <p>Per importare file Excel è necessario utilizzare il pacchetto <code>readxl</code>, come mostrato nell’esempio:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>stazioni <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/2025-04-24_anagrafica_stazioni.xlsx"</span>,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"Tabella 1"</span>) <span class="sc">|&gt;</span> </span>
@@ -449,7 +450,7 @@ Pipe e segnalibri
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ nome_stazione  : chr  "Borgaro T. - Caduti" "Ceresole Reale - Diga" "Chieri - Bersezio" "Druento - La Mandria" ...</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_zona      : chr  "S" "R" "S" "R" ...</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ tipo_stazione  : chr  "F" "F" "F" "F" ...</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Anche in questo caso, <code>read_excel()</code> cerca di identificare automaticamente i tipi di dati nelle diverse colonne: distingue senza problemi tra numeri e caratteri, ma non riconosce <code>tipo_zona</code> come fattore. A differenza di <code>fread()</code>, <code>read_excel()</code> non restituisce direttamente una <code>data.table</code>.</p>
 </section>
@@ -469,7 +470,7 @@ Pipe e segnalibri
 <p>La condizione <code>variabile %operatore% valore</code> definisce quali righe saranno selezionate.</p>
 <p>Ad esempio, per filtrare le stazioni della Liguria nella <code>data.table</code> <code>stazioni</code>, si scrive:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, ]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, ]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
@@ -568,7 +569,7 @@ Pipe e segnalibri
 <span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:               U             T</span></span>
 <span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:               S             T</span></span>
 <span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:               U             T</span></span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           tipo_zona tipo_stazione</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Gli operatori più comuni sono:</p>
 <ul>
@@ -577,7 +578,7 @@ Pipe e segnalibri
 <li><p><code>%like%</code>: permette di cercare corrispondenze parziali all’interno di stringhe.</p>
 <p>Per esempio, nella colonna <code>nome_stazione</code> della <code>data.table</code> <code>stazioni</code>, si vogliono estrarre le informazioni relative alle stazioni identificate come LOCALITA’ MAZZUCCA - CAIRO MONTENOTTE, LOCALITA’ BRAGNO - CAIRO MONTENOTTE, CAIRO M. SV - VILLA SANGUINETTI. Non è possibile usare <code>== CAIRO</code>, perché il valore <code>CAIRO</code> può comparire in posizioni diverse o in forma abbreviata nel nome. Si può risolvere così:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stazioni[nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>,]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stazioni[nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>,]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009015         IT2107A       700973 Liguria</span></span>
@@ -592,11 +593,11 @@ Pipe e segnalibri
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             I</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             F</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Per selezionare invece tutte le righe che non contengono “CAIR”, si usa:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stazioni[<span class="sc">!</span>(nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>),]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stazioni[<span class="sc">!</span>(nome_stazione <span class="sc">%like%</span> <span class="st">"CAIR"</span>),]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id_regione id_provincia id_comune station_eu_code station_code  regione</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;   &lt;char&gt;</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:          1            1   1001028         IT1128A       100114 Piemonte</span></span>
@@ -635,12 +636,12 @@ Pipe e segnalibri
 <span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 590:             I</span></span>
 <span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 591:             F</span></span>
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 592:             F</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:             F</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 593:             F</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 <li><p><code>%in%</code> e <code>%notin%</code>: selezionano righe in cui il valore della variabile è rispettivamente presente o assente in un vettore di valori.</p>
 <p>Per esempio, per filtrare le stazioni dei comuni di Vado Ligure e Quiliano:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stazioni[comune <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Vado Ligure"</span>, <span class="st">"Quiliano"</span>),]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stazioni[comune <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Vado Ligure"</span>, <span class="st">"Quiliano"</span>),]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:          7            9   7009052         IT1144A       700909 Liguria</span></span>
@@ -655,7 +656,7 @@ Pipe e segnalibri
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;char&gt;</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:             I</span></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:             T</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:             I</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
 </ul>
 <p>È possibile combinare più condizioni usando gli operatori logici <code>&amp;</code> (e) e <code>|</code> (o):</p>
@@ -665,7 +666,7 @@ Pipe e segnalibri
 </ul>
 <p>Ad esempio, per filtrare le stazioni nella provincia di Savona o nel comune di Sanremo:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stazioni[provincia <span class="sc">==</span> <span class="st">"Savona"</span> <span class="sc">|</span> comune <span class="sc">==</span> <span class="st">"Sanremo"</span>,]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stazioni[provincia <span class="sc">==</span> <span class="st">"Savona"</span> <span class="sc">|</span> comune <span class="sc">==</span> <span class="st">"Sanremo"</span>,]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     id_regione id_provincia id_comune station_eu_code station_code regione</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;num&gt;        &lt;num&gt;     &lt;num&gt;          &lt;char&gt;        &lt;num&gt;  &lt;char&gt;</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:          7            8   7008055         IT1882A       700806 Liguria</span></span>
@@ -710,7 +711,7 @@ Pipe e segnalibri
 <span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:               U             F</span></span>
 <span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:               R             I</span></span>
 <span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:               U             T</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:               S             I</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="sec-select" class="level2" data-number="5.4">
@@ -718,16 +719,16 @@ Pipe e segnalibri
 <p>I filtri visti nella <a href="#sec-filter" class="quarto-xref"><span>Sezione 5.3</span></a> agiscono sulle righe del dataset, ma non permettono di di selezionare direttamente le colonne di interesse. Per fare questo, si utilizza l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>.</p>
 <p>Ad esempio, per estrarre i codici europei delle stazioni liguri:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "IT1882A" "IT2038A" "IT2303A" "IT2107A" "IT2108A" "IT2299A" "IT2155A"</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] "IT1144A" "IT1145A" "IT1883A" "IT2304A" "IT1143A" "IT2286A" "IT2323A"</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [15] "IT1549A" "IT2302A" "IT0852A" "IT0854A" "IT0858A" "IT1698A" "IT1884A"</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] "IT2298A" "IT2039A" "IT1456A" "IT1457A" "IT1536A" "IT1544A" "IT1886A"</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] "IT1661A" "IT2229A"</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [29] "IT1661A" "IT2229A"</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Questo restituisce un vettore. Se invece si vuole mantenere la struttura di una <code>data.table</code> (utile per ulteriori elaborazioni), è necessario racchiudere la colonna in <code>.()</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code)]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code)]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:         IT1882A</span></span>
@@ -760,12 +761,12 @@ Pipe e segnalibri
 <span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 28:         IT1886A</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 29:         IT1661A</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 30:         IT2229A</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>All’interno di <code>.()</code> è possibile elencare più colonne, rinominarle o applicare operazioni. Il risultato verrà mostrato a video, ma non salvato a meno che non venga assegnato a una variabile.</p>
 <p>Ecco alcuni esempi:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seleziona due colonne</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seleziona due colonne</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, .(station_eu_code, id_comune)]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     station_eu_code id_comune</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              &lt;char&gt;     &lt;num&gt;</span></span>
@@ -857,21 +858,21 @@ Pipe e segnalibri
 <span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:         30       17</span></span>
 <span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="co"># salva il risultato in una variabile</span></span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>liguria_eu_id <span class="ot">&lt;-</span> stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>liguria_eu_id <span class="ot">&lt;-</span> stazioni[regione <span class="sc">==</span> <span class="st">"Liguria"</span>, station_eu_code]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="sec-update" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="sec-update"><span class="header-section-number">5.5</span> Modificare le colonne</h2>
 <p>L’importazione dei dati descritta nella <a href="#sec-csv" class="quarto-xref"><span>Sezione 5.2.1</span></a> ha prodotto una <code>data.table</code> in cui alcune colonne non sono identificate con la giusta tipologia di dati. Si risolverà il problema in questa sezione, imparando a modificare le colonne sfruttando l’elemento <code>j</code> della sintassi <code>dt[i, j, by]</code>, ma utilizzando l’operatore di modifica <code>:=</code> al posto di <code>=</code>, come nell’esempio:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converte i valori di `valido` da testo a valori logici</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converte i valori di `valido` da testo a valori logici</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, valido <span class="sc">:</span><span class="er">=</span> <span class="fu">fcase</span>(valido <span class="sc">==</span> <span class="st">"SI"</span>, <span class="cn">TRUE</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                            valido <span class="sc">==</span> <span class="st">"NO"</span>, <span class="cn">FALSE</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">default =</span> <span class="cn">NA</span>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">default =</span> <span class="cn">NA</span>)]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Per modifiche multiple su più colonne, è possibile usare una sintassi più compatta:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'operatore := è spostato fuori dalla parentesi nell'elemento j</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l'operatore := è spostato fuori dalla parentesi nell'elemento j</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mentre all'interno della parentesi si usa il segno =</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pm_genova[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span> (</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># standardizza le unità</span></span>
@@ -890,7 +891,7 @@ Pipe e segnalibri
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">unita_di_misura =</span> <span class="cn">NULL</span>,</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_inizio =</span> <span class="cn">NULL</span>,</span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_fine =</span> <span class="cn">NULL</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>)]</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>)]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -898,7 +899,7 @@ Pipe e segnalibri
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Buone maniere
+<span class="screen-reader-only">Consiglio</span>Buone maniere
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -910,7 +911,7 @@ Buone maniere
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-by"><span class="header-section-number">5.6</span> Fare calcoli su gruppi di dati</h2>
 <p>L’elemento <code>by</code> della sintassi <code>dt[i, j, by]</code> permette di ripetere un’operazione su diversi gruppi. Ad esempio, nel caso in cui si voglia calcolare il numero di giorni sottoposti a campionamento, il numero di valori misurati e il numero di valori mancanti per ogni stazione e inquinante, è possibile usare la seguente istruzione:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pm_genova[ , .(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pm_genova[ , .(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">giorni_campionati =</span> <span class="fu">difftime</span>(fine, inizio, <span class="at">units =</span> <span class="st">"days"</span>) <span class="sc">|&gt;</span> <span class="fu">sum</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_tot =</span> .N,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_na =</span> <span class="fu">is.na</span>(valore) <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span>
@@ -942,12 +943,12 @@ Buone maniere
 <span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 22:        IT2298A      PM2,5     342.0000 days   342     0</span></span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 23:                      PM10     266.6667 days  6400     0</span></span>
 <span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 24:                     PM2,5     266.6667 days  6400     0</span></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     codice_europeo inquinante giorni_campionati n_tot  n_na</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     codice_europeo inquinante giorni_campionati n_tot  n_na</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Risulta evidente come, a fronte di un tempo di campionamento totale circa uguale, alcune stazioni abbiano fatto molte più misure: sono quelle dotate di un sistema di misura in continuo (contatore ottico o a raggi <span class="math inline">\(\beta\)</span>).</p>
 <p>All’interno dell’espressione <code>by</code> è possibile inserire anche espressioni, come nel caso seguente per il calcolo della concentrazione media giornaliera:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inquinante, <span class="at">data =</span> <span class="fu">as.IDate</span>(inizio))]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       codice_europeo inquinante       data media_giornaliera</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;     &lt;char&gt;     &lt;IDat&gt;             &lt;num&gt;</span></span>
@@ -961,7 +962,7 @@ Buone maniere
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8417:        IT2302A      PM2,5 2024-01-01           9.40000</span></span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8418:        IT1884A       PM10 2024-01-01          20.70000</span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8419:        IT2298A       PM10 2024-01-01          14.00000</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8420:        IT2298A      PM2,5 2024-01-01           9.50000</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8420:        IT2298A      PM2,5 2024-01-01           9.50000</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="concatenare-operazioni" class="level2" data-number="5.7">
@@ -969,7 +970,7 @@ Buone maniere
 <p>Nel caso di operazioni complesse, composte di più passaggi, normalmente si usa la pipe (<code>|&gt;</code>) o si salva ogni risultato intermedio in una variabile. Il pacchetto <code>data.table</code> offre una possibilità in più.</p>
 <p>Riprendendo l’esempio della <a href="#sec-by" class="quarto-xref"><span>Sezione 5.6</span></a> e volendo calcolare per ogni stazione il numero di giornate il cui la concentrazione media giornaliera di PM10 è superiore del limite di <span class="math inline">\(50\, \mu g/m^3\)</span>, è possibile usare l’espressione:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prima espressione</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prima espressione</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(<span class="at">media_giornaliera =</span> <span class="fu">mean</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          by <span class="ot">=</span> .(codice_europeo, inquinante, <span class="at">data =</span> <span class="fu">as.IDate</span>(inizio))][</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># seconda espressione</span></span>
@@ -990,7 +991,7 @@ Buone maniere
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:        IT1549A  2024       1</span></span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:        IT1884A  2024       3</span></span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:        IT2298A  2024       4</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:                 2024       3</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13:                 2024       3</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -998,7 +999,7 @@ Buone maniere
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Per i più golosi
+<span class="screen-reader-only">Consiglio</span>Per i più golosi
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1006,7 +1007,7 @@ Per i più golosi
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Soluzione</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Esercizio</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Soluzione</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Utilizzando il dataset <code>pm_genova</code> importato e modificato nelle sezioni precedenti, calcolare il minimo, la mediana, la media e il massimo delle concentrazioni giornaliere di PM<sub>10</sub> e PM<sub>2,5</sub> misurate nel 2024 per ogni stazione.</p>
@@ -1014,7 +1015,7 @@ Per i più golosi
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pm_genova[, .(</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">minimo =</span> <span class="fu">min</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mediana =</span> <span class="fu">median</span>(valore, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
@@ -1048,7 +1049,7 @@ Per i più golosi
 <span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:        IT2327A      11.33169</span></span>
 <span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:        IT2323A      14.19280</span></span>
 <span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:        IT2039A      11.18157</span></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:        IT2298A      10.50409</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:        IT2298A      10.50409</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1109,13 +1110,14 @@ Per i più golosi
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
